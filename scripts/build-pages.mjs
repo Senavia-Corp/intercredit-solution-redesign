@@ -483,6 +483,9 @@ ${footerHeading('Resources &amp; Legal')}
 <a class="brand-gradient-btn flex-1 inline-flex min-h-[48px] items-center justify-center px-4 rounded-btn text-ink-950 font-bold text-xs uppercase tracking-wider text-center shadow-sm" href="/contact-us/#book-consultation">Book Consultation</a>
 </div>`;
 
+// UserWay accessibility widget (client account). Loaded on every page, including the homepage.
+const USERWAY = '<script src="https://cdn.userway.org/widget.js" data-account="PIK3aqaQIW"></script>';
+
 const FONT_ICONS = '@@ICON_FONT@@';
 
 const page = ({ title, description, current = '', robots = '', body }) => `<!DOCTYPE html>
@@ -507,6 +510,7 @@ ${header(current)}
 ${body}
 </main>
 ${footer}
+${USERWAY}
 </body></html>
 `;
 
@@ -944,6 +948,7 @@ home = home.replace(/<a class="sr-only[\s\S]*?(?=<main id="main-content">)/, () 
 home = home.replace(/<footer[\s\S]*?<\/footer>/, () => footer.slice(0, footer.indexOf('</footer>') + 9).trim());
 home = home.replace(/<!-- google-badge:start -->[\s\S]*?<!-- google-badge:end -->/, () => `<!-- google-badge:start -->\n<div>${googleBadge({ href: '#google-reviews' })}</div>\n<!-- google-badge:end -->`);
 home = home.replace(/<!-- booking-chips:start -->[\s\S]*?<!-- booking-chips:end -->/, () => `<!-- booking-chips:start -->\n${bookingStepChips()}\n<!-- booking-chips:end -->`);
+if (!home.includes('cdn.userway.org')) home = home.replace('</body>', `${USERWAY}\n</body>`);
 home = home.replace(/<!-- booking:start -->[\s\S]*?<!-- booking:end -->/, () => `<!-- booking:start -->\n${bookingSection()}\n<!-- booking:end -->`);
 home = home.replace(/<!-- reviews:start -->[\s\S]*?<!-- reviews:end -->/, () => `<!-- reviews:start -->\n${reviewsComponent({ summary: false })}\n<!-- reviews:end -->`);
 home = home.replace(/<!-- reviews-summary:start -->[\s\S]*?<!-- reviews-summary:end -->/, () => `<!-- reviews-summary:start -->\n${reviewsSummaryCard()}\n<!-- reviews-summary:end -->`);

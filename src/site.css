@@ -185,6 +185,8 @@
     .legal-prose li::marker {color:var(--ic-brand-blue);}
     .legal-prose a {font-weight:700;text-decoration:underline;text-underline-offset:4px;}
     .legal-prose {overflow-wrap:anywhere;}
+    /* UserWay button: sit above the fixed mobile booking bar instead of on top of it. */
+    @media (max-width:639px) { body .uwy .userway_buttons_wrapper {top:auto !important;bottom:86px !important;} }
     /* Google rating badge. Always on a white plate: the Google colours are not ours to recolour. */
     .google-badge {display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:6px 16px 6px 14px;border-radius:14px;background:#fff;border:1px solid #e3e8e7;box-shadow:0 10px 24px -14px rgba(11,23,32,.45);color:#0B1720;transition:translate 220ms ease, box-shadow 220ms ease;}
     .google-badge-text {display:flex;flex-direction:column;padding-left:12px;border-left:1px solid #e3e8e7;line-height:1.15;}

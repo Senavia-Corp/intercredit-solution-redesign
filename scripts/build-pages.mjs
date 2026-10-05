@@ -299,14 +299,22 @@ ${stars(review.rating)}
 </li>`;
 
 // layout: 'carousel' (scroll-snap row with arrows) or 'grid' (every review).
-const reviewsComponent = ({ layout = 'carousel', data = reviewsData } = {}) => `<div class="space-y-8" id="google-reviews"${layout === 'carousel' ? ' data-carousel' : ''}>
-<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-<div class="space-y-3">
-<img alt="Google Reviews" height="49" loading="lazy" src="/assets/google-reviews.svg" width="120"/>
+const reviewsSummaryBody = (data = reviewsData) => `<img alt="Google Reviews" height="49" loading="lazy" src="/assets/google-reviews.svg" width="120"/>
 <h3 class="text-2xl sm:text-3xl font-bold text-ink-950 leading-tight">What clients have written on Google.</h3>
-<p class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-text-secondary"><span class="text-2xl font-extrabold text-ink-950">${data.averageRating.toFixed(1)}</span>${stars(data.averageRating)}<span>${data.totalReviews} reviews on Google · as of ${asOf}</span></p>
-</div>
-<div class="flex items-center gap-3">
+<p class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-text-secondary"><span class="text-2xl font-extrabold text-ink-950">${data.averageRating.toFixed(1)}</span>${stars(data.averageRating)}<span>${data.totalReviews} reviews on Google · as of ${asOf}</span></p>`;
+// Standalone summary card, for layouts that show the rating beside other content and the reviews below.
+const reviewsSummaryCard = () => `<div class="relative overflow-hidden rounded-card bg-white border border-border-light shadow-sm p-6 space-y-3 lg:mt-auto">
+<span aria-hidden="true" class="absolute inset-x-0 top-0 h-1 brand-gradient-line"></span>
+${reviewsSummaryBody()}
+</div>`;
+
+// summary: false leaves only the controls above the reviews (the summary card is placed elsewhere).
+const reviewsComponent = ({ layout = 'carousel', data = reviewsData, summary = true } = {}) => `<div class="${summary ? 'space-y-8' : 'space-y-4'}" id="google-reviews"${layout === 'carousel' ? ' data-carousel' : ''}>
+<div class="flex flex-col lg:flex-row lg:items-end ${summary ? 'justify-between' : 'justify-end'} gap-6">
+${summary ? `<div class="space-y-3">
+${reviewsSummaryBody(data)}
+</div>` : ''}
+<div class="flex items-center justify-between gap-3">
 <a class="inline-flex min-h-[44px] items-center gap-1.5 font-bold text-xs uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors" href="${esc(data.profileUrl)}" rel="noopener" target="_blank"><span>See all reviews on Google</span>${arrow}</a>
 ${layout === 'carousel' ? `<button type="button" data-carousel-prev aria-label="Previous reviews" class="flex h-11 w-11 items-center justify-center rounded-full border border-border-light bg-white text-ink-950 shadow-sm hover:bg-mist-100 transition-colors">${icon('chevron_left')}</button>
 <button type="button" data-carousel-next aria-label="Next reviews" class="flex h-11 w-11 items-center justify-center rounded-full border border-border-light bg-white text-ink-950 shadow-sm hover:bg-mist-100 transition-colors">${icon('chevron_right')}</button>` : ''}
@@ -947,7 +955,8 @@ home = home.replace(/<footer[\s\S]*?<\/footer>/, () => footer.slice(0, footer.in
 home = home.replace(/<!-- google-badge:start -->[\s\S]*?<!-- google-badge:end -->/, () => `<!-- google-badge:start -->\n<div>${googleBadge({ href: '#google-reviews' })}</div>\n<!-- google-badge:end -->`);
 home = home.replace(/<!-- booking-chips:start -->[\s\S]*?<!-- booking-chips:end -->/, () => `<!-- booking-chips:start -->\n${bookingStepChips()}\n<!-- booking-chips:end -->`);
 home = home.replace(/<!-- booking:start -->[\s\S]*?<!-- booking:end -->/, () => `<!-- booking:start -->\n${bookingSection()}\n<!-- booking:end -->`);
-home = home.replace(/<!-- reviews:start -->[\s\S]*?<!-- reviews:end -->/, () => `<!-- reviews:start -->\n${reviewsComponent()}\n<!-- reviews:end -->`);
+home = home.replace(/<!-- reviews:start -->[\s\S]*?<!-- reviews:end -->/, () => `<!-- reviews:start -->\n${reviewsComponent({ summary: false })}\n<!-- reviews:end -->`);
+home = home.replace(/<!-- reviews-summary:start -->[\s\S]*?<!-- reviews-summary:end -->/, () => `<!-- reviews-summary:start -->\n${reviewsSummaryCard()}\n<!-- reviews-summary:end -->`);
 const used = new Set(['pause', 'play_arrow']);
 for (const html of [home, ...Object.values(pages)]) {
   for (const match of html.matchAll(/class="[^"]*material-symbols-outlined[^"]*"[^>]*>\s*([a-z_0-9]+)\s*</g)) used.add(match[1]);

@@ -30,31 +30,39 @@ header.sticky {
   transition: background-color var(--motion-ui) ease, border-color var(--motion-ui) ease;
 }
 header.sticky.is-scrolled { background-color: rgba(250,249,246,.98); border-bottom-color: #cfdcda; }
-.nav-item-link::after { width: 100%; transform: scaleX(0); transform-origin: left; transition: transform var(--motion-ui) ease; }
+/* Nav items are 44px tall; keep the underline close to the label. */
+.nav-item-link::after { bottom: 6px; width: 100%; transform: scaleX(0); transform-origin: left; transition: transform var(--motion-ui) ease; }
 .nav-item-link:hover::after,.nav-item-link:focus-visible::after { transform: scaleX(1); }
 .brand-gradient-btn {
-  transition: translate var(--motion-ui) var(--motion-ease), transform var(--motion-fast) var(--motion-ease);
+  transition: translate var(--motion-ui) var(--motion-ease), transform var(--motion-fast) var(--motion-ease), box-shadow var(--motion-ui) ease;
 }
 .brand-gradient-btn:hover { filter: none; }
-.motion-card { transition: translate var(--motion-ui) var(--motion-ease), border-color var(--motion-ui) ease; }
+/* Doubled class: must outrank Tailwind's single-class transition utilities on the same card. */
+.motion-card.motion-card { transition: translate var(--motion-ui) var(--motion-ease), border-color var(--motion-ui) ease, box-shadow var(--motion-ui) ease; }
 /* Reveals win over hover transitions until the entrance has completed. */
 .motion-card.motion-revealing { transition: opacity var(--motion-reveal) var(--motion-ease), translate var(--motion-reveal) var(--motion-ease); transition-delay: var(--motion-delay, 0ms); }
-a .material-symbols-outlined { transition: translate var(--motion-ui) var(--motion-ease); }
+.icon-nudge { transition: translate var(--motion-ui) var(--motion-ease); }
 @media (hover:hover) and (pointer:fine) {
   .motion-card:not(.motion-pending):not(.motion-revealing):hover { translate: 0 -3px; }
   .brand-gradient-btn:hover { translate: 0 -2px; }
-  a:hover > .material-symbols-outlined { translate: 3px 0; }
+  a:hover > .icon-nudge { translate: 3px 0; }
 }
 .brand-gradient-btn:active,.testimonial-arrows button:active,.testimonial-choice:active { transform: scale(.98); }
-#faq details { transition: background-color var(--motion-ui) ease, border-color var(--motion-ui) ease; }
+#faq details { transition: background-color var(--motion-ui) ease, box-shadow var(--motion-ui) ease; }
+#faq details.motion-revealing { transition: opacity var(--motion-reveal) var(--motion-ease), translate var(--motion-reveal) var(--motion-ease); transition-delay: var(--motion-delay, 0ms); }
 #faq summary .material-symbols-outlined { transition: transform var(--motion-ui) var(--motion-ease); }
+/* The chevron turns back as the panel starts to close, not after. */
+#faq details[data-closing] summary .material-symbols-outlined { transform: none; }
 @media(max-width:767px) {
   :root { --motion-distance: 14px; --motion-reveal: 500ms; }
   .motion-pending[data-motion="left"],.motion-pending[data-motion="right"] { translate: 0 var(--motion-distance); }
 }
 @media(prefers-reduced-motion:reduce) {
   .motion-pending,.motion-revealing { opacity: 1 !important; translate: none !important; transition: none !important; }
-  .motion-card:hover,.brand-gradient-btn:hover { translate: none !important; }
+  .motion-card:hover,.brand-gradient-btn:hover,a:hover > .icon-nudge { translate: none !important; }
   .brand-gradient-btn:active,.testimonial-arrows button:active,.testimonial-choice:active { transform: none !important; }
   html { scroll-behavior: auto !important; }
+}
+@media print {
+  .motion-pending { opacity: 1 !important; translate: none !important; }
 }

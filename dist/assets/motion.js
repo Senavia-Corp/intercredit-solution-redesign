@@ -27,7 +27,8 @@
       [...intro.children].forEach((element, index) => register(element, 'up', index * 80));
     }
   });
-  group('#goal-selector .grid > div:has(> .goal-card-image), #goal-selector .grid > div:has(> div > .goal-card-image)');
+  // :has() throws in older engines; losing one stagger must not take the rest of the script down.
+  try { group('#goal-selector .grid > div:has(> .goal-card-image), #goal-selector .grid > div:has(> div > .goal-card-image)'); } catch {}
   group('main > section:nth-of-type(2) .grid > div');
   group('#personalized-strategy .flex.flex-col > div');
   register(document.querySelector('#personalized-strategy .lg\\:col-span-5'), 'left');
@@ -37,8 +38,7 @@
   group('.authority-evidence > div');
   group('#solutions-architecture .p-6');
   register(document.querySelector('#founder-section img')?.parentElement, 'fade');
-  const founderHeading = document.querySelector('#founder-section h2');
-  founderHeading?.parentElement.querySelectorAll(':scope > p,:scope > blockquote,:scope > div').forEach(element => register(element));
+  [...(document.querySelector('#founder-section .lg\\:col-span-7')?.children || [])].forEach((element, index) => register(element, 'up', index * 80));
   register(document.querySelector('.testimonial-layout'), 'fade');
   group('main > section:not([id]) .md\\:grid-cols-3 > div');
   group('#faq details');
@@ -56,12 +56,14 @@
   const reveal = element => {
     element.classList.add('motion-revealing');
     show(element);
-    const finish = () => {
+    const finish = event => {
+      // Ignore transitions bubbling up from children (hover states inside a revealing card).
+      if (event && event.target !== element) return;
       element.classList.remove('motion-revealing');
       element.removeEventListener('transitionend', finish);
     };
     element.addEventListener('transitionend', finish);
-    setTimeout(finish, 1000);
+    setTimeout(() => finish(), 1000);
   };
   const reset = () => {
     observer?.disconnect();
@@ -76,7 +78,9 @@
     if (!reduced.matches && 'IntersectionObserver' in window) {
       observer = new IntersectionObserver(entries => {
         entries.forEach(entry => { if (entry.isIntersecting) reveal(entry.target); });
-      }, { threshold: .12, rootMargin: '0px 0px -24px 0px' });
+      // The tall top margin counts everything above the fold as intersecting, so content skipped by
+      // an anchor jump, a restored scroll position or a fast fling is revealed instead of staying hidden.
+      }, { threshold: .12, rootMargin: '100000px 0px -24px 0px' });
       targets.forEach((_, element) => {
         const rect = element.getBoundingClientRect();
         // Visible content, anchors and restored scroll positions never wait.
@@ -93,28 +97,25 @@
         const animation = element.animate([
           { opacity: heading ? 1 : .35, translate: '0 12px' },
           { opacity: 1, translate: '0 0' }
-        ], { duration: 620, delay: index * 80, easing: 'cubic-bezier(.22,1,.36,1)' });
+        ], { duration: 620, delay: index * 80, fill: 'backwards', easing: 'cubic-bezier(.22,1,.36,1)' });
         animations.add(animation);
         animation.finished.then(() => animations.delete(animation)).catch(() => {});
       });
       const visual = hero?.querySelector('.lg\\:col-span-5');
       if (visual?.getBoundingClientRect().width) {
-        const animation = visual.animate([{opacity:.5,translate:'0 14px'},{opacity:1,translate:'0 0'}],{duration:620,delay:320,easing:'cubic-bezier(.22,1,.36,1)'});
+        const animation = visual.animate([{opacity:.5,translate:'0 14px'},{opacity:1,translate:'0 0'}],{duration:620,delay:320,fill:'backwards',easing:'cubic-bezier(.22,1,.36,1)'});
         animations.add(animation);
         animation.finished.then(() => animations.delete(animation)).catch(() => {});
       }
     }
   } catch { reset(); }
-  reduced.addEventListener('change', reset);
+  reduced.addEventListener?.('change', reset);
   // Keyboard focus never lands on visually hidden content.
   document.addEventListener('focusin', event => {
     event.target.closest('.motion-pending') && show(event.target.closest('.motion-pending'));
   });
   window.addEventListener('pageshow', event => {
     if (event.persisted) reset();
-  });
-  document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'hidden') reset();
   });
   // Single passive scroll listener, only toggles state at the threshold.
   const header = document.querySelector('header.sticky');
@@ -132,6 +133,7 @@
   // Native details semantics retained; a short measured-height transition only on click.
   document.querySelectorAll('#faq details').forEach(details => {
     const summary = details.querySelector('summary');
+    if (!summary) return;
     let animation, desired = details.open;
     summary.addEventListener('click', event => {
       if (reduced.matches || !details.animate) return;
@@ -140,6 +142,7 @@
       const wasOpen = animation ? desired : details.open;
       animation?.cancel();
       desired = !wasOpen;
+      details.toggleAttribute('data-closing', !desired);
       details.open = true;
       const style = getComputedStyle(details);
       const closed = summary.getBoundingClientRect().height + parseFloat(style.paddingTop) + parseFloat(style.paddingBottom) + parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth);
@@ -151,12 +154,13 @@
       animation.finished.then(() => {
         if (animation !== current) return;
         details.open = desired;
+        details.removeAttribute('data-closing');
         details.style.overflow = '';
         animations.delete(current);
         animation = null;
       }).catch(() => {
         animations.delete(current);
-        if (animation === current) { details.open = desired; details.style.overflow = ''; }
+        if (animation === current) { details.open = desired; details.removeAttribute('data-closing'); details.style.overflow = ''; }
       });
     });
   });

@@ -1,0 +1,11 @@
+{
+  "name": "intercredit-site",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -c tailwind.config.js -i src/site.css -o dist/assets/site.css --minify",
+    "check": "node --check dist/assets/motion.js && node checks/motion-check.mjs"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

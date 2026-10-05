@@ -24,4 +24,15 @@ const context = {
 };
 vm.runInNewContext(js,context);
 assert.equal(observerCreated,0,'Reduced motion creates no reveal observer');
+// Normal motion: the observer's root reaches far above the viewport, so content skipped by an
+// anchor jump, restored scroll position or fast fling is revealed instead of staying hidden.
+let options;
+const normal = {
+  ...context,
+  matchMedia:()=>({matches:false,addEventListener(){}}),
+  IntersectionObserver:function(_, value){options=value;this.observe=()=>{};this.disconnect=()=>{};},
+};
+normal.window = {addEventListener(){},IntersectionObserver:normal.IntersectionObserver};
+vm.runInNewContext(js,normal);
+assert.ok(parseInt(options?.rootMargin) >= 10000,'Reveal observer covers content above the viewport');
 console.log('PASS: source invariants, reduced-motion fallback, no display hiding, JS syntax and motion safety checks.');

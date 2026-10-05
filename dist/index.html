@@ -6,176 +6,12 @@
 <title>InterCredit Solution — Personalized Credit &amp; Financial Guidance</title>
 <meta content="Personalized credit and financial guidance from InterCredit Solution. Explore credit, debt, protection, and U.S. credit-building pathways." name="description"/>
 <link href="./assets/favicon.png" rel="icon" type="image/png"/>
+<link as="image" fetchpriority="high" href="./assets/hero-background-poster.jpg" rel="preload"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'ink-950': '#0B1720',
-            'ink-900': '#102531',
-            'ink-800': '#173542',
-            'porcelain-50': '#FBF9F4',
-            'porcelain-100': '#F5F3EE',
-            'paper-100': '#F0EEE8',
-            'mist-100': '#EAF1F1',
-            'mist-200': '#DCE8E7',
-            'teal-600': '#1D766E',
-            'teal-500': '#2D8F85',
-            'teal-400': '#14B8A6',
-            'green-500': '#22C55E',
-            'lime-500': '#84CC16',
-            'text-primary': '#10212A',
-            'text-secondary': '#4B5B62',
-            'text-muted': '#5F6E75',
-            'border-light': 'rgba(16, 37, 49, 0.1)',
-            'border-dark': 'rgba(255, 255, 255, 0.14)',
-          },
-          fontFamily: {
-            sans: ['Manrope', 'sans-serif'],
-            serif: ['Newsreader', 'serif'],
-          },
-          borderRadius: {
-            'btn': '12px',
-            'card-sm': '16px',
-            'card': '22px',
-            'card-lg': '28px',
-            'hero': '32px',
-          }
-        }
-      }
-    }
-  </script>
-<style>
-    :root {
-      --ic-grad-primary: linear-gradient(135deg, #0d9488 0%, #16a34a 60%, #84cc16 100%);
-      --ic-grad-subtle: linear-gradient(135deg, rgba(13,148,136,0.12) 0%, rgba(34,197,94,0.08) 100%);
-      --ic-grad-dark: linear-gradient(135deg, rgba(20,184,166,0.2) 0%, rgba(34,197,94,0.15) 100%);
-      --ic-grad-border: linear-gradient(90deg, #0d9488, #22c55e, #84cc16);
-      --ic-nav-line: linear-gradient(90deg, #14B8A6, #22C55E);
-    }
-    .font-serif-italic { font-family: 'Newsreader', serif; font-style: italic; }
-    .bg-ledger {
-      background-image: 
-        linear-gradient(rgba(16, 37, 49, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(16, 37, 49, 0.025) 1px, transparent 1px);
-      background-size: 36px 36px;
-    }
-    .bg-ledger-dark {
-      background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-    }
-    .nav-item-link {
-      position: relative;
-    }
-    .nav-item-link::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      background: var(--ic-nav-line);
-      border-radius: 9999px;
-      transition: width 0.25s ease;
-    }
-    .nav-item-link:hover::after {
-      width: 100%;
-    }
-    .brand-gradient-text {
-      background: var(--ic-grad-primary);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .brand-gradient-btn {
-      background: var(--ic-grad-primary);
-      transition: all 0.3s ease;
-    }
-    .brand-gradient-btn:hover {
-      box-shadow: 0 10px 25px -5px rgba(22, 163, 74, 0.35);
-      filter: brightness(1.05);
-    }
-    .site-logo {
-      display: block;
-      width: auto;
-      height: 100%;
-      object-fit: contain;
-    }
-    .video-story-playing .video-story-overlay {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-    .testimonial-layout {display:grid;grid-template-columns:minmax(0,1.8fr) minmax(0,1fr);gap:32px;align-items:start;}
-    .testimonial-player {aspect-ratio:16/9;background:#0b1925;border-radius:24px;overflow:hidden;}
-    .testimonial-player a {position:relative;display:block;width:100%;height:100%;}
-    .testimonial-player img {width:100%;height:100%;object-fit:contain;}
-    .testimonial-player iframe {width:100%;height:100%;border:0;}
-    .testimonial-play-icon {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:68px;height:68px;border-radius:50%;background:white;color:#1D766E;box-shadow:0 8px 32px #0005;}
-    .testimonial-controls {display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 0;}
-    .testimonial-controls h3 {font-size:20px;font-weight:700;}
-    .testimonial-controls a {font-size:14px;color:#1D766E;text-decoration:underline;text-underline-offset:4px;}
-    .testimonial-arrows {display:flex;align-items:center;gap:12px;white-space:nowrap;}
-    .testimonial-arrows button {width:44px;height:44px;border:1px solid #dce3e3;border-radius:50%;font-size:26px;color:#1D766E;background:white;}
-    .testimonial-list {display:grid;gap:16px;}
-    .testimonial-choice {display:flex;align-items:center;gap:16px;text-align:left;padding:16px;border:1px solid #dce3e3;border-radius:20px;background:#faf9f6;}
-    .testimonial-choice[aria-pressed="true"] {border:2px solid #1D766E;background:#edf7f5;padding:15px;}
-    .testimonial-choice img {width:38%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;}
-    .testimonial-choice span span,.testimonial-choice strong {display:block;}
-    .testimonial-choice strong {font-size:16px;margin:6px 0;}
-    .testimonial-choice span span {font-size:14px;color:#526570;}
-    .testimonial-choice .testimonial-number {font-size:12px;color:#1D766E;letter-spacing:.06em;}
-    #client-proof button:focus-visible,#client-proof a:focus-visible {outline:3px solid #1D766E;outline-offset:4px;}
-    @media(max-width:1023px) {.testimonial-layout{grid-template-columns:1fr;gap:16px}.testimonial-list{grid-template-columns:repeat(3,minmax(0,1fr))}.testimonial-choice{flex-direction:column;align-items:stretch;gap:10px}.testimonial-choice img{width:100%}.testimonial-number{display:none!important}}
-    @media(max-width:520px) {.testimonial-choice{padding:8px;border-radius:12px}.testimonial-choice[aria-pressed="true"]{padding:7px}.testimonial-choice strong{font-size:14px}.testimonial-choice span span{display:none}.testimonial-list{gap:8px}.testimonial-controls{padding:20px 0}.testimonial-player{border-radius:18px}}
-    .video-story-overlay {
-      transition: opacity 0.25s ease, visibility 0.25s ease;
-    }
-    .hero-background-video {
-      object-fit: cover;
-      object-position: 63% center;
-    }
-    @media (min-width: 768px) {
-      .hero-background-video { object-position: center center; }
-    }
-    details summary::-webkit-details-marker { display: none; }
-    .goal-card-image { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 16px; display: block; }
-    #goal-selector a:focus-visible { outline: 3px solid #1D766E; outline-offset: 5px; border-radius: 4px; }
-    @media (max-width: 639px) {
-      body { padding-bottom: 76px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-    .service-title {display:flex;align-items:center;gap:16px;min-width:0;}
-    .service-icon {display:grid;place-items:center;flex:0 0 48px;width:48px;height:48px;border-radius:14px;background:#e5f1ef;color:#1D766E;border:1px solid #cfe3df;font-size:26px;}
-    #solutions-architecture .service-title + span {flex-shrink:0;white-space:nowrap;}
-    #solutions-architecture .p-6 > .flex:first-child {gap:16px;}
-    @media(max-width:520px) {#solutions-architecture .p-6 > .flex:first-child{flex-wrap:wrap}.service-title{gap:12px}.service-icon{flex-basis:44px;width:44px;height:44px;border-radius:12px;font-size:24px}}
-    #authority-proof .authority-layout {display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:32px;align-items:stretch;}
-    #authority-proof .authority-media {height:100%;display:flex;flex-direction:column;}
-    #authority-proof .authority-evidence {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,1fr);gap:20px;}
-    #authority-proof .authority-evidence > div {padding:24px;display:flex;flex-direction:column;gap:12px;background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.14);}
-    #authority-proof .authority-evidence h3 {font-size:16px;line-height:1.45;}
-    #authority-proof .authority-evidence p {font-size:14px;line-height:1.65;color:rgba(255,255,255,.75);}
-    #authority-proof .authority-icon {display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.2);color:#70d8c8;font-size:26px;}
-    #authority-proof .authority-evidence > div > span:not(.authority-icon) {font-size:12px;color:#70d8c8;}
-    #authority-proof .authority-media > div:last-child {padding:24px;flex:1;display:flex;flex-direction:column;justify-content:center;}
-    #authority-proof .authority-media > div:last-child p {font-size:14px;line-height:1.65;}
-    @media(max-width:1023px) {#authority-proof .authority-layout {grid-template-columns:1fr;gap:24px;}#authority-proof .authority-evidence{grid-template-rows:auto;}}
-    @media(max-width:600px) {#authority-proof .authority-evidence{grid-template-columns:1fr;gap:16px;}#authority-proof .authority-evidence > div{display:grid;grid-template-columns:48px minmax(0,1fr);gap:6px 16px;padding:20px;}#authority-proof .authority-icon{grid-row:1 / 4;}#authority-proof .authority-media .absolute{max-width:calc(100% - 32px);font-size:10px;} }
-  </style>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/>
+<link rel="stylesheet" href="./assets/site.css"/>
 <link rel="stylesheet" href="./assets/motion.css"/>
 <script src="./assets/motion.js" defer></script>
 </head>
@@ -190,10 +26,10 @@
 </div>
 <div class="hidden md:flex items-center gap-6 text-white/70">
 <span class="flex items-center gap-1.5">
-<span class="material-symbols-outlined text-[15px] text-teal-400">location_on</span>
+<span aria-hidden="true" class="material-symbols-outlined text-[15px] text-teal-400">location_on</span>
           13590 SW 134th Ave, Suite 203, Miami, FL
         </span>
-<a class="text-white hover:text-green-400 transition-colors font-semibold" href="tel:7862205838">Direct: (786) 220-5838</a>
+<a class="inline-block py-3.5 -my-3.5 text-white hover:text-green-400 transition-colors font-semibold" href="tel:+17862205838">Direct: (786) 220-5838</a>
 </div>
 </div>
 </aside>
@@ -201,20 +37,20 @@
 <header class="sticky top-0 z-40 bg-porcelain-50/95 backdrop-blur-md border-b border-border-light transition-all duration-200">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
 <!-- Authentic Brand Logo -->
-<a class="flex items-center focus:outline-none focus:ring-2 focus:ring-teal-600 rounded-lg py-1 pr-2" href="#">
+<a class="flex shrink-0 items-center focus:outline-none focus:ring-2 focus:ring-teal-600 rounded-lg py-1 pr-2" href="#top">
 <div class="h-11 flex items-center">
 <img alt="InterCredit Solution" class="site-logo" height="159" src="./assets/intercredit-logo.svg" width="226"/>
         </div>
 </a>
 <!-- Desktop Nav with Gradient Hover -->
-<nav class="hidden lg:flex items-center gap-8">
+<nav aria-label="Primary" class="hidden lg:flex items-center gap-5 xl:gap-8">
 <div class="relative py-2" id="solutions-navigation">
 <button type="button" id="solutions-toggle" aria-expanded="false" aria-controls="solutions-dropdown" class="nav-item-link min-h-11 inline-flex items-center gap-1 font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal-600">
             Solutions
             <span aria-hidden="true" class="material-symbols-outlined text-[16px] text-text-muted transition-transform">expand_more</span>
 </button>
 <!-- Mega Menu Dropdown -->
-<div id="solutions-dropdown" hidden class="absolute top-full -left-4 w-[22rem] max-w-[calc(100vw-2rem)] bg-white rounded-card shadow-2xl border border-border-light p-3 flex flex-col gap-1 z-50">
+<div id="solutions-dropdown" hidden class="absolute top-full -left-4 w-[22rem] max-w-[calc(100vw-2rem)] bg-white rounded-card shadow-2xl border border-border-light p-3 flex-col gap-1 z-50">
 <a class="p-3 rounded-btn hover:bg-mist-100/70 transition-colors block border-l-2 border-transparent hover:border-teal-500" href="#goal-selector">
 <span class="font-bold text-[10px] uppercase tracking-wider text-teal-600 block mb-0.5">01 / Credit</span>
 <span class="font-semibold text-sm text-text-primary block">Improve My Credit</span>
@@ -237,20 +73,20 @@
 </a>
 </div>
 </div>
-<a class="nav-item-link font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="#personalized-strategy">How It Works</a>
-<a class="nav-item-link font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="#financial-journey">Journey</a>
-<a class="nav-item-link font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="#solutions-architecture">Services</a>
-<a class="nav-item-link font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="#founder-section">Leadership</a>
-<a class="nav-item-link font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="#client-proof">Reviews</a>
-<a class="nav-item-link font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="#faq">FAQ</a>
+<a class="nav-item-link min-h-11 inline-flex items-center whitespace-nowrap font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="#personalized-strategy">How It Works</a>
+<a class="nav-item-link min-h-11 inline-flex items-center whitespace-nowrap font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="#financial-journey">Journey</a>
+<a class="nav-item-link min-h-11 inline-flex items-center whitespace-nowrap font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="#solutions-architecture">Services</a>
+<a class="nav-item-link min-h-11 inline-flex items-center whitespace-nowrap font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="#founder-section">Leadership</a>
+<a class="nav-item-link min-h-11 inline-flex items-center whitespace-nowrap font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="#client-proof">Reviews</a>
+<a class="nav-item-link min-h-11 inline-flex items-center whitespace-nowrap font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="#faq">FAQ</a>
 </nav>
 <!-- Action Row -->
 <div class="flex items-center gap-4">
-<a class="hidden sm:inline-flex items-center gap-1.5 font-semibold text-xs tracking-wide text-text-secondary hover:text-teal-600 transition-colors" href="tel:7862205838">
-<span class="material-symbols-outlined text-[16px] text-teal-600">call</span>
+<a class="hidden sm:inline-flex lg:hidden xl:inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap font-semibold text-xs tracking-wide text-text-secondary hover:text-teal-600 transition-colors" href="tel:+17862205838">
+<span aria-hidden="true" class="material-symbols-outlined text-[16px] text-teal-600">call</span>
           (786) 220-5838
         </a>
-<a class="brand-gradient-btn hidden sm:inline-flex items-center justify-center px-5 py-3 rounded-btn text-white font-bold text-xs tracking-wider uppercase shadow-sm" href="#consultation-booking">
+<a class="brand-gradient-btn hidden sm:inline-flex min-h-11 items-center justify-center whitespace-nowrap px-5 py-3 rounded-btn text-white font-bold text-xs tracking-wider uppercase shadow-sm" href="#consultation-booking">
           Book a 20-Minute Consultation
         </a>
 <button aria-controls="mobile-navigation" aria-expanded="false" aria-label="Open navigation menu" class="lg:hidden w-11 h-11 rounded-btn bg-white border border-border-light text-ink-950 flex items-center justify-center shadow-sm" id="mobile-menu-toggle" type="button">
@@ -259,7 +95,7 @@
 </div>
 </div>
 </header>
-<div class="fixed inset-0 z-[60] bg-ink-950/45 backdrop-blur-sm hidden lg:hidden" id="mobile-navigation">
+<div class="fixed inset-0 z-[60] bg-ink-950/45 backdrop-blur-sm hidden lg:hidden" id="mobile-navigation" role="dialog" aria-modal="true" aria-label="Site menu">
 <nav aria-label="Mobile navigation" class="absolute inset-y-0 right-0 w-[min(88vw,360px)] bg-porcelain-50 shadow-2xl p-6 flex flex-col">
 <div class="flex items-center justify-between pb-6 border-b border-border-light">
 <img alt="InterCredit Solution" class="h-12 w-auto object-contain" height="159" src="./assets/intercredit-logo.svg" width="226"/>
@@ -284,7 +120,7 @@ Book a 20-Minute Consultation
 <main id="main-content">
 <!-- 03 — HERO SECTION WITH AUTHENTIC INTERCREDIT BACKGROUND VIDEO -->
 <section class="relative isolate overflow-hidden bg-ink-950 py-14 text-white sm:py-20 lg:min-h-[680px] lg:py-24">
-<video aria-hidden="true" autoplay="" class="hero-background-video absolute inset-0 -z-30 h-full w-full" id="hero-background-video" loop="" muted="" playsinline="" poster="./assets/hero-background-poster.jpg" preload="metadata" tabindex="-1">
+<video aria-hidden="true" class="hero-background-video absolute inset-0 -z-30 h-full w-full" id="hero-background-video" loop="" muted="" playsinline="" poster="./assets/hero-background-poster.jpg" preload="metadata" tabindex="-1">
 <source src="./assets/hero-background.mp4" type="video/mp4"/>
 <source src="./assets/hero-background.webm" type="video/webm"/>
 </video>
@@ -315,7 +151,7 @@ Book a 20-Minute Consultation
             </a>
 <a class="inline-flex items-center justify-center gap-2 rounded-btn border border-white/30 bg-white/95 px-6 py-4 text-sm font-bold text-text-primary shadow-sm transition-colors hover:bg-white" href="#goal-selector">
 <span>Find the Right Path</span>
-<span class="material-symbols-outlined text-[18px] text-teal-700">arrow_downward</span>
+<span aria-hidden="true" class="material-symbols-outlined text-[18px] text-teal-700">arrow_downward</span>
 </a>
 </div>
 <!-- Microcopy -->
@@ -325,15 +161,15 @@ Book a 20-Minute Consultation
 <!-- Hero Micro Proof Rail (Verified Labels Only) -->
 <div class="grid w-full grid-cols-1 gap-4 border-t border-white/20 pt-6 sm:grid-cols-3">
 <div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[20px] text-teal-300">verified</span>
+<span aria-hidden="true" class="material-symbols-outlined text-[20px] text-teal-300">verified</span>
 <span class="text-xs font-semibold uppercase tracking-wider text-white/90">Experience in Credit</span>
 </div>
 <div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[20px] text-green-300">grade</span>
+<span aria-hidden="true" class="material-symbols-outlined text-[20px] text-green-300">grade</span>
 <span class="text-xs font-semibold uppercase tracking-wider text-white/90">Google Reviews Verified</span>
 </div>
 <div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[20px] text-teal-300">tv</span>
+<span aria-hidden="true" class="material-symbols-outlined text-[20px] text-teal-300">tv</span>
 <span class="text-xs font-semibold uppercase tracking-wider text-white/90">Featured on Univision</span>
 </div>
 </div>
@@ -373,7 +209,7 @@ Book a 20-Minute Consultation
 <p class="text-xs text-text-secondary">Confidential analysis of credit profiles &amp; tradelines</p>
 </div>
 <div class="w-9 h-9 rounded-lg bg-mist-100 flex items-center justify-center text-teal-600 flex-shrink-0">
-<span class="material-symbols-outlined text-[20px]">account_balance</span>
+<span aria-hidden="true" class="material-symbols-outlined text-[20px]">account_balance</span>
 </div>
 </div>
 </div>
@@ -384,10 +220,10 @@ Book a 20-Minute Consultation
 <!-- 04 — TRUST RAIL (VERIFIED LABELS ONLY) -->
 <section class="w-full bg-white border-y border-border-light py-7">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 divide-y lg:divide-y-0 lg:divide-x divide-border-light">
-<div class="flex items-start gap-3.5 pt-4 lg:pt-0 lg:px-4 first:pl-0">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 lg:divide-x divide-border-light">
+<div class="flex items-start gap-3.5 lg:px-4 first:pl-0">
 <div class="w-10 h-10 rounded-btn bg-mist-100 flex items-center justify-center text-teal-600 flex-shrink-0 relative">
-<span class="material-symbols-outlined text-[20px]">corporate_fare</span>
+<span aria-hidden="true" class="material-symbols-outlined text-[20px]">corporate_fare</span>
 <span class="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-green-500"></span>
 </div>
 <div>
@@ -395,9 +231,9 @@ Book a 20-Minute Consultation
 <p class="text-xs text-text-secondary mt-0.5 leading-relaxed">Dedicated background helping clients navigate complex credit situations.</p>
 </div>
 </div>
-<div class="flex items-start gap-3.5 pt-4 lg:pt-0 lg:px-4">
+<div class="flex items-start gap-3.5 lg:px-4">
 <div class="w-10 h-10 rounded-btn bg-mist-100 flex items-center justify-center text-green-600 flex-shrink-0 relative">
-<span class="material-symbols-outlined text-[20px] text-green-800">reviews</span>
+<span aria-hidden="true" class="material-symbols-outlined text-[20px] text-green-800">reviews</span>
 <span class="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-teal-500"></span>
 </div>
 <div>
@@ -405,9 +241,9 @@ Book a 20-Minute Consultation
 <p class="text-xs text-text-secondary mt-0.5 leading-relaxed">Verified satisfaction, clear communication, and dedicated advisory support.</p>
 </div>
 </div>
-<div class="flex items-start gap-3.5 pt-4 lg:pt-0 lg:px-4">
+<div class="flex items-start gap-3.5 lg:px-4">
 <div class="w-10 h-10 rounded-btn bg-mist-100 flex items-center justify-center text-teal-600 flex-shrink-0 relative">
-<span class="material-symbols-outlined text-[20px]">tv</span>
+<span aria-hidden="true" class="material-symbols-outlined text-[20px]">tv</span>
 <span class="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-lime-500"></span>
 </div>
 <div>
@@ -415,9 +251,9 @@ Book a 20-Minute Consultation
 <p class="text-xs text-text-secondary mt-0.5 leading-relaxed">Financial and credit expertise presented live on national television.</p>
 </div>
 </div>
-<div class="flex items-start gap-3.5 pt-4 lg:pt-0 lg:px-4">
+<div class="flex items-start gap-3.5 lg:px-4">
 <div class="w-10 h-10 rounded-btn bg-mist-100 flex items-center justify-center text-teal-600 flex-shrink-0 relative">
-<span class="material-symbols-outlined text-[20px]">schedule</span>
+<span aria-hidden="true" class="material-symbols-outlined text-[20px]">schedule</span>
 <span class="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-green-500"></span>
 </div>
 <div>
@@ -452,9 +288,9 @@ Book a 20-Minute Consultation
 <p class="text-xs text-text-secondary leading-relaxed">
               Our advisors can evaluate your situation in an introductory call and point you in the right direction.
             </p>
-<a class="inline-flex items-center gap-1.5 font-bold text-xs uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors" href="#consultation-booking">
+<a class="inline-flex items-center gap-1.5 font-bold text-xs uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors py-3.5 -my-3.5" href="#consultation-booking">
 <span>Book a Consultation</span>
-<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+<span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[16px]">arrow_forward</span>
 </a>
 </div>
 </div>
@@ -483,9 +319,9 @@ Book a 20-Minute Consultation
 <span class="px-2.5 py-1 rounded-full bg-teal-50 border border-teal-600/15 text-[11px] font-semibold text-teal-700">Bureau Updates</span>
 <span class="px-2.5 py-1 rounded-full bg-teal-50 border border-teal-600/15 text-[11px] font-semibold text-teal-700">History Assistance</span>
 </div>
-<a class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-teal-700 hover:text-green-700 pt-2" href="#solutions-architecture">
+<a class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-teal-700 hover:text-green-700 py-3.5 -mt-1.5 -mb-3.5" href="#solutions-architecture">
 <span>Explore Credit Guidance</span>
-<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+<span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[16px]">arrow_forward</span>
 </a>
 </div>
 </div>
@@ -495,7 +331,7 @@ Book a 20-Minute Consultation
 <div class="space-y-3">
 <div class="flex items-center justify-between">
 <span class="text-2xl font-black text-text-muted/60 tracking-tighter">02</span>
-<span class="material-symbols-outlined text-text-muted">handshake</span>
+<span aria-hidden="true" class="material-symbols-outlined text-text-muted">handshake</span>
 </div>
 <h3 class="text-xl font-bold text-ink-950">Resolve My Debt</h3>
 <p class="text-sm text-text-secondary leading-relaxed">
@@ -508,9 +344,9 @@ Book a 20-Minute Consultation
 <span class="px-2.5 py-1 rounded-full bg-porcelain-100 text-[11px] font-semibold text-text-secondary">Collection Accounts</span>
 <span class="px-2.5 py-1 rounded-full bg-porcelain-100 text-[11px] font-semibold text-text-secondary">Credit Counseling</span>
 </div>
-<a class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-teal-600 hover:text-green-600 pt-2" href="#solutions-architecture">
+<a class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-teal-600 hover:text-green-600 py-3.5 -mt-1.5 -mb-3.5" href="#solutions-architecture">
 <span>Explore Debt Options</span>
-<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+<span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[16px]">arrow_forward</span>
 </a>
 </div>
 </div>
@@ -520,7 +356,7 @@ Book a 20-Minute Consultation
 <div class="space-y-3">
 <div class="flex items-center justify-between">
 <span class="text-2xl font-black text-text-muted/60 tracking-tighter">03</span>
-<span class="material-symbols-outlined text-text-muted">shield</span>
+<span aria-hidden="true" class="material-symbols-outlined text-text-muted">shield</span>
 </div>
 <h3 class="text-xl font-bold text-ink-950">Protect &amp; Understand My Credit</h3>
 <p class="text-sm text-text-secondary leading-relaxed">
@@ -533,9 +369,9 @@ Book a 20-Minute Consultation
 <span class="px-2.5 py-1 rounded-full bg-porcelain-100 text-[11px] font-semibold text-text-secondary">Fraud Alert Protection</span>
 <span class="px-2.5 py-1 rounded-full bg-porcelain-100 text-[11px] font-semibold text-text-secondary">Credit Education</span>
 </div>
-<a class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-teal-600 hover:text-green-600 pt-2" href="#solutions-architecture">
+<a class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-teal-600 hover:text-green-600 py-3.5 -mt-1.5 -mb-3.5" href="#solutions-architecture">
 <span>Explore Protection Options</span>
-<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+<span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[16px]">arrow_forward</span>
 </a>
 </div>
 </div>
@@ -545,7 +381,7 @@ Book a 20-Minute Consultation
 <div class="space-y-3">
 <div class="flex items-center justify-between">
 <span class="text-2xl font-black text-text-muted/60 tracking-tighter">04</span>
-<span class="material-symbols-outlined text-text-muted">flight_land</span>
+<span aria-hidden="true" class="material-symbols-outlined text-text-muted">flight_land</span>
 </div>
 <h3 class="text-xl font-bold text-ink-950">Build Credit in the U.S.</h3>
 <p class="text-sm text-text-secondary leading-relaxed">
@@ -558,9 +394,9 @@ Book a 20-Minute Consultation
 <span class="px-2.5 py-1 rounded-full bg-porcelain-100 text-[11px] font-semibold text-text-secondary">Credit History Guidance</span>
 <span class="px-2.5 py-1 rounded-full bg-porcelain-100 text-[11px] font-semibold text-text-secondary">Consultation Roadmap</span>
 </div>
-<a class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-teal-600 hover:text-green-600 pt-2" href="#solutions-architecture">
+<a class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-teal-600 hover:text-green-600 py-3.5 -mt-1.5 -mb-3.5" href="#solutions-architecture">
 <span>Explore U.S. Credit Guidance</span>
-<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+<span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[16px]">arrow_forward</span>
 </a>
 </div>
 </div>
@@ -571,7 +407,7 @@ Book a 20-Minute Consultation
 <!-- 06 — PERSONALIZED STRATEGY: EDITORIAL PROCESS WITH VERTICAL TRAJECTORY -->
 <section class="w-full bg-porcelain-50 py-20 lg:py-28" id="personalized-strategy">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="max-w-3xl mb-16 space-y-3">
+<div class="max-w-2xl mb-16 space-y-3">
 <span class="text-xs font-bold uppercase tracking-widest text-teal-600">A STRATEGY BUILT AROUND YOUR SITUATION</span>
 <h2 class="text-3xl sm:text-4xl font-bold text-ink-950 leading-tight">
           Good financial guidance starts with understanding the full picture.
@@ -583,10 +419,8 @@ Book a 20-Minute Consultation
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 <!-- Left: Image detail with Macro Financial Document photo -->
 <div class="lg:col-span-5 relative">
-<div class="rounded-card-lg overflow-hidden shadow-xl border border-border-light bg-white aspect-[4/3]">
-<img alt="Close-up of a credit report analysis with calculator and pen" class="w-full h-full object-cover" decoding="async" height="1602" loading="lazy" src="./assets/credit-analysis.jpg" width="2400"/>
-</div>
-<div class="hidden sm:block absolute -bottom-6 -right-6 p-4 rounded-card-sm bg-white shadow-lg border border-border-light max-w-xs">
+<div class="testimonial-player rounded-card-lg shadow-xl border border-border-light" data-youtube="r6fQ2DCBoe8" data-title="Intercredit Solution: Soluciones Financieras a tu Alcance"><a aria-label="Play video: Intercredit Solution: Soluciones Financieras a tu Alcance" href="https://www.youtube.com/watch?v=r6fQ2DCBoe8"><img alt="" decoding="async" height="720" loading="lazy" src="https://i.ytimg.com/vi/r6fQ2DCBoe8/maxresdefault.jpg" width="1280"/><span class="testimonial-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></a></div>
+<div class="hidden sm:block mt-4 ml-auto p-4 rounded-card-sm bg-white shadow-lg border border-border-light max-w-xs">
 <span class="text-[10px] font-bold text-teal-600 uppercase tracking-widest block mb-1">DOCUMENTED ANALYSIS</span>
 <p class="text-xs text-text-secondary">Every tradeline, balance ratio, and inquiry audited prior to drafting actions.</p>
 </div>
@@ -594,7 +428,7 @@ Book a 20-Minute Consultation
 <!-- Right: 3 Procedural Steps with Fine Vertical Trajectory Line -->
 <div class="lg:col-span-7 relative pl-0 lg:pl-8">
 <!-- Vertical trajectory line -->
-<div class="hidden sm:block absolute left-14 top-6 bottom-6 w-0.5 bg-gradient-to-b from-teal-500 via-green-500 to-lime-500"></div>
+<div class="hidden sm:block absolute left-6 lg:left-14 top-6 bottom-6 w-0.5 bg-gradient-to-b from-teal-500 via-green-500 to-lime-500"></div>
 <div class="flex flex-col space-y-8">
 <div class="flex items-start gap-5 relative z-10">
 <div class="w-12 h-12 rounded-full bg-white border-2 border-teal-500 shadow-md flex items-center justify-center text-teal-700 font-extrabold text-sm flex-shrink-0">
@@ -629,7 +463,7 @@ Book a 20-Minute Consultation
                 </p>
 </div>
 </div>
-<div class="p-4 rounded-btn bg-white border-l-4 border-l-teal-500 border border-border-light shadow-sm">
+<div class="relative z-10 p-4 rounded-btn bg-white border-l-4 border-l-teal-500 border border-border-light shadow-sm">
 <p class="text-xs font-semibold text-text-primary">
                 No generic package. No promise of a specific score. A clearer strategy based on your situation.
               </p>
@@ -647,7 +481,7 @@ Book a 20-Minute Consultation
 <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
           A CLEARER FINANCIAL PATH
         </span>
-<h2 class="text-3xl sm:text-4xl font-bold text-ink-950">
+<h2 class="text-3xl sm:text-4xl font-bold text-ink-950 leading-tight">
           Your next step depends on where you are today.
         </h2>
 <p class="text-text-secondary text-sm">
@@ -657,10 +491,10 @@ Book a 20-Minute Consultation
 <!-- Continuous Fluid Trajectory Desktop View -->
 <div class="relative hidden lg:block py-8">
 <!-- Flowing Background SVG Trajectory Line -->
-<svg class="absolute top-1/2 left-0 w-full -translate-y-8 h-16 pointer-events-none z-0" fill="none" viewbox="0 0 1200 64">
+<svg aria-hidden="true" class="absolute top-8 left-0 w-full h-16 pointer-events-none z-0" fill="none" viewbox="0 0 1200 64">
 <path d="M 60 32 C 200 32, 220 32, 340 32 C 460 32, 500 32, 620 32 C 740 32, 780 32, 900 32 C 1020 32, 1060 32, 1140 32" stroke="url(#trajectoryGrad)" stroke-linecap="round" stroke-width="4"></path>
 <defs>
-<lineargradient id="trajectoryGrad" x1="0%" x2="100%" y1="0%" y2="0%">
+<lineargradient gradientunits="userSpaceOnUse" id="trajectoryGrad" x1="60" x2="1140" y1="32" y2="32">
 <stop offset="0%" stop-color="#0d9488"></stop>
 <stop offset="50%" stop-color="#22c55e"></stop>
 <stop offset="100%" stop-color="#84cc16"></stop>
@@ -743,27 +577,27 @@ Book a 20-Minute Consultation
 <!-- Mobile/Tablet Vertical Trajectory Breakdown -->
 <div class="lg:hidden space-y-6 relative pl-6 border-l-2 border-teal-500">
 <div class="relative space-y-1">
-<span class="absolute -left-[31px] top-0 w-6 h-6 rounded-full bg-teal-600 text-white text-xs flex items-center justify-center font-bold">1</span>
+<span class="absolute -left-[37px] top-0 w-6 h-6 rounded-full bg-teal-600 text-white text-xs flex items-center justify-center font-bold">1</span>
 <h3 class="font-bold text-sm text-ink-950">01. Understand</h3>
 <p class="text-xs text-text-secondary">Review goals, context, and credit reports before deciding what to address.</p>
 </div>
 <div class="relative space-y-1">
-<span class="absolute -left-[31px] top-0 w-6 h-6 rounded-full bg-teal-500 text-white text-xs flex items-center justify-center font-bold">2</span>
+<span class="absolute -left-[37px] top-0 w-6 h-6 rounded-full bg-teal-500 text-white text-xs flex items-center justify-center font-bold">2</span>
 <h3 class="font-bold text-sm text-ink-950">02. Correct</h3>
 <p class="text-xs text-text-secondary">Identify eligible inaccurate or outdated records needing review.</p>
 </div>
 <div class="relative space-y-1">
-<span class="absolute -left-[31px] top-0 w-6 h-6 rounded-full bg-green-500 text-white text-xs flex items-center justify-center font-bold">3</span>
+<span class="absolute -left-[37px] top-0 w-6 h-6 rounded-full bg-green-500 text-white text-xs flex items-center justify-center font-bold">3</span>
 <h3 class="font-bold text-sm text-ink-950">03. Resolve</h3>
 <p class="text-xs text-text-secondary">Explore options for eligible debt and collection account negotiation.</p>
 </div>
 <div class="relative space-y-1">
-<span class="absolute -left-[31px] top-0 w-6 h-6 rounded-full bg-green-600 text-white text-xs flex items-center justify-center font-bold">4</span>
+<span class="absolute -left-[37px] top-0 w-6 h-6 rounded-full bg-green-600 text-white text-xs flex items-center justify-center font-bold">4</span>
 <h3 class="font-bold text-sm text-ink-950">04. Protect</h3>
 <p class="text-xs text-text-secondary">Active monitoring, fraud alert tools, and financial literacy habits.</p>
 </div>
 <div class="relative space-y-1">
-<span class="absolute -left-[31px] top-0 w-6 h-6 rounded-full bg-lime-600 text-white text-xs flex items-center justify-center font-bold">5</span>
+<span class="absolute -left-[37px] top-0 w-6 h-6 rounded-full bg-lime-600 text-white text-xs flex items-center justify-center font-bold">5</span>
 <h3 class="font-bold text-sm text-ink-950">05. Grow</h3>
 <p class="text-xs text-text-secondary">Build stronger credit history to support future financing needs.</p>
 </div>
@@ -780,7 +614,7 @@ Book a 20-Minute Consultation
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
 <div class="max-w-2xl space-y-3">
 <span class="text-xs font-bold uppercase tracking-widest text-green-400">EXPERIENCE YOU CAN SEE</span>
-<h2 class="text-3xl sm:text-4xl font-bold text-white">
+<h2 class="text-3xl sm:text-4xl font-bold text-white leading-tight">
           Credit guidance should be backed by more than promises.
         </h2>
 <p class="text-sm text-white/70 leading-relaxed">
@@ -792,7 +626,7 @@ Book a 20-Minute Consultation
 <div>
 <div class="authority-media rounded-card-lg overflow-hidden bg-ink-900 border border-border-dark shadow-2xl relative">
 <div class="aspect-[4/3] sm:aspect-video w-full relative">
-<img alt="Jessica Sotolongo appearing on Univision Despierta América" class="w-full h-full object-cover" decoding="async" height="1500" loading="lazy" src="./assets/univision-feature.jpg" width="2000"/>
+<img alt="Jessica Sotolongo appearing on Univision Despierta América" class="w-full h-full object-cover" decoding="async" height="1500" loading="lazy" sizes="(min-width: 1024px) 55vw, 100vw" src="./assets/univision-feature.jpg" srcset="./assets/univision-feature-1200.jpg 1200w, ./assets/univision-feature.jpg 2000w" width="2000"/>
 <div class="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-ink-950/85 backdrop-blur-md text-white text-xs font-semibold">
 <span aria-hidden="true" class="material-symbols-outlined text-[16px] text-teal-400">tv</span>
 <span>FEATURED ON UNIVISION / DESPIERTA AMÉRICA</span>
@@ -841,12 +675,12 @@ Book a 20-Minute Consultation
 <!-- 09 — SOLUTIONS ARCHITECTURE: TWO-COLUMN CHAPTER LAYOUT (REPLACING 4-CARD REPETITION) -->
 <section class="w-full bg-white py-20 lg:py-28 border-b border-border-light" id="solutions-architecture">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-<div class="max-w-3xl space-y-3">
+<div class="max-w-2xl space-y-3">
 <span class="text-xs font-bold uppercase tracking-widest text-teal-600 flex items-center gap-1.5">
 <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
           SOLUTIONS DIRECTORY
         </span>
-<h2 class="text-3xl sm:text-4xl font-bold text-ink-950">
+<h2 class="text-3xl sm:text-4xl font-bold text-ink-950 leading-tight">
           A broader set of solutions, organized around what you actually need.
         </h2>
 <p class="text-sm text-text-secondary">
@@ -859,19 +693,19 @@ Book a 20-Minute Consultation
 <div class="lg:col-span-4 lg:sticky lg:top-28 space-y-2">
 <a class="flex items-center justify-between p-4 rounded-card bg-mist-100 border-l-4 border-l-teal-500 shadow-sm text-ink-950 font-bold text-sm" href="#sol-chapter-1">
 <span>01 // Improve My Credit</span>
-<span class="material-symbols-outlined text-[18px] text-teal-600">arrow_forward</span>
+<span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[18px] text-teal-600">arrow_forward</span>
 </a>
 <a class="flex items-center justify-between p-4 rounded-card bg-porcelain-50 hover:bg-mist-100/60 border border-border-light text-text-secondary font-semibold text-sm transition-colors" href="#sol-chapter-2">
 <span>02 // Resolve My Debt</span>
-<span class="material-symbols-outlined text-[18px] text-text-muted">chevron_right</span>
+<span aria-hidden="true" class="material-symbols-outlined text-[18px] text-text-muted">chevron_right</span>
 </a>
 <a class="flex items-center justify-between p-4 rounded-card bg-porcelain-50 hover:bg-mist-100/60 border border-border-light text-text-secondary font-semibold text-sm transition-colors" href="#sol-chapter-3">
 <span>03 // Protect &amp; Understand</span>
-<span class="material-symbols-outlined text-[18px] text-text-muted">chevron_right</span>
+<span aria-hidden="true" class="material-symbols-outlined text-[18px] text-text-muted">chevron_right</span>
 </a>
 <a class="flex items-center justify-between p-4 rounded-card bg-porcelain-50 hover:bg-mist-100/60 border border-border-light text-text-secondary font-semibold text-sm transition-colors" href="#sol-chapter-4">
 <span>04 // Build Credit in the U.S.</span>
-<span class="material-symbols-outlined text-[18px] text-text-muted">chevron_right</span>
+<span aria-hidden="true" class="material-symbols-outlined text-[18px] text-text-muted">chevron_right</span>
 </a>
 <div class="pt-4 p-4 rounded-card bg-paper-100/60 text-xs text-text-secondary">
             Need guidance identifying your chapter? Our advisors will map your profile during the 20-minute introductory call.
@@ -893,9 +727,9 @@ Book a 20-Minute Consultation
 <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
                 Comprehensive audit of credit bureau files across Experian, Equifax, and TransUnion. We develop a personalized strategy targeting inaccurate, incomplete, or unverifiable tradelines in accordance with federal consumer reporting standards.
               </p>
-<div class="flex items-center justify-between pt-2 border-t border-border-light text-xs">
+<div class="flex items-center justify-between gap-4 pt-2 border-t border-border-light text-xs">
 <span class="text-text-muted">Eligible scenarios: Disputed charge-offs, late marks, duplicate files</span>
-<a class="font-bold text-teal-600 hover:text-green-600 flex items-center gap-1" href="#consultation-booking">Consult <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+<a class="font-bold text-teal-600 hover:text-green-600 flex shrink-0 items-center gap-1 py-3.5 -my-3.5" href="#consultation-booking">Consult <span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[14px]">arrow_forward</span></a>
 </div>
 </div>
 <div class="p-6 rounded-card bg-porcelain-50 border border-border-light space-y-3 hover:shadow-sm transition-shadow">
@@ -906,9 +740,9 @@ Book a 20-Minute Consultation
 <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
                 Direct assistance reconciling outdated personal records, mismatched names, obsolete addresses, and misattributed demographic items that cause file fragmentation and underwriting friction.
               </p>
-<div class="flex items-center justify-between pt-2 border-t border-border-light text-xs">
+<div class="flex items-center justify-between gap-4 pt-2 border-t border-border-light text-xs">
 <span class="text-text-muted">Eligible scenarios: Name misspellings, multiple residential histories</span>
-<a class="font-bold text-teal-600 hover:text-green-600 flex items-center gap-1" href="#consultation-booking">Consult <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+<a class="font-bold text-teal-600 hover:text-green-600 flex shrink-0 items-center gap-1 py-3.5 -my-3.5" href="#consultation-booking">Consult <span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[14px]">arrow_forward</span></a>
 </div>
 </div>
 <div class="p-6 rounded-card bg-porcelain-50 border border-border-light space-y-3 hover:shadow-sm transition-shadow">
@@ -919,9 +753,9 @@ Book a 20-Minute Consultation
 <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
                 Strategic recommendations on tradeline seasoning, authorized user structures, and utilization pacing to foster positive credit depth over sustainable reporting cycles.
               </p>
-<div class="flex items-center justify-between pt-2 border-t border-border-light text-xs">
+<div class="flex items-center justify-between gap-4 pt-2 border-t border-border-light text-xs">
 <span class="text-text-muted">Eligible scenarios: Thin files, post-bankruptcy rebuild, new borrower files</span>
-<a class="font-bold text-teal-600 hover:text-green-600 flex items-center gap-1" href="#consultation-booking">Consult <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+<a class="font-bold text-teal-600 hover:text-green-600 flex shrink-0 items-center gap-1 py-3.5 -my-3.5" href="#consultation-booking">Consult <span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[14px]">arrow_forward</span></a>
 </div>
 </div>
 </div>
@@ -939,9 +773,9 @@ Book a 20-Minute Consultation
 <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
                 Objective review of unsecured debt balances with creditors. We assess hardship viability, statute of limitations windows, and formal settlement structures to reduce balance pressures.
               </p>
-<div class="flex items-center justify-between pt-2 border-t border-border-light text-xs">
+<div class="flex items-center justify-between gap-4 pt-2 border-t border-border-light text-xs">
 <span class="text-text-muted">Eligible scenarios: Delinquent credit cards, medical accounts, personal balances</span>
-<a class="font-bold text-teal-600 hover:text-green-600 flex items-center gap-1" href="#consultation-booking">Consult <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+<a class="font-bold text-teal-600 hover:text-green-600 flex shrink-0 items-center gap-1 py-3.5 -my-3.5" href="#consultation-booking">Consult <span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[14px]">arrow_forward</span></a>
 </div>
 </div>
 <div class="p-6 rounded-card bg-porcelain-50 border border-border-light space-y-3 hover:shadow-sm transition-shadow">
@@ -952,9 +786,9 @@ Book a 20-Minute Consultation
 <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
                 Systematic debt validation and settlement with third-party collection agencies, ensuring proper satisfaction reporting and documentation following finalized agreements.
               </p>
-<div class="flex items-center justify-between pt-2 border-t border-border-light text-xs">
+<div class="flex items-center justify-between gap-4 pt-2 border-t border-border-light text-xs">
 <span class="text-text-muted">Eligible scenarios: Third-party collection agency demands, assigned debt</span>
-<a class="font-bold text-teal-600 hover:text-green-600 flex items-center gap-1" href="#consultation-booking">Consult <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+<a class="font-bold text-teal-600 hover:text-green-600 flex shrink-0 items-center gap-1 py-3.5 -my-3.5" href="#consultation-booking">Consult <span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[14px]">arrow_forward</span></a>
 </div>
 </div>
 <div class="p-6 rounded-card bg-porcelain-50 border border-border-light space-y-3 hover:shadow-sm transition-shadow">
@@ -965,9 +799,9 @@ Book a 20-Minute Consultation
 <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
                 Advisory guidance for small business owners separating personal guarantees from commercial tradelines and structuring clean vendor credit lines.
               </p>
-<div class="flex items-center justify-between pt-2 border-t border-border-light text-xs">
+<div class="flex items-center justify-between gap-4 pt-2 border-t border-border-light text-xs">
 <span class="text-text-muted">Eligible scenarios: Commercial entities, LLC restructuring, vendor terms</span>
-<a class="font-bold text-teal-600 hover:text-green-600 flex items-center gap-1" href="#consultation-booking">Consult <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+<a class="font-bold text-teal-600 hover:text-green-600 flex shrink-0 items-center gap-1 py-3.5 -my-3.5" href="#consultation-booking">Consult <span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[14px]">arrow_forward</span></a>
 </div>
 </div>
 </div>
@@ -985,9 +819,9 @@ Book a 20-Minute Consultation
 <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
                 Continuous surveillance tools to track inquiry volume, sudden balance spikes, and suspected identity theft. Assistance filing formal FTC affidavits and security freezes when necessary.
               </p>
-<div class="flex items-center justify-between pt-2 border-t border-border-light text-xs">
+<div class="flex items-center justify-between gap-4 pt-2 border-t border-border-light text-xs">
 <span class="text-text-muted">Eligible scenarios: Suspicious inquiries, compromised personal information</span>
-<a class="font-bold text-teal-600 hover:text-green-600 flex items-center gap-1" href="#consultation-booking">Consult <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+<a class="font-bold text-teal-600 hover:text-green-600 flex shrink-0 items-center gap-1 py-3.5 -my-3.5" href="#consultation-booking">Consult <span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[14px]">arrow_forward</span></a>
 </div>
 </div>
 <div class="p-6 rounded-card bg-porcelain-50 border border-border-light space-y-3 hover:shadow-sm transition-shadow" id="sol-chapter-4">
@@ -998,9 +832,9 @@ Book a 20-Minute Consultation
 <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
                 Specialized architecture for international investors and foreign nationals relocating to the United States. We create a step-by-step roadmap to establish ITIN/SSN creditworthiness, secure commercial financing, and navigate domestic bank underwriting.
               </p>
-<div class="flex items-center justify-between pt-2 border-t border-border-light text-xs">
+<div class="flex items-center justify-between gap-4 pt-2 border-t border-border-light text-xs">
 <span class="text-text-muted">Eligible scenarios: International real estate buyers, visa holders, cross-border businesses</span>
-<a class="font-bold text-teal-600 hover:text-green-600 flex items-center gap-1" href="#consultation-booking">Consult <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+<a class="font-bold text-teal-600 hover:text-green-600 flex shrink-0 items-center gap-1 py-3.5 -my-3.5" href="#consultation-booking">Consult <span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[14px]">arrow_forward</span></a>
 </div>
 </div>
 </div>
@@ -1031,7 +865,7 @@ Book a 20-Minute Consultation
 <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
               LEADERSHIP &amp; PHILOSOPHY
             </span>
-<h2 class="text-3xl sm:text-4xl font-bold text-ink-950">
+<h2 class="text-3xl sm:text-4xl font-bold text-ink-950 leading-tight">
               Financial guidance is better when you know who is behind it.
             </h2>
 </div>
@@ -1042,7 +876,7 @@ Book a 20-Minute Consultation
 <p class="font-bold text-sm text-ink-950 mt-4">Jessica Sotolongo</p>
 <p class="text-xs text-text-muted">Founder &amp; CEO, InterCredit Solution</p>
 </div>
-<div class="text-sm text-text-secondary space-y-4 leading-relaxed">
+<div class="max-w-prose text-sm text-text-secondary space-y-4 leading-relaxed">
 <p>
               Jessica leads InterCredit with a focus on helping clients better understand credit, debt, and the decisions that affect their financial profile. Her approach combines personalized guidance with practical financial education.
             </p>
@@ -1080,7 +914,7 @@ Book a 20-Minute Consultation
 <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
           REAL EXPERIENCES
         </span>
-<h2 class="text-3xl sm:text-4xl font-bold text-ink-950">
+<h2 class="text-3xl sm:text-4xl font-bold text-ink-950 leading-tight">
           See what clients say about working with InterCredit.
         </h2>
 <p class="text-sm text-text-secondary">
@@ -1089,10 +923,10 @@ Book a 20-Minute Consultation
 </div>
 <div class="testimonial-layout" role="region" aria-label="Client video testimonials">
 <div>
-<div id="testimonial-player" class="testimonial-player"><a href="https://www.youtube.com/watch?v=0xNgJalGbg8" id="testimonial-play" aria-label="Play client story 1"><img src="https://i.ytimg.com/vi/0xNgJalGbg8/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"/><span class="testimonial-play-icon" aria-hidden="true">▶</span></a></div>
+<div id="testimonial-player" class="testimonial-player"><a href="https://www.youtube.com/watch?v=0xNgJalGbg8" id="testimonial-play" aria-label="Play client story 1"><img src="https://i.ytimg.com/vi/0xNgJalGbg8/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy"/><span class="testimonial-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></a></div>
 <div class="testimonial-controls"><div><h3 id="testimonial-title">Client story 01</h3><a id="testimonial-youtube" href="https://www.youtube.com/watch?v=0xNgJalGbg8" target="_blank" rel="noopener">Watch on YouTube</a></div><div class="testimonial-arrows"><button type="button" id="testimonial-prev" aria-label="Previous testimonial">‹</button><span id="testimonial-count" aria-live="polite">01 / 03</span><button type="button" id="testimonial-next" aria-label="Next testimonial">›</button></div></div>
 </div>
-<div class="testimonial-list" aria-label="Choose a client story"><button type="button" class="testimonial-choice" data-story="0" aria-pressed="true"><img src="https://i.ytimg.com/vi/0xNgJalGbg8/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"/><span><span class="testimonial-number">01 / CLIENT EXPERIENCE</span><strong>Client story 01</strong><span>Watch this story</span></span></button><button type="button" class="testimonial-choice" data-story="1" aria-pressed="false"><img src="https://i.ytimg.com/vi/U_I_pAV_Hlk/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"/><span><span class="testimonial-number">02 / CLIENT EXPERIENCE</span><strong>Client story 02</strong><span>Watch this story</span></span></button><button type="button" class="testimonial-choice" data-story="2" aria-pressed="false"><img src="https://i.ytimg.com/vi/ZwkhIzVObus/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"/><span><span class="testimonial-number">03 / CLIENT EXPERIENCE</span><strong>Client story 03</strong><span>Watch this story</span></span></button></div>
+<div class="testimonial-list" role="group" aria-label="Choose a client story"><button type="button" class="testimonial-choice" data-story="0" aria-pressed="true"><img src="https://i.ytimg.com/vi/0xNgJalGbg8/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"/><span><span class="testimonial-number">01 / CLIENT EXPERIENCE</span><strong>Client story 01</strong><span>Watch this story</span></span></button><button type="button" class="testimonial-choice" data-story="1" aria-pressed="false"><img src="https://i.ytimg.com/vi/U_I_pAV_Hlk/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"/><span><span class="testimonial-number">02 / CLIENT EXPERIENCE</span><strong>Client story 02</strong><span>Watch this story</span></span></button><button type="button" class="testimonial-choice" data-story="2" aria-pressed="false"><img src="https://i.ytimg.com/vi/ZwkhIzVObus/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"/><span><span class="testimonial-number">03 / CLIENT EXPERIENCE</span><strong>Client story 03</strong><span>Watch this story</span></span></button></div>
 </div>
 </div>
 </section>
@@ -1104,7 +938,7 @@ Book a 20-Minute Consultation
 <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
           WHAT TO EXPECT
         </span>
-<h2 class="text-3xl sm:text-4xl font-bold text-ink-950">
+<h2 class="text-3xl sm:text-4xl font-bold text-ink-950 leading-tight">
           A 20-minute conversation can help clarify your next move.
         </h2>
 <p class="text-sm text-text-secondary">
@@ -1155,79 +989,79 @@ Book a 20-Minute Consultation
 <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
             CLARITY BEFORE COMMITMENT
           </span>
-<h2 class="text-3xl sm:text-4xl font-bold text-ink-950">
+<h2 class="text-3xl sm:text-4xl font-bold text-ink-950 leading-tight">
             Frequently Asked Questions
           </h2>
 <p class="text-sm text-text-secondary leading-relaxed">
             Have questions about working with InterCredit? We believe in absolute transparency before you decide on any next step.
           </p>
-<a class="inline-flex items-center gap-1.5 font-bold text-xs uppercase tracking-wider text-teal-600 hover:text-green-600" href="#consultation-booking">
+<a class="inline-flex items-center gap-1.5 font-bold text-xs uppercase tracking-wider text-teal-600 hover:text-green-600 py-3.5 -my-3.5" href="#consultation-booking">
 <span>Speak with an Advisor</span>
-<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+<span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[16px]">arrow_forward</span>
 </a>
 </div>
 <!-- Right Accordions with Gradient Indicators -->
 <div class="lg:col-span-8 space-y-4">
-<details class="group p-6 rounded-card bg-porcelain-50 border border-border-light open:bg-white open:border-l-4 open:border-l-teal-500 transition-all" open="">
-<summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-ink-950 list-none">
+<details class="group rounded-card bg-porcelain-50 border border-border-light open:bg-white open:shadow-[inset_4px_0_0_#2D8F85] transition-all" open="">
+<summary class="flex items-center justify-between gap-4 p-6 rounded-card cursor-pointer font-bold text-sm text-ink-950 list-none">
 <span>What happens during the initial consultation?</span>
-<span class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span>
+<span aria-hidden="true" class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
-<p class="mt-3 text-xs text-text-secondary leading-relaxed">
+<p class="-mt-3 px-6 pb-6 max-w-prose text-sm text-text-secondary leading-relaxed">
               We review your situation, discuss your goals, and explain the possible next steps that may apply. The purpose is to help you understand the process before deciding how to move forward.
             </p>
 </details>
-<details class="group p-6 rounded-card bg-porcelain-50 border border-border-light open:bg-white open:border-l-4 open:border-l-teal-500 transition-all">
-<summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-ink-950 list-none">
+<details class="group rounded-card bg-porcelain-50 border border-border-light open:bg-white open:shadow-[inset_4px_0_0_#2D8F85] transition-all">
+<summary class="flex items-center justify-between gap-4 p-6 rounded-card cursor-pointer font-bold text-sm text-ink-950 list-none">
 <span>How long does it take to see results?</span>
-<span class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span>
+<span aria-hidden="true" class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
-<p class="mt-3 text-xs text-text-secondary leading-relaxed">
+<p class="-mt-3 px-6 pb-6 max-w-prose text-sm text-text-secondary leading-relaxed">
               Timelines vary depending on the service, complexity of the situation, third parties involved, and other individual factors. InterCredit does not promise a specific credit-score increase or fixed timeline.
             </p>
 </details>
-<details class="group p-6 rounded-card bg-porcelain-50 border border-border-light open:bg-white open:border-l-4 open:border-l-teal-500 transition-all">
-<summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-ink-950 list-none">
+<details class="group rounded-card bg-porcelain-50 border border-border-light open:bg-white open:shadow-[inset_4px_0_0_#2D8F85] transition-all">
+<summary class="flex items-center justify-between gap-4 p-6 rounded-card cursor-pointer font-bold text-sm text-ink-950 list-none">
 <span>How much do your services cost?</span>
-<span class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span>
+<span aria-hidden="true" class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
-<p class="mt-3 text-xs text-text-secondary leading-relaxed">
+<p class="-mt-3 px-6 pb-6 max-w-prose text-sm text-text-secondary leading-relaxed">
               Fees vary depending on the service and complexity of the situation. All costs are explained thoroughly before you make any commitment to a service.
             </p>
 </details>
-<details class="group p-6 rounded-card bg-porcelain-50 border border-border-light open:bg-white open:border-l-4 open:border-l-teal-500 transition-all">
-<summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-ink-950 list-none">
+<details class="group rounded-card bg-porcelain-50 border border-border-light open:bg-white open:shadow-[inset_4px_0_0_#2D8F85] transition-all">
+<summary class="flex items-center justify-between gap-4 p-6 rounded-card cursor-pointer font-bold text-sm text-ink-950 list-none">
 <span>Do you offer payment plans?</span>
-<span class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span>
+<span aria-hidden="true" class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
-<p class="mt-3 text-xs text-text-secondary leading-relaxed">
+<p class="-mt-3 px-6 pb-6 max-w-prose text-sm text-text-secondary leading-relaxed">
               Payment plan options may be available depending on the service program. You can confirm current terms and eligibility directly with an advisor during your initial consultation.
             </p>
 </details>
-<details class="group p-6 rounded-card bg-porcelain-50 border border-border-light open:bg-white open:border-l-4 open:border-l-teal-500 transition-all">
-<summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-ink-950 list-none">
+<details class="group rounded-card bg-porcelain-50 border border-border-light open:bg-white open:shadow-[inset_4px_0_0_#2D8F85] transition-all">
+<summary class="flex items-center justify-between gap-4 p-6 rounded-card cursor-pointer font-bold text-sm text-ink-950 list-none">
 <span>Do I need to know which service I need before booking?</span>
-<span class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span>
+<span aria-hidden="true" class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
-<p class="mt-3 text-xs text-text-secondary leading-relaxed">
+<p class="-mt-3 px-6 pb-6 max-w-prose text-sm text-text-secondary leading-relaxed">
               No. Start with your goal and situation. The 20-minute consultation is specifically designed to help clarify which options are relevant.
             </p>
 </details>
-<details class="group p-6 rounded-card bg-porcelain-50 border border-border-light open:bg-white open:border-l-4 open:border-l-teal-500 transition-all">
-<summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-ink-950 list-none">
+<details class="group rounded-card bg-porcelain-50 border border-border-light open:bg-white open:shadow-[inset_4px_0_0_#2D8F85] transition-all">
+<summary class="flex items-center justify-between gap-4 p-6 rounded-card cursor-pointer font-bold text-sm text-ink-950 list-none">
 <span>Can InterCredit guarantee that my credit score will increase?</span>
-<span class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span>
+<span aria-hidden="true" class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
-<p class="mt-3 text-xs text-text-secondary leading-relaxed">
+<p class="-mt-3 px-6 pb-6 max-w-prose text-sm text-text-secondary leading-relaxed">
               No specific score increase, approval, deletion, settlement, or timeline should ever be guaranteed. Results depend on the facts of the individual case and other factors outside InterCredit's control.
             </p>
 </details>
-<details class="group p-6 rounded-card bg-porcelain-50 border border-border-light open:bg-white open:border-l-4 open:border-l-teal-500 transition-all">
-<summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-ink-950 list-none">
+<details class="group rounded-card bg-porcelain-50 border border-border-light open:bg-white open:shadow-[inset_4px_0_0_#2D8F85] transition-all">
+<summary class="flex items-center justify-between gap-4 p-6 rounded-card cursor-pointer font-bold text-sm text-ink-950 list-none">
 <span>Can InterCredit help foreign investors establish U.S. credit?</span>
-<span class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span>
+<span aria-hidden="true" class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
-<p class="mt-3 text-xs text-text-secondary leading-relaxed">
+<p class="-mt-3 px-6 pb-6 max-w-prose text-sm text-text-secondary leading-relaxed">
               Yes. InterCredit offers specialized guidance specifically for international investors seeking assistance with establishing and structuring a U.S. credit profile.
             </p>
 </details>
@@ -1249,11 +1083,11 @@ Book a 20-Minute Consultation
           You do not need to diagnose your own credit situation or choose a service before you call. Tell us your goal, ask your questions, and understand the options that may fit your situation.
         </p>
 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
-<a class="brand-gradient-btn inline-flex items-center justify-center px-8 py-4 rounded-btn text-white font-bold text-sm tracking-wider uppercase shadow-xl" href="#">
+<a class="brand-gradient-btn inline-flex items-center justify-center px-8 py-4 rounded-btn text-white font-bold text-sm tracking-wider uppercase shadow-xl" href="tel:+17862205838">
             Book a 20-Minute Consultation
           </a>
-<a class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-btn bg-white/10 hover:bg-white/20 text-white font-bold text-sm border border-border-dark transition-colors" href="tel:7862205838">
-<span class="material-symbols-outlined text-[18px]">call</span>
+<a class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-btn bg-white/10 hover:bg-white/20 text-white font-bold text-sm border border-border-dark transition-colors" href="tel:+17862205838">
+<span aria-hidden="true" class="material-symbols-outlined text-[18px]">call</span>
 <span>Call (786) 220-5838</span>
 </a>
 </div>
@@ -1278,41 +1112,41 @@ Book a 20-Minute Consultation
 <p class="text-white/60 leading-relaxed max-w-sm">
             Personalized credit and financial guidance for people who want a clearer path through credit, debt, protection, and U.S. credit-building decisions.
           </p>
-<div class="space-y-1.5 text-white/70 pt-2">
+<div class="text-white/70 pt-2">
 <p>13590 SW 134th Ave, Suite 203, Miami, FL 33186</p>
-<p class="text-white font-bold">(786) 220-5838 • 1-888-224-2076</p>
-<p>intercreditsolutions@gmail.com</p>
+<p class="text-white font-bold"><a class="inline-flex min-h-[44px] items-center hover:text-green-400 transition-colors" href="tel:+17862205838">(786) 220-5838</a> • <a class="inline-flex min-h-[44px] items-center hover:text-green-400 transition-colors" href="tel:+18882242076">1-888-224-2076</a></p>
+<p><a class="inline-flex min-h-[44px] items-center hover:text-white transition-colors" href="mailto:intercreditsolutions@gmail.com">intercreditsolutions@gmail.com</a></p>
 <p class="text-[11px] text-white/50">Hours: Monday–Friday, 9:00 AM–5:00 PM EST</p>
 </div>
 </div>
 <!-- Col 2: Solutions -->
 <div class="lg:col-span-3 space-y-3">
 <h3 class="font-bold text-xs uppercase tracking-widest text-green-400">Solutions</h3>
-<ul class="space-y-2">
-<li><a class="hover:text-white transition-colors" href="#goal-selector">Improve My Credit</a></li>
-<li><a class="hover:text-white transition-colors" href="#goal-selector">Resolve My Debt</a></li>
-<li><a class="hover:text-white transition-colors" href="#goal-selector">Protect &amp; Understand My Credit</a></li>
-<li><a class="hover:text-white transition-colors" href="#goal-selector">Build Credit in the U.S.</a></li>
+<ul>
+<li><a class="inline-flex min-h-[44px] items-center hover:text-white transition-colors" href="#goal-selector">Improve My Credit</a></li>
+<li><a class="inline-flex min-h-[44px] items-center hover:text-white transition-colors" href="#goal-selector">Resolve My Debt</a></li>
+<li><a class="inline-flex min-h-[44px] items-center hover:text-white transition-colors" href="#goal-selector">Protect &amp; Understand My Credit</a></li>
+<li><a class="inline-flex min-h-[44px] items-center hover:text-white transition-colors" href="#goal-selector">Build Credit in the U.S.</a></li>
 </ul>
 </div>
 <!-- Col 3: Company -->
 <div class="lg:col-span-2 space-y-3">
 <h3 class="font-bold text-xs uppercase tracking-widest text-green-400">Company</h3>
-<ul class="space-y-2">
-<li><a class="hover:text-white transition-colors" href="#founder-section">About &amp; Leadership</a></li>
-<li><a class="hover:text-white transition-colors" href="#client-proof">Client Reviews</a></li>
-<li><a class="hover:text-white transition-colors" href="#founder-section">Media Appearances</a></li>
-<li><a class="hover:text-white transition-colors" href="tel:7862205838">Contact Us</a></li>
+<ul>
+<li><a class="inline-flex min-h-[44px] items-center hover:text-white transition-colors" href="#founder-section">About &amp; Leadership</a></li>
+<li><a class="inline-flex min-h-[44px] items-center hover:text-white transition-colors" href="#client-proof">Client Reviews</a></li>
+<li><a class="inline-flex min-h-[44px] items-center hover:text-white transition-colors" href="#founder-section">Media Appearances</a></li>
+<li><a class="inline-flex min-h-[44px] items-center hover:text-white transition-colors" href="tel:+17862205838">Contact Us</a></li>
 </ul>
 </div>
 <!-- Col 4: Resources & Legal -->
 <div class="lg:col-span-3 space-y-3">
 <h3 class="font-bold text-xs uppercase tracking-widest text-green-400">Resources &amp; Legal</h3>
-<ul class="space-y-2">
-<li><a class="hover:text-white transition-colors" href="#faq">FAQ Knowledge Base</a></li>
-<li><a class="hover:text-white transition-colors" href="#">Privacy Policy</a></li>
-<li><a class="hover:text-white transition-colors" href="#">Terms &amp; Conditions</a></li>
-<li><a class="hover:text-white transition-colors" href="#">Consumer Rights Disclosures</a></li>
+<ul>
+<li><a class="inline-flex min-h-[44px] items-center hover:text-white transition-colors" href="#faq">FAQ Knowledge Base</a></li>
+<li><a class="inline-flex min-h-[44px] items-center hover:text-white transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="inline-flex min-h-[44px] items-center hover:text-white transition-colors" href="#">Terms &amp; Conditions</a></li>
+<li><a class="inline-flex min-h-[44px] items-center hover:text-white transition-colors" href="#">Consumer Rights Disclosures</a></li>
 </ul>
 </div>
 </div>
@@ -1327,122 +1161,155 @@ Book a 20-Minute Consultation
 </footer>
 <!-- MOBILE STICKY CTA (visible on mobile viewports <= 640px) -->
 <div class="fixed bottom-0 inset-x-0 z-50 p-3 bg-white/95 backdrop-blur-md border-t border-border-light sm:hidden flex items-center justify-between gap-3 shadow-lg">
-<a class="w-12 h-12 rounded-btn bg-mist-100 flex items-center justify-center text-teal-700 flex-shrink-0" href="tel:7862205838">
-<span class="material-symbols-outlined text-[20px]">call</span>
+<a class="w-12 h-12 rounded-btn bg-mist-100 flex items-center justify-center text-teal-700 flex-shrink-0" href="tel:+17862205838" aria-label="Call (786) 220-5838">
+<span aria-hidden="true" class="material-symbols-outlined text-[20px]">call</span>
 </a>
-<a class="brand-gradient-btn flex-1 py-3 px-4 rounded-btn text-white font-bold text-xs uppercase tracking-wider text-center shadow-sm" href="#consultation-booking">
+<a class="brand-gradient-btn flex-1 inline-flex min-h-[48px] items-center justify-center px-4 rounded-btn text-white font-bold text-xs uppercase tracking-wider text-center shadow-sm" href="#consultation-booking">
       Book Consultation
     </a>
 </div>
 <script>
+(() => {
+  // Solutions dropdown
   const solutionsNavigation = document.getElementById('solutions-navigation');
   const solutionsToggle = document.getElementById('solutions-toggle');
   const solutionsDropdown = document.getElementById('solutions-dropdown');
-  const setSolutionsOpen = (open) => {
-    solutionsDropdown.hidden = !open;
-    solutionsDropdown.style.display = open ? 'flex' : 'none';
-    solutionsToggle.setAttribute('aria-expanded', String(open));
-    solutionsToggle.querySelector('span').style.transform = open ? 'rotate(180deg)' : '';
-  };
-  setSolutionsOpen(false);
-  solutionsToggle.addEventListener('click', () => setSolutionsOpen(solutionsDropdown.hidden));
-  solutionsToggle.addEventListener('keydown', (event) => {
-    if (event.key === 'ArrowDown') {
-      event.preventDefault();
-      setSolutionsOpen(true);
-      solutionsDropdown.querySelector('a').focus();
-    }
-  });
-  solutionsNavigation.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      setSolutionsOpen(false);
-      solutionsToggle.focus();
-    }
-  });
-  solutionsNavigation.addEventListener('focusout', (event) => {
-    if (!solutionsNavigation.contains(event.relatedTarget)) setSolutionsOpen(false);
-  });
-  solutionsDropdown.addEventListener('click', (event) => {
-    if (event.target.closest('a')) setSolutionsOpen(false);
-  });
-  document.addEventListener('click', (event) => {
-    if (!solutionsNavigation.contains(event.target)) setSolutionsOpen(false);
-  });
+  if (solutionsNavigation && solutionsToggle && solutionsDropdown) {
+    const toggleIcon = solutionsToggle.querySelector('span');
+    const setSolutionsOpen = (open) => {
+      solutionsDropdown.hidden = !open;
+      solutionsDropdown.style.display = open ? 'flex' : 'none';
+      solutionsToggle.setAttribute('aria-expanded', String(open));
+      if (toggleIcon) toggleIcon.style.transform = open ? 'rotate(180deg)' : '';
+    };
+    setSolutionsOpen(false);
+    solutionsToggle.addEventListener('click', () => setSolutionsOpen(solutionsDropdown.hidden));
+    solutionsToggle.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        setSolutionsOpen(true);
+        solutionsDropdown.querySelector('a')?.focus();
+      }
+    });
+    solutionsNavigation.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !solutionsDropdown.hidden) {
+        setSolutionsOpen(false);
+        solutionsToggle.focus();
+      }
+    });
+    solutionsNavigation.addEventListener('focusout', (event) => {
+      if (!solutionsNavigation.contains(event.relatedTarget)) setSolutionsOpen(false);
+    });
+    // A pointer press must not blur the toggle, or focusout closes the menu before the click lands.
+    solutionsDropdown.addEventListener('mousedown', (event) => event.preventDefault());
+    solutionsDropdown.addEventListener('click', (event) => {
+      if (event.target.closest('a')) setSolutionsOpen(false);
+    });
+    document.addEventListener('click', (event) => {
+      if (!solutionsNavigation.contains(event.target)) setSolutionsOpen(false);
+    });
+  }
+
+  // Mobile navigation drawer
   const mobileNavigation = document.getElementById('mobile-navigation');
   const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
   const mobileMenuClose = document.getElementById('mobile-menu-close');
-  const setMobileNavigation = (open) => {
-    mobileNavigation.classList.toggle('hidden', !open);
-    mobileMenuToggle.setAttribute('aria-expanded', String(open));
-    document.body.classList.toggle('overflow-hidden', open);
-    if (open) mobileMenuClose.focus();
-    else mobileMenuToggle.focus();
-  };
-  mobileMenuToggle.addEventListener('click', () => setMobileNavigation(true));
-  mobileMenuClose.addEventListener('click', () => setMobileNavigation(false));
-  mobileNavigation.addEventListener('click', (event) => {
-    if (event.target === mobileNavigation || event.target.closest('a')) setMobileNavigation(false);
-  });
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && !mobileNavigation.classList.contains('hidden')) setMobileNavigation(false);
-  });
+  if (mobileNavigation && mobileMenuToggle && mobileMenuClose) {
+    const background = [...document.body.children].filter((element) => element !== mobileNavigation && element.tagName !== 'SCRIPT');
+    const isOpen = () => !mobileNavigation.classList.contains('hidden');
+    const setMobileNavigation = (open, restoreFocus = true) => {
+      mobileNavigation.classList.toggle('hidden', !open);
+      mobileMenuToggle.setAttribute('aria-expanded', String(open));
+      document.body.classList.toggle('overflow-hidden', open);
+      background.forEach((element) => { element.inert = open; });
+      if (open) mobileMenuClose.focus();
+      else if (restoreFocus) mobileMenuToggle.focus();
+    };
+    mobileMenuToggle.addEventListener('click', () => setMobileNavigation(true));
+    mobileMenuClose.addEventListener('click', () => setMobileNavigation(false));
+    mobileNavigation.addEventListener('click', (event) => {
+      if (event.target === mobileNavigation) setMobileNavigation(false);
+      else if (event.target.closest('a')) setMobileNavigation(false, false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && isOpen()) setMobileNavigation(false);
+    });
+    // The drawer does not exist at desktop widths; never leave the page locked behind it.
+    const desktop = window.matchMedia('(min-width: 1024px)');
+    desktop.addEventListener?.('change', (event) => {
+      if (event.matches && isOpen()) setMobileNavigation(false, false);
+    });
+  }
 
+  // Hero background video: started here so reduced-motion users never see it move.
   const heroVideo = document.getElementById('hero-background-video');
   const heroVideoToggle = document.getElementById('hero-video-toggle');
   const heroVideoToggleIcon = document.getElementById('hero-video-toggle-icon');
-  const setHeroVideoState = (playing) => {
-    heroVideoToggleIcon.textContent = playing ? 'pause' : 'play_arrow';
-    heroVideoToggle.setAttribute('aria-label', playing ? 'Pause background video' : 'Play background video');
-  };
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (prefersReducedMotion.matches) {
-    heroVideo.pause();
-    heroVideo.removeAttribute('autoplay');
-    setHeroVideoState(false);
-  } else {
-    heroVideo.play().then(() => setHeroVideoState(true)).catch(() => setHeroVideoState(false));
+  if (heroVideo && heroVideoToggle && heroVideoToggleIcon) {
+    const syncHeroVideoState = () => {
+      const playing = !heroVideo.paused;
+      heroVideoToggleIcon.textContent = playing ? 'pause' : 'play_arrow';
+      heroVideoToggle.setAttribute('aria-label', playing ? 'Pause background video' : 'Play background video');
+    };
+    heroVideo.addEventListener('play', syncHeroVideoState);
+    heroVideo.addEventListener('pause', syncHeroVideoState);
+    syncHeroVideoState();
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) heroVideo.play().catch(() => {});
+    heroVideoToggle.addEventListener('click', () => {
+      if (heroVideo.paused) heroVideo.play().catch(() => {});
+      else heroVideo.pause();
+    });
   }
-  heroVideoToggle.addEventListener('click', async () => {
-    if (heroVideo.paused) {
-      try {
-        await heroVideo.play();
-        setHeroVideoState(true);
-      } catch {
-        setHeroVideoState(false);
-      }
-    } else {
-      heroVideo.pause();
-      setHeroVideoState(false);
-    }
-  });
 
-  const storyIds = ['0xNgJalGbg8', 'U_I_pAV_Hlk', 'ZwkhIzVObus'];
-  let selectedStory = 0;
-  const storyPlayer = document.getElementById('testimonial-player');
-  const storyChoices = [...document.querySelectorAll('.testimonial-choice')];
-  const selectStory = (index) => {
-    selectedStory = (index + storyIds.length) % storyIds.length;
-    const id = storyIds[selectedStory];
-    const number = String(selectedStory + 1).padStart(2, '0');
-    storyPlayer.innerHTML = '<a id="testimonial-play" aria-label="Play client story ' + number + '" href="https://www.youtube.com/watch?v=' + id + '"><img src="https://i.ytimg.com/vi/' + id + '/hqdefault.jpg" alt="" width="480" height="360"/><span class="testimonial-play-icon" aria-hidden="true">▶</span></a>';
-    document.getElementById('testimonial-title').textContent = 'Client story ' + number;
-    document.getElementById('testimonial-count').textContent = number + ' / 03';
-    document.getElementById('testimonial-youtube').href = 'https://www.youtube.com/watch?v=' + id;
-    storyChoices.forEach((button, i) => button.setAttribute('aria-pressed', String(i === selectedStory)));
-  };
-  storyChoices.forEach((button, i) => button.addEventListener('click', () => selectStory(i)));
-  document.getElementById('testimonial-prev').addEventListener('click', () => selectStory(selectedStory - 1));
-  document.getElementById('testimonial-next').addEventListener('click', () => selectStory(selectedStory + 1));
-  storyPlayer.addEventListener('click', (event) => {
-    if (!event.target.closest('#testimonial-play')) return;
-    event.preventDefault();
+  const playYouTube = (container, id, title) => {
     const frame = document.createElement('iframe');
-    frame.src = 'https://www.youtube-nocookie.com/embed/' + storyIds[selectedStory] + '?autoplay=1&playsinline=1&cc_load_policy=1';
-    frame.title = 'InterCredit client story ' + (selectedStory + 1);
+    frame.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&playsinline=1&cc_load_policy=1';
+    frame.title = title;
     frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    frame.referrerPolicy = 'strict-origin-when-cross-origin';
     frame.allowFullscreen = true;
-    storyPlayer.replaceChildren(frame);
+    container.replaceChildren(frame);
     frame.focus();
+  };
+
+  // Client stories
+  const storyIds = ['0xNgJalGbg8', 'U_I_pAV_Hlk', 'ZwkhIzVObus'];
+  const storyPlayer = document.getElementById('testimonial-player');
+  const storyTitle = document.getElementById('testimonial-title');
+  const storyCount = document.getElementById('testimonial-count');
+  const storyLink = document.getElementById('testimonial-youtube');
+  const storyChoices = [...document.querySelectorAll('.testimonial-choice')];
+  if (storyPlayer && storyTitle && storyCount && storyLink) {
+    let selectedStory = 0;
+    const playIcon = '<span class="testimonial-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>';
+    const selectStory = (index) => {
+      selectedStory = (index + storyIds.length) % storyIds.length;
+      const id = storyIds[selectedStory];
+      const number = String(selectedStory + 1).padStart(2, '0');
+      storyPlayer.innerHTML = '<a id="testimonial-play" aria-label="Play client story ' + number + '" href="https://www.youtube.com/watch?v=' + id + '"><img src="https://i.ytimg.com/vi/' + id + '/maxresdefault.jpg" alt="" width="1280" height="720"/>' + playIcon + '</a>';
+      storyTitle.textContent = 'Client story ' + number;
+      storyCount.textContent = number + ' / 03';
+      storyLink.href = 'https://www.youtube.com/watch?v=' + id;
+      storyChoices.forEach((button, i) => button.setAttribute('aria-pressed', String(i === selectedStory)));
+    };
+    storyChoices.forEach((button, i) => button.addEventListener('click', () => selectStory(i)));
+    document.getElementById('testimonial-prev')?.addEventListener('click', () => selectStory(selectedStory - 1));
+    document.getElementById('testimonial-next')?.addEventListener('click', () => selectStory(selectedStory + 1));
+    storyPlayer.addEventListener('click', (event) => {
+      if (!event.target.closest('#testimonial-play')) return;
+      event.preventDefault();
+      playYouTube(storyPlayer, storyIds[selectedStory], 'InterCredit client story ' + (selectedStory + 1));
+    });
+  }
+
+  // Standalone videos: the player loads only after the visitor presses play.
+  document.querySelectorAll('[data-youtube]').forEach((player) => {
+    player.addEventListener('click', (event) => {
+      if (!event.target.closest('a')) return;
+      event.preventDefault();
+      playYouTube(player, player.dataset.youtube, player.dataset.title || 'InterCredit video');
+    });
   });
+})();
 </script>
 </body></html>

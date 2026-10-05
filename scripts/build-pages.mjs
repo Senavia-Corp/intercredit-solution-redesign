@@ -11,6 +11,19 @@ const TOLL_FREE_HREF = 'tel:+18882242076';
 const EMAIL = 'intercreditsolutions@gmail.com';
 const ADDRESS = '13590 SW 134th Ave, Suite 203, Miami, FL 33186';
 const MAP_HREF = 'https://www.google.com/maps/search/?api=1&query=13590+SW+134th+Ave+Suite+203+Miami+FL+33186';
+// Google Maps. This is a browser key: it is visible to every visitor by design, so it must be restricted in
+// Google Cloud to this site's domains (HTTP referrers) and to the Maps Embed API only.
+const MAPS_KEY = 'AIzaSyCxwsW4Z0-822FOReEvxm4PgooiI_je4l4';
+const PLACE_ID = 'ChIJI1GYFL-52YgRWzvybUaloZg';
+const DIRECTIONS_HREF = `https://www.google.com/maps/dir/?api=1&destination=13590+SW+134th+Ave+Suite+203+Miami+FL+33186&destination_place_id=${PLACE_ID}`;
+const officeMap = () => `<div data-reveal class="relative overflow-hidden rounded-card-lg border border-border-light bg-white shadow-xl">
+<div class="h-1 brand-gradient-line"></div>
+<iframe class="block w-full h-[360px] sm:h-[440px]" title="Map showing the InterCredit Solution office at ${ADDRESS}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen src="https://www.google.com/maps/embed/v1/place?key=${MAPS_KEY}&amp;q=place_id:${PLACE_ID}&amp;zoom=15"></iframe>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 sm:p-6">
+<p class="flex items-start gap-3 text-sm text-text-secondary"><span aria-hidden="true" class="material-symbols-outlined text-[20px] text-teal-600">location_on</span><span><strong class="block text-ink-950">InterCredit Solution</strong>${ADDRESS}</span></p>
+<a class="brand-gradient-btn inline-flex shrink-0 min-h-[48px] items-center justify-center gap-2 px-6 rounded-btn text-ink-950 font-bold text-xs uppercase tracking-wider shadow-sm" href="${DIRECTIONS_HREF}" rel="noopener" target="_blank"><span>Get directions</span><span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[16px]">arrow_forward</span></a>
+</div>
+</div>`;
 const HOURS = 'Monday–Friday, 9:00 AM–5:00 PM EST';
 
 const esc = (text) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -452,7 +465,7 @@ const footer = `
 <a class="footer-logo" href="/" aria-label="InterCredit Solution home"><img alt="InterCredit Solution" height="127" loading="lazy" src="/assets/intercredit-logo.svg" width="180"/></a>
 <p class="text-sm text-white/70 leading-relaxed max-w-sm">Personalized credit and financial guidance for people who want a clearer path through credit, debt, protection, and U.S. credit-building decisions.</p>
 <ul class="space-y-3 text-sm text-white/80">
-${footerContact('location_on', `<span>${ADDRESS}</span>`)}
+${footerContact('location_on', `<a class="inline-flex min-h-[44px] items-center hover:text-white transition-colors" href="${DIRECTIONS_HREF}" rel="noopener" target="_blank">${ADDRESS}</a>`)}
 ${footerContact('call', `<a class="inline-flex min-h-[44px] items-center font-bold text-white hover:text-green-400 transition-colors" href="${PHONE_HREF}">${PHONE}</a><span aria-hidden="true" class="text-white/30">•</span><a class="inline-flex min-h-[44px] items-center font-bold text-white hover:text-green-400 transition-colors" href="${TOLL_FREE_HREF}">${TOLL_FREE}</a>`)}
 ${footerContact('mail', `<a class="inline-flex min-h-[44px] items-center break-all hover:text-white transition-colors" href="mailto:${EMAIL}">${EMAIL}</a>`)}
 ${footerContact('schedule', `<span>${HOURS}</span>`)}
@@ -819,6 +832,7 @@ ${officeVideo('Video walkthrough of the InterCredit office in Miami')}
 </div>
 <div class="lg:col-span-6">${officeCard}</div>
 </div>
+<div class="mt-12">${officeMap()}</div>
 </div>
 </section>
 ${bookingSection()}

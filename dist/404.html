@@ -31,7 +31,30 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
 <a class="flex shrink-0 items-center focus:outline-none focus:ring-2 focus:ring-teal-600 rounded-lg py-1 pr-2" href="/"><div class="h-11 flex items-center"><img alt="InterCredit Solution — home" class="site-logo" height="159" src="/assets/intercredit-logo.svg" width="226"/></div></a>
 <nav aria-label="Primary" class="hidden lg:flex items-center gap-5 xl:gap-8">
-<a class="nav-item-link min-h-11 inline-flex items-center whitespace-nowrap font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="/services/">Services</a>
+<div class="relative" id="solutions-navigation">
+<button type="button" id="solutions-toggle" aria-expanded="false" aria-controls="solutions-dropdown" class="nav-item-link min-h-11 inline-flex items-center gap-1 whitespace-nowrap font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors">Services<span aria-hidden="true" class="material-symbols-outlined text-[16px] text-text-muted transition-transform">expand_more</span></button>
+<div id="solutions-dropdown" hidden class="absolute top-full -left-4 w-[44rem] max-w-[calc(100vw-2rem)] bg-white rounded-card shadow-2xl border border-border-light p-5 flex-col gap-4 z-50">
+<div class="grid grid-cols-2 gap-x-8 gap-y-5">
+<div>
+<a class="block py-2 font-bold text-[10px] uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors" href="/services/#improve-my-credit">01 / Improve My Credit</a>
+<ul><li><a class="flex min-h-[44px] items-center px-3 -mx-3 rounded-btn text-sm font-semibold text-text-primary hover:bg-mist-100/70 transition-colors" href="/services/credit-repair/">Credit Repair &amp; Consulting</a></li><li><a class="flex min-h-[44px] items-center px-3 -mx-3 rounded-btn text-sm font-semibold text-text-primary hover:bg-mist-100/70 transition-colors" href="/services/update-personal-information-in-credit-bureaus/">Update Personal Information in Credit Bureaus</a></li><li><a class="flex min-h-[44px] items-center px-3 -mx-3 rounded-btn text-sm font-semibold text-text-primary hover:bg-mist-100/70 transition-colors" href="/services/add-existing-credit-cards-to-credit-history/">Add Existing Credit Cards to Credit History</a></li></ul>
+</div>
+<div>
+<a class="block py-2 font-bold text-[10px] uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors" href="/services/#resolve-my-debt">02 / Resolve My Debt</a>
+<ul><li><a class="flex min-h-[44px] items-center px-3 -mx-3 rounded-btn text-sm font-semibold text-text-primary hover:bg-mist-100/70 transition-colors" href="/services/debts-negotiation/">Debt Negotiation</a></li><li><a class="flex min-h-[44px] items-center px-3 -mx-3 rounded-btn text-sm font-semibold text-text-primary hover:bg-mist-100/70 transition-colors" href="/services/negotiation-of-collection-accounts-in-court/">Negotiation of Collection Accounts in Court</a></li><li><a class="flex min-h-[44px] items-center px-3 -mx-3 rounded-btn text-sm font-semibold text-text-primary hover:bg-mist-100/70 transition-colors" href="/services/corporate-credit-counseling/">Corporate Credit Counseling</a></li></ul>
+</div>
+<div>
+<a class="block py-2 font-bold text-[10px] uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors" href="/services/#protect-and-understand">03 / Protect &amp; Understand My Credit</a>
+<ul><li><a class="flex min-h-[44px] items-center px-3 -mx-3 rounded-btn text-sm font-semibold text-text-primary hover:bg-mist-100/70 transition-colors" href="/services/credit-monitoring-report/">Credit Monitoring &amp; Report</a></li><li><a class="flex min-h-[44px] items-center px-3 -mx-3 rounded-btn text-sm font-semibold text-text-primary hover:bg-mist-100/70 transition-colors" href="/services/fraud-alert-system/">Fraud Alert Protection</a></li></ul>
+</div>
+<div>
+<a class="block py-2 font-bold text-[10px] uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors" href="/services/#build-credit-in-the-us">04 / Build Credit in the U.S.</a>
+<ul><li><a class="flex min-h-[44px] items-center px-3 -mx-3 rounded-btn text-sm font-semibold text-text-primary hover:bg-mist-100/70 transition-colors" href="/services/establishing-credit-for-foreign-investors/">Establishing Credit for Foreign Investors</a></li></ul>
+</div>
+</div>
+<a class="flex min-h-[44px] items-center justify-between gap-2 px-4 rounded-btn bg-mist-100 text-sm font-bold text-ink-950 hover:bg-mist-200 transition-colors" href="/services/"><span>View all services</span><span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[16px]">arrow_forward</span></a>
+</div>
+</div>
 <a class="nav-item-link min-h-11 inline-flex items-center whitespace-nowrap font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="/#personalized-strategy">How It Works</a>
 <a class="nav-item-link min-h-11 inline-flex items-center whitespace-nowrap font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="/about-us/">About</a>
 <a class="nav-item-link min-h-11 inline-flex items-center whitespace-nowrap font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="/reviews/">Reviews</a>
@@ -46,21 +69,28 @@
 </div>
 </header>
 <div class="fixed inset-0 z-[60] bg-ink-950/45 backdrop-blur-sm hidden lg:hidden" id="mobile-navigation" role="dialog" aria-modal="true" aria-label="Site menu">
-<nav aria-label="Mobile navigation" class="absolute inset-y-0 right-0 w-[min(88vw,360px)] bg-porcelain-50 shadow-2xl p-6 flex flex-col">
+<nav aria-label="Mobile navigation" class="absolute inset-y-0 right-0 w-[min(88vw,360px)] bg-porcelain-50 shadow-2xl p-6 flex flex-col overflow-y-auto">
 <div class="flex items-center justify-between pb-6 border-b border-border-light">
 <img alt="InterCredit Solution" class="h-12 w-auto object-contain" height="159" src="/assets/intercredit-logo.svg" width="226"/>
 <button aria-label="Close navigation menu" class="w-11 h-11 rounded-btn bg-white border border-border-light text-ink-950 flex items-center justify-center" id="mobile-menu-close" type="button"><span aria-hidden="true" class="material-symbols-outlined ">close</span></button>
 </div>
 <div class="flex flex-col py-6 divide-y divide-border-light text-sm font-semibold">
 <a class="py-4" href="/">Home</a>
-<a class="py-4" href="/services/">Services</a>
+<details class="group">
+<summary class="flex items-center justify-between py-4 cursor-pointer list-none">Services<span aria-hidden="true" class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span></summary>
+<ul class="pb-3 text-[13px] font-medium text-text-secondary">
+<li><a class="flex min-h-[44px] items-center font-bold text-teal-600" href="/services/">All services</a></li>
+<li><a class="flex min-h-[44px] items-center" href="/services/credit-repair/">Credit Repair &amp; Consulting</a></li><li><a class="flex min-h-[44px] items-center" href="/services/update-personal-information-in-credit-bureaus/">Update Personal Information in Credit Bureaus</a></li><li><a class="flex min-h-[44px] items-center" href="/services/add-existing-credit-cards-to-credit-history/">Add Existing Credit Cards to Credit History</a></li><li><a class="flex min-h-[44px] items-center" href="/services/debts-negotiation/">Debt Negotiation</a></li><li><a class="flex min-h-[44px] items-center" href="/services/negotiation-of-collection-accounts-in-court/">Negotiation of Collection Accounts in Court</a></li><li><a class="flex min-h-[44px] items-center" href="/services/corporate-credit-counseling/">Corporate Credit Counseling</a></li><li><a class="flex min-h-[44px] items-center" href="/services/credit-monitoring-report/">Credit Monitoring &amp; Report</a></li><li><a class="flex min-h-[44px] items-center" href="/services/fraud-alert-system/">Fraud Alert Protection</a></li><li><a class="flex min-h-[44px] items-center" href="/services/establishing-credit-for-foreign-investors/">Establishing Credit for Foreign Investors</a></li>
+</ul>
+</details>
 <a class="py-4" href="/#personalized-strategy">How It Works</a>
 <a class="py-4" href="/about-us/">About</a>
 <a class="py-4" href="/reviews/">Reviews</a>
 <a class="py-4" href="/#faq">FAQ</a>
 <a class="py-4" href="/contact-us/">Contact</a>
 </div>
-<a class="brand-gradient-btn mt-auto inline-flex items-center justify-center px-5 py-4 rounded-btn text-white font-bold text-xs tracking-wider uppercase shadow-sm" href="/contact-us/">Book a 20-Minute Consultation</a>
+<p class="mt-auto flex flex-wrap gap-x-6 pb-4 text-xs text-text-muted"><a class="inline-flex min-h-[44px] items-center hover:text-ink-950" href="/privacy-policy/">Privacy Policy</a><a class="inline-flex min-h-[44px] items-center hover:text-ink-950" href="/terms-and-conditions/">Terms &amp; Conditions</a></p>
+<a class="brand-gradient-btn shrink-0 inline-flex items-center justify-center px-5 py-4 rounded-btn text-white font-bold text-xs tracking-wider uppercase shadow-sm" href="/contact-us/">Book a 20-Minute Consultation</a>
 </nav>
 </div>
 <main id="main-content">

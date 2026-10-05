@@ -198,7 +198,6 @@ const officeCard = `<div class="p-8 rounded-card-lg bg-white border border-borde
 </div>`;
 
 const navLinks = [
-  ['Services', '/services/'],
   ['How It Works', '/#personalized-strategy'],
   ['About', '/about-us/'],
   ['Reviews', '/reviews/'],
@@ -221,6 +220,18 @@ const header = (current) => `
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
 <a class="flex shrink-0 items-center focus:outline-none focus:ring-2 focus:ring-teal-600 rounded-lg py-1 pr-2" href="/"><div class="h-11 flex items-center"><img alt="InterCredit Solution — home" class="site-logo" height="159" src="/assets/intercredit-logo.svg" width="226"/></div></a>
 <nav aria-label="Primary" class="hidden lg:flex items-center gap-5 xl:gap-8">
+<div class="relative" id="solutions-navigation">
+<button type="button" id="solutions-toggle" aria-expanded="false" aria-controls="solutions-dropdown" class="nav-item-link min-h-11 inline-flex items-center gap-1 whitespace-nowrap font-semibold text-sm ${current === '/services/' ? 'text-ink-950' : 'text-text-secondary'} hover:text-ink-950 transition-colors">Services${icon('expand_more', 'text-[16px] text-text-muted transition-transform')}</button>
+<div id="solutions-dropdown" hidden class="absolute top-full -left-4 w-[44rem] max-w-[calc(100vw-2rem)] bg-white rounded-card shadow-2xl border border-border-light p-5 flex-col gap-4 z-50">
+<div class="grid grid-cols-2 gap-x-8 gap-y-5">
+${chapters.map((chapter, index) => `<div>
+<a class="block py-2 font-bold text-[10px] uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors" href="/services/#${chapter.id}">${chapter.n} / ${esc(chapter.name)}</a>
+<ul>${services.filter((service) => service.chapter === index).map((service) => `<li><a class="flex min-h-[44px] items-center px-3 -mx-3 rounded-btn text-sm font-semibold text-text-primary hover:bg-mist-100/70 transition-colors" href="/services/${service.slug}/">${esc(service.name)}</a></li>`).join('')}</ul>
+</div>`).join('\n')}
+</div>
+<a class="flex min-h-[44px] items-center justify-between gap-2 px-4 rounded-btn bg-mist-100 text-sm font-bold text-ink-950 hover:bg-mist-200 transition-colors" href="/services/"><span>View all services</span>${arrow}</a>
+</div>
+</div>
 ${navLinks.map(([label, href]) => `<a class="nav-item-link min-h-11 inline-flex items-center whitespace-nowrap font-semibold text-sm ${href === current ? 'text-ink-950' : 'text-text-secondary'} hover:text-ink-950 transition-colors" href="${href}"${href === current ? ' aria-current="page"' : ''}>${label}</a>`).join('\n')}
 </nav>
 <div class="flex items-center gap-4">
@@ -231,16 +242,24 @@ ${navLinks.map(([label, href]) => `<a class="nav-item-link min-h-11 inline-flex 
 </div>
 </header>
 <div class="fixed inset-0 z-[60] bg-ink-950/45 backdrop-blur-sm hidden lg:hidden" id="mobile-navigation" role="dialog" aria-modal="true" aria-label="Site menu">
-<nav aria-label="Mobile navigation" class="absolute inset-y-0 right-0 w-[min(88vw,360px)] bg-porcelain-50 shadow-2xl p-6 flex flex-col">
+<nav aria-label="Mobile navigation" class="absolute inset-y-0 right-0 w-[min(88vw,360px)] bg-porcelain-50 shadow-2xl p-6 flex flex-col overflow-y-auto">
 <div class="flex items-center justify-between pb-6 border-b border-border-light">
 <img alt="InterCredit Solution" class="h-12 w-auto object-contain" height="159" src="/assets/intercredit-logo.svg" width="226"/>
 <button aria-label="Close navigation menu" class="w-11 h-11 rounded-btn bg-white border border-border-light text-ink-950 flex items-center justify-center" id="mobile-menu-close" type="button">${icon('close')}</button>
 </div>
 <div class="flex flex-col py-6 divide-y divide-border-light text-sm font-semibold">
-<a class="py-4" href="/">Home</a>
+<a class="py-4" href="/"${current === '/' ? ' aria-current="page"' : ''}>Home</a>
+<details class="group"${current === '/services/' ? ' open' : ''}>
+<summary class="flex items-center justify-between py-4 cursor-pointer list-none">Services${icon('expand_more', 'text-text-muted group-open:rotate-180 transition-transform')}</summary>
+<ul class="pb-3 text-[13px] font-medium text-text-secondary">
+<li><a class="flex min-h-[44px] items-center font-bold text-teal-600" href="/services/">All services</a></li>
+${services.map((service) => `<li><a class="flex min-h-[44px] items-center" href="/services/${service.slug}/">${esc(service.name)}</a></li>`).join('')}
+</ul>
+</details>
 ${navLinks.map(([label, href]) => `<a class="py-4" href="${href}"${href === current ? ' aria-current="page"' : ''}>${label}</a>`).join('\n')}
 </div>
-<a class="brand-gradient-btn mt-auto inline-flex items-center justify-center px-5 py-4 rounded-btn text-white font-bold text-xs tracking-wider uppercase shadow-sm" href="/contact-us/">Book a 20-Minute Consultation</a>
+<p class="mt-auto flex flex-wrap gap-x-6 pb-4 text-xs text-text-muted"><a class="inline-flex min-h-[44px] items-center hover:text-ink-950" href="/privacy-policy/">Privacy Policy</a><a class="inline-flex min-h-[44px] items-center hover:text-ink-950" href="/terms-and-conditions/">Terms &amp; Conditions</a></p>
+<a class="brand-gradient-btn shrink-0 inline-flex items-center justify-center px-5 py-4 rounded-btn text-white font-bold text-xs tracking-wider uppercase shadow-sm" href="/contact-us/">Book a 20-Minute Consultation</a>
 </nav>
 </div>`;
 
@@ -670,6 +689,8 @@ const pages = {
 const dist = new URL('../dist/', import.meta.url);
 const homePath = new URL('index.html', dist);
 let home = readFileSync(homePath, 'utf8');
+// Same header on the homepage, so every page is reachable from every page.
+home = home.replace(/<a class="sr-only[\s\S]*?(?=<main id="main-content">)/, () => `${header('/').trim()}\n`);
 const used = new Set(['pause', 'play_arrow']);
 for (const html of [home, ...Object.values(pages)]) {
   for (const match of html.matchAll(/class="[^"]*material-symbols-outlined[^"]*"[^>]*>\s*([a-z_0-9]+)\s*</g)) used.add(match[1]);

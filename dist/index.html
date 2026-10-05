@@ -167,13 +167,13 @@
 </a>
 <!-- Desktop Nav with Gradient Hover -->
 <nav class="hidden lg:flex items-center gap-8">
-<div class="relative group py-2">
-<button class="nav-item-link inline-flex items-center gap-1 font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors focus:outline-none">
+<div class="relative py-2" id="solutions-navigation">
+<button type="button" id="solutions-toggle" aria-expanded="false" aria-controls="solutions-dropdown" class="nav-item-link min-h-11 inline-flex items-center gap-1 font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal-600">
             Solutions
-            <span class="material-symbols-outlined text-[16px] text-text-muted group-hover:rotate-180 transition-transform">expand_more</span>
+            <span aria-hidden="true" class="material-symbols-outlined text-[16px] text-text-muted transition-transform">expand_more</span>
 </button>
 <!-- Mega Menu Dropdown -->
-<div class="absolute top-full -left-4 w-88 bg-white rounded-card shadow-2xl border border-border-light p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 flex flex-col gap-1 z-50">
+<div id="solutions-dropdown" hidden class="absolute top-full -left-4 w-[22rem] max-w-[calc(100vw-2rem)] bg-white rounded-card shadow-2xl border border-border-light p-3 flex flex-col gap-1 z-50">
 <a class="p-3 rounded-btn hover:bg-mist-100/70 transition-colors block border-l-2 border-transparent hover:border-teal-500" href="#goal-selector">
 <span class="font-bold text-[10px] uppercase tracking-wider text-teal-600 block mb-0.5">01 / Credit</span>
 <span class="font-semibold text-sm text-text-primary block">Improve My Credit</span>
@@ -1343,6 +1343,39 @@ Book a 20-Minute Consultation
     </a>
 </div>
 <script>
+  const solutionsNavigation = document.getElementById('solutions-navigation');
+  const solutionsToggle = document.getElementById('solutions-toggle');
+  const solutionsDropdown = document.getElementById('solutions-dropdown');
+  const setSolutionsOpen = (open) => {
+    solutionsDropdown.hidden = !open;
+    solutionsDropdown.style.display = open ? 'flex' : 'none';
+    solutionsToggle.setAttribute('aria-expanded', String(open));
+    solutionsToggle.querySelector('span').style.transform = open ? 'rotate(180deg)' : '';
+  };
+  setSolutionsOpen(false);
+  solutionsToggle.addEventListener('click', () => setSolutionsOpen(solutionsDropdown.hidden));
+  solutionsToggle.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      setSolutionsOpen(true);
+      solutionsDropdown.querySelector('a').focus();
+    }
+  });
+  solutionsNavigation.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      setSolutionsOpen(false);
+      solutionsToggle.focus();
+    }
+  });
+  solutionsNavigation.addEventListener('focusout', (event) => {
+    if (!solutionsNavigation.contains(event.relatedTarget)) setSolutionsOpen(false);
+  });
+  solutionsDropdown.addEventListener('click', (event) => {
+    if (event.target.closest('a')) setSolutionsOpen(false);
+  });
+  document.addEventListener('click', (event) => {
+    if (!solutionsNavigation.contains(event.target)) setSolutionsOpen(false);
+  });
   const mobileNavigation = document.getElementById('mobile-navigation');
   const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
   const mobileMenuClose = document.getElementById('mobile-menu-close');

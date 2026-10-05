@@ -15,18 +15,6 @@
       --ic-nav-line: var(--ic-grad-primary);
     }
     .font-serif-italic { font-family: 'Newsreader', serif; font-style: italic; }
-    .bg-ledger {
-      background-image: 
-        linear-gradient(rgba(16, 37, 49, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(16, 37, 49, 0.025) 1px, transparent 1px);
-      background-size: 36px 36px;
-    }
-    .bg-ledger-dark {
-      background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-    }
     .nav-item-link {
       position: relative;
     }

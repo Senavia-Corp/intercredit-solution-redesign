@@ -132,7 +132,7 @@ const breadcrumb = (trail) => `<nav aria-label="Breadcrumb" class="text-xs text-
 // Dark page hero. `aside` is the optional right-hand column; `background` an optional photo,
 // kept behind an ink wash so the text contrast never depends on the picture.
 const hero = ({ trail, label, title, lead, actions = '', aside = '', background = '' }) => `
-<section class="relative isolate overflow-hidden bg-ink-950 ${background ? '' : 'bg-ledger-dark '}py-14 text-white sm:py-20">
+<section class="relative isolate overflow-hidden bg-ink-950 py-14 text-white sm:py-20">
 ${background ? `<img alt="" class="absolute inset-0 -z-20 h-full w-full object-cover" fetchpriority="high" height="624" src="${background}" width="1920"/>
 <div aria-hidden="true" class="absolute inset-0 -z-10 bg-ink-950/80 lg:bg-transparent lg:bg-gradient-to-r lg:from-ink-950/90 lg:via-ink-950/65 lg:to-ink-950/30"></div>` : ''}
 <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -191,7 +191,7 @@ ${items.map(([question, answer]) => `<details class="group rounded-card bg-porce
 </section>`;
 
 const closingCta = (title = 'Start with a conversation about where you are and what comes next.') => `
-<section class="w-full bg-ink-950 text-white relative overflow-hidden bg-ledger-dark">
+<section class="w-full bg-ink-950 text-white relative overflow-hidden">
 <div class="absolute top-0 left-0 right-0 z-20 h-1 brand-gradient-line"></div>
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 <div class="lg:w-1/2 lg:pr-12 py-20 lg:py-28 space-y-6">
@@ -531,7 +531,7 @@ ${eyebrow('LEADERSHIP &amp; PHILOSOPHY')}
 </div>
 </div>
 </section>
-<section class="w-full bg-ink-950 text-white py-20 lg:py-28 relative overflow-hidden bg-ledger-dark" id="media">
+<section class="w-full bg-ink-950 text-white py-20 lg:py-28 relative overflow-hidden" id="media">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 <div class="lg:col-span-7">
@@ -647,7 +647,7 @@ ${youtubeCard(id, `InterCredit client story: ${name}`, `Play client story from $
 <p class="text-xs text-text-muted max-w-prose">Each client’s situation is different. These stories describe individual experiences and are not a promise of a specific result.</p>
 </div>
 </section>
-<section class="w-full bg-ink-950 text-white py-20 lg:py-28 relative overflow-hidden bg-ledger-dark">
+<section class="w-full bg-ink-950 text-white py-20 lg:py-28 relative overflow-hidden">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 <div class="lg:col-span-5 space-y-4">

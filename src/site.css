@@ -187,9 +187,64 @@
     .legal-prose {overflow-wrap:anywhere;}
     /* UserWay button: sit above the fixed mobile booking bar instead of on top of it. */
     @media (max-width:639px) { body .uwy .userway_buttons_wrapper {top:auto !important;bottom:86px !important;} }
+    /* The mobile menu locks the page; the floating button would sit on top of its actions. */
+    body.overflow-hidden .uwy .userway_buttons_wrapper {display:none !important;}
     /* Hero copy over video: a soft shadow keeps text readable on bright frames now that the overlay is lighter. */
     .hero-legible :is(h1,p,span) {text-shadow:0 1px 14px rgba(11,23,32,.55);}
     .hero-legible :is(a,.google-badge) :is(span,strong), .hero-legible .brand-gradient-text {text-shadow:none;}
+    /* ---- Services mega menu (desktop, from 1280px) ----
+       Anchored to the sticky header: centred, content-width, starts just below the bar.
+       The logo badge (z 10) hangs over its top strip, so the strip keeps the centre empty. */
+    #solutions-toggle .material-symbols-outlined {transition:rotate 200ms cubic-bezier(.22,1,.36,1);}
+    #solutions-toggle[aria-expanded="true"] {color:#0B1720;}
+    #solutions-toggle[aria-expanded="true"] .material-symbols-outlined {rotate:180deg;}
+    #solutions-toggle[aria-expanded="true"]::after {width:100%;transform:scaleX(1);}
+    #solutions-toggle:focus-visible {outline:2px solid #1D766E;outline-offset:6px;border-radius:6px;}
+    .mega[hidden] {display:none;}
+    .mega {position:absolute;top:calc(100% + 8px);left:50%;z-index:5;width:min(1216px, calc(100vw - 64px));translate:-50% -6px;background:#fff;border:1px solid rgba(16,37,49,.1);border-radius:20px;box-shadow:0 40px 70px -36px rgba(11,23,32,.32), 0 2px 6px rgba(11,23,32,.04);opacity:0;visibility:hidden;pointer-events:none;transition:opacity 180ms cubic-bezier(.22,1,.36,1), translate 180ms cubic-bezier(.22,1,.36,1), visibility 0s linear 180ms;}
+    .mega[data-open] {opacity:1;visibility:visible;pointer-events:auto;translate:-50% 0;transition-delay:0s;}
+    /* Hover bridge over the gap between the bar and the panel. */
+    .mega::before {content:"";position:absolute;left:0;right:0;top:-12px;height:12px;}
+    .mega-top {display:flex;align-items:center;justify-content:space-between;min-height:64px;padding:0 32px;border-bottom:1px solid rgba(16,37,49,.08);}
+    .mega-eyebrow {font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#1D766E;}
+    .mega-quiet {display:inline-flex;align-items:center;gap:6px;min-height:44px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#1D766E;transition:color 160ms ease;}
+    .mega-quiet:hover {color:#0B1720;}
+    .mega-body {display:grid;min-height:384px;grid-template-columns:minmax(0,32fr) minmax(0,68fr);}
+    .mega-goals {display:flex;flex-direction:column;gap:4px;padding:16px;background:#FAF9F6;border-right:1px solid rgba(16,37,49,.08);}
+    .mega-goal {position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:14px;min-height:68px;padding:10px 14px 10px 18px;border-radius:12px;text-align:left;color:#4b5a61;transition:background-color 160ms ease, color 160ms ease;}
+    .mega-goal::before {content:"";position:absolute;left:0;top:14px;bottom:14px;width:2px;border-radius:2px;background:#1D766E;opacity:0;transition:opacity 160ms ease;}
+    .mega-goal-n {font-size:11px;font-weight:700;letter-spacing:.08em;color:#5F6E75;white-space:nowrap;}
+    .mega-goal-text {display:flex;flex-direction:column;gap:2px;min-width:0;}
+    .mega-goal-name {font-size:15px;font-weight:700;line-height:1.3;color:#10212A;}
+    .mega-goal-meta {font-size:12px;color:#5F6E75;}
+    .mega-goal-arrow {color:#1D766E;opacity:0;translate:-4px 0;transition:opacity 160ms ease, translate 160ms ease;}
+    .mega-goal:hover {background:rgba(234,241,241,.6);}
+    .mega-goal[aria-selected="true"] {background:#EAF1F1;}
+    .mega-goal[aria-selected="true"]::before {opacity:1;}
+    .mega-goal[aria-selected="true"] .mega-goal-name {color:#0B1720;}
+    .mega-goal[aria-selected="true"] .mega-goal-n {color:#1D766E;}
+    .mega-goal[aria-selected="true"] .mega-goal-arrow {opacity:1;translate:0 0;}
+    .mega-goal:focus-visible {outline-offset:-2px;}
+    .mega-detail {padding:28px 32px 24px;}
+    .mega-panel[hidden] {display:none;}
+    .mega-panel {display:flex;flex-direction:column;align-items:flex-start;height:100%;}
+    .mega-title {margin-top:6px;font-size:22px;font-weight:700;line-height:1.25;color:#0B1720;}
+    .mega-blurb {margin-top:6px;max-width:74ch;font-size:14px;line-height:1.6;color:#4b5a61;}
+    .mega-services {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;width:100%;margin:18px -12px 10px;width:calc(100% + 24px);}
+    .mega-service {display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:14px;min-height:64px;padding:8px 12px;border-radius:12px;transition:background-color 160ms ease;}
+    .mega-service-name {font-size:14px;font-weight:600;line-height:1.35;color:#10212A;}
+    .mega-service-arrow {color:#1D766E;opacity:0;translate:-4px 0;transition:opacity 160ms ease, translate 160ms ease;}
+    .mega-service:hover,.mega-service:focus-visible {background:rgba(234,241,241,.7);}
+    .mega-service:hover .mega-service-arrow,.mega-service:focus-visible .mega-service-arrow {opacity:1;translate:0 0;}
+    .mega-service:focus-visible {outline-offset:-2px;}
+    .mega-panel > .mega-quiet {margin-top:auto;}
+    .mega-rail {display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:64px;padding:8px 32px;border-top:1px solid rgba(16,37,49,.08);border-radius:0 0 20px 20px;background:#FAF9F6;font-size:14px;color:#4b5a61;}
+    .mega-rail-link {display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0B1720;}
+    .mega-rail-link:hover {color:#1D766E;}
+    @media (prefers-reduced-motion:reduce) {
+      .mega {translate:-50% 0;transition:none;}
+      #solutions-toggle .material-symbols-outlined,.mega-goal,.mega-goal::before,.mega-goal-arrow,.mega-service,.mega-service-arrow {transition:none;}
+    }
     /* Google rating badge. Always on a white plate: the Google colours are not ours to recolour. */
     .google-badge {display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:6px 16px 6px 14px;border-radius:14px;background:#fff;border:1px solid #e3e8e7;box-shadow:0 10px 24px -14px rgba(11,23,32,.45);color:#0B1720;transition:translate 220ms ease, box-shadow 220ms ease;}
     .google-badge-text {display:flex;flex-direction:column;padding-left:12px;border-left:1px solid #e3e8e7;line-height:1.15;}

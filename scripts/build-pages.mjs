@@ -387,6 +387,32 @@ const navLinks = [
 
 const navLink = (current) => ([label, href]) => `<a class="nav-item-link min-h-11 inline-flex items-center whitespace-nowrap font-semibold text-sm ${href === current ? 'text-ink-950' : 'text-text-secondary'} hover:text-ink-950 transition-colors" href="${href}"${href === current ? ' aria-current="page"' : ''}>${label}</a>`;
 
+// Services mega menu. Geometry is anchored to the header (centred, content width), not to the trigger.
+// Left: the four goals as vertical tabs. Right: only the active goal's services. Behaviour lives in site.js.
+const megaMenu = (current) => `<div id="solutions-dropdown" hidden class="mega" role="region" aria-label="Services">
+<div class="mega-top"><span class="mega-eyebrow">Services</span><a class="mega-quiet" href="/services/"><span>View all services</span>${arrow}</a></div>
+<div class="mega-body">
+<div class="mega-goals" role="tablist" aria-orientation="vertical" aria-label="Choose a goal">
+${chapters.map((chapter, index) => {
+    const count = services.filter((service) => service.chapter === index).length;
+    return `<button type="button" role="tab" id="mega-tab-${index}" aria-controls="mega-panel-${index}" aria-selected="${index === 0}" tabindex="${index === 0 ? 0 : -1}" class="mega-goal"><span class="mega-goal-n">${chapter.n} /</span><span class="mega-goal-text"><span class="mega-goal-name">${esc(chapter.name)}</span><span class="mega-goal-meta">${count} ${count === 1 ? 'service' : 'services'}</span></span>${icon('chevron_right', 'mega-goal-arrow text-[18px]')}</button>`;
+  }).join('\n')}
+</div>
+<div class="mega-detail">
+${chapters.map((chapter, index) => `<div role="tabpanel" id="mega-panel-${index}" aria-labelledby="mega-tab-${index}" class="mega-panel"${index === 0 ? '' : ' hidden'}>
+<p class="mega-eyebrow">Path ${chapter.n}</p>
+<p class="mega-title">${esc(chapter.name)}</p>
+<p class="mega-blurb">${esc(chapter.blurb)}</p>
+<ul class="mega-services">
+${services.filter((service) => service.chapter === index).map((service) => `<li><a class="mega-service" href="/services/${service.slug}/"><span class="service-icon" aria-hidden="true">${svcIcon(service.slug)}</span><span class="mega-service-name">${esc(service.name)}</span>${icon('arrow_forward', 'mega-service-arrow text-[16px]')}</a></li>`).join('\n')}
+</ul>
+<a class="mega-quiet" href="/services/#${chapter.id}"><span>Explore this path</span>${arrow}</a>
+</div>`).join('\n')}
+</div>
+</div>
+<div class="mega-rail"><span>Not sure which path fits your situation?</span><a class="mega-rail-link" href="${bookHref(current)}"><span>Book a 20-Minute Consultation</span>${arrow}</a></div>
+</div>`;
+
 const header = (current) => `
 <a class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-btn focus:bg-white focus:px-4 focus:py-3 focus:font-bold focus:text-ink-950 focus:shadow-xl" href="#main-content">Skip to main content</a>
 <aside class="utility-bar text-xs py-2 px-4 relative z-50">
@@ -403,17 +429,9 @@ const header = (current) => `
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 xl:h-[84px] flex items-center justify-between gap-4">
 <a class="xl:hidden flex shrink-0 items-center focus:outline-none focus:ring-2 focus:ring-teal-600 rounded-lg py-1 pr-2" href="/"><div class="h-12 flex items-center"><img alt="InterCredit Solution — home" class="site-logo" height="159" src="/assets/intercredit-logo.svg" width="226"/></div></a>
 <nav aria-label="Primary" class="hidden xl:flex flex-1 items-center justify-evenly pr-24">
-<div class="relative" id="solutions-navigation">
-<button type="button" id="solutions-toggle" aria-expanded="false" aria-controls="solutions-dropdown" class="nav-item-link min-h-11 inline-flex items-center gap-1 whitespace-nowrap font-semibold text-sm ${current === '/services/' ? 'text-ink-950' : 'text-text-secondary'} hover:text-ink-950 transition-colors">Services${icon('expand_more', 'text-[16px] text-text-muted transition-transform')}</button>
-<div id="solutions-dropdown" hidden class="absolute top-full -left-4 w-[44rem] max-w-[calc(100vw-2rem)] bg-white rounded-card shadow-2xl border border-border-light p-5 flex-col gap-4 z-50">
-<div class="grid grid-cols-2 gap-x-8 gap-y-5">
-${chapters.map((chapter, index) => `<div>
-<a class="block py-2 font-bold text-[10px] uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors" href="/services/#${chapter.id}">${chapter.n} / ${esc(chapter.name)}</a>
-<ul>${services.filter((service) => service.chapter === index).map((service) => `<li><a class="flex min-h-[44px] items-center gap-3 px-3 -mx-3 rounded-btn text-sm font-semibold text-text-primary hover:bg-mist-100/70 transition-colors" href="/services/${service.slug}/">${svcIcon(service.slug, 'text-[20px]')}<span>${esc(service.name)}</span></a></li>`).join('')}</ul>
-</div>`).join('\n')}
-</div>
-<a class="flex min-h-[44px] items-center justify-between gap-2 px-4 rounded-btn bg-mist-100 text-sm font-bold text-ink-950 hover:bg-mist-200 transition-colors" href="/services/"><span>View all services</span>${arrow}</a>
-</div>
+<div id="solutions-navigation">
+<button type="button" id="solutions-toggle" aria-expanded="false" aria-controls="solutions-dropdown" class="nav-item-link min-h-11 inline-flex items-center gap-1 whitespace-nowrap font-semibold text-sm ${current === '/services/' ? 'text-ink-950' : 'text-text-secondary'} hover:text-ink-950 transition-colors">Services${icon('expand_more', 'text-[16px] text-text-muted')}</button>
+${megaMenu(current)}
 </div>
 ${navLinks.slice(0, 2).map(navLink(current)).join('\n')}
 </nav>
@@ -435,16 +453,20 @@ ${navLinks.slice(2).map(navLink(current)).join('\n')}
 </div>
 <div class="flex flex-col py-6 divide-y divide-border-light text-sm font-semibold">
 <a class="py-4" href="/"${current === '/' ? ' aria-current="page"' : ''}>Home</a>
-<details class="group"${current === '/services/' ? ' open' : ''}>
-<summary class="flex items-center justify-between py-4 cursor-pointer list-none">Services${icon('expand_more', 'text-text-muted group-open:rotate-180 transition-transform')}</summary>
-<ul class="pb-3 text-[13px] font-medium text-text-secondary">
-<li><a class="flex min-h-[44px] items-center font-bold text-teal-600" href="/services/">All services</a></li>
-${services.map((service) => `<li><a class="flex min-h-[44px] items-center gap-3" href="/services/${service.slug}/">${svcIcon(service.slug, 'text-[18px]')}<span>${esc(service.name)}</span></a></li>`).join('')}
+<div class="py-3">
+<p class="pt-2 pb-1 text-[11px] font-bold uppercase tracking-widest text-teal-700">Services</p>
+${chapters.map((chapter, index) => `<details class="group" name="mobile-goals">
+<summary class="flex min-h-[48px] items-center justify-between gap-3 cursor-pointer list-none"><span class="flex items-baseline gap-2"><span class="text-[11px] font-bold text-text-muted">${chapter.n}</span><span>${esc(chapter.name)}</span></span>${icon('expand_more', 'text-text-muted group-open:rotate-180 transition-transform')}</summary>
+<ul class="pb-2 pl-6 text-[13px] font-medium text-text-secondary">
+${services.filter((service) => service.chapter === index).map((service) => `<li><a class="flex min-h-[44px] items-center gap-3" href="/services/${service.slug}/">${svcIcon(service.slug, 'text-[18px]')}<span>${esc(service.name)}</span></a></li>`).join('')}
 </ul>
-</details>
+</details>`).join('\n')}
+<a class="flex min-h-[44px] items-center gap-1.5 text-[13px] font-bold text-teal-700" href="/services/"><span>View all services</span>${arrow}</a>
+</div>
 ${navLinks.map(([label, href]) => `<a class="py-4" href="${href}"${href === current ? ' aria-current="page"' : ''}>${label}</a>`).join('\n')}
 </div>
-<p class="mt-auto flex flex-wrap gap-x-6 pb-4 text-xs text-text-muted"><a class="inline-flex min-h-[44px] items-center hover:text-ink-950" href="/privacy-policy/">Privacy Policy</a><a class="inline-flex min-h-[44px] items-center hover:text-ink-950" href="/terms-and-conditions/">Terms &amp; Conditions</a></p>
+<p class="mt-auto flex flex-wrap gap-x-6 pb-2 text-xs text-text-muted"><a class="inline-flex min-h-[44px] items-center hover:text-ink-950" href="/privacy-policy/">Privacy Policy</a><a class="inline-flex min-h-[44px] items-center hover:text-ink-950" href="/terms-and-conditions/">Terms &amp; Conditions</a></p>
+<a class="mb-3 flex min-h-[48px] items-center justify-center gap-2 rounded-btn border border-border-light bg-white text-sm font-bold text-ink-950" href="${PHONE_HREF}">${icon('call', 'text-[18px] text-teal-600')}<span>Call ${PHONE}</span></a>
 <a class="brand-gradient-btn shrink-0 inline-flex items-center justify-center px-5 py-4 rounded-btn text-ink-950 font-bold text-xs tracking-wider uppercase shadow-sm" href="${bookHref(current)}">Book a 20-Minute Consultation</a>
 </nav>
 </div>`;

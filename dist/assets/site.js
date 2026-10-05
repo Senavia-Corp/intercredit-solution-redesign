@@ -1,29 +1,51 @@
 (() => {
-  // Solutions dropdown
+  // Services mega menu: opens on hover, keyboard focus or click; a click pins it open.
   const solutionsNavigation = document.getElementById('solutions-navigation');
   const solutionsToggle = document.getElementById('solutions-toggle');
   const solutionsDropdown = document.getElementById('solutions-dropdown');
   if (solutionsNavigation && solutionsToggle && solutionsDropdown) {
-    const toggleIcon = solutionsToggle.querySelector('span');
+    // Closed state is handled in CSS (visibility), so the open/close transition can run.
+    solutionsDropdown.hidden = false;
+    solutionsDropdown.inert = true;
+    const hover = window.matchMedia('(hover: hover) and (pointer: fine)');
+    let pinned = false;
+    let closeTimer;
+    let quiet = false;
+    const isOpen = () => solutionsDropdown.hasAttribute('data-open');
     const setSolutionsOpen = (open) => {
-      solutionsDropdown.hidden = !open;
-      solutionsDropdown.style.display = open ? 'flex' : 'none';
+      clearTimeout(closeTimer);
+      solutionsDropdown.toggleAttribute('data-open', open);
+      // inert takes the closed panel out of the tab order at once, without waiting for the fade.
+      solutionsDropdown.inert = !open;
       solutionsToggle.setAttribute('aria-expanded', String(open));
-      if (toggleIcon) toggleIcon.style.transform = open ? 'rotate(180deg)' : '';
+      if (!open) pinned = false;
     };
-    setSolutionsOpen(false);
-    solutionsToggle.addEventListener('click', () => setSolutionsOpen(solutionsDropdown.hidden));
+    solutionsToggle.addEventListener('click', () => {
+      if (isOpen() && pinned) setSolutionsOpen(false);
+      else { setSolutionsOpen(true); pinned = true; }
+    });
+    solutionsNavigation.addEventListener('pointerenter', () => { if (hover.matches) setSolutionsOpen(true); });
+    solutionsNavigation.addEventListener('pointerleave', () => {
+      if (!hover.matches || pinned || solutionsNavigation.contains(document.activeElement)) return;
+      // Short delay so a diagonal move towards the panel does not close it.
+      closeTimer = setTimeout(() => setSolutionsOpen(false), 140);
+    });
+    solutionsToggle.addEventListener('focus', () => {
+      if (!quiet && solutionsToggle.matches(':focus-visible')) setSolutionsOpen(true);
+    });
     solutionsToggle.addEventListener('keydown', (event) => {
       if (event.key === 'ArrowDown') {
         event.preventDefault();
         setSolutionsOpen(true);
-        solutionsDropdown.querySelector('a')?.focus();
+        solutionsDropdown.querySelector('[role="tab"][aria-selected="true"]')?.focus();
       }
     });
     solutionsNavigation.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && !solutionsDropdown.hidden) {
+      if (event.key === 'Escape' && isOpen()) {
         setSolutionsOpen(false);
+        quiet = true;
         solutionsToggle.focus();
+        quiet = false;
       }
     });
     solutionsNavigation.addEventListener('focusout', (event) => {
@@ -36,6 +58,34 @@
     });
     document.addEventListener('click', (event) => {
       if (!solutionsNavigation.contains(event.target)) setSolutionsOpen(false);
+    });
+
+    // Goals are vertical tabs: hover, focus or click shows that goal's services.
+    const tabs = [...solutionsDropdown.querySelectorAll('[role="tab"]')];
+    let intent;
+    const selectGoal = (tab) => {
+      tabs.forEach((other) => {
+        const selected = other === tab;
+        other.setAttribute('aria-selected', String(selected));
+        other.tabIndex = selected ? 0 : -1;
+        document.getElementById(other.getAttribute('aria-controls')).hidden = !selected;
+      });
+    };
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => selectGoal(tab));
+      tab.addEventListener('focus', () => selectGoal(tab));
+      tab.addEventListener('pointerenter', () => {
+        if (!hover.matches) return;
+        clearTimeout(intent);
+        intent = setTimeout(() => selectGoal(tab), 70);
+      });
+      tab.addEventListener('pointerleave', () => clearTimeout(intent));
+      tab.addEventListener('keydown', (event) => {
+        const target = { ArrowDown: tabs[(index + 1) % tabs.length], ArrowUp: tabs[(index - 1 + tabs.length) % tabs.length], Home: tabs[0], End: tabs[tabs.length - 1] }[event.key];
+        if (!target) return;
+        event.preventDefault();
+        target.focus();
+      });
     });
   }
 

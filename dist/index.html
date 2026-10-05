@@ -31,28 +31,62 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 xl:h-[84px] flex items-center justify-between gap-4">
 <a class="xl:hidden flex shrink-0 items-center focus:outline-none focus:ring-2 focus:ring-teal-600 rounded-lg py-1 pr-2" href="/"><div class="h-12 flex items-center"><img alt="InterCredit Solution — home" class="site-logo" height="159" src="/assets/intercredit-logo.svg" width="226"/></div></a>
 <nav aria-label="Primary" class="hidden xl:flex flex-1 items-center justify-evenly pr-24">
-<div class="relative" id="solutions-navigation">
-<button type="button" id="solutions-toggle" aria-expanded="false" aria-controls="solutions-dropdown" class="nav-item-link min-h-11 inline-flex items-center gap-1 whitespace-nowrap font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors">Services<span aria-hidden="true" class="material-symbols-outlined text-[16px] text-text-muted transition-transform">expand_more</span></button>
-<div id="solutions-dropdown" hidden class="absolute top-full -left-4 w-[44rem] max-w-[calc(100vw-2rem)] bg-white rounded-card shadow-2xl border border-border-light p-5 flex-col gap-4 z-50">
-<div class="grid grid-cols-2 gap-x-8 gap-y-5">
-<div>
-<a class="block py-2 font-bold text-[10px] uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors" href="/services/#improve-my-credit">01 / Improve My Credit</a>
-<ul><li><a class="flex min-h-[44px] items-center gap-3 px-3 -mx-3 rounded-btn text-sm font-semibold text-text-primary hover:bg-mist-100/70 transition-colors" href="/services/credit-repair/"><span aria-hidden="true" class="svc-icon text-[20px]" style="--icon:url('/assets/icons/credit-repair.svg')"></span><span>Credit Repair &amp; Consulting</span></a></li><li><a class="flex min-h-[44px] items-center gap-3 px-3 -mx-3 rounded-btn text-sm font-semibold text-text-primary hover:bg-mist-100/70 transition-colors" href="/services/update-personal-information-in-credit-bureaus/"><span aria-hidden="true" class="svc-icon text-[20px]" style="--icon:url('/assets/icons/update-personal-information-in-credit-bureaus.svg')"></span><span>Update Personal Information in Credit Bureaus</span></a></li><li><a class="flex min-h-[44px] items-center gap-3 px-3 -mx-3 rounded-btn text-sm font-semibold text-text-primary hover:bg-mist-100/70 transition-colors" href="/services/add-existing-credit-cards-to-credit-history/"><span aria-hidden="true" class="svc-icon text-[20px]" style="--icon:url('/assets/icons/add-existing-credit-cards-to-credit-history.svg')"></span><span>Add Existing Credit Cards to Credit History</span></a></li></ul>
+<div id="solutions-navigation">
+<button type="button" id="solutions-toggle" aria-expanded="false" aria-controls="solutions-dropdown" class="nav-item-link min-h-11 inline-flex items-center gap-1 whitespace-nowrap font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors">Services<span aria-hidden="true" class="material-symbols-outlined text-[16px] text-text-muted">expand_more</span></button>
+<div id="solutions-dropdown" hidden class="mega" role="region" aria-label="Services">
+<div class="mega-top"><span class="mega-eyebrow">Services</span><a class="mega-quiet" href="/services/"><span>View all services</span><span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[16px]">arrow_forward</span></a></div>
+<div class="mega-body">
+<div class="mega-goals" role="tablist" aria-orientation="vertical" aria-label="Choose a goal">
+<button type="button" role="tab" id="mega-tab-0" aria-controls="mega-panel-0" aria-selected="true" tabindex="0" class="mega-goal"><span class="mega-goal-n">01 /</span><span class="mega-goal-text"><span class="mega-goal-name">Improve My Credit</span><span class="mega-goal-meta">3 services</span></span><span aria-hidden="true" class="material-symbols-outlined mega-goal-arrow text-[18px]">chevron_right</span></button>
+<button type="button" role="tab" id="mega-tab-1" aria-controls="mega-panel-1" aria-selected="false" tabindex="-1" class="mega-goal"><span class="mega-goal-n">02 /</span><span class="mega-goal-text"><span class="mega-goal-name">Resolve My Debt</span><span class="mega-goal-meta">3 services</span></span><span aria-hidden="true" class="material-symbols-outlined mega-goal-arrow text-[18px]">chevron_right</span></button>
+<button type="button" role="tab" id="mega-tab-2" aria-controls="mega-panel-2" aria-selected="false" tabindex="-1" class="mega-goal"><span class="mega-goal-n">03 /</span><span class="mega-goal-text"><span class="mega-goal-name">Protect &amp; Understand My Credit</span><span class="mega-goal-meta">2 services</span></span><span aria-hidden="true" class="material-symbols-outlined mega-goal-arrow text-[18px]">chevron_right</span></button>
+<button type="button" role="tab" id="mega-tab-3" aria-controls="mega-panel-3" aria-selected="false" tabindex="-1" class="mega-goal"><span class="mega-goal-n">04 /</span><span class="mega-goal-text"><span class="mega-goal-name">Build Credit in the U.S.</span><span class="mega-goal-meta">1 service</span></span><span aria-hidden="true" class="material-symbols-outlined mega-goal-arrow text-[18px]">chevron_right</span></button>
 </div>
-<div>
-<a class="block py-2 font-bold text-[10px] uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors" href="/services/#resolve-my-debt">02 / Resolve My Debt</a>
-<ul><li><a class="flex min-h-[44px] items-center gap-3 px-3 -mx-3 rounded-btn text-sm font-semibold text-text-primary hover:bg-mist-100/70 transition-colors" href="/services/debts-negotiation/"><span aria-hidden="true" class="svc-icon text-[20px]" style="--icon:url('/assets/icons/debts-negotiation.svg')"></span><span>Debt Negotiation</span></a></li><li><a class="flex min-h-[44px] items-center gap-3 px-3 -mx-3 rounded-btn text-sm font-semibold text-text-primary hover:bg-mist-100/70 transition-colors" href="/services/negotiation-of-collection-accounts-in-court/"><span aria-hidden="true" class="svc-icon text-[20px]" style="--icon:url('/assets/icons/negotiation-of-collection-accounts-in-court.svg')"></span><span>Negotiation of Collection Accounts in Court</span></a></li><li><a class="flex min-h-[44px] items-center gap-3 px-3 -mx-3 rounded-btn text-sm font-semibold text-text-primary hover:bg-mist-100/70 transition-colors" href="/services/corporate-credit-counseling/"><span aria-hidden="true" class="svc-icon text-[20px]" style="--icon:url('/assets/icons/corporate-credit-counseling.svg')"></span><span>Corporate Credit Counseling</span></a></li></ul>
+<div class="mega-detail">
+<div role="tabpanel" id="mega-panel-0" aria-labelledby="mega-tab-0" class="mega-panel">
+<p class="mega-eyebrow">Path 01</p>
+<p class="mega-title">Improve My Credit</p>
+<p class="mega-blurb">Understand what may be affecting your credit profile and explore a personalized strategy for addressing eligible issues and building stronger habits.</p>
+<ul class="mega-services">
+<li><a class="mega-service" href="/services/credit-repair/"><span class="service-icon" aria-hidden="true"><span aria-hidden="true" class="svc-icon " style="--icon:url('/assets/icons/credit-repair.svg')"></span></span><span class="mega-service-name">Credit Repair &amp; Consulting</span><span aria-hidden="true" class="material-symbols-outlined mega-service-arrow text-[16px]">arrow_forward</span></a></li>
+<li><a class="mega-service" href="/services/update-personal-information-in-credit-bureaus/"><span class="service-icon" aria-hidden="true"><span aria-hidden="true" class="svc-icon " style="--icon:url('/assets/icons/update-personal-information-in-credit-bureaus.svg')"></span></span><span class="mega-service-name">Update Personal Information in Credit Bureaus</span><span aria-hidden="true" class="material-symbols-outlined mega-service-arrow text-[16px]">arrow_forward</span></a></li>
+<li><a class="mega-service" href="/services/add-existing-credit-cards-to-credit-history/"><span class="service-icon" aria-hidden="true"><span aria-hidden="true" class="svc-icon " style="--icon:url('/assets/icons/add-existing-credit-cards-to-credit-history.svg')"></span></span><span class="mega-service-name">Add Existing Credit Cards to Credit History</span><span aria-hidden="true" class="material-symbols-outlined mega-service-arrow text-[16px]">arrow_forward</span></a></li>
+</ul>
+<a class="mega-quiet" href="/services/#improve-my-credit"><span>Explore this path</span><span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[16px]">arrow_forward</span></a>
 </div>
-<div>
-<a class="block py-2 font-bold text-[10px] uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors" href="/services/#protect-and-understand">03 / Protect &amp; Understand My Credit</a>
-<ul><li><a class="flex min-h-[44px] items-center gap-3 px-3 -mx-3 rounded-btn text-sm font-semibold text-text-primary hover:bg-mist-100/70 transition-colors" href="/services/credit-monitoring-report/"><span aria-hidden="true" class="svc-icon text-[20px]" style="--icon:url('/assets/icons/credit-monitoring-report.svg')"></span><span>Credit Monitoring &amp; Report</span></a></li><li><a class="flex min-h-[44px] items-center gap-3 px-3 -mx-3 rounded-btn text-sm font-semibold text-text-primary hover:bg-mist-100/70 transition-colors" href="/services/fraud-alert-system/"><span aria-hidden="true" class="svc-icon text-[20px]" style="--icon:url('/assets/icons/fraud-alert-system.svg')"></span><span>Fraud Alert Protection</span></a></li></ul>
+<div role="tabpanel" id="mega-panel-1" aria-labelledby="mega-tab-1" class="mega-panel" hidden>
+<p class="mega-eyebrow">Path 02</p>
+<p class="mega-title">Resolve My Debt</p>
+<p class="mega-blurb">Review debt and collection challenges, understand what may be negotiable, and discuss the options that fit your situation.</p>
+<ul class="mega-services">
+<li><a class="mega-service" href="/services/debts-negotiation/"><span class="service-icon" aria-hidden="true"><span aria-hidden="true" class="svc-icon " style="--icon:url('/assets/icons/debts-negotiation.svg')"></span></span><span class="mega-service-name">Debt Negotiation</span><span aria-hidden="true" class="material-symbols-outlined mega-service-arrow text-[16px]">arrow_forward</span></a></li>
+<li><a class="mega-service" href="/services/negotiation-of-collection-accounts-in-court/"><span class="service-icon" aria-hidden="true"><span aria-hidden="true" class="svc-icon " style="--icon:url('/assets/icons/negotiation-of-collection-accounts-in-court.svg')"></span></span><span class="mega-service-name">Negotiation of Collection Accounts in Court</span><span aria-hidden="true" class="material-symbols-outlined mega-service-arrow text-[16px]">arrow_forward</span></a></li>
+<li><a class="mega-service" href="/services/corporate-credit-counseling/"><span class="service-icon" aria-hidden="true"><span aria-hidden="true" class="svc-icon " style="--icon:url('/assets/icons/corporate-credit-counseling.svg')"></span></span><span class="mega-service-name">Corporate Credit Counseling</span><span aria-hidden="true" class="material-symbols-outlined mega-service-arrow text-[16px]">arrow_forward</span></a></li>
+</ul>
+<a class="mega-quiet" href="/services/#resolve-my-debt"><span>Explore this path</span><span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[16px]">arrow_forward</span></a>
 </div>
-<div>
-<a class="block py-2 font-bold text-[10px] uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors" href="/services/#build-credit-in-the-us">04 / Build Credit in the U.S.</a>
-<ul><li><a class="flex min-h-[44px] items-center gap-3 px-3 -mx-3 rounded-btn text-sm font-semibold text-text-primary hover:bg-mist-100/70 transition-colors" href="/services/establishing-credit-for-foreign-investors/"><span aria-hidden="true" class="svc-icon text-[20px]" style="--icon:url('/assets/icons/establishing-credit-for-foreign-investors.svg')"></span><span>Establishing Credit for Foreign Investors</span></a></li></ul>
+<div role="tabpanel" id="mega-panel-2" aria-labelledby="mega-tab-2" class="mega-panel" hidden>
+<p class="mega-eyebrow">Path 03</p>
+<p class="mega-title">Protect &amp; Understand My Credit</p>
+<p class="mega-blurb">Get more clarity around your credit report, monitoring, fraud concerns, and the information that can affect your financial profile.</p>
+<ul class="mega-services">
+<li><a class="mega-service" href="/services/credit-monitoring-report/"><span class="service-icon" aria-hidden="true"><span aria-hidden="true" class="svc-icon " style="--icon:url('/assets/icons/credit-monitoring-report.svg')"></span></span><span class="mega-service-name">Credit Monitoring &amp; Report</span><span aria-hidden="true" class="material-symbols-outlined mega-service-arrow text-[16px]">arrow_forward</span></a></li>
+<li><a class="mega-service" href="/services/fraud-alert-system/"><span class="service-icon" aria-hidden="true"><span aria-hidden="true" class="svc-icon " style="--icon:url('/assets/icons/fraud-alert-system.svg')"></span></span><span class="mega-service-name">Fraud Alert Protection</span><span aria-hidden="true" class="material-symbols-outlined mega-service-arrow text-[16px]">arrow_forward</span></a></li>
+</ul>
+<a class="mega-quiet" href="/services/#protect-and-understand"><span>Explore this path</span><span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[16px]">arrow_forward</span></a>
+</div>
+<div role="tabpanel" id="mega-panel-3" aria-labelledby="mega-tab-3" class="mega-panel" hidden>
+<p class="mega-eyebrow">Path 04</p>
+<p class="mega-title">Build Credit in the U.S.</p>
+<p class="mega-blurb">Navigate the U.S. credit system with guidance designed for international investors and people establishing a U.S. credit profile.</p>
+<ul class="mega-services">
+<li><a class="mega-service" href="/services/establishing-credit-for-foreign-investors/"><span class="service-icon" aria-hidden="true"><span aria-hidden="true" class="svc-icon " style="--icon:url('/assets/icons/establishing-credit-for-foreign-investors.svg')"></span></span><span class="mega-service-name">Establishing Credit for Foreign Investors</span><span aria-hidden="true" class="material-symbols-outlined mega-service-arrow text-[16px]">arrow_forward</span></a></li>
+</ul>
+<a class="mega-quiet" href="/services/#build-credit-in-the-us"><span>Explore this path</span><span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[16px]">arrow_forward</span></a>
 </div>
 </div>
-<a class="flex min-h-[44px] items-center justify-between gap-2 px-4 rounded-btn bg-mist-100 text-sm font-bold text-ink-950 hover:bg-mist-200 transition-colors" href="/services/"><span>View all services</span><span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[16px]">arrow_forward</span></a>
+</div>
+<div class="mega-rail"><span>Not sure which path fits your situation?</span><a class="mega-rail-link" href="#book-consultation"><span>Book a 20-Minute Consultation</span><span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[16px]">arrow_forward</span></a></div>
 </div>
 </div>
 <a class="nav-item-link min-h-11 inline-flex items-center whitespace-nowrap font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="/#personalized-strategy">How It Works</a>
@@ -78,20 +112,42 @@
 </div>
 <div class="flex flex-col py-6 divide-y divide-border-light text-sm font-semibold">
 <a class="py-4" href="/" aria-current="page">Home</a>
-<details class="group">
-<summary class="flex items-center justify-between py-4 cursor-pointer list-none">Services<span aria-hidden="true" class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span></summary>
-<ul class="pb-3 text-[13px] font-medium text-text-secondary">
-<li><a class="flex min-h-[44px] items-center font-bold text-teal-600" href="/services/">All services</a></li>
-<li><a class="flex min-h-[44px] items-center gap-3" href="/services/credit-repair/"><span aria-hidden="true" class="svc-icon text-[18px]" style="--icon:url('/assets/icons/credit-repair.svg')"></span><span>Credit Repair &amp; Consulting</span></a></li><li><a class="flex min-h-[44px] items-center gap-3" href="/services/update-personal-information-in-credit-bureaus/"><span aria-hidden="true" class="svc-icon text-[18px]" style="--icon:url('/assets/icons/update-personal-information-in-credit-bureaus.svg')"></span><span>Update Personal Information in Credit Bureaus</span></a></li><li><a class="flex min-h-[44px] items-center gap-3" href="/services/add-existing-credit-cards-to-credit-history/"><span aria-hidden="true" class="svc-icon text-[18px]" style="--icon:url('/assets/icons/add-existing-credit-cards-to-credit-history.svg')"></span><span>Add Existing Credit Cards to Credit History</span></a></li><li><a class="flex min-h-[44px] items-center gap-3" href="/services/debts-negotiation/"><span aria-hidden="true" class="svc-icon text-[18px]" style="--icon:url('/assets/icons/debts-negotiation.svg')"></span><span>Debt Negotiation</span></a></li><li><a class="flex min-h-[44px] items-center gap-3" href="/services/negotiation-of-collection-accounts-in-court/"><span aria-hidden="true" class="svc-icon text-[18px]" style="--icon:url('/assets/icons/negotiation-of-collection-accounts-in-court.svg')"></span><span>Negotiation of Collection Accounts in Court</span></a></li><li><a class="flex min-h-[44px] items-center gap-3" href="/services/corporate-credit-counseling/"><span aria-hidden="true" class="svc-icon text-[18px]" style="--icon:url('/assets/icons/corporate-credit-counseling.svg')"></span><span>Corporate Credit Counseling</span></a></li><li><a class="flex min-h-[44px] items-center gap-3" href="/services/credit-monitoring-report/"><span aria-hidden="true" class="svc-icon text-[18px]" style="--icon:url('/assets/icons/credit-monitoring-report.svg')"></span><span>Credit Monitoring &amp; Report</span></a></li><li><a class="flex min-h-[44px] items-center gap-3" href="/services/fraud-alert-system/"><span aria-hidden="true" class="svc-icon text-[18px]" style="--icon:url('/assets/icons/fraud-alert-system.svg')"></span><span>Fraud Alert Protection</span></a></li><li><a class="flex min-h-[44px] items-center gap-3" href="/services/establishing-credit-for-foreign-investors/"><span aria-hidden="true" class="svc-icon text-[18px]" style="--icon:url('/assets/icons/establishing-credit-for-foreign-investors.svg')"></span><span>Establishing Credit for Foreign Investors</span></a></li>
+<div class="py-3">
+<p class="pt-2 pb-1 text-[11px] font-bold uppercase tracking-widest text-teal-700">Services</p>
+<details class="group" name="mobile-goals">
+<summary class="flex min-h-[48px] items-center justify-between gap-3 cursor-pointer list-none"><span class="flex items-baseline gap-2"><span class="text-[11px] font-bold text-text-muted">01</span><span>Improve My Credit</span></span><span aria-hidden="true" class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span></summary>
+<ul class="pb-2 pl-6 text-[13px] font-medium text-text-secondary">
+<li><a class="flex min-h-[44px] items-center gap-3" href="/services/credit-repair/"><span aria-hidden="true" class="svc-icon text-[18px]" style="--icon:url('/assets/icons/credit-repair.svg')"></span><span>Credit Repair &amp; Consulting</span></a></li><li><a class="flex min-h-[44px] items-center gap-3" href="/services/update-personal-information-in-credit-bureaus/"><span aria-hidden="true" class="svc-icon text-[18px]" style="--icon:url('/assets/icons/update-personal-information-in-credit-bureaus.svg')"></span><span>Update Personal Information in Credit Bureaus</span></a></li><li><a class="flex min-h-[44px] items-center gap-3" href="/services/add-existing-credit-cards-to-credit-history/"><span aria-hidden="true" class="svc-icon text-[18px]" style="--icon:url('/assets/icons/add-existing-credit-cards-to-credit-history.svg')"></span><span>Add Existing Credit Cards to Credit History</span></a></li>
 </ul>
 </details>
+<details class="group" name="mobile-goals">
+<summary class="flex min-h-[48px] items-center justify-between gap-3 cursor-pointer list-none"><span class="flex items-baseline gap-2"><span class="text-[11px] font-bold text-text-muted">02</span><span>Resolve My Debt</span></span><span aria-hidden="true" class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span></summary>
+<ul class="pb-2 pl-6 text-[13px] font-medium text-text-secondary">
+<li><a class="flex min-h-[44px] items-center gap-3" href="/services/debts-negotiation/"><span aria-hidden="true" class="svc-icon text-[18px]" style="--icon:url('/assets/icons/debts-negotiation.svg')"></span><span>Debt Negotiation</span></a></li><li><a class="flex min-h-[44px] items-center gap-3" href="/services/negotiation-of-collection-accounts-in-court/"><span aria-hidden="true" class="svc-icon text-[18px]" style="--icon:url('/assets/icons/negotiation-of-collection-accounts-in-court.svg')"></span><span>Negotiation of Collection Accounts in Court</span></a></li><li><a class="flex min-h-[44px] items-center gap-3" href="/services/corporate-credit-counseling/"><span aria-hidden="true" class="svc-icon text-[18px]" style="--icon:url('/assets/icons/corporate-credit-counseling.svg')"></span><span>Corporate Credit Counseling</span></a></li>
+</ul>
+</details>
+<details class="group" name="mobile-goals">
+<summary class="flex min-h-[48px] items-center justify-between gap-3 cursor-pointer list-none"><span class="flex items-baseline gap-2"><span class="text-[11px] font-bold text-text-muted">03</span><span>Protect &amp; Understand My Credit</span></span><span aria-hidden="true" class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span></summary>
+<ul class="pb-2 pl-6 text-[13px] font-medium text-text-secondary">
+<li><a class="flex min-h-[44px] items-center gap-3" href="/services/credit-monitoring-report/"><span aria-hidden="true" class="svc-icon text-[18px]" style="--icon:url('/assets/icons/credit-monitoring-report.svg')"></span><span>Credit Monitoring &amp; Report</span></a></li><li><a class="flex min-h-[44px] items-center gap-3" href="/services/fraud-alert-system/"><span aria-hidden="true" class="svc-icon text-[18px]" style="--icon:url('/assets/icons/fraud-alert-system.svg')"></span><span>Fraud Alert Protection</span></a></li>
+</ul>
+</details>
+<details class="group" name="mobile-goals">
+<summary class="flex min-h-[48px] items-center justify-between gap-3 cursor-pointer list-none"><span class="flex items-baseline gap-2"><span class="text-[11px] font-bold text-text-muted">04</span><span>Build Credit in the U.S.</span></span><span aria-hidden="true" class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span></summary>
+<ul class="pb-2 pl-6 text-[13px] font-medium text-text-secondary">
+<li><a class="flex min-h-[44px] items-center gap-3" href="/services/establishing-credit-for-foreign-investors/"><span aria-hidden="true" class="svc-icon text-[18px]" style="--icon:url('/assets/icons/establishing-credit-for-foreign-investors.svg')"></span><span>Establishing Credit for Foreign Investors</span></a></li>
+</ul>
+</details>
+<a class="flex min-h-[44px] items-center gap-1.5 text-[13px] font-bold text-teal-700" href="/services/"><span>View all services</span><span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[16px]">arrow_forward</span></a>
+</div>
 <a class="py-4" href="/#personalized-strategy">How It Works</a>
 <a class="py-4" href="/about-us/">About</a>
 <a class="py-4" href="/reviews/">Reviews</a>
 <a class="py-4" href="/#faq">FAQ</a>
 <a class="py-4" href="/contact-us/">Contact</a>
 </div>
-<p class="mt-auto flex flex-wrap gap-x-6 pb-4 text-xs text-text-muted"><a class="inline-flex min-h-[44px] items-center hover:text-ink-950" href="/privacy-policy/">Privacy Policy</a><a class="inline-flex min-h-[44px] items-center hover:text-ink-950" href="/terms-and-conditions/">Terms &amp; Conditions</a></p>
+<p class="mt-auto flex flex-wrap gap-x-6 pb-2 text-xs text-text-muted"><a class="inline-flex min-h-[44px] items-center hover:text-ink-950" href="/privacy-policy/">Privacy Policy</a><a class="inline-flex min-h-[44px] items-center hover:text-ink-950" href="/terms-and-conditions/">Terms &amp; Conditions</a></p>
+<a class="mb-3 flex min-h-[48px] items-center justify-center gap-2 rounded-btn border border-border-light bg-white text-sm font-bold text-ink-950" href="tel:+17862205838"><span aria-hidden="true" class="material-symbols-outlined text-[18px] text-teal-600">call</span><span>Call (786) 220-5838</span></a>
 <a class="brand-gradient-btn shrink-0 inline-flex items-center justify-center px-5 py-4 rounded-btn text-ink-950 font-bold text-xs tracking-wider uppercase shadow-sm" href="#book-consultation">Book a 20-Minute Consultation</a>
 </nav>
 </div>

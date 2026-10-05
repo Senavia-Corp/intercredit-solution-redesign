@@ -95,7 +95,7 @@ const faqs = [
   ['How long does it take to see results?', 'Timelines vary depending on the service, complexity of the situation, third parties involved, and other individual factors. InterCredit does not promise a specific credit-score increase or fixed timeline.'],
   ['How much do your services cost?', 'Fees vary depending on the service and complexity of the situation. All costs are explained thoroughly before you make any commitment to a service.'],
   ['Do you offer payment plans?', 'Payment plan options may be available depending on the service program. You can confirm current terms and eligibility directly with an advisor during your initial consultation.'],
-  ['Do I need to know which service I need before booking?', 'No. Start with your goal and situation. The 20-minute consultation is specifically designed to help clarify which options are relevant.'],
+  ['Do I need to know which service I need before booking?', 'No. Start with your goal and situation. The consultation is specifically designed to help clarify which options are relevant.'],
 ];
 
 const team = [
@@ -267,7 +267,7 @@ const bookingSection = () => `<section class="w-full bg-paper-100 py-20 lg:py-28
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 <div class="lg:col-span-5 space-y-8">
-${sectionIntro('WHAT TO EXPECT', 'A 20-minute conversation can help clarify your next move.', 'You do not need to arrive knowing which service you need. Start with what you are trying to solve.')}
+${sectionIntro('WHAT TO EXPECT', 'A conversation can help clarify your next move.', 'You do not need to arrive knowing which service you need. Start with what you are trying to solve.')}
 <ol class="booking-steps">
 ${bookingSteps.map(([slug, name, text], index) => `<li data-reveal class="booking-step">
 <span class="booking-step-icon" aria-hidden="true"><span class="svc-icon" style="--icon:url('/assets/icons/booking-${slug}.svg')"></span></span>
@@ -352,7 +352,7 @@ const closingCta = (title = 'Start with a conversation about where you are and w
 <p class="text-sm sm:text-base text-white/75 leading-relaxed max-w-xl">You do not need to diagnose your own credit situation or choose a service before you call. Tell us your goal, ask your questions, and understand the options that may fit your situation.</p>
 ${bookingStepChips()}
 <div class="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-stretch sm:items-center lg:items-stretch xl:items-center gap-4 pt-4">
-${primaryButton('Book a 20-Minute Consultation')}
+${primaryButton('Book a Consultation')}
 ${callButton(true)}
 </div>
 <ul class="flex flex-col sm:flex-row sm:flex-wrap gap-x-6 gap-y-2 pt-2 text-xs text-white/70">
@@ -410,14 +410,14 @@ ${services.filter((service) => service.chapter === index).map((service) => `<li>
 </div>`).join('\n')}
 </div>
 </div>
-<div class="mega-rail"><span>Not sure which path fits your situation?</span><a class="mega-rail-link" href="${bookHref(current)}"><span>Book a 20-Minute Consultation</span>${arrow}</a></div>
+<div class="mega-rail"><span>Not sure which path fits your situation?</span><a class="mega-rail-link" href="${bookHref(current)}"><span>Book a Consultation</span>${arrow}</a></div>
 </div>`;
 
 const header = (current) => `
 <a class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-btn focus:bg-white focus:px-4 focus:py-3 focus:font-bold focus:text-ink-950 focus:shadow-xl" href="#main-content">Skip to main content</a>
 <aside class="utility-bar text-xs py-2 px-4 relative z-50">
 <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-<div class="flex items-center gap-2 mx-auto sm:mx-0"><span class="w-1.5 h-1.5 rounded-full bg-ink-950"></span><span class="font-semibold tracking-wide">20-Minute Consultation • Personalized Credit &amp; Financial Guidance • Miami-Based</span></div>
+<div class="flex items-center gap-2 mx-auto sm:mx-0"><span class="w-1.5 h-1.5 rounded-full bg-ink-950"></span><span class="font-semibold tracking-wide">15, 30 or 60-Minute Consultations • Personalized Credit &amp; Financial Guidance • Miami-Based</span></div>
 <div class="hidden md:flex items-center gap-6 font-medium">
 <span class="flex items-center gap-1.5">${icon('location_on', 'text-[15px]')}13590 SW 134th Ave, Suite 203, Miami, FL</span>
 <a class="inline-block py-3.5 -my-3.5 font-bold underline-offset-4 hover:underline" href="${PHONE_HREF}">Direct: ${PHONE}</a>
@@ -440,7 +440,7 @@ ${navLinks.slice(0, 3).map(navLink(current)).join('\n')}
 ${navLinks.slice(3).map(navLink(current)).join('\n')}
 </nav>
 <a class="hidden sm:inline-flex xl:hidden min-h-11 items-center gap-1.5 whitespace-nowrap font-semibold text-xs tracking-wide text-text-secondary hover:text-teal-600 transition-colors" href="${PHONE_HREF}">${icon('call', 'text-[16px] text-teal-600')}${PHONE}</a>
-<a class="brand-gradient-btn hidden sm:inline-flex min-h-11 items-center justify-center whitespace-nowrap px-5 py-3 rounded-btn text-ink-950 font-bold text-xs tracking-wider uppercase shadow-sm" href="${bookHref(current)}">Book a 20-Minute Consultation</a>
+<a class="brand-gradient-btn hidden sm:inline-flex min-h-11 items-center justify-center whitespace-nowrap px-5 py-3 rounded-btn text-ink-950 font-bold text-xs tracking-wider uppercase shadow-sm" href="${bookHref(current)}">Book a Consultation</a>
 <button aria-controls="mobile-navigation" aria-expanded="false" aria-label="Open navigation menu" class="xl:hidden w-11 h-11 rounded-btn bg-white border border-border-light text-ink-950 flex items-center justify-center shadow-sm" id="mobile-menu-toggle" type="button">${icon('menu')}</button>
 </div>
 </div>
@@ -467,7 +467,7 @@ ${navLinks.map(([label, href]) => `<a class="py-4" href="${href}"${href === curr
 </div>
 <p class="mt-auto flex flex-wrap gap-x-6 pb-2 text-xs text-text-muted"><a class="inline-flex min-h-[44px] items-center hover:text-ink-950" href="/privacy-policy/">Privacy Policy</a><a class="inline-flex min-h-[44px] items-center hover:text-ink-950" href="/terms-and-conditions/">Terms &amp; Conditions</a></p>
 <a class="mb-3 flex min-h-[48px] items-center justify-center gap-2 rounded-btn border border-border-light bg-white text-sm font-bold text-ink-950" href="${PHONE_HREF}">${icon('call', 'text-[18px] text-teal-600')}<span>Call ${PHONE}</span></a>
-<a class="brand-gradient-btn shrink-0 inline-flex items-center justify-center px-5 py-4 rounded-btn text-ink-950 font-bold text-xs tracking-wider uppercase shadow-sm" href="${bookHref(current)}">Book a 20-Minute Consultation</a>
+<a class="brand-gradient-btn shrink-0 inline-flex items-center justify-center px-5 py-4 rounded-btn text-ink-950 font-bold text-xs tracking-wider uppercase shadow-sm" href="${bookHref(current)}">Book a Consultation</a>
 </nav>
 </div>`;
 
@@ -620,21 +620,21 @@ const servicePage = (service) => {
     .concat(services.filter((other) => other.chapter !== service.chapter)).slice(0, 3);
   return page({
     title: `${esc(service.name)} — InterCredit Solution`,
-    description: esc(`${service.intro} Personalized guidance from InterCredit Solution in Miami. Start with a 20-minute consultation.`),
+    description: esc(`${service.intro} Personalized guidance from InterCredit Solution in Miami. Start with a consultation.`),
     current: '/services/',
     body: `${hero({
       trail: [['Home', '/'], ['Services', '/services/'], [esc(service.name)]],
       label: `CHAPTER ${chapter.n} • ${esc(chapter.name).toUpperCase()}`,
       title: `<span class="flex items-center gap-4">${svcIcon(service.slug, 'svc-icon-light text-[0.9em]')}<span>${esc(service.name)}</span></span>`,
       lead: esc(service.intro),
-      actions: `${primaryButton('Book a 20-Minute Consultation')}${callButton(true)}`,
+      actions: `${primaryButton('Book a Consultation')}${callButton(true)}`,
       background: `/assets/service-hero-${service.slug}.jpg`,
       aside: `<div class="rounded-card-lg border border-white/20 bg-white/95 p-6 text-text-primary shadow-2xl space-y-4">
 <div class="flex items-center gap-4">${svcTile(service.slug)}<p class="font-bold text-sm text-ink-950">At a glance</p></div>
 <dl class="divide-y divide-border-light text-sm">
 <div class="flex justify-between gap-4 py-3"><dt class="text-text-muted">Solution area</dt><dd class="font-semibold text-right">${esc(chapter.name)}</dd></div>
 <div class="flex justify-between gap-4 py-3"><dt class="text-text-muted">Journey stage</dt><dd class="font-semibold text-right">0${service.stage + 1} · ${stages[service.stage]}</dd></div>
-<div class="flex justify-between gap-4 py-3"><dt class="text-text-muted">First step</dt><dd class="font-semibold text-right">20-minute consultation</dd></div>
+<div class="flex justify-between gap-4 py-3"><dt class="text-text-muted">First step</dt><dd class="font-semibold text-right">Consultation (15, 30 or 60 min)</dd></div>
 <div class="flex justify-between gap-4 py-3"><dt class="text-text-muted">Format</dt><dd class="font-semibold text-right">In person &amp; remote</dd></div>
 </dl>
 </div>`,
@@ -705,7 +705,7 @@ const servicesIndex = page({
     label: 'SOLUTIONS DIRECTORY',
     title: 'Solutions organized around <span class="font-serif-italic font-normal brand-gradient-text">what you actually need</span>.',
     lead: 'You do not need to know the official name of the service you need. Choose the situation that sounds closest to yours and explore the most relevant options.',
-    actions: `${primaryButton('Book a 20-Minute Consultation')}${callButton(true)}`,
+    actions: `${primaryButton('Book a Consultation')}${callButton(true)}`,
     aside: heroPhoto('photo-1618', 'A consultation in progress in one of the InterCredit offices in Miami'),
   })}
 ${chapters.map((chapter, index) => `<section class="w-full ${index % 2 ? 'bg-white border-y border-border-light' : 'bg-porcelain-50'} py-16 lg:py-24" id="${chapter.id}">
@@ -728,7 +728,7 @@ const about = page({
     label: 'ABOUT INTERCREDIT',
     title: 'Your goal is <span class="font-serif-italic font-normal brand-gradient-text">our mission</span>.',
     lead: 'InterCredit Solution is a Miami-based team that helps people understand their credit, work through debt challenges, and plan a path built around their goals. We look at the main aspects of your finances, offer a tailored plan, and guide you through each step.',
-    actions: `${primaryButton('Book a 20-Minute Consultation')}<a class="inline-flex items-center justify-center gap-2 rounded-btn border border-white/30 bg-white/95 px-6 py-4 text-sm font-bold text-text-primary shadow-sm transition-colors hover:bg-white" href="/services/"><span>Explore Our Services</span>${icon('arrow_forward', 'icon-nudge text-[18px] text-teal-700')}</a>`,
+    actions: `${primaryButton('Book a Consultation')}<a class="inline-flex items-center justify-center gap-2 rounded-btn border border-white/30 bg-white/95 px-6 py-4 text-sm font-bold text-text-primary shadow-sm transition-colors hover:bg-white" href="/services/"><span>Explore Our Services</span>${icon('arrow_forward', 'icon-nudge text-[18px] text-teal-700')}</a>`,
     aside: `<figure class="rounded-card-lg overflow-hidden border border-white/20 bg-ink-900 shadow-2xl"><img alt="The InterCredit Solution team at the Miami office" class="w-full h-auto" fetchpriority="high" height="833" src="/assets/team-office.jpg" width="1250"/></figure>`,
   })}
 <section class="w-full bg-porcelain-50 py-20 lg:py-28">
@@ -838,14 +838,14 @@ ${closingCta()}`,
 
 const contact = page({
   title: 'Contact Us — InterCredit Solution',
-  description: 'Call or visit InterCredit Solution in Miami to start with a 20-minute consultation about your credit or debt situation.',
+  description: 'Call or visit InterCredit Solution in Miami to start with a consultation about your credit or debt situation.',
   current: '/contact-us/',
   body: `${hero({
     trail: [['Home', '/'], ['Contact']],
     label: 'CONTACT &amp; CONSULTATION',
     title: 'Let’s talk about <span class="font-serif-italic font-normal brand-gradient-text">your goal</span>.',
-    lead: 'Start with your situation. In a 20-minute consultation, an advisor reviews the context, answers your questions, and explains the options that may fit.',
-    actions: `${primaryButton('Book a 20-Minute Consultation', '#book-consultation')}${callButton(true)}`,
+    lead: 'Start with your situation. In a consultation, an advisor reviews the context, answers your questions, and explains the options that may fit.',
+    actions: `${primaryButton('Book a Consultation', '#book-consultation')}${callButton(true)}`,
     aside: heroPhoto('photo-1602', 'Jessica Sotolongo smiling across her desk at two visitors during a consultation'),
   })}
 <section class="w-full bg-porcelain-50 py-20 lg:py-28">

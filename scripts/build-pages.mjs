@@ -253,19 +253,48 @@ ${bookingSteps.map(([name, text], index) => `<li data-reveal class="flex items-s
 </div>
 </section>`;
 
-// Google reviews (Starwall widget). site.js loads the script named in data-lazy-script when the block nears the screen.
-const GOOGLE_PROFILE = 'https://share.google/r0pDAFn96tn37utnz';
-const googleReviews = () => `<div class="space-y-6" id="google-reviews">
-<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-<div class="space-y-2">
-<span class="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-teal-600"><img alt="" class="h-4 w-auto" height="50" loading="lazy" src="/assets/stars.svg" width="317"/>Google Reviews</span>
-<h3 class="text-2xl font-bold text-ink-950">What clients have written on Google.</h3>
+// ---------- Reviews component ----------
+// Rendered at build time from local data, so it needs no third-party script and works without JavaScript.
+// To feed it from an API later: replace this one read with a fetch that returns the same shape
+// ({ profileUrl, averageRating, totalReviews, fetchedAt, reviews: [{ id, author, rating, text, date, url }] }).
+const reviewsData = JSON.parse(readFileSync(new URL('../src/data/reviews.json', import.meta.url), 'utf8'));
+
+const starIcon = '<svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16" fill="#F5A623"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.2 1 5.9L10 15l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg>';
+const stars = (rating) => `<span class="inline-flex gap-0.5" role="img" aria-label="${rating} out of 5 stars">${starIcon.repeat(Math.round(rating))}</span>`;
+const monthYear = (isoDate) => new Date(`${isoDate}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+const asOf = monthYear(reviewsData.fetchedAt);
+
+const reviewCard = (review, extra = '') => `<li class="flex flex-col gap-4 p-6 rounded-card bg-white border border-border-light shadow-sm ${extra}">
+<div class="flex items-center gap-3">
+<span aria-hidden="true" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full brand-gradient-line text-sm font-extrabold uppercase text-ink-950">${esc(review.author.charAt(0))}</span>
+<div class="min-w-0"><p class="truncate font-bold text-sm text-ink-950">${esc(review.author)}</p><p class="text-xs text-text-muted">${monthYear(review.date)}</p></div>
 </div>
-<a class="inline-flex items-center gap-1.5 font-bold text-xs uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors py-3.5 -my-3.5" href="${GOOGLE_PROFILE}" rel="noopener" target="_blank"><span>See all reviews on Google</span>${arrow}</a>
+${stars(review.rating)}
+<p class="text-sm text-text-secondary leading-relaxed line-clamp-6">${esc(review.text)}</p>
+<a class="mt-auto inline-flex min-h-[44px] items-center gap-1.5 self-start text-xs font-bold uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors" href="${esc(review.url)}" rel="noopener" target="_blank"><span>Read on Google</span>${arrow}</a>
+</li>`;
+
+// layout: 'carousel' (scroll-snap row with arrows) or 'grid' (every review).
+const reviewsComponent = ({ layout = 'carousel', data = reviewsData } = {}) => `<div class="space-y-8" id="google-reviews"${layout === 'carousel' ? ' data-carousel' : ''}>
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+<div class="space-y-3">
+<span class="text-xs font-bold uppercase tracking-widest text-teal-600 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>GOOGLE REVIEWS</span>
+<h3 class="text-2xl sm:text-3xl font-bold text-ink-950 leading-tight">What clients have written on Google.</h3>
+<p class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-text-secondary"><span class="text-2xl font-extrabold text-ink-950">${data.averageRating.toFixed(1)}</span>${stars(data.averageRating)}<span>${data.totalReviews} reviews on Google · as of ${asOf}</span></p>
 </div>
-<div class="min-h-[320px] rounded-card-lg bg-porcelain-50 border border-border-light p-4 sm:p-6">
-<div id="reviews-widget-308" data-lazy-script="https://starwall.io/embed/9qutaZMK19mQgu1Sq2mrvxw8KtbQB5yn/widget.js"></div>
+<div class="flex items-center gap-3">
+<a class="inline-flex min-h-[44px] items-center gap-1.5 font-bold text-xs uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors" href="${esc(data.profileUrl)}" rel="noopener" target="_blank"><span>See all reviews on Google</span>${arrow}</a>
+${layout === 'carousel' ? `<button type="button" data-carousel-prev aria-label="Previous reviews" class="flex h-11 w-11 items-center justify-center rounded-full border border-border-light bg-white text-ink-950 shadow-sm hover:bg-mist-100 transition-colors">${icon('chevron_left')}</button>
+<button type="button" data-carousel-next aria-label="Next reviews" class="flex h-11 w-11 items-center justify-center rounded-full border border-border-light bg-white text-ink-950 shadow-sm hover:bg-mist-100 transition-colors">${icon('chevron_right')}</button>` : ''}
 </div>
+</div>
+${layout === 'carousel'
+    ? `<ul data-carousel-track tabindex="0" aria-label="Google reviews" class="reviews-track flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 sm:mx-0 sm:px-0">
+${data.reviews.map((review) => reviewCard(review, 'snap-start shrink-0 w-[85%] sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)]')).join('\n')}
+</ul>`
+    : `<ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+${data.reviews.map((review) => reviewCard(review)).join('\n')}
+</ul>`}
 </div>`;
 
 const closingCta = (title = 'Start with a conversation about where you are and what comes next.') => `
@@ -737,7 +766,7 @@ ${youtubeCard(id, `InterCredit client story: ${name}`, `Play client story from $
 </section>
 <section class="w-full bg-white border-y border-border-light py-20 lg:py-28">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-${googleReviews()}
+${reviewsComponent({ layout: 'grid' })}
 </div>
 </section>
 <section class="w-full bg-ink-950 text-white py-20 lg:py-28 relative overflow-hidden">
@@ -842,7 +871,7 @@ let home = readFileSync(homePath, 'utf8');
 // Same header on the homepage, so every page is reachable from every page.
 home = home.replace(/<a class="sr-only[\s\S]*?(?=<main id="main-content">)/, () => `${header('/').trim()}\n`);
 home = home.replace(/<!-- booking:start -->[\s\S]*?<!-- booking:end -->/, () => `<!-- booking:start -->\n${bookingSection()}\n<!-- booking:end -->`);
-home = home.replace(/<!-- reviews:start -->[\s\S]*?<!-- reviews:end -->/, () => `<!-- reviews:start -->\n${googleReviews()}\n<!-- reviews:end -->`);
+home = home.replace(/<!-- reviews:start -->[\s\S]*?<!-- reviews:end -->/, () => `<!-- reviews:start -->\n${reviewsComponent()}\n<!-- reviews:end -->`);
 const used = new Set(['pause', 'play_arrow']);
 for (const html of [home, ...Object.values(pages)]) {
   for (const match of html.matchAll(/class="[^"]*material-symbols-outlined[^"]*"[^>]*>\s*([a-z_0-9]+)\s*</g)) used.add(match[1]);

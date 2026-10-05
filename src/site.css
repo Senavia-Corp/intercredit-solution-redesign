@@ -119,6 +119,7 @@
     .video-choice-light:hover {background:#EAF1F1;}
     .video-choice-light[aria-pressed="true"] {border-color:#1D766E;background:#EAF1F1;box-shadow:inset 3px 0 0 #1D766E;}
     .video-choice img {flex:0 0 112px;width:112px;aspect-ratio:16/9;object-fit:cover;border-radius:10px;}
+    .reviews-track {scrollbar-width:thin;scrollbar-color:#DCE8E7 transparent;}
     .video-story-overlay {
       transition: opacity 0.25s ease, visibility 0.25s ease;
     }

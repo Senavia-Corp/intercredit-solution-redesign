@@ -150,19 +150,13 @@
     } else loadScheduler();
   }
 
-  // Other third-party widgets: load the script named in data-lazy-script when the block nears the screen.
-  document.querySelectorAll('[data-lazy-script]').forEach((target) => {
-    const load = () => {
-      const script = document.createElement('script');
-      script.src = target.dataset.lazyScript;
-      script.async = true;
-      document.body.appendChild(script);
-    };
-    if (!('IntersectionObserver' in window)) return load();
-    const nearby = new IntersectionObserver((entries) => {
-      if (entries.some((entry) => entry.isIntersecting)) { load(); nearby.disconnect(); }
-    }, { rootMargin: '800px 0px' });
-    nearby.observe(target);
+  // Carousels are native scroll-snap rows; the arrows only scroll them.
+  document.querySelectorAll('[data-carousel]').forEach((carousel) => {
+    const track = carousel.querySelector('[data-carousel-track]');
+    if (!track) return;
+    const step = (direction) => track.scrollBy({ left: direction * track.clientWidth * 0.9, behavior: 'smooth' });
+    carousel.querySelector('[data-carousel-prev]')?.addEventListener('click', () => step(-1));
+    carousel.querySelector('[data-carousel-next]')?.addEventListener('click', () => step(1));
   });
 
   // Ambient videos play only while visible, and never when reduced motion is requested.

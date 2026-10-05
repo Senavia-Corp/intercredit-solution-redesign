@@ -150,6 +150,21 @@
     } else loadScheduler();
   }
 
+  // Other third-party widgets: load the script named in data-lazy-script when the block nears the screen.
+  document.querySelectorAll('[data-lazy-script]').forEach((target) => {
+    const load = () => {
+      const script = document.createElement('script');
+      script.src = target.dataset.lazyScript;
+      script.async = true;
+      document.body.appendChild(script);
+    };
+    if (!('IntersectionObserver' in window)) return load();
+    const nearby = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) { load(); nearby.disconnect(); }
+    }, { rootMargin: '800px 0px' });
+    nearby.observe(target);
+  });
+
   // Ambient videos play only while visible, and never when reduced motion is requested.
   const ambientVideos = document.querySelectorAll('[data-ambient-video]');
   if (ambientVideos.length && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

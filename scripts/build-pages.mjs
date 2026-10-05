@@ -253,6 +253,21 @@ ${bookingSteps.map(([name, text], index) => `<li data-reveal class="flex items-s
 </div>
 </section>`;
 
+// Google reviews (Starwall widget). site.js loads the script named in data-lazy-script when the block nears the screen.
+const GOOGLE_PROFILE = 'https://share.google/r0pDAFn96tn37utnz';
+const googleReviews = () => `<div class="space-y-6" id="google-reviews">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+<div class="space-y-2">
+<span class="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-teal-600"><img alt="" class="h-4 w-auto" height="50" loading="lazy" src="/assets/stars.svg" width="317"/>Google Reviews</span>
+<h3 class="text-2xl font-bold text-ink-950">What clients have written on Google.</h3>
+</div>
+<a class="inline-flex items-center gap-1.5 font-bold text-xs uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors py-3.5 -my-3.5" href="${GOOGLE_PROFILE}" rel="noopener" target="_blank"><span>See all reviews on Google</span>${arrow}</a>
+</div>
+<div class="min-h-[320px] rounded-card-lg bg-porcelain-50 border border-border-light p-4 sm:p-6">
+<div id="reviews-widget-308" data-lazy-script="https://starwall.io/embed/9qutaZMK19mQgu1Sq2mrvxw8KtbQB5yn/widget.js"></div>
+</div>
+</div>`;
+
 const closingCta = (title = 'Start with a conversation about where you are and what comes next.') => `
 <section class="w-full bg-ink-950 text-white relative overflow-hidden">
 <div class="absolute top-0 left-0 right-0 z-20 h-1 brand-gradient-line"></div>
@@ -720,6 +735,11 @@ ${youtubeCard(id, `InterCredit client story: ${name}`, `Play client story from $
 <p class="text-xs text-text-muted max-w-prose">Each client’s situation is different. These stories describe individual experiences and are not a promise of a specific result.</p>
 </div>
 </section>
+<section class="w-full bg-white border-y border-border-light py-20 lg:py-28">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+${googleReviews()}
+</div>
+</section>
 <section class="w-full bg-ink-950 text-white py-20 lg:py-28 relative overflow-hidden">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -822,6 +842,7 @@ let home = readFileSync(homePath, 'utf8');
 // Same header on the homepage, so every page is reachable from every page.
 home = home.replace(/<a class="sr-only[\s\S]*?(?=<main id="main-content">)/, () => `${header('/').trim()}\n`);
 home = home.replace(/<!-- booking:start -->[\s\S]*?<!-- booking:end -->/, () => `<!-- booking:start -->\n${bookingSection()}\n<!-- booking:end -->`);
+home = home.replace(/<!-- reviews:start -->[\s\S]*?<!-- reviews:end -->/, () => `<!-- reviews:start -->\n${googleReviews()}\n<!-- reviews:end -->`);
 const used = new Set(['pause', 'play_arrow']);
 for (const html of [home, ...Object.values(pages)]) {
   for (const match of html.matchAll(/class="[^"]*material-symbols-outlined[^"]*"[^>]*>\s*([a-z_0-9]+)\s*</g)) used.add(match[1]);

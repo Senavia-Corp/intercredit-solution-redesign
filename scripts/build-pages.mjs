@@ -129,9 +129,12 @@ const textLink = (label, href) => `<a class="inline-flex items-center gap-1.5 fo
 
 const breadcrumb = (trail) => `<nav aria-label="Breadcrumb" class="text-xs text-white/60"><ol class="flex flex-wrap items-center gap-x-2">${trail.map(([label, href], index) => `<li class="flex items-center gap-2">${index ? '<span aria-hidden="true">/</span>' : ''}${href ? `<a class="inline-block py-3.5 -my-3.5 hover:text-white transition-colors" href="${href}">${label}</a>` : `<span aria-current="page" class="text-white/90">${label}</span>`}</li>`).join('')}</ol></nav>`;
 
-// Dark page hero. `aside` is the optional right-hand column.
-const hero = ({ trail, label, title, lead, actions = '', aside = '' }) => `
-<section class="relative isolate overflow-hidden bg-ink-950 bg-ledger-dark py-14 text-white sm:py-20">
+// Dark page hero. `aside` is the optional right-hand column; `background` an optional photo,
+// kept behind an ink wash so the text contrast never depends on the picture.
+const hero = ({ trail, label, title, lead, actions = '', aside = '', background = '' }) => `
+<section class="relative isolate overflow-hidden bg-ink-950 ${background ? '' : 'bg-ledger-dark '}py-14 text-white sm:py-20">
+${background ? `<img alt="" class="absolute inset-0 -z-20 h-full w-full object-cover" fetchpriority="high" height="624" src="${background}" width="1920"/>
+<div aria-hidden="true" class="absolute inset-0 -z-10 bg-ink-950/80 lg:bg-transparent lg:bg-gradient-to-r lg:from-ink-950/90 lg:via-ink-950/65 lg:to-ink-950/30"></div>` : ''}
 <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
 <div class="${aside ? 'lg:col-span-7' : 'lg:col-span-9'} flex flex-col items-start space-y-6">
@@ -387,6 +390,7 @@ const servicePage = (service) => {
       title: esc(service.name),
       lead: esc(service.intro),
       actions: `${primaryButton('Book a 20-Minute Consultation')}${callButton(true)}`,
+      background: `/assets/service-hero-${service.slug}.jpg`,
       aside: `<div class="rounded-card-lg border border-white/20 bg-white/95 p-6 text-text-primary shadow-2xl space-y-4">
 <div class="flex items-center gap-4"><span class="service-icon material-symbols-outlined" aria-hidden="true">${service.icon}</span><p class="font-bold text-sm text-ink-950">At a glance</p></div>
 <dl class="divide-y divide-border-light text-sm">

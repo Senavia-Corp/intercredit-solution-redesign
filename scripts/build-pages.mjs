@@ -182,14 +182,23 @@ const approachSection = (background = 'bg-paper-100', image = null) => `
 <section class="w-full ${background} py-20 lg:py-28">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 ${image ? '<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"><div class="lg:col-span-6">' : ''}${sectionIntro('HOW WE WORK', 'A strategy built around your situation.', 'Credit and debt challenges rarely come from one isolated issue. InterCredit starts by understanding your goals, reviewing the situation, and identifying the options that are most relevant to you.')}${image ? `</div><div class="lg:col-span-6">${framed(image[0], image[1])}</div></div>` : ''}
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-${approach.map(([name, text], index) => `<div data-reveal class="p-8 rounded-card bg-white border border-border-light shadow-sm space-y-3">
-<div class="w-10 h-10 rounded-btn bg-mist-100 flex items-center justify-center font-bold text-teal-700 text-sm">0${index + 1}</div>
-<h3 class="font-bold text-base text-ink-950">${name}</h3>
-<p class="text-sm text-text-secondary leading-relaxed">${text}</p>
-</div>`).join('\n')}
+<ol class="grid grid-cols-1 md:grid-cols-3 gap-6">
+${approach.map(([name, text], index) => `<li data-reveal class="group relative overflow-hidden p-8 rounded-card bg-white border border-border-light shadow-sm hover:shadow-md transition-shadow space-y-4">
+<span aria-hidden="true" class="absolute inset-x-0 top-0 h-1 brand-gradient-line"></span>
+<div class="flex items-start justify-between gap-4">
+<span class="service-icon" aria-hidden="true"><span class="svc-icon" style="--icon:url('/assets/icons/approach-${name.toLowerCase()}.svg')"></span></span>
+<span aria-hidden="true" class="text-4xl font-extrabold leading-none text-mist-200">0${index + 1}</span>
 </div>
-<p class="text-xs text-text-muted">No generic package. No promise of a specific score. A clearer strategy based on your situation.</p>
+<div class="space-y-2">
+<p class="text-[10px] font-bold uppercase tracking-wider text-teal-600">Step 0${index + 1}</p>
+<h3 class="font-bold text-lg text-ink-950">${name}</h3>
+<p class="text-sm text-text-secondary leading-relaxed">${text}</p>
+</div>
+</li>`).join('\n')}
+</ol>
+<div class="p-4 rounded-btn bg-white border-l-4 border-l-teal-500 border border-border-light shadow-sm max-w-2xl">
+<p class="text-xs font-semibold text-text-primary">No generic package. No promise of a specific score. A clearer strategy based on your situation.</p>
+</div>
 </div>
 </section>`;
 

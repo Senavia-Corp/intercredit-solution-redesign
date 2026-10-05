@@ -158,6 +158,11 @@
         transition-duration: 0.01ms !important;
       }
     }
+    .service-title {display:flex;align-items:center;gap:16px;min-width:0;}
+    .service-icon {display:grid;place-items:center;flex:0 0 48px;width:48px;height:48px;border-radius:14px;background:#e5f1ef;color:#1D766E;border:1px solid #cfe3df;font-size:26px;}
+    #solutions-architecture .service-title + span {flex-shrink:0;white-space:nowrap;}
+    #solutions-architecture .p-6 > .flex:first-child {gap:16px;}
+    @media(max-width:520px) {#solutions-architecture .p-6 > .flex:first-child{flex-wrap:wrap}.service-title{gap:12px}.service-icon{flex-basis:44px;width:44px;height:44px;border-radius:12px;font-size:24px}}
   </style>
 </head>
 <body class="bg-porcelain-50 font-sans text-text-primary antialiased selection:bg-teal-500 selection:text-white">
@@ -864,7 +869,7 @@ Book a 20-Minute Consultation
 </div>
 <div class="p-6 rounded-card bg-porcelain-50 border border-border-light space-y-3 hover:shadow-sm transition-shadow">
 <div class="flex items-center justify-between">
-<h3 class="font-bold text-base text-ink-950">Credit Repair &amp; Consulting</h3>
+<div class="service-title"><span class="service-icon material-symbols-outlined" aria-hidden="true">fact_check</span><h3 class="font-bold text-base text-ink-950">Credit Repair &amp; Consulting</h3></div>
 <span class="px-2.5 py-0.5 rounded-full bg-mist-100 text-teal-700 text-xs font-semibold">Service 01</span>
 </div>
 <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
@@ -877,7 +882,7 @@ Book a 20-Minute Consultation
 </div>
 <div class="p-6 rounded-card bg-porcelain-50 border border-border-light space-y-3 hover:shadow-sm transition-shadow">
 <div class="flex items-center justify-between">
-<h3 class="font-bold text-base text-ink-950">Bureau Information Updates</h3>
+<div class="service-title"><span class="service-icon material-symbols-outlined" aria-hidden="true">manage_accounts</span><h3 class="font-bold text-base text-ink-950">Bureau Information Updates</h3></div>
 <span class="px-2.5 py-0.5 rounded-full bg-mist-100 text-teal-700 text-xs font-semibold">Service 02</span>
 </div>
 <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
@@ -890,7 +895,7 @@ Book a 20-Minute Consultation
 </div>
 <div class="p-6 rounded-card bg-porcelain-50 border border-border-light space-y-3 hover:shadow-sm transition-shadow">
 <div class="flex items-center justify-between">
-<h3 class="font-bold text-base text-ink-950">Credit History Assistance</h3>
+<div class="service-title"><span class="service-icon material-symbols-outlined" aria-hidden="true">history</span><h3 class="font-bold text-base text-ink-950">Credit History Assistance</h3></div>
 <span class="px-2.5 py-0.5 rounded-full bg-mist-100 text-teal-700 text-xs font-semibold">Service 03</span>
 </div>
 <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
@@ -910,7 +915,7 @@ Book a 20-Minute Consultation
 </div>
 <div class="p-6 rounded-card bg-porcelain-50 border border-border-light space-y-3 hover:shadow-sm transition-shadow">
 <div class="flex items-center justify-between">
-<h3 class="font-bold text-base text-ink-950">Debt Negotiation &amp; Settlement Pathways</h3>
+<div class="service-title"><span class="service-icon material-symbols-outlined" aria-hidden="true">handshake</span><h3 class="font-bold text-base text-ink-950">Debt Negotiation &amp; Settlement Pathways</h3></div>
 <span class="px-2.5 py-0.5 rounded-full bg-mist-100 text-teal-700 text-xs font-semibold">Service 04</span>
 </div>
 <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
@@ -923,7 +928,7 @@ Book a 20-Minute Consultation
 </div>
 <div class="p-6 rounded-card bg-porcelain-50 border border-border-light space-y-3 hover:shadow-sm transition-shadow">
 <div class="flex items-center justify-between">
-<h3 class="font-bold text-base text-ink-950">Collection Account Negotiation</h3>
+<div class="service-title"><span class="service-icon material-symbols-outlined" aria-hidden="true">assignment_turned_in</span><h3 class="font-bold text-base text-ink-950">Collection Account Negotiation</h3></div>
 <span class="px-2.5 py-0.5 rounded-full bg-mist-100 text-teal-700 text-xs font-semibold">Service 05</span>
 </div>
 <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
@@ -936,7 +941,7 @@ Book a 20-Minute Consultation
 </div>
 <div class="p-6 rounded-card bg-porcelain-50 border border-border-light space-y-3 hover:shadow-sm transition-shadow">
 <div class="flex items-center justify-between">
-<h3 class="font-bold text-base text-ink-950">Corporate Credit Counseling</h3>
+<div class="service-title"><span class="service-icon material-symbols-outlined" aria-hidden="true">business_center</span><h3 class="font-bold text-base text-ink-950">Corporate Credit Counseling</h3></div>
 <span class="px-2.5 py-0.5 rounded-full bg-mist-100 text-teal-700 text-xs font-semibold">Service 06</span>
 </div>
 <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
@@ -956,7 +961,7 @@ Book a 20-Minute Consultation
 </div>
 <div class="p-6 rounded-card bg-porcelain-50 border border-border-light space-y-3 hover:shadow-sm transition-shadow">
 <div class="flex items-center justify-between">
-<h3 class="font-bold text-base text-ink-950">Credit Monitoring &amp; Fraud Alert Protection</h3>
+<div class="service-title"><span class="service-icon material-symbols-outlined" aria-hidden="true">shield</span><h3 class="font-bold text-base text-ink-950">Credit Monitoring &amp; Fraud Alert Protection</h3></div>
 <span class="px-2.5 py-0.5 rounded-full bg-mist-100 text-teal-700 text-xs font-semibold">Service 07 &amp; 08</span>
 </div>
 <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
@@ -969,7 +974,7 @@ Book a 20-Minute Consultation
 </div>
 <div class="p-6 rounded-card bg-porcelain-50 border border-border-light space-y-3 hover:shadow-sm transition-shadow" id="sol-chapter-4">
 <div class="flex items-center justify-between">
-<h3 class="font-bold text-base text-ink-950">Credit Guidance for Foreign Investors</h3>
+<div class="service-title"><span class="service-icon material-symbols-outlined" aria-hidden="true">public</span><h3 class="font-bold text-base text-ink-950">Credit Guidance for Foreign Investors</h3></div>
 <span class="px-2.5 py-0.5 rounded-full bg-mist-100 text-teal-700 text-xs font-semibold">Service 09</span>
 </div>
 <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">

@@ -64,7 +64,7 @@
       if (event.key === 'Escape' && isOpen()) setMobileNavigation(false);
     });
     // The drawer does not exist at desktop widths; never leave the page locked behind it.
-    const desktop = window.matchMedia('(min-width: 1024px)');
+    const desktop = window.matchMedia('(min-width: 1280px)');
     desktop.addEventListener?.('change', (event) => {
       if (event.matches && isOpen()) setMobileNavigation(false, false);
     });

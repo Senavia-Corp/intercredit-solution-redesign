@@ -17,19 +17,20 @@
 <body class="bg-porcelain-50 font-sans text-text-primary antialiased selection:bg-teal-500 selection:text-white">
 
 <a class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-btn focus:bg-white focus:px-4 focus:py-3 focus:font-bold focus:text-ink-950 focus:shadow-xl" href="#main-content">Skip to main content</a>
-<aside class="bg-ink-950 text-white/90 text-xs py-2 px-4 border-b border-border-dark relative z-50">
+<aside class="utility-bar text-xs py-2 px-4 relative z-50">
 <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-<div class="flex items-center gap-2 mx-auto sm:mx-0"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span><span class="font-medium tracking-wide">20-Minute Consultation • Personalized Credit &amp; Financial Guidance • Miami-Based</span></div>
-<div class="hidden md:flex items-center gap-6 text-white/70">
-<span class="flex items-center gap-1.5"><span aria-hidden="true" class="material-symbols-outlined text-[15px] text-teal-400">location_on</span>13590 SW 134th Ave, Suite 203, Miami, FL</span>
-<a class="inline-block py-3.5 -my-3.5 text-white hover:text-green-400 transition-colors font-semibold" href="tel:+17862205838">Direct: (786) 220-5838</a>
+<div class="flex items-center gap-2 mx-auto sm:mx-0"><span class="w-1.5 h-1.5 rounded-full bg-ink-950"></span><span class="font-semibold tracking-wide">20-Minute Consultation • Personalized Credit &amp; Financial Guidance • Miami-Based</span></div>
+<div class="hidden md:flex items-center gap-6 font-medium">
+<span class="flex items-center gap-1.5"><span aria-hidden="true" class="material-symbols-outlined text-[15px]">location_on</span>13590 SW 134th Ave, Suite 203, Miami, FL</span>
+<a class="inline-block py-3.5 -my-3.5 font-bold underline-offset-4 hover:underline" href="tel:+17862205838">Direct: (786) 220-5838</a>
 </div>
 </div>
 </aside>
 <header class="sticky top-0 z-40 bg-porcelain-50/95 backdrop-blur-md border-b border-border-light transition-all duration-200">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-<a class="flex shrink-0 items-center focus:outline-none focus:ring-2 focus:ring-teal-600 rounded-lg py-1 pr-2" href="/"><div class="h-11 flex items-center"><img alt="InterCredit Solution — home" class="site-logo" height="159" src="/assets/intercredit-logo.svg" width="226"/></div></a>
-<nav aria-label="Primary" class="hidden lg:flex items-center gap-5 xl:gap-8">
+<a aria-label="InterCredit Solution — home" class="logo-badge" href="/"><img alt="" height="87" src="/assets/intercredit-logo.svg" width="124"/></a>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 xl:h-[84px] flex items-center justify-between gap-4">
+<a class="xl:hidden flex shrink-0 items-center focus:outline-none focus:ring-2 focus:ring-teal-600 rounded-lg py-1 pr-2" href="/"><div class="h-12 flex items-center"><img alt="InterCredit Solution — home" class="site-logo" height="159" src="/assets/intercredit-logo.svg" width="226"/></div></a>
+<nav aria-label="Primary" class="hidden xl:flex flex-1 items-center justify-evenly pr-24">
 <div class="relative" id="solutions-navigation">
 <button type="button" id="solutions-toggle" aria-expanded="false" aria-controls="solutions-dropdown" class="nav-item-link min-h-11 inline-flex items-center gap-1 whitespace-nowrap font-semibold text-sm text-ink-950 hover:text-ink-950 transition-colors">Services<span aria-hidden="true" class="material-symbols-outlined text-[16px] text-text-muted transition-transform">expand_more</span></button>
 <div id="solutions-dropdown" hidden class="absolute top-full -left-4 w-[44rem] max-w-[calc(100vw-2rem)] bg-white rounded-card shadow-2xl border border-border-light p-5 flex-col gap-4 z-50">
@@ -56,18 +57,20 @@
 </div>
 <a class="nav-item-link min-h-11 inline-flex items-center whitespace-nowrap font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="/#personalized-strategy">How It Works</a>
 <a class="nav-item-link min-h-11 inline-flex items-center whitespace-nowrap font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="/about-us/">About</a>
+</nav>
+<div class="flex xl:flex-1 items-center justify-end xl:justify-between gap-4 xl:pl-32">
+<nav aria-label="Secondary" class="hidden xl:flex items-center gap-7">
 <a class="nav-item-link min-h-11 inline-flex items-center whitespace-nowrap font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="/reviews/">Reviews</a>
 <a class="nav-item-link min-h-11 inline-flex items-center whitespace-nowrap font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="/#faq">FAQ</a>
 <a class="nav-item-link min-h-11 inline-flex items-center whitespace-nowrap font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="/contact-us/">Contact</a>
 </nav>
-<div class="flex items-center gap-4">
-<a class="hidden sm:inline-flex lg:hidden xl:inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap font-semibold text-xs tracking-wide text-text-secondary hover:text-teal-600 transition-colors" href="tel:+17862205838"><span aria-hidden="true" class="material-symbols-outlined text-[16px] text-teal-600">call</span>(786) 220-5838</a>
-<a class="brand-gradient-btn hidden sm:inline-flex min-h-11 items-center justify-center whitespace-nowrap px-5 py-3 rounded-btn text-white font-bold text-xs tracking-wider uppercase shadow-sm" href="/contact-us/">Book a 20-Minute Consultation</a>
-<button aria-controls="mobile-navigation" aria-expanded="false" aria-label="Open navigation menu" class="lg:hidden w-11 h-11 rounded-btn bg-white border border-border-light text-ink-950 flex items-center justify-center shadow-sm" id="mobile-menu-toggle" type="button"><span aria-hidden="true" class="material-symbols-outlined ">menu</span></button>
+<a class="hidden sm:inline-flex xl:hidden min-h-11 items-center gap-1.5 whitespace-nowrap font-semibold text-xs tracking-wide text-text-secondary hover:text-teal-600 transition-colors" href="tel:+17862205838"><span aria-hidden="true" class="material-symbols-outlined text-[16px] text-teal-600">call</span>(786) 220-5838</a>
+<a class="brand-gradient-btn hidden sm:inline-flex min-h-11 items-center justify-center whitespace-nowrap px-5 py-3 rounded-btn text-ink-950 font-bold text-xs tracking-wider uppercase shadow-sm" href="/contact-us/">Book a 20-Minute Consultation</a>
+<button aria-controls="mobile-navigation" aria-expanded="false" aria-label="Open navigation menu" class="xl:hidden w-11 h-11 rounded-btn bg-white border border-border-light text-ink-950 flex items-center justify-center shadow-sm" id="mobile-menu-toggle" type="button"><span aria-hidden="true" class="material-symbols-outlined ">menu</span></button>
 </div>
 </div>
 </header>
-<div class="fixed inset-0 z-[60] bg-ink-950/45 backdrop-blur-sm hidden lg:hidden" id="mobile-navigation" role="dialog" aria-modal="true" aria-label="Site menu">
+<div class="fixed inset-0 z-[60] bg-ink-950/45 backdrop-blur-sm hidden xl:hidden" id="mobile-navigation" role="dialog" aria-modal="true" aria-label="Site menu">
 <nav aria-label="Mobile navigation" class="absolute inset-y-0 right-0 w-[min(88vw,360px)] bg-porcelain-50 shadow-2xl p-6 flex flex-col overflow-y-auto">
 <div class="flex items-center justify-between pb-6 border-b border-border-light">
 <img alt="InterCredit Solution" class="h-12 w-auto object-contain" height="159" src="/assets/intercredit-logo.svg" width="226"/>
@@ -89,7 +92,7 @@
 <a class="py-4" href="/contact-us/">Contact</a>
 </div>
 <p class="mt-auto flex flex-wrap gap-x-6 pb-4 text-xs text-text-muted"><a class="inline-flex min-h-[44px] items-center hover:text-ink-950" href="/privacy-policy/">Privacy Policy</a><a class="inline-flex min-h-[44px] items-center hover:text-ink-950" href="/terms-and-conditions/">Terms &amp; Conditions</a></p>
-<a class="brand-gradient-btn shrink-0 inline-flex items-center justify-center px-5 py-4 rounded-btn text-white font-bold text-xs tracking-wider uppercase shadow-sm" href="/contact-us/">Book a 20-Minute Consultation</a>
+<a class="brand-gradient-btn shrink-0 inline-flex items-center justify-center px-5 py-4 rounded-btn text-ink-950 font-bold text-xs tracking-wider uppercase shadow-sm" href="/contact-us/">Book a 20-Minute Consultation</a>
 </nav>
 </div>
 <main id="main-content">
@@ -102,7 +105,7 @@
 <span class="text-xs font-bold uppercase tracking-widest text-green-400 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>CHAPTER 01 • IMPROVE MY CREDIT</span>
 <h1 class="text-4xl sm:text-5xl leading-[1.08] font-bold text-white tracking-tight">Update Personal Information in Credit Bureaus</h1>
 <p class="max-w-xl text-lg leading-relaxed text-white/85">Outdated personal information on your credit report can cause unnecessary headaches.</p>
-<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2 w-full sm:w-auto"><a class="brand-gradient-btn inline-flex items-center justify-center px-8 py-4 rounded-btn text-white font-bold text-sm tracking-wider uppercase shadow-md" href="/contact-us/">Book a 20-Minute Consultation</a><a class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-btn bg-white/10 hover:bg-white/20 text-white border border-border-dark font-bold text-sm transition-colors" href="tel:+17862205838"><span aria-hidden="true" class="material-symbols-outlined text-[18px]">call</span><span>Call (786) 220-5838</span></a></div>
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2 w-full sm:w-auto"><a class="brand-gradient-btn inline-flex items-center justify-center px-8 py-4 rounded-btn text-ink-950 font-bold text-sm tracking-wider uppercase shadow-md" href="/contact-us/">Book a 20-Minute Consultation</a><a class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-btn bg-white/10 hover:bg-white/20 text-white border border-border-dark font-bold text-sm transition-colors" href="tel:+17862205838"><span aria-hidden="true" class="material-symbols-outlined text-[18px]">call</span><span>Call (786) 220-5838</span></a></div>
 </div>
 <div class="lg:col-span-5"><div class="rounded-card-lg border border-white/20 bg-white/95 p-6 text-text-primary shadow-2xl space-y-4">
 <div class="flex items-center gap-4"><span class="service-icon material-symbols-outlined" aria-hidden="true">manage_accounts</span><p class="font-bold text-sm text-ink-950">At a glance</p></div>
@@ -272,14 +275,14 @@
 </section>
 
 <section class="w-full bg-ink-950 text-white py-20 lg:py-28 relative overflow-hidden bg-ledger-dark">
-<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 via-green-500 to-lime-500"></div>
+<div class="absolute top-0 left-0 right-0 h-1 brand-gradient-line"></div>
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 <div class="max-w-3xl space-y-6">
 <span class="text-xs font-bold uppercase tracking-widest text-green-400">YOUR NEXT STEP DOES NOT HAVE TO BE COMPLICATED</span>
 <h2 class="text-3xl sm:text-5xl font-bold text-white leading-tight">Start with a conversation about where you are and what comes next.</h2>
 <p class="text-sm sm:text-base text-white/70 leading-relaxed max-w-2xl">You do not need to diagnose your own credit situation or choose a service before you call. Tell us your goal, ask your questions, and understand the options that may fit your situation.</p>
 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
-<a class="brand-gradient-btn inline-flex items-center justify-center px-8 py-4 rounded-btn text-white font-bold text-sm tracking-wider uppercase shadow-md" href="/contact-us/">Book a 20-Minute Consultation</a>
+<a class="brand-gradient-btn inline-flex items-center justify-center px-8 py-4 rounded-btn text-ink-950 font-bold text-sm tracking-wider uppercase shadow-md" href="/contact-us/">Book a 20-Minute Consultation</a>
 <a class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-btn bg-white/10 hover:bg-white/20 text-white border border-border-dark font-bold text-sm transition-colors" href="tel:+17862205838"><span aria-hidden="true" class="material-symbols-outlined text-[18px]">call</span><span>Call (786) 220-5838</span></a>
 </div>
 <p class="text-xs text-white/50 pt-2">Personalized guidance. Clear expectations. No guaranteed-score promises.</p>
@@ -322,6 +325,6 @@
 </footer>
 <div class="fixed bottom-0 inset-x-0 z-50 p-3 bg-white/95 backdrop-blur-md border-t border-border-light sm:hidden flex items-center justify-between gap-3 shadow-lg">
 <a class="w-12 h-12 rounded-btn bg-mist-100 flex items-center justify-center text-teal-700 flex-shrink-0" href="tel:+17862205838" aria-label="Call (786) 220-5838"><span aria-hidden="true" class="material-symbols-outlined text-[20px]">call</span></a>
-<a class="brand-gradient-btn flex-1 inline-flex min-h-[48px] items-center justify-center px-4 rounded-btn text-white font-bold text-xs uppercase tracking-wider text-center shadow-sm" href="/contact-us/">Book Consultation</a>
+<a class="brand-gradient-btn flex-1 inline-flex min-h-[48px] items-center justify-center px-4 rounded-btn text-ink-950 font-bold text-xs uppercase tracking-wider text-center shadow-sm" href="/contact-us/">Book Consultation</a>
 </div>
 </body></html>

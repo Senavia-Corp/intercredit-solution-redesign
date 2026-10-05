@@ -34,9 +34,8 @@ header.sticky.is-scrolled { background-color: rgba(250,249,246,.98); border-bott
 .nav-item-link::after { bottom: 6px; width: 100%; transform: scaleX(0); transform-origin: left; transition: transform var(--motion-ui) ease; }
 .nav-item-link:hover::after,.nav-item-link:focus-visible::after { transform: scaleX(1); }
 .brand-gradient-btn {
-  transition: translate var(--motion-ui) var(--motion-ease), transform var(--motion-fast) var(--motion-ease), box-shadow var(--motion-ui) ease;
+  transition: translate var(--motion-ui) var(--motion-ease), transform var(--motion-fast) var(--motion-ease), box-shadow var(--motion-ui) ease, filter var(--motion-ui) ease;
 }
-.brand-gradient-btn:hover { filter: none; }
 /* Doubled class: must outrank Tailwind's single-class transition utilities on the same card. */
 .motion-card.motion-card { transition: translate var(--motion-ui) var(--motion-ease), border-color var(--motion-ui) ease, box-shadow var(--motion-ui) ease; }
 /* Reveals win over hover transitions until the entrance has completed. */

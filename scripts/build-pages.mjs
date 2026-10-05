@@ -230,6 +230,20 @@ const bookingSteps = [
   ['Review the situation', 'An InterCredit advisor reviews the relevant context and asks the questions needed to understand your case.'],
   ['Understand your options', 'You leave with a clearer understanding of the possible next steps and where InterCredit may be able to help.'],
 ];
+// One scheduler per page: the OnceHub embed is keyed by a fixed element id.
+const bookingCard = (id = '') => `<div data-reveal${id ? ` id="${id}"` : ''} class="rounded-card-lg bg-white border border-border-light shadow-xl overflow-hidden">
+<div class="h-1 brand-gradient-line"></div>
+<div class="p-4 sm:p-6 space-y-4">
+<h3 class="font-bold text-lg text-ink-950">Choose a time that works for you</h3>
+<div class="min-h-[550px]">
+<!-- ScheduleOnce embed START -->
+<div id="SOIDIV_InterCreditSolution" data-so-page="InterCreditSolution" data-height="550" data-style="border: 1px solid #d8d8d8; min-width: 290px; max-width: 900px;" data-psz="00"></div>
+<!-- ScheduleOnce embed END -->
+</div>
+<p class="text-xs text-text-muted">If the calendar does not load, <a class="font-bold text-teal-600 underline underline-offset-4 hover:text-green-600" href="${BOOKING_URL}" rel="noopener" target="_blank">open the booking page</a> or call us.</p>
+</div>
+</div>`;
+
 const bookingSection = () => `<section class="w-full bg-paper-100 py-20 lg:py-28" id="book-consultation">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
@@ -245,18 +259,7 @@ ${bookingSteps.map(([name, text], index) => `<li data-reveal class="flex items-s
 <p class="text-sm text-text-secondary">Prefer to talk first? <a class="inline-flex min-h-[44px] items-center font-bold text-teal-600 hover:text-green-600 transition-colors" href="${PHONE_HREF}">Call ${PHONE}</a></p>
 </div>
 <div class="lg:col-span-7">
-<div data-reveal class="rounded-card-lg bg-white border border-border-light shadow-xl overflow-hidden">
-<div class="h-1 brand-gradient-line"></div>
-<div class="p-4 sm:p-6 space-y-4">
-<h3 class="font-bold text-lg text-ink-950">Choose a time that works for you</h3>
-<div class="min-h-[550px]">
-<!-- ScheduleOnce embed START -->
-<div id="SOIDIV_InterCreditSolution" data-so-page="InterCreditSolution" data-height="550" data-style="border: 1px solid #d8d8d8; min-width: 290px; max-width: 900px;" data-psz="00"></div>
-<!-- ScheduleOnce embed END -->
-</div>
-<p class="text-xs text-text-muted">If the calendar does not load, <a class="font-bold text-teal-600 underline underline-offset-4 hover:text-green-600" href="${BOOKING_URL}" rel="noopener" target="_blank">open the booking page</a> or call us.</p>
-</div>
-</div>
+${bookingCard()}
 </div>
 </div>
 </div>
@@ -574,6 +577,7 @@ ${sectionIntro('WHAT THIS SERVICE COVERS', 'What we help you with.')}
 <div class="p-4 rounded-btn bg-white border-l-4 border-l-teal-500 border border-border-light shadow-sm max-w-prose">
 <p class="text-xs font-semibold text-text-primary">Scope, timing and fees depend on your individual situation. No specific score increase, approval, deletion, settlement, or timeline is guaranteed.</p>
 </div>
+${bookingCard('book-consultation')}
 </div>
 <div class="lg:col-span-5 space-y-6">
 ${framed(servicePhotos[service.slug][0], servicePhotos[service.slug][1], servicePhotos[service.slug][2] ? { width: servicePhotos[service.slug][2], height: servicePhotos[service.slug][3], aspect: servicePhotos[service.slug][3] / servicePhotos[service.slug][2] > 0.6 ? 'aspect-[4/3]' : 'aspect-video' } : {})}
@@ -932,6 +936,8 @@ writeFileSync(homePath, home);
 for (const [path, html] of Object.entries(pages)) {
   const target = new URL(path, dist);
   mkdirSync(dirname(target.pathname), { recursive: true });
-  writeFileSync(target, html.replace(FONT_ICONS, iconFont));
+  // Pages that carry the scheduler book in place instead of sending visitors to Contact.
+  const local = html.includes('id="book-consultation"') ? html.replaceAll('href="/contact-us/#book-consultation"', 'href="#book-consultation"') : html;
+  writeFileSync(target, local.replace(FONT_ICONS, iconFont));
 }
 console.log(`Built ${Object.keys(pages).length} pages, ${used.size} icons.`);

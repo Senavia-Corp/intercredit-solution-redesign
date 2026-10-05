@@ -227,9 +227,9 @@ ${items.map(([question, answer]) => `<details class="group rounded-card bg-porce
 const BOOKING_URL = 'https://go.oncehub.com/InterCreditSolution';
 const bookHref = (current) => (current === '/' || current === '/contact-us/' ? '#book-consultation' : '/contact-us/#book-consultation');
 const bookingSteps = [
-  ['Tell us your goal', 'Share what is happening, what you are concerned about, and what you would like to improve or understand.'],
-  ['Review the situation', 'An InterCredit advisor reviews the relevant context and asks the questions needed to understand your case.'],
-  ['Understand your options', 'You leave with a clearer understanding of the possible next steps and where InterCredit may be able to help.'],
+  ['goal', 'Tell us your goal', 'Share what is happening, what you are concerned about, and what you would like to improve or understand.'],
+  ['review', 'Review the situation', 'An InterCredit advisor reviews the relevant context and asks the questions needed to understand your case.'],
+  ['options', 'Understand your options', 'You leave with a clearer understanding of the possible next steps and where InterCredit may be able to help.'],
 ];
 // One scheduler per page: the OnceHub embed is keyed by a fixed element id.
 const bookingCard = (id = '') => `<div data-reveal${id ? ` id="${id}"` : ''} class="rounded-card-lg bg-white border border-border-light shadow-xl overflow-hidden">
@@ -245,15 +245,20 @@ const bookingCard = (id = '') => `<div data-reveal${id ? ` id="${id}"` : ''} cla
 </div>
 </div>`;
 
+// The same three steps, condensed for the closing CTA on dark backgrounds.
+const bookingStepChips = () => `<ol class="booking-chips">
+${bookingSteps.map(([slug, name], index) => `<li><span aria-hidden="true" class="svc-icon" style="--icon:url('/assets/icons/booking-${slug}.svg')"></span><span><span class="sr-only">Step ${index + 1}: </span>${name}</span></li>`).join('\n')}
+</ol>`;
+
 const bookingSection = () => `<section class="w-full bg-paper-100 py-20 lg:py-28" id="book-consultation">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 <div class="lg:col-span-5 space-y-8">
 ${sectionIntro('WHAT TO EXPECT', 'A 20-minute conversation can help clarify your next move.', 'You do not need to arrive knowing which service you need. Start with what you are trying to solve.')}
-<ol class="space-y-5">
-${bookingSteps.map(([name, text], index) => `<li data-reveal class="flex items-start gap-4">
-<span class="w-10 h-10 shrink-0 rounded-btn bg-white border border-border-light flex items-center justify-center font-bold text-teal-700 text-sm shadow-sm">0${index + 1}</span>
-<div class="space-y-1"><h3 class="font-bold text-base text-ink-950">${name}</h3><p class="text-sm text-text-secondary leading-relaxed">${text}</p></div>
+<ol class="booking-steps">
+${bookingSteps.map(([slug, name, text], index) => `<li data-reveal class="booking-step">
+<span class="booking-step-icon" aria-hidden="true"><span class="svc-icon" style="--icon:url('/assets/icons/booking-${slug}.svg')"></span></span>
+<div class="space-y-1.5 pt-1"><p class="text-[11px] font-bold uppercase tracking-widest text-teal-700">Step 0${index + 1}</p><h3 class="font-bold text-lg text-ink-950 leading-snug">${name}</h3><p class="text-sm text-text-secondary leading-relaxed">${text}</p></div>
 </li>`).join('\n')}
 </ol>
 <p class="text-xs text-text-muted">*Exact recommendations, timing, fees, and service scope depend on your individual situation.</p>
@@ -324,6 +329,7 @@ const closingCta = (title = 'Start with a conversation about where you are and w
 <span class="text-xs font-bold uppercase tracking-widest text-green-400">YOUR NEXT STEP DOES NOT HAVE TO BE COMPLICATED</span>
 <h2 class="text-3xl sm:text-4xl font-bold text-white leading-tight text-balance">${title}</h2>
 <p class="text-sm sm:text-base text-white/75 leading-relaxed max-w-xl">You do not need to diagnose your own credit situation or choose a service before you call. Tell us your goal, ask your questions, and understand the options that may fit your situation.</p>
+${bookingStepChips()}
 <div class="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-stretch sm:items-center lg:items-stretch xl:items-center gap-4 pt-4">
 ${primaryButton('Book a 20-Minute Consultation')}
 ${callButton(true)}
@@ -939,6 +945,7 @@ let home = readFileSync(homePath, 'utf8');
 home = home.replace(/<a class="sr-only[\s\S]*?(?=<main id="main-content">)/, () => `${header('/').trim()}\n`);
 home = home.replace(/<footer[\s\S]*?<\/footer>/, () => footer.slice(0, footer.indexOf('</footer>') + 9).trim());
 home = home.replace(/<!-- google-badge:start -->[\s\S]*?<!-- google-badge:end -->/, () => `<!-- google-badge:start -->\n<div>${googleBadge({ href: '#google-reviews' })}</div>\n<!-- google-badge:end -->`);
+home = home.replace(/<!-- booking-chips:start -->[\s\S]*?<!-- booking-chips:end -->/, () => `<!-- booking-chips:start -->\n${bookingStepChips()}\n<!-- booking-chips:end -->`);
 home = home.replace(/<!-- booking:start -->[\s\S]*?<!-- booking:end -->/, () => `<!-- booking:start -->\n${bookingSection()}\n<!-- booking:end -->`);
 home = home.replace(/<!-- reviews:start -->[\s\S]*?<!-- reviews:end -->/, () => `<!-- reviews:start -->\n${reviewsComponent()}\n<!-- reviews:end -->`);
 const used = new Set(['pause', 'play_arrow']);

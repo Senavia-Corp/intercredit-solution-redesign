@@ -1091,18 +1091,18 @@
 <h2 class="text-3xl sm:text-4xl font-bold text-ink-950 leading-tight">A 20-minute conversation can help clarify your next move.</h2>
 <p class="text-sm text-text-secondary leading-relaxed">You do not need to arrive knowing which service you need. Start with what you are trying to solve.</p>
 </div>
-<ol class="space-y-5">
-<li data-reveal class="flex items-start gap-4">
-<span class="w-10 h-10 shrink-0 rounded-btn bg-white border border-border-light flex items-center justify-center font-bold text-teal-700 text-sm shadow-sm">01</span>
-<div class="space-y-1"><h3 class="font-bold text-base text-ink-950">Tell us your goal</h3><p class="text-sm text-text-secondary leading-relaxed">Share what is happening, what you are concerned about, and what you would like to improve or understand.</p></div>
+<ol class="booking-steps">
+<li data-reveal class="booking-step">
+<span class="booking-step-icon" aria-hidden="true"><span class="svc-icon" style="--icon:url('/assets/icons/booking-goal.svg')"></span></span>
+<div class="space-y-1.5 pt-1"><p class="text-[11px] font-bold uppercase tracking-widest text-teal-700">Step 01</p><h3 class="font-bold text-lg text-ink-950 leading-snug">Tell us your goal</h3><p class="text-sm text-text-secondary leading-relaxed">Share what is happening, what you are concerned about, and what you would like to improve or understand.</p></div>
 </li>
-<li data-reveal class="flex items-start gap-4">
-<span class="w-10 h-10 shrink-0 rounded-btn bg-white border border-border-light flex items-center justify-center font-bold text-teal-700 text-sm shadow-sm">02</span>
-<div class="space-y-1"><h3 class="font-bold text-base text-ink-950">Review the situation</h3><p class="text-sm text-text-secondary leading-relaxed">An InterCredit advisor reviews the relevant context and asks the questions needed to understand your case.</p></div>
+<li data-reveal class="booking-step">
+<span class="booking-step-icon" aria-hidden="true"><span class="svc-icon" style="--icon:url('/assets/icons/booking-review.svg')"></span></span>
+<div class="space-y-1.5 pt-1"><p class="text-[11px] font-bold uppercase tracking-widest text-teal-700">Step 02</p><h3 class="font-bold text-lg text-ink-950 leading-snug">Review the situation</h3><p class="text-sm text-text-secondary leading-relaxed">An InterCredit advisor reviews the relevant context and asks the questions needed to understand your case.</p></div>
 </li>
-<li data-reveal class="flex items-start gap-4">
-<span class="w-10 h-10 shrink-0 rounded-btn bg-white border border-border-light flex items-center justify-center font-bold text-teal-700 text-sm shadow-sm">03</span>
-<div class="space-y-1"><h3 class="font-bold text-base text-ink-950">Understand your options</h3><p class="text-sm text-text-secondary leading-relaxed">You leave with a clearer understanding of the possible next steps and where InterCredit may be able to help.</p></div>
+<li data-reveal class="booking-step">
+<span class="booking-step-icon" aria-hidden="true"><span class="svc-icon" style="--icon:url('/assets/icons/booking-options.svg')"></span></span>
+<div class="space-y-1.5 pt-1"><p class="text-[11px] font-bold uppercase tracking-widest text-teal-700">Step 03</p><h3 class="font-bold text-lg text-ink-950 leading-snug">Understand your options</h3><p class="text-sm text-text-secondary leading-relaxed">You leave with a clearer understanding of the possible next steps and where InterCredit may be able to help.</p></div>
 </li>
 </ol>
 <p class="text-xs text-text-muted">*Exact recommendations, timing, fees, and service scope depend on your individual situation.</p>
@@ -1228,6 +1228,13 @@
 <p class="text-sm sm:text-base text-white/75 leading-relaxed max-w-xl">
           You do not need to diagnose your own credit situation or choose a service before you call. Tell us your goal, ask your questions, and understand the options that may fit your situation.
         </p>
+<!-- booking-chips:start -->
+<ol class="booking-chips">
+<li><span aria-hidden="true" class="svc-icon" style="--icon:url('/assets/icons/booking-goal.svg')"></span><span><span class="sr-only">Step 1: </span>Tell us your goal</span></li>
+<li><span aria-hidden="true" class="svc-icon" style="--icon:url('/assets/icons/booking-review.svg')"></span><span><span class="sr-only">Step 2: </span>Review the situation</span></li>
+<li><span aria-hidden="true" class="svc-icon" style="--icon:url('/assets/icons/booking-options.svg')"></span><span><span class="sr-only">Step 3: </span>Understand your options</span></li>
+</ol>
+<!-- booking-chips:end -->
 <div class="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-stretch sm:items-center lg:items-stretch xl:items-center gap-4 pt-4">
 <a class="brand-gradient-btn inline-flex items-center justify-center px-8 py-4 rounded-btn text-ink-950 font-bold text-sm tracking-wider uppercase shadow-xl" href="#book-consultation">
             Book a 20-Minute Consultation

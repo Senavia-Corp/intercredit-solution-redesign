@@ -165,6 +165,14 @@
     #authority-proof .authority-photo {position:relative;margin:0;}
     /* Offset outline in the brand gradient, behind the photo. */
     #authority-proof .authority-photo-frame {position:absolute;inset:18px -14px -14px 18px;border-radius:28px;padding:2px;background:var(--ic-grad-primary);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);opacity:.7;pointer-events:none;}
+    /* Booking steps: icon tiles joined by a brand-gradient rail. */
+    .booking-steps {position:relative;display:grid;gap:28px;}
+    .booking-steps::before {content:"";position:absolute;left:31px;top:32px;bottom:32px;width:2px;border-radius:2px;background:linear-gradient(180deg,var(--ic-brand-blue),var(--ic-brand-green));opacity:.45;}
+    .booking-step {position:relative;display:flex;align-items:flex-start;gap:20px;}
+    .booking-step-icon {display:grid;place-items:center;flex:none;width:64px;height:64px;border-radius:18px;background:#fff;border:1px solid rgba(32,180,229,.25);box-shadow:0 12px 24px -16px rgba(11,23,32,.45);font-size:32px;}
+    .booking-chips {display:flex;flex-wrap:wrap;gap:10px;}
+    .booking-chips li {display:inline-flex;align-items:center;gap:10px;min-height:40px;padding:6px 14px 6px 10px;border-radius:9999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);font-size:12px;font-weight:700;color:rgba(255,255,255,.92);}
+    .booking-chips .svc-icon {font-size:20px;}
     /* Google rating badge. Always on a white plate: the Google colours are not ours to recolour. */
     .google-badge {display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:6px 16px 6px 14px;border-radius:14px;background:#fff;border:1px solid #e3e8e7;box-shadow:0 10px 24px -14px rgba(11,23,32,.45);color:#0B1720;transition:translate 220ms ease, box-shadow 220ms ease;}
     .google-badge-text {display:flex;flex-direction:column;padding-left:12px;border-left:1px solid #e3e8e7;line-height:1.15;}

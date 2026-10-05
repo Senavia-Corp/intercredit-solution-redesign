@@ -16,6 +16,9 @@ const HOURS = 'Monday–Friday, 9:00 AM–5:00 PM EST';
 const esc = (text) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const icon = (name, classes = '') => `<span aria-hidden="true" class="material-symbols-outlined ${classes}">${name}</span>`;
 const arrow = icon('arrow_forward', 'icon-nudge text-[16px]');
+// Service pictogram (the client's own icon set), coloured by CSS; see .svc-icon.
+const svcIcon = (slug, classes = '') => `<span aria-hidden="true" class="svc-icon ${classes}" style="--icon:url('/assets/icons/${slug === 'debts-negotiation' ? 'debts-negotiation' : slug}.svg')"></span>`;
+const svcTile = (slug) => `<span class="service-icon" aria-hidden="true">${svcIcon(slug)}</span>`;
 
 // ---------- Content ----------
 
@@ -272,7 +275,7 @@ const header = (current) => `
 <div class="grid grid-cols-2 gap-x-8 gap-y-5">
 ${chapters.map((chapter, index) => `<div>
 <a class="block py-2 font-bold text-[10px] uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors" href="/services/#${chapter.id}">${chapter.n} / ${esc(chapter.name)}</a>
-<ul>${services.filter((service) => service.chapter === index).map((service) => `<li><a class="flex min-h-[44px] items-center px-3 -mx-3 rounded-btn text-sm font-semibold text-text-primary hover:bg-mist-100/70 transition-colors" href="/services/${service.slug}/">${esc(service.name)}</a></li>`).join('')}</ul>
+<ul>${services.filter((service) => service.chapter === index).map((service) => `<li><a class="flex min-h-[44px] items-center gap-3 px-3 -mx-3 rounded-btn text-sm font-semibold text-text-primary hover:bg-mist-100/70 transition-colors" href="/services/${service.slug}/">${svcIcon(service.slug, 'text-[20px]')}<span>${esc(service.name)}</span></a></li>`).join('')}</ul>
 </div>`).join('\n')}
 </div>
 <a class="flex min-h-[44px] items-center justify-between gap-2 px-4 rounded-btn bg-mist-100 text-sm font-bold text-ink-950 hover:bg-mist-200 transition-colors" href="/services/"><span>View all services</span>${arrow}</a>
@@ -302,7 +305,7 @@ ${navLinks.slice(2).map(navLink(current)).join('\n')}
 <summary class="flex items-center justify-between py-4 cursor-pointer list-none">Services${icon('expand_more', 'text-text-muted group-open:rotate-180 transition-transform')}</summary>
 <ul class="pb-3 text-[13px] font-medium text-text-secondary">
 <li><a class="flex min-h-[44px] items-center font-bold text-teal-600" href="/services/">All services</a></li>
-${services.map((service) => `<li><a class="flex min-h-[44px] items-center" href="/services/${service.slug}/">${esc(service.name)}</a></li>`).join('')}
+${services.map((service) => `<li><a class="flex min-h-[44px] items-center gap-3" href="/services/${service.slug}/">${svcIcon(service.slug, 'text-[18px]')}<span>${esc(service.name)}</span></a></li>`).join('')}
 </ul>
 </details>
 ${navLinks.map(([label, href]) => `<a class="py-4" href="${href}"${href === current ? ' aria-current="page"' : ''}>${label}</a>`).join('\n')}
@@ -382,7 +385,7 @@ ${footer}
 // ---------- Pages ----------
 
 const serviceCard = (service) => `<a data-reveal class="group flex flex-col gap-4 p-6 rounded-card bg-white border border-border-light shadow-sm hover:border-teal-500/50 hover:shadow-md transition-all" href="/services/${service.slug}/">
-<span class="service-icon material-symbols-outlined" aria-hidden="true">${service.icon}</span>
+${svcTile(service.slug)}
 <span class="space-y-2">
 <span class="block font-bold text-base text-ink-950">${esc(service.name)}</span>
 <span class="block text-sm text-text-secondary leading-relaxed">${esc(service.intro)}</span>
@@ -423,12 +426,12 @@ const servicePage = (service) => {
     body: `${hero({
       trail: [['Home', '/'], ['Services', '/services/'], [esc(service.name)]],
       label: `CHAPTER ${chapter.n} • ${esc(chapter.name).toUpperCase()}`,
-      title: esc(service.name),
+      title: `<span class="flex items-center gap-4">${svcIcon(service.slug, 'svc-icon-light text-[0.9em]')}<span>${esc(service.name)}</span></span>`,
       lead: esc(service.intro),
       actions: `${primaryButton('Book a 20-Minute Consultation')}${callButton(true)}`,
       background: `/assets/service-hero-${service.slug}.jpg`,
       aside: `<div class="rounded-card-lg border border-white/20 bg-white/95 p-6 text-text-primary shadow-2xl space-y-4">
-<div class="flex items-center gap-4"><span class="service-icon material-symbols-outlined" aria-hidden="true">${service.icon}</span><p class="font-bold text-sm text-ink-950">At a glance</p></div>
+<div class="flex items-center gap-4">${svcTile(service.slug)}<p class="font-bold text-sm text-ink-950">At a glance</p></div>
 <dl class="divide-y divide-border-light text-sm">
 <div class="flex justify-between gap-4 py-3"><dt class="text-text-muted">Solution area</dt><dd class="font-semibold text-right">${esc(chapter.name)}</dd></div>
 <div class="flex justify-between gap-4 py-3"><dt class="text-text-muted">Journey stage</dt><dd class="font-semibold text-right">0${service.stage + 1} · ${stages[service.stage]}</dd></div>

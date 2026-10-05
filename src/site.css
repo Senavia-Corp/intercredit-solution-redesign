@@ -144,7 +144,11 @@
       }
     }
     .service-title {display:flex;align-items:center;gap:16px;min-width:0;}
-    .service-icon {display:grid;place-items:center;flex:0 0 48px;width:48px;height:48px;border-radius:14px;background:#e5f1ef;color:#1D766E;border:1px solid #cfe3df;font-size:26px;}
+    .service-icon {display:grid;place-items:center;flex:0 0 48px;width:48px;height:48px;border-radius:14px;background:#F4F9FA;border:1px solid rgba(32,180,229,.22);font-size:26px;}
+    /* InterCredit's own service pictograms, drawn as a mask so each surface picks the colour:
+       brand gradient on light surfaces, white on dark ones. Size follows font-size. */
+    .svc-icon {display:inline-block;flex:none;width:1em;height:1em;background:var(--ic-grad-primary);-webkit-mask:var(--icon) center / contain no-repeat;mask:var(--icon) center / contain no-repeat;}
+    .svc-icon-light {background:#fff;}
     #solutions-architecture .service-title + span {flex-shrink:0;white-space:nowrap;}
     #solutions-architecture .p-6 > .flex:first-child {gap:16px;}
     @media(max-width:520px) {#solutions-architecture .p-6 > .flex:first-child{flex-wrap:wrap}.service-title{gap:12px}.service-icon{flex-basis:44px;width:44px;height:44px;border-radius:12px;font-size:24px}}

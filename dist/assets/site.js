@@ -131,6 +131,25 @@
     });
   }
 
+  // Online booking: the third-party calendar script loads only when its block is near the screen.
+  const scheduler = document.getElementById('SOIDIV_InterCreditSolution');
+  if (scheduler) {
+    let requested = false;
+    const loadScheduler = () => {
+      if (requested) return;
+      requested = true;
+      const script = document.createElement('script');
+      script.src = 'https://cdn.oncehub.com/mergedjs/so.js';
+      document.body.appendChild(script);
+    };
+    if ('IntersectionObserver' in window) {
+      const nearby = new IntersectionObserver((entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) { loadScheduler(); nearby.disconnect(); }
+      }, { rootMargin: '800px 0px' });
+      nearby.observe(scheduler);
+    } else loadScheduler();
+  }
+
   // Ambient videos play only while visible, and never when reduced motion is requested.
   const ambientVideos = document.querySelectorAll('[data-ambient-video]');
   if (ambientVideos.length && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

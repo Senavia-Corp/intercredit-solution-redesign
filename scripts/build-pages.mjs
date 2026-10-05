@@ -144,7 +144,7 @@ const serviceSegments = { 'debts-negotiation': 0, 'credit-repair': 1, 'fraud-ale
 
 const eyebrow = (text, dark = false) => `<span class="text-xs font-bold uppercase tracking-widest ${dark ? 'text-green-400' : 'text-teal-600'} flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>${text}</span>`;
 
-const primaryButton = (label, href = '/contact-us/') => `<a class="brand-gradient-btn inline-flex items-center justify-center px-8 py-4 rounded-btn text-ink-950 font-bold text-sm tracking-wider uppercase shadow-md" href="${href}">${label}</a>`;
+const primaryButton = (label, href = '/contact-us/#book-consultation') => `<a class="brand-gradient-btn inline-flex items-center justify-center px-8 py-4 rounded-btn text-ink-950 font-bold text-sm tracking-wider uppercase shadow-md" href="${href}">${label}</a>`;
 
 const callButton = (dark) => `<a class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-btn ${dark ? 'bg-white/10 hover:bg-white/20 text-white border border-border-dark' : 'bg-white hover:bg-mist-100 text-text-primary border border-border-light shadow-sm'} font-bold text-sm transition-colors" href="${PHONE_HREF}">${icon('call', 'text-[18px]')}<span>Call ${PHONE}</span></a>`;
 
@@ -208,6 +208,46 @@ ${items.map(([question, answer]) => `<details class="group rounded-card bg-porce
 <summary class="flex items-center justify-between gap-4 p-6 rounded-card cursor-pointer font-bold text-sm text-ink-950 list-none"><span>${question}</span>${icon('expand_more', 'text-text-muted group-open:rotate-180 transition-transform')}</summary>
 <p class="-mt-3 px-6 pb-6 max-w-prose text-sm text-text-secondary leading-relaxed">${esc(answer)}</p>
 </details>`).join('\n')}
+</div>
+</div>
+</div>
+</section>`;
+
+// Online booking (OnceHub / ScheduleOnce). The embed script is loaded by site.js when the block nears the screen.
+const BOOKING_URL = 'https://go.oncehub.com/InterCreditSolution';
+const bookHref = (current) => (current === '/' || current === '/contact-us/' ? '#book-consultation' : '/contact-us/#book-consultation');
+const bookingSteps = [
+  ['Tell us your goal', 'Share what is happening, what you are concerned about, and what you would like to improve or understand.'],
+  ['Review the situation', 'An InterCredit advisor reviews the relevant context and asks the questions needed to understand your case.'],
+  ['Understand your options', 'You leave with a clearer understanding of the possible next steps and where InterCredit may be able to help.'],
+];
+const bookingSection = () => `<section class="w-full bg-paper-100 py-20 lg:py-28" id="book-consultation">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<div class="lg:col-span-5 space-y-8">
+${sectionIntro('WHAT TO EXPECT', 'A 20-minute conversation can help clarify your next move.', 'You do not need to arrive knowing which service you need. Start with what you are trying to solve.')}
+<ol class="space-y-5">
+${bookingSteps.map(([name, text], index) => `<li data-reveal class="flex items-start gap-4">
+<span class="w-10 h-10 shrink-0 rounded-btn bg-white border border-border-light flex items-center justify-center font-bold text-teal-700 text-sm shadow-sm">0${index + 1}</span>
+<div class="space-y-1"><h3 class="font-bold text-base text-ink-950">${name}</h3><p class="text-sm text-text-secondary leading-relaxed">${text}</p></div>
+</li>`).join('\n')}
+</ol>
+<p class="text-xs text-text-muted">*Exact recommendations, timing, fees, and service scope depend on your individual situation.</p>
+<p class="text-sm text-text-secondary">Prefer to talk first? <a class="inline-flex min-h-[44px] items-center font-bold text-teal-600 hover:text-green-600 transition-colors" href="${PHONE_HREF}">Call ${PHONE}</a></p>
+</div>
+<div class="lg:col-span-7">
+<div data-reveal class="rounded-card-lg bg-white border border-border-light shadow-xl overflow-hidden">
+<div class="h-1 brand-gradient-line"></div>
+<div class="p-4 sm:p-6 space-y-4">
+<h3 class="font-bold text-lg text-ink-950">Choose a time that works for you</h3>
+<div class="min-h-[550px]">
+<!-- ScheduleOnce embed START -->
+<div id="SOIDIV_InterCreditSolution" data-so-page="InterCreditSolution" data-height="550" data-style="border: 1px solid #d8d8d8; min-width: 290px; max-width: 900px;" data-psz="00"></div>
+<!-- ScheduleOnce embed END -->
+</div>
+<p class="text-xs text-text-muted">If the calendar does not load, <a class="font-bold text-teal-600 underline underline-offset-4 hover:text-green-600" href="${BOOKING_URL}" rel="noopener" target="_blank">open the booking page</a> or call us.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -292,7 +332,7 @@ ${navLinks.slice(0, 2).map(navLink(current)).join('\n')}
 ${navLinks.slice(2).map(navLink(current)).join('\n')}
 </nav>
 <a class="hidden sm:inline-flex xl:hidden min-h-11 items-center gap-1.5 whitespace-nowrap font-semibold text-xs tracking-wide text-text-secondary hover:text-teal-600 transition-colors" href="${PHONE_HREF}">${icon('call', 'text-[16px] text-teal-600')}${PHONE}</a>
-<a class="brand-gradient-btn hidden sm:inline-flex min-h-11 items-center justify-center whitespace-nowrap px-5 py-3 rounded-btn text-ink-950 font-bold text-xs tracking-wider uppercase shadow-sm" href="/contact-us/">Book a 20-Minute Consultation</a>
+<a class="brand-gradient-btn hidden sm:inline-flex min-h-11 items-center justify-center whitespace-nowrap px-5 py-3 rounded-btn text-ink-950 font-bold text-xs tracking-wider uppercase shadow-sm" href="${bookHref(current)}">Book a 20-Minute Consultation</a>
 <button aria-controls="mobile-navigation" aria-expanded="false" aria-label="Open navigation menu" class="xl:hidden w-11 h-11 rounded-btn bg-white border border-border-light text-ink-950 flex items-center justify-center shadow-sm" id="mobile-menu-toggle" type="button">${icon('menu')}</button>
 </div>
 </div>
@@ -315,7 +355,7 @@ ${services.map((service) => `<li><a class="flex min-h-[44px] items-center gap-3"
 ${navLinks.map(([label, href]) => `<a class="py-4" href="${href}"${href === current ? ' aria-current="page"' : ''}>${label}</a>`).join('\n')}
 </div>
 <p class="mt-auto flex flex-wrap gap-x-6 pb-4 text-xs text-text-muted"><a class="inline-flex min-h-[44px] items-center hover:text-ink-950" href="/privacy-policy/">Privacy Policy</a><a class="inline-flex min-h-[44px] items-center hover:text-ink-950" href="/terms-and-conditions/">Terms &amp; Conditions</a></p>
-<a class="brand-gradient-btn shrink-0 inline-flex items-center justify-center px-5 py-4 rounded-btn text-ink-950 font-bold text-xs tracking-wider uppercase shadow-sm" href="/contact-us/">Book a 20-Minute Consultation</a>
+<a class="brand-gradient-btn shrink-0 inline-flex items-center justify-center px-5 py-4 rounded-btn text-ink-950 font-bold text-xs tracking-wider uppercase shadow-sm" href="${bookHref(current)}">Book a 20-Minute Consultation</a>
 </nav>
 </div>`;
 
@@ -356,7 +396,7 @@ const footer = `
 </footer>
 <div class="fixed bottom-0 inset-x-0 z-50 p-3 bg-white/95 backdrop-blur-md border-t border-border-light sm:hidden flex items-center justify-between gap-3 shadow-lg">
 <a class="w-12 h-12 rounded-btn bg-mist-100 flex items-center justify-center text-teal-700 flex-shrink-0" href="${PHONE_HREF}" aria-label="Call ${PHONE}">${icon('call', 'text-[20px]')}</a>
-<a class="brand-gradient-btn flex-1 inline-flex min-h-[48px] items-center justify-center px-4 rounded-btn text-ink-950 font-bold text-xs uppercase tracking-wider text-center shadow-sm" href="/contact-us/">Book Consultation</a>
+<a class="brand-gradient-btn flex-1 inline-flex min-h-[48px] items-center justify-center px-4 rounded-btn text-ink-950 font-bold text-xs uppercase tracking-wider text-center shadow-sm" href="/contact-us/#book-consultation">Book Consultation</a>
 </div>`;
 
 const FONT_ICONS = '@@ICON_FONT@@';
@@ -637,14 +677,14 @@ const contact = page({
     label: 'CONTACT &amp; CONSULTATION',
     title: 'Let’s talk about <span class="font-serif-italic font-normal brand-gradient-text">your goal</span>.',
     lead: 'Start with your situation. In a 20-minute consultation, an advisor reviews the context, answers your questions, and explains the options that may fit.',
-    actions: `${primaryButton(`Call ${PHONE}`, PHONE_HREF)}<a class="inline-flex items-center justify-center gap-2 rounded-btn border border-white/30 bg-white/95 px-6 py-4 text-sm font-bold text-text-primary shadow-sm transition-colors hover:bg-white" href="mailto:${EMAIL}">${icon('mail', 'text-[18px] text-teal-700')}<span>Email Us</span></a>`,
+    actions: `${primaryButton('Book a 20-Minute Consultation', '#book-consultation')}${callButton(true)}`,
     aside: heroPhoto('photo-1602', 'Jessica Sotolongo smiling across her desk at two visitors during a consultation'),
   })}
 <section class="w-full bg-porcelain-50 py-20 lg:py-28">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 <div class="lg:col-span-6 space-y-6">
-${sectionIntro('REACH US DIRECTLY', 'Speak with our team.', 'Our consultations are booked by phone. Call us during office hours and we will find a time that works for you, in person at our Miami office or remotely.')}
+${sectionIntro('REACH US DIRECTLY', 'Speak with our team.', 'Book your consultation online below, or call us during office hours and we will find a time that works for you, in person at our Miami office or remotely.')}
 <p class="text-xs text-text-muted max-w-prose">You do not need to arrive knowing which service you need. Start with what you are trying to solve.</p>
 ${officeVideo('Video walkthrough of the InterCredit office in Miami')}
 </div>
@@ -652,19 +692,7 @@ ${officeVideo('Video walkthrough of the InterCredit office in Miami')}
 </div>
 </div>
 </section>
-<section class="w-full bg-paper-100 py-20 lg:py-28">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"><div class="lg:col-span-6">${sectionIntro('WHAT TO EXPECT', 'A 20-minute conversation can help clarify your next move.')}</div><div class="lg:col-span-6">${framed('photo-1600', 'Jessica Sotolongo listening during a consultation at her desk')}</div></div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-${[['Tell us your goal', 'Share what is happening, what you are concerned about, and what you would like to improve or understand.'], ['Review the situation', 'An InterCredit advisor reviews the relevant context and asks the questions needed to understand your case.'], ['Understand your options', 'You leave with a clearer understanding of the possible next steps and where InterCredit may be able to help.']].map(([name, text], index) => `<div data-reveal class="p-8 rounded-card bg-white border border-border-light shadow-sm space-y-3">
-<div class="w-10 h-10 rounded-btn bg-mist-100 flex items-center justify-center font-bold text-teal-700 text-sm">0${index + 1}</div>
-<h3 class="font-bold text-base text-ink-950">${name}</h3>
-<p class="text-sm text-text-secondary leading-relaxed">${text}</p>
-</div>`).join('\n')}
-</div>
-<p class="text-xs text-text-muted">*Exact recommendations, timing, fees, and service scope depend on your individual situation.</p>
-</div>
-</section>
+${bookingSection()}
 ${faqSection()}
 ${closingCta('Prefer to speak directly right now?')}`,
 });
@@ -793,6 +821,7 @@ const homePath = new URL('index.html', dist);
 let home = readFileSync(homePath, 'utf8');
 // Same header on the homepage, so every page is reachable from every page.
 home = home.replace(/<a class="sr-only[\s\S]*?(?=<main id="main-content">)/, () => `${header('/').trim()}\n`);
+home = home.replace(/<!-- booking:start -->[\s\S]*?<!-- booking:end -->/, () => `<!-- booking:start -->\n${bookingSection()}\n<!-- booking:end -->`);
 const used = new Set(['pause', 'play_arrow']);
 for (const html of [home, ...Object.values(pages)]) {
   for (const match of html.matchAll(/class="[^"]*material-symbols-outlined[^"]*"[^>]*>\s*([a-z_0-9]+)\s*</g)) used.add(match[1]);

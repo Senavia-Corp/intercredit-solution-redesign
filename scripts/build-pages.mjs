@@ -98,6 +98,25 @@ const stories = [
   ['Sebastian N.', 'Fast and effective solutions', 'ZwkhIzVObus'],
 ];
 
+// Real photography only: frames of the office video and the client's own gallery.
+const servicePhotos = {
+  'credit-repair': ['office-consult', 'An InterCredit advisor reviewing a case with a client at her desk'],
+  'update-personal-information-in-credit-bureaus': ['office-laptops', 'Two InterCredit team members working on laptops at the office'],
+  'add-existing-credit-cards-to-credit-history': ['office-floor', 'InterCredit advisors meeting with clients at the Miami office'],
+  'debts-negotiation': ['office-advisor', 'An InterCredit advisor in a meeting with a client'],
+  'negotiation-of-collection-accounts-in-court': ['office-roundtable', 'InterCredit staff meeting with clients around a table'],
+  'corporate-credit-counseling': ['goal-summit', 'Jessica Sotolongo with participants at an international Latino entrepreneurs summit', 960, 540],
+  'credit-monitoring-report': ['office-desk', 'An InterCredit team member working at her computer'],
+  'fraud-alert-system': ['office-computer', 'An InterCredit team member reviewing information on her computer'],
+  'establishing-credit-for-foreign-investors': ['gallery-2', 'Jessica Sotolongo beside an aircraft with the InterCredit Solution logo', 850, 638],
+};
+
+const photo = (file, alt, { width = 1280, height = 720, classes = '', eager = false } = {}) => `<img alt="${alt}" class="w-full h-full object-cover ${classes}" ${eager ? 'fetchpriority="high"' : 'decoding="async" loading="lazy"'} height="${height}" src="/assets/${file}.jpg" width="${width}"/>`;
+
+const framed = (file, alt, options = {}) => `<figure ${options.reveal === false ? '' : 'data-reveal '}class="rounded-card-lg overflow-hidden border border-border-light bg-white shadow-xl ${options.aspect || 'aspect-video'}">${photo(file, alt, options)}</figure>`;
+
+const heroPhoto = (file, alt, options = {}) => `<figure class="rounded-card-lg overflow-hidden border border-white/20 bg-ink-900 shadow-2xl ${options.aspect || 'aspect-video'}">${photo(file, alt, { ...options, eager: true })}</figure>`;
+
 // ---------- Shared pieces ----------
 
 const eyebrow = (text, dark = false) => `<span class="text-xs font-bold uppercase tracking-widest ${dark ? 'text-green-400' : 'text-teal-600'} flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>${text}</span>`;
@@ -133,10 +152,10 @@ ${eyebrow(label, dark)}
 ${lead ? `<p class="text-sm ${dark ? 'text-white/70' : 'text-text-secondary'} leading-relaxed">${lead}</p>` : ''}
 </div>`;
 
-const approachSection = (background = 'bg-paper-100') => `
+const approachSection = (background = 'bg-paper-100', image = null) => `
 <section class="w-full ${background} py-20 lg:py-28">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-${sectionIntro('HOW WE WORK', 'A strategy built around your situation.', 'Credit and debt challenges rarely come from one isolated issue. InterCredit starts by understanding your goals, reviewing the situation, and identifying the options that are most relevant to you.')}
+${image ? '<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"><div class="lg:col-span-6">' : ''}${sectionIntro('HOW WE WORK', 'A strategy built around your situation.', 'Credit and debt challenges rarely come from one isolated issue. InterCredit starts by understanding your goals, reviewing the situation, and identifying the options that are most relevant to you.')}${image ? `</div><div class="lg:col-span-6">${framed(image[0], image[1])}</div></div>` : ''}
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 ${approach.map(([name, text], index) => `<div data-reveal class="p-8 rounded-card bg-white border border-border-light shadow-sm space-y-3">
 <div class="w-10 h-10 rounded-btn bg-mist-100 flex items-center justify-center font-bold text-teal-700 text-sm">0${index + 1}</div>
@@ -382,7 +401,8 @@ ${sectionIntro('WHAT THIS SERVICE COVERS', 'What we help you with.')}
 <p class="text-xs font-semibold text-text-primary">Scope, timing and fees depend on your individual situation. No specific score increase, approval, deletion, settlement, or timeline is guaranteed.</p>
 </div>
 </div>
-<div class="lg:col-span-5">
+<div class="lg:col-span-5 space-y-6">
+${framed(servicePhotos[service.slug][0], servicePhotos[service.slug][1], servicePhotos[service.slug][2] ? { width: servicePhotos[service.slug][2], height: servicePhotos[service.slug][3], aspect: servicePhotos[service.slug][3] / servicePhotos[service.slug][2] > 0.6 ? 'aspect-[4/3]' : 'aspect-video' } : {})}
 <div data-reveal class="p-8 rounded-card-lg bg-white border border-border-light shadow-sm space-y-4">
 <h3 class="font-bold text-base text-ink-950">Situations where this may apply</h3>
 <ul class="space-y-3 text-sm text-text-secondary">
@@ -394,7 +414,7 @@ ${service.scenarios.map((scenario) => `<li class="flex items-start gap-3">${icon
 </div>
 </div>
 </section>
-${approachSection()}
+${approachSection('bg-paper-100', ['office-welcome', 'An InterCredit team member welcoming a client at the office door'])}
 <section class="w-full bg-white border-y border-border-light py-20 lg:py-28">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 ${sectionIntro('A CLEARER FINANCIAL PATH', `Where this fits: stage 0${service.stage + 1}, ${stages[service.stage]}.`, 'Not every client follows the same route. Your path may begin at any stage, and scope is tailored to your specific situation.')}
@@ -424,6 +444,7 @@ const servicesIndex = page({
     title: 'Solutions organized around <span class="font-serif-italic font-normal brand-gradient-text">what you actually need</span>.',
     lead: 'You do not need to know the official name of the service you need. Choose the situation that sounds closest to yours and explore the most relevant options.',
     actions: `${primaryButton('Book a 20-Minute Consultation')}${callButton(true)}`,
+    aside: heroPhoto('office-floor', 'InterCredit advisors meeting with clients at the Miami office'),
   })}
 ${chapters.map((chapter, index) => `<section class="w-full ${index % 2 ? 'bg-white border-y border-border-light' : 'bg-porcelain-50'} py-16 lg:py-24" id="${chapter.id}">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
@@ -460,6 +481,13 @@ const about = page({
 <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-500 to-lime-500"></div>
 <h2 class="text-2xl font-bold text-ink-950">Our Vision</h2>
 <p class="text-sm text-text-secondary leading-relaxed">Our vision is to be a leading force in transforming the way people manage their credit and finances. We aim to create a world where everyone has access to the knowledge, tools, and support needed to build a strong financial foundation, free from the burden of debt and uncertainty.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
+<div class="md:col-span-2">${framed('office-floor', 'InterCredit advisors meeting with clients at the Miami office')}</div>
+<div class="grid grid-cols-2 md:grid-cols-1 gap-6">
+${framed('office-consult', 'An InterCredit advisor reviewing a case with a client at her desk')}
+${framed('office-reception', 'Clients arriving at the InterCredit front desk')}
 </div>
 </div>
 </div>
@@ -500,6 +528,9 @@ ${eyebrow('FEATURED ON UNIVISION / DESPIERTA AMÉRICA', true)}
 <p class="text-sm text-white/70 leading-relaxed">Univision has featured Jessica in segments covering credit myths, credit reports, and rebuilding credit.</p>
 </div>
 </div>
+<ul class="grid grid-cols-2 lg:grid-cols-4 gap-4 pt-10">
+${[['gallery-8', 'Jessica Sotolongo on the Despierta América set during a back-to-school segment'], ['gallery-13', 'Jessica Sotolongo with a host on a television studio set'], ['gallery-10', 'Jessica Sotolongo with two television hosts'], ['gallery-16', 'Jessica Sotolongo hosting a Facebook Live broadcast']].map(([file, alt]) => `<li data-reveal class="rounded-card overflow-hidden border border-border-dark bg-ink-900 aspect-[4/3]">${photo(file, alt, { width: 850, height: 637 })}</li>`).join('\n')}
+</ul>
 </div>
 </section>
 <section class="w-full bg-white py-20 lg:py-28 border-b border-border-light" id="team">
@@ -513,12 +544,21 @@ ${team.map(([name, role, file]) => `<li data-reveal class="rounded-card overflow
 </ul>
 </div>
 </section>
-${approachSection()}
+<section class="w-full bg-paper-100 py-20 lg:py-28" id="community">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+${sectionIntro('BEYOND THE OFFICE', 'Events and recognitions.', 'Moments from events the team has taken part in, and recognitions displayed at the office.')}
+<ul class="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-6">
+${[['gallery-1', 'Jessica Sotolongo with a group of women at an event', 'lg:col-span-7 aspect-[4/3] lg:aspect-[16/10]', 850, 637], ['gallery-7', 'The InterCredit team at an event booth with the company banner', 'lg:col-span-5 aspect-[4/3] lg:aspect-auto', 850, 638], ['gallery-11', 'Jessica Sotolongo with fellow attendees at a community event', 'lg:col-span-6 aspect-[4/3] lg:aspect-video', 850, 638], ['office-recognitions', 'Certificates and recognitions displayed at the InterCredit office', 'lg:col-span-6 aspect-[4/3] lg:aspect-video', 1280, 720], ['office-magazine', 'A magazine cover featuring Jessica Sotolongo, displayed at the office', 'col-span-2 lg:col-span-12 aspect-video lg:aspect-[3/1]', 1280, 720]].map(([file, alt, span, width, height]) => `<li data-reveal class="rounded-card overflow-hidden border border-border-light bg-white shadow-sm ${span}">${photo(file, alt, { width, height })}</li>`).join('\n')}
+</ul>
+</div>
+</section>
+${approachSection('bg-white', ['office-roundtable', 'InterCredit staff meeting with clients around a table'])}
 <section class="w-full bg-porcelain-50 py-20 lg:py-28" id="office">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 <div class="lg:col-span-6 space-y-6">
 ${sectionIntro('VISIT OR CALL', 'Based in Miami, with in-person and remote consultations.')}
+${framed('office-welcome', 'An InterCredit team member welcoming a client at the office door')}
 ${textLink('Contact details', '/contact-us/')}
 </div>
 <div class="lg:col-span-6">${officeCard}</div>
@@ -546,6 +586,7 @@ const contact = page({
 <div class="lg:col-span-6 space-y-6">
 ${sectionIntro('REACH US DIRECTLY', 'Speak with our team.', 'Our consultations are booked by phone. Call us during office hours and we will find a time that works for you, in person at our Miami office or remotely.')}
 <p class="text-xs text-text-muted max-w-prose">You do not need to arrive knowing which service you need. Start with what you are trying to solve.</p>
+${framed('office-welcome', 'An InterCredit team member welcoming a client at the office door')}
 </div>
 <div class="lg:col-span-6">${officeCard}</div>
 </div>
@@ -553,7 +594,7 @@ ${sectionIntro('REACH US DIRECTLY', 'Speak with our team.', 'Our consultations a
 </section>
 <section class="w-full bg-paper-100 py-20 lg:py-28">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-${sectionIntro('WHAT TO EXPECT', 'A 20-minute conversation can help clarify your next move.')}
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"><div class="lg:col-span-6">${sectionIntro('WHAT TO EXPECT', 'A 20-minute conversation can help clarify your next move.')}</div><div class="lg:col-span-6">${framed('office-consult', 'An InterCredit advisor reviewing a case with a client at her desk')}</div></div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 ${[['Tell us your goal', 'Share what is happening, what you are concerned about, and what you would like to improve or understand.'], ['Review the situation', 'An InterCredit advisor reviews the relevant context and asks the questions needed to understand your case.'], ['Understand your options', 'You leave with a clearer understanding of the possible next steps and where InterCredit may be able to help.']].map(([name, text], index) => `<div data-reveal class="p-8 rounded-card bg-white border border-border-light shadow-sm space-y-3">
 <div class="w-10 h-10 rounded-btn bg-mist-100 flex items-center justify-center font-bold text-teal-700 text-sm">0${index + 1}</div>
@@ -604,7 +645,7 @@ ${eyebrow('EXPERIENCE YOU CAN SEE', true)}
 </div>
 </div>
 </section>
-${approachSection('bg-white')}
+${approachSection('bg-white', ['office-floor', 'InterCredit advisors meeting with clients at the Miami office'])}
 ${closingCta()}`,
 });
 
@@ -662,6 +703,7 @@ const notFound = page({
     title: 'This page could not be found.',
     lead: 'The link may be outdated or the page may have moved. These are good places to continue.',
     actions: `${primaryButton('Back to Home', '/')}<a class="inline-flex items-center justify-center gap-2 rounded-btn border border-white/30 bg-white/95 px-6 py-4 text-sm font-bold text-text-primary shadow-sm transition-colors hover:bg-white" href="/services/"><span>View Services</span>${icon('arrow_forward', 'icon-nudge text-[18px] text-teal-700')}</a>`,
+    aside: heroPhoto('office-welcome', 'An InterCredit team member welcoming a client at the office door'),
   })}
 <section class="w-full bg-porcelain-50 py-16 lg:py-24">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

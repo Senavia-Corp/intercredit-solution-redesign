@@ -899,12 +899,37 @@
           The most useful proof is not an empty guarantee. It is hearing how real clients describe the experience, communication, and support they received.
         </p>
 </div>
-<div class="testimonial-layout" role="region" aria-label="Client video testimonials">
-<div>
-<div id="testimonial-player" class="testimonial-player"><a href="https://www.youtube.com/watch?v=0xNgJalGbg8" id="testimonial-play" aria-label="Play client story 1"><img src="https://i.ytimg.com/vi/0xNgJalGbg8/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy"/><span class="testimonial-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></a></div>
-<div class="testimonial-controls"><div><h3 id="testimonial-title">Client story 01</h3><a id="testimonial-youtube" href="https://www.youtube.com/watch?v=0xNgJalGbg8" target="_blank" rel="noopener">Watch on YouTube</a></div><div class="testimonial-arrows"><button type="button" id="testimonial-prev" aria-label="Previous testimonial">‹</button><span id="testimonial-count" aria-live="polite">01 / 03</span><button type="button" id="testimonial-next" aria-label="Next testimonial">›</button></div></div>
+<div data-video-set class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start" role="region" aria-label="Client video stories and reviews">
+<div class="lg:col-span-7 rounded-card-lg overflow-hidden bg-ink-950 shadow-2xl">
+<div class="relative">
+<div class="testimonial-player" style="border-radius:0" data-youtube="0xNgJalGbg8" data-title="Excellent customer service"><a aria-label="Play video: Excellent customer service" href="https://www.youtube.com/watch?v=0xNgJalGbg8"><img alt="" decoding="async" height="720" loading="lazy" src="https://i.ytimg.com/vi/0xNgJalGbg8/maxresdefault.jpg" width="1280"/><span class="testimonial-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></a></div>
+<div class="pointer-events-none absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-ink-950/85 backdrop-blur-md text-white text-xs font-semibold"><span aria-hidden="true" class="material-symbols-outlined text-[16px] text-green-400">play_arrow</span><span>CLIENT VIDEO STORY</span></div>
 </div>
-<div class="testimonial-list" role="group" aria-label="Choose a client story"><button type="button" class="testimonial-choice" data-story="0" aria-pressed="true"><img src="https://i.ytimg.com/vi/0xNgJalGbg8/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"/><span><span class="testimonial-number">01 / CLIENT EXPERIENCE</span><strong>Client story 01</strong><span>Watch this story</span></span></button><button type="button" class="testimonial-choice" data-story="1" aria-pressed="false"><img src="https://i.ytimg.com/vi/U_I_pAV_Hlk/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"/><span><span class="testimonial-number">02 / CLIENT EXPERIENCE</span><strong>Client story 02</strong><span>Watch this story</span></span></button><button type="button" class="testimonial-choice" data-story="2" aria-pressed="false"><img src="https://i.ytimg.com/vi/ZwkhIzVObus/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"/><span><span class="testimonial-number">03 / CLIENT EXPERIENCE</span><strong>Client story 03</strong><span>Watch this story</span></span></button></div>
+<div class="p-6 sm:p-8 space-y-3">
+<h3 data-video-title aria-live="polite" class="font-serif-italic text-xl sm:text-2xl text-white leading-snug">Excellent customer service</h3>
+<div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-1">
+<p data-video-meta class="text-xs font-bold uppercase tracking-widest text-green-400">Nataly · Client video story</p>
+<a data-video-link class="inline-block py-3.5 -my-3.5 text-xs text-white/70 underline underline-offset-4 hover:text-white transition-colors" href="https://www.youtube.com/watch?v=0xNgJalGbg8" rel="noopener" target="_blank">Watch on YouTube</a>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 space-y-4">
+<ul class="space-y-3" aria-label="Choose a client story">
+<li><button type="button" class="video-choice video-choice-light" data-video-choice data-id="0xNgJalGbg8" data-title="Excellent customer service" data-meta="Nataly · Client video story" aria-pressed="true"><img alt="" decoding="async" height="360" loading="lazy" src="https://i.ytimg.com/vi/0xNgJalGbg8/hqdefault.jpg" width="480"/><span><span class="block text-sm font-bold text-ink-950">Nataly</span><span class="block text-xs text-text-secondary">Excellent customer service</span></span></button></li>
+<li><button type="button" class="video-choice video-choice-light" data-video-choice data-id="U_I_pAV_Hlk" data-title="Your trusted financial solutions" data-meta="Jerry L · Client video story" aria-pressed="false"><img alt="" decoding="async" height="360" loading="lazy" src="https://i.ytimg.com/vi/U_I_pAV_Hlk/hqdefault.jpg" width="480"/><span><span class="block text-sm font-bold text-ink-950">Jerry L</span><span class="block text-xs text-text-secondary">Your trusted financial solutions</span></span></button></li>
+<li><button type="button" class="video-choice video-choice-light" data-video-choice data-id="ZwkhIzVObus" data-title="Fast and effective solutions" data-meta="Sebastian N. · Client video story" aria-pressed="false"><img alt="" decoding="async" height="360" loading="lazy" src="https://i.ytimg.com/vi/ZwkhIzVObus/hqdefault.jpg" width="480"/><span><span class="block text-sm font-bold text-ink-950">Sebastian N.</span><span class="block text-xs text-text-secondary">Fast and effective solutions</span></span></button></li>
+</ul>
+<div class="p-6 rounded-card bg-porcelain-50 border border-border-light space-y-3">
+<div class="flex items-center justify-between gap-4">
+<span class="px-2.5 py-1 rounded-full bg-mist-100 text-teal-700 text-[10px] font-bold uppercase tracking-wider">Google Reviews</span>
+<span aria-hidden="true" class="material-symbols-outlined text-[22px] text-teal-600">reviews</span>
+</div>
+<h3 class="font-bold text-base text-ink-950">Read what clients have written on Google.</h3>
+<p class="text-sm text-text-secondary leading-relaxed">Reviews are published on InterCredit Solution’s Google profile, where you can read them in full and unedited.</p>
+<a class="inline-flex items-center gap-1.5 font-bold text-xs uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors py-3.5 -my-2" href="https://share.google/r0pDAFn96tn37utnz" rel="noopener" target="_blank"><span>Read our Google reviews</span><span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[16px]">arrow_forward</span></a>
+</div>
+<a class="inline-flex items-center gap-1.5 font-bold text-xs uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors py-3.5 -my-2" href="/reviews/"><span>All client stories</span><span aria-hidden="true" class="material-symbols-outlined icon-nudge text-[16px]">arrow_forward</span></a>
+</div>
 </div>
 </div>
 </section>

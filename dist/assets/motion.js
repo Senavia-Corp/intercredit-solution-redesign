@@ -39,7 +39,7 @@
   group('#solutions-architecture .p-6');
   register(document.querySelector('#founder-section img')?.parentElement, 'fade');
   [...(document.querySelector('#founder-section .lg\\:col-span-7')?.children || [])].forEach((element, index) => register(element, 'up', index * 80));
-  register(document.querySelector('.testimonial-layout'), 'fade');
+  register(document.querySelector('#client-proof [data-video-set]'), 'fade');
   group('main > section:not([id]) .md\\:grid-cols-3 > div');
   group('#faq details');
   // Internal pages opt in per element.

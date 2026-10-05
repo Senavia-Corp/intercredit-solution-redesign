@@ -100,18 +100,23 @@ const stories = [
 
 // Real photography only: frames of the office video and the client's own gallery.
 const servicePhotos = {
-  'credit-repair': ['office-consult', 'An InterCredit advisor reviewing a case with a client at her desk'],
-  'update-personal-information-in-credit-bureaus': ['office-laptops', 'Two InterCredit team members working on laptops at the office'],
-  'add-existing-credit-cards-to-credit-history': ['office-floor', 'InterCredit advisors meeting with clients at the Miami office'],
-  'debts-negotiation': ['office-advisor', 'An InterCredit advisor in a meeting with a client'],
-  'negotiation-of-collection-accounts-in-court': ['office-roundtable', 'InterCredit staff meeting with clients around a table'],
-  'corporate-credit-counseling': ['goal-summit', 'Jessica Sotolongo with participants at an international Latino entrepreneurs summit', 960, 540],
-  'credit-monitoring-report': ['office-desk', 'An InterCredit team member working at her computer'],
-  'fraud-alert-system': ['office-computer', 'An InterCredit team member reviewing information on her computer'],
+  'credit-repair': ['photo-1610', 'Jessica Sotolongo talking through a case during a consultation at her desk'],
+  'update-personal-information-in-credit-bureaus': ['photo-1652', 'InterCredit team members filling in paperwork together at the front desk'],
+  'add-existing-credit-cards-to-credit-history': ['photo-1615', 'Jessica Sotolongo in a consultation at the InterCredit office'],
+  'debts-negotiation': ['photo-1643', 'An InterCredit advisor in conversation across the table during a consultation'],
+  'negotiation-of-collection-accounts-in-court': ['photo-1636', 'An InterCredit advisor reviewing a case with a visitor at her desk'],
+  'corporate-credit-counseling': ['photo-1633', 'An InterCredit advisor meeting with a visitor in a private office'],
+  'credit-monitoring-report': ['photo-1646', 'InterCredit team members working at laptops at the front desk'],
+  'fraud-alert-system': ['photo-1653', 'Two InterCredit team members checking documents together'],
   'establishing-credit-for-foreign-investors': ['gallery-2', 'Jessica Sotolongo beside an aircraft with the InterCredit Solution logo', 850, 638],
 };
 
-const photo = (file, alt, { width = 1280, height = 720, classes = '', eager = false } = {}) => `<img alt="${alt}" class="w-full h-full object-cover ${classes}" ${eager ? 'fetchpriority="high"' : 'decoding="async" loading="lazy"'} height="${height}" src="/assets/${file}.jpg" width="${width}"/>`;
+// `photo-NNNN` files come from the professional office shoot and ship in two sizes.
+const photo = (file, alt, { width = 1280, height = 720, classes = '', eager = false } = {}) => {
+  const pro = file.startsWith('photo-');
+  const responsive = pro ? ` sizes="(min-width: 1024px) 50vw, 100vw" srcset="/assets/${file}-800.jpg 800w, /assets/${file}.jpg 1600w"` : '';
+  return `<img alt="${alt}" class="w-full h-full object-cover ${classes}" ${eager ? 'fetchpriority="high"' : 'decoding="async" loading="lazy"'} height="${pro ? 900 : height}"${responsive} src="/assets/${file}.jpg" width="${pro ? 1600 : width}"/>`;
+};
 
 const framed = (file, alt, options = {}) => `<figure ${options.reveal === false ? '' : 'data-reveal '}class="rounded-card-lg overflow-hidden border border-border-light bg-white shadow-xl ${options.aspect || 'aspect-video'}">${photo(file, alt, options)}</figure>`;
 
@@ -429,7 +434,7 @@ ${service.scenarios.map((scenario) => `<li class="flex items-start gap-3">${icon
 </div>
 </div>
 </section>
-${approachSection('bg-paper-100', ['office-welcome', 'An InterCredit team member welcoming a client at the office door'])}
+${approachSection()}
 <section class="w-full bg-white border-y border-border-light py-20 lg:py-28">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 ${sectionIntro('A CLEARER FINANCIAL PATH', `Where this fits: stage 0${service.stage + 1}, ${stages[service.stage]}.`, 'Not every client follows the same route. Your path may begin at any stage, and scope is tailored to your specific situation.')}
@@ -459,7 +464,7 @@ const servicesIndex = page({
     title: 'Solutions organized around <span class="font-serif-italic font-normal brand-gradient-text">what you actually need</span>.',
     lead: 'You do not need to know the official name of the service you need. Choose the situation that sounds closest to yours and explore the most relevant options.',
     actions: `${primaryButton('Book a 20-Minute Consultation')}${callButton(true)}`,
-    aside: heroPhoto('office-floor', 'InterCredit advisors meeting with clients at the Miami office'),
+    aside: heroPhoto('photo-1618', 'A consultation in progress in one of the InterCredit offices in Miami'),
   })}
 ${chapters.map((chapter, index) => `<section class="w-full ${index % 2 ? 'bg-white border-y border-border-light' : 'bg-porcelain-50'} py-16 lg:py-24" id="${chapter.id}">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
@@ -499,10 +504,10 @@ const about = page({
 </div>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
-<div class="md:col-span-2">${framed('office-floor', 'InterCredit advisors meeting with clients at the Miami office')}</div>
+<div class="md:col-span-2">${framed('photo-1620', 'Jessica Sotolongo in a consultation in her office, seen from across the room')}</div>
 <div class="grid grid-cols-2 md:grid-cols-1 gap-6">
-${framed('office-consult', 'An InterCredit advisor reviewing a case with a client at her desk')}
-${framed('office-reception', 'Clients arriving at the InterCredit front desk')}
+${framed('photo-1657', 'The InterCredit front desk, with team members working beneath the tree mural')}
+${framed('photo-1605', 'A consultation seen from behind Jessica Sotolongo, facing two visitors')}
 </div>
 </div>
 </div>
@@ -511,7 +516,7 @@ ${framed('office-reception', 'Clients arriving at the InterCredit front desk')}
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 <div class="lg:col-span-5">
-<div class="rounded-hero overflow-hidden shadow-2xl bg-white border border-border-light aspect-[3/4]"><img alt="Jessica Sotolongo, Founder of InterCredit Solution" class="w-full h-full object-cover" decoding="async" height="1285" loading="lazy" src="/assets/jessica-sotolongo.jpg" width="1285"/></div>
+<div class="rounded-hero overflow-hidden shadow-2xl bg-white border border-border-light aspect-[3/4]"><img alt="Jessica Sotolongo at her desk in the InterCredit office" class="w-full h-full object-cover" decoding="async" height="1600" loading="lazy" src="/assets/jessica-at-desk.jpg" width="1200"/></div>
 </div>
 <div class="lg:col-span-7 flex flex-col space-y-6">
 <div class="space-y-3">
@@ -534,17 +539,17 @@ ${eyebrow('LEADERSHIP &amp; PHILOSOPHY')}
 <section class="w-full bg-ink-950 text-white py-20 lg:py-28 relative overflow-hidden" id="media">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-<div class="lg:col-span-7">
-<div class="rounded-card-lg overflow-hidden bg-ink-900 border border-border-dark shadow-2xl"><img alt="Jessica Sotolongo appearing on Univision Despierta América" class="w-full h-auto" decoding="async" height="1500" loading="lazy" sizes="(min-width: 1024px) 55vw, 100vw" src="/assets/univision-feature.jpg" srcset="/assets/univision-feature-1200.jpg 1200w, /assets/univision-feature.jpg 2000w" width="2000"/></div>
+<div class="lg:col-span-6">
+<div class="rounded-card-lg overflow-hidden bg-ink-900 border border-border-dark shadow-2xl aspect-[4/3]"><img alt="Jessica Sotolongo on the Despierta América set during a back-to-school segment" class="w-full h-full object-cover" decoding="async" height="637" loading="lazy" src="/assets/gallery-8.jpg" width="850"/></div>
 </div>
-<div class="lg:col-span-5 space-y-4">
+<div class="lg:col-span-6 space-y-4">
 ${eyebrow('FEATURED ON UNIVISION / DESPIERTA AMÉRICA', true)}
 <h2 class="text-3xl sm:text-4xl font-bold text-white leading-tight">Sharing credit guidance with national Spanish-language audiences.</h2>
 <p class="text-sm text-white/70 leading-relaxed">Univision has featured Jessica in segments covering credit myths, credit reports, and rebuilding credit.</p>
 </div>
 </div>
 <ul class="grid grid-cols-2 lg:grid-cols-4 gap-4 pt-10">
-${[['gallery-8', 'Jessica Sotolongo on the Despierta América set during a back-to-school segment'], ['gallery-13', 'Jessica Sotolongo with a host on a television studio set'], ['gallery-10', 'Jessica Sotolongo with two television hosts'], ['gallery-16', 'Jessica Sotolongo hosting a Facebook Live broadcast']].map(([file, alt]) => `<li data-reveal class="rounded-card overflow-hidden border border-border-dark bg-ink-900 aspect-[4/3]">${photo(file, alt, { width: 850, height: 637 })}</li>`).join('\n')}
+${[['gallery-13', 'Jessica Sotolongo with a host on a television studio set'], ['gallery-10', 'Jessica Sotolongo with two television hosts'], ['gallery-16', 'Jessica Sotolongo hosting a Facebook Live broadcast'], ['office-magazine', 'A magazine cover featuring Jessica Sotolongo, displayed at the office', 1280, 720]].map(([file, alt, width = 850, height = 637]) => `<li data-reveal class="rounded-card overflow-hidden border border-border-dark bg-ink-900 aspect-[4/3]">${photo(file, alt, { width, height })}</li>`).join('\n')}
 </ul>
 </div>
 </section>
@@ -563,17 +568,17 @@ ${team.map(([name, role, file]) => `<li data-reveal class="rounded-card overflow
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 ${sectionIntro('BEYOND THE OFFICE', 'Events and recognitions.', 'Moments from events the team has taken part in, and recognitions displayed at the office.')}
 <ul class="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-6">
-${[['gallery-1', 'Jessica Sotolongo with a group of women at an event', 'lg:col-span-7 aspect-[4/3] lg:aspect-[16/10]', 850, 637], ['gallery-7', 'The InterCredit team at an event booth with the company banner', 'lg:col-span-5 aspect-[4/3] lg:aspect-auto', 850, 638], ['gallery-11', 'Jessica Sotolongo with fellow attendees at a community event', 'lg:col-span-6 aspect-[4/3] lg:aspect-video', 850, 638], ['office-recognitions', 'Certificates and recognitions displayed at the InterCredit office', 'lg:col-span-6 aspect-[4/3] lg:aspect-video', 1280, 720], ['office-magazine', 'A magazine cover featuring Jessica Sotolongo, displayed at the office', 'col-span-2 lg:col-span-12 aspect-video lg:aspect-[3/1]', 1280, 720]].map(([file, alt, span, width, height]) => `<li data-reveal class="rounded-card overflow-hidden border border-border-light bg-white shadow-sm ${span}">${photo(file, alt, { width, height })}</li>`).join('\n')}
+${[['gallery-1', 'Jessica Sotolongo with a group of women at an event', 'lg:col-span-7 aspect-[4/3] lg:aspect-[16/10]', 850, 637], ['gallery-7', 'The InterCredit team at an event booth with the company banner', 'lg:col-span-5 aspect-[4/3] lg:aspect-auto', 850, 638], ['gallery-11', 'Jessica Sotolongo with fellow attendees at a community event', 'lg:col-span-6 aspect-[4/3] lg:aspect-video', 850, 638], ['office-recognitions', 'Certificates and recognitions displayed at the InterCredit office', 'lg:col-span-6 aspect-[4/3] lg:aspect-video', 1280, 720]].map(([file, alt, span, width, height]) => `<li data-reveal class="rounded-card overflow-hidden border border-border-light bg-white shadow-sm ${span}">${photo(file, alt, { width, height })}</li>`).join('\n')}
 </ul>
 </div>
 </section>
-${approachSection('bg-white', ['office-roundtable', 'InterCredit staff meeting with clients around a table'])}
+${approachSection('bg-white', ['photo-1608', 'Jessica Sotolongo explaining printed material across the table during a consultation'])}
 <section class="w-full bg-porcelain-50 py-20 lg:py-28" id="office">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 <div class="lg:col-span-6 space-y-6">
 ${sectionIntro('VISIT OR CALL', 'Based in Miami, with in-person and remote consultations.')}
-${framed('office-welcome', 'An InterCredit team member welcoming a client at the office door')}
+${framed('photo-1663', 'The reception area of the InterCredit office in Miami')}
 ${textLink('Contact details', '/contact-us/')}
 </div>
 <div class="lg:col-span-6">${officeCard}</div>
@@ -593,7 +598,7 @@ const contact = page({
     title: 'Let’s talk about <span class="font-serif-italic font-normal brand-gradient-text">your goal</span>.',
     lead: 'Start with your situation. In a 20-minute consultation, an advisor reviews the context, answers your questions, and explains the options that may fit.',
     actions: `${primaryButton(`Call ${PHONE}`, PHONE_HREF)}<a class="inline-flex items-center justify-center gap-2 rounded-btn border border-white/30 bg-white/95 px-6 py-4 text-sm font-bold text-text-primary shadow-sm transition-colors hover:bg-white" href="mailto:${EMAIL}">${icon('mail', 'text-[18px] text-teal-700')}<span>Email Us</span></a>`,
-    aside: `<figure class="rounded-card-lg overflow-hidden border border-white/20 bg-ink-900 shadow-2xl"><img alt="Jessica Sotolongo shaking hands with a client during a consultation at the InterCredit office" class="w-full h-auto" fetchpriority="high" height="540" src="/assets/goal-consultation.jpg" width="960"/></figure>`,
+    aside: heroPhoto('photo-1602', 'Jessica Sotolongo smiling across her desk at two visitors during a consultation'),
   })}
 <section class="w-full bg-porcelain-50 py-20 lg:py-28">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -601,7 +606,7 @@ const contact = page({
 <div class="lg:col-span-6 space-y-6">
 ${sectionIntro('REACH US DIRECTLY', 'Speak with our team.', 'Our consultations are booked by phone. Call us during office hours and we will find a time that works for you, in person at our Miami office or remotely.')}
 <p class="text-xs text-text-muted max-w-prose">You do not need to arrive knowing which service you need. Start with what you are trying to solve.</p>
-${framed('office-welcome', 'An InterCredit team member welcoming a client at the office door')}
+${framed('photo-1650', 'InterCredit team members at the front desk of the Miami office')}
 </div>
 <div class="lg:col-span-6">${officeCard}</div>
 </div>
@@ -609,7 +614,7 @@ ${framed('office-welcome', 'An InterCredit team member welcoming a client at the
 </section>
 <section class="w-full bg-paper-100 py-20 lg:py-28">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"><div class="lg:col-span-6">${sectionIntro('WHAT TO EXPECT', 'A 20-minute conversation can help clarify your next move.')}</div><div class="lg:col-span-6">${framed('office-consult', 'An InterCredit advisor reviewing a case with a client at her desk')}</div></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"><div class="lg:col-span-6">${sectionIntro('WHAT TO EXPECT', 'A 20-minute conversation can help clarify your next move.')}</div><div class="lg:col-span-6">${framed('photo-1600', 'Jessica Sotolongo listening during a consultation at her desk')}</div></div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 ${[['Tell us your goal', 'Share what is happening, what you are concerned about, and what you would like to improve or understand.'], ['Review the situation', 'An InterCredit advisor reviews the relevant context and asks the questions needed to understand your case.'], ['Understand your options', 'You leave with a clearer understanding of the possible next steps and where InterCredit may be able to help.']].map(([name, text], index) => `<div data-reveal class="p-8 rounded-card bg-white border border-border-light shadow-sm space-y-3">
 <div class="w-10 h-10 rounded-btn bg-mist-100 flex items-center justify-center font-bold text-teal-700 text-sm">0${index + 1}</div>
@@ -656,11 +661,11 @@ ${eyebrow('EXPERIENCE YOU CAN SEE', true)}
 <p class="text-sm text-white/70 leading-relaxed">InterCredit combines hands-on client work with public financial education. Univision has featured Jessica Sotolongo in segments covering credit myths, credit reports, and rebuilding credit.</p>
 <a class="inline-flex items-center gap-1.5 font-bold text-xs uppercase tracking-wider text-green-400 hover:text-white transition-colors py-3.5 -my-3.5" href="/about-us/#media"><span>About our media appearances</span>${arrow}</a>
 </div>
-<div class="lg:col-span-7"><div class="rounded-card-lg overflow-hidden bg-ink-900 border border-border-dark shadow-2xl"><img alt="Jessica Sotolongo appearing on Univision Despierta América" class="w-full h-auto" decoding="async" height="1500" loading="lazy" sizes="(min-width: 1024px) 55vw, 100vw" src="/assets/univision-feature.jpg" srcset="/assets/univision-feature-1200.jpg 1200w, /assets/univision-feature.jpg 2000w" width="2000"/></div></div>
+<div class="lg:col-span-7"><div class="rounded-card-lg overflow-hidden bg-ink-900 border border-border-dark shadow-2xl aspect-video">${photo('photo-1640', 'An InterCredit advisor and a visitor reviewing documents together in the office')}</div></div>
 </div>
 </div>
 </section>
-${approachSection('bg-white', ['office-floor', 'InterCredit advisors meeting with clients at the Miami office'])}
+${approachSection('bg-white', ['photo-1626', 'Jessica Sotolongo shaking hands across her desk'])}
 ${closingCta()}`,
 });
 
@@ -718,7 +723,7 @@ const notFound = page({
     title: 'This page could not be found.',
     lead: 'The link may be outdated or the page may have moved. These are good places to continue.',
     actions: `${primaryButton('Back to Home', '/')}<a class="inline-flex items-center justify-center gap-2 rounded-btn border border-white/30 bg-white/95 px-6 py-4 text-sm font-bold text-text-primary shadow-sm transition-colors hover:bg-white" href="/services/"><span>View Services</span>${icon('arrow_forward', 'icon-nudge text-[18px] text-teal-700')}</a>`,
-    aside: heroPhoto('office-welcome', 'An InterCredit team member welcoming a client at the office door'),
+    aside: heroPhoto('photo-1631', 'A handshake across the table in one of the InterCredit offices'),
   })}
 <section class="w-full bg-porcelain-50 py-16 lg:py-24">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

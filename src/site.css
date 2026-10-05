@@ -187,6 +187,9 @@
     .legal-prose {overflow-wrap:anywhere;}
     /* UserWay button: sit above the fixed mobile booking bar instead of on top of it. */
     @media (max-width:639px) { body .uwy .userway_buttons_wrapper {top:auto !important;bottom:86px !important;} }
+    /* Hero copy over video: a soft shadow keeps text readable on bright frames now that the overlay is lighter. */
+    .hero-legible :is(h1,p,span) {text-shadow:0 1px 14px rgba(11,23,32,.55);}
+    .hero-legible :is(a,.google-badge) :is(span,strong), .hero-legible .brand-gradient-text {text-shadow:none;}
     /* Google rating badge. Always on a white plate: the Google colours are not ours to recolour. */
     .google-badge {display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:6px 16px 6px 14px;border-radius:14px;background:#fff;border:1px solid #e3e8e7;box-shadow:0 10px 24px -14px rgba(11,23,32,.45);color:#0B1720;transition:translate 220ms ease, box-shadow 220ms ease;}
     .google-badge-text {display:flex;flex-direction:column;padding-left:12px;border-left:1px solid #e3e8e7;line-height:1.15;}

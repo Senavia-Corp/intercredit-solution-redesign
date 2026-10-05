@@ -428,15 +428,15 @@ const header = (current) => `
 <a aria-label="InterCredit Solution — home" class="logo-badge" href="/"><img alt="" height="87" src="/assets/intercredit-logo.svg" width="124"/></a>
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 xl:h-[84px] flex items-center justify-between gap-4">
 <a class="xl:hidden flex shrink-0 items-center focus:outline-none focus:ring-2 focus:ring-teal-600 rounded-lg py-1 pr-2" href="/"><div class="h-12 flex items-center"><img alt="InterCredit Solution — home" class="site-logo" height="159" src="/assets/intercredit-logo.svg" width="226"/></div></a>
-<nav aria-label="Primary" class="hidden xl:flex flex-1 items-center justify-between pr-28">
+<nav aria-label="Primary" class="hidden xl:flex flex-1 items-center justify-between pr-[116px]">
 <div id="solutions-navigation">
 <button type="button" id="solutions-toggle" aria-expanded="false" aria-controls="solutions-dropdown" class="nav-item-link min-h-11 inline-flex items-center gap-1 whitespace-nowrap font-semibold text-sm ${current === '/services/' ? 'text-ink-950' : 'text-text-secondary'} hover:text-ink-950 transition-colors">Services${icon('expand_more', 'text-[16px] text-text-muted')}</button>
 ${megaMenu(current)}
 </div>
 ${navLinks.slice(0, 3).map(navLink(current)).join('\n')}
 </nav>
-<div class="flex xl:flex-1 items-center justify-end xl:justify-between gap-4 xl:pl-32">
-<nav aria-label="Secondary" class="hidden xl:flex items-center gap-7">
+<div class="flex xl:flex-1 items-center justify-end gap-4 xl:gap-[74px] xl:pl-[116px]">
+<nav aria-label="Secondary" class="hidden xl:flex items-center gap-[74px]">
 ${navLinks.slice(3).map(navLink(current)).join('\n')}
 </nav>
 <a class="hidden sm:inline-flex xl:hidden min-h-11 items-center gap-1.5 whitespace-nowrap font-semibold text-xs tracking-wide text-text-secondary hover:text-teal-600 transition-colors" href="${PHONE_HREF}">${icon('call', 'text-[16px] text-teal-600')}${PHONE}</a>

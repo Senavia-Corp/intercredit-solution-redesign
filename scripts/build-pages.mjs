@@ -415,36 +415,42 @@ ${navLinks.map(([label, href]) => `<a class="py-4" href="${href}"${href === curr
 </nav>
 </div>`;
 
-const footerLink = (label, href) => `<li><a class="inline-flex min-h-[44px] items-center hover:text-white transition-colors" href="${href}">${label}</a></li>`;
+const footerLink = (label, href) => `<li><a class="footer-link inline-flex min-h-[44px] items-center text-sm text-white/75 hover:text-white transition-colors" href="${href}">${label}</a></li>`;
+const footerHeading = (label) => `<h2 class="font-bold text-xs uppercase tracking-widest text-white">${label}</h2>
+<span aria-hidden="true" class="block h-0.5 w-8 rounded-full brand-gradient-line"></span>`;
+const footerContact = (name, content) => `<li class="flex items-start gap-3"><span class="footer-contact-icon">${icon(name, 'text-[18px]')}</span><div class="min-w-0 flex min-h-[40px] flex-wrap items-center gap-x-2">${content}</div></li>`;
 
 const footer = `
-<footer class="w-full bg-ink-900 text-white/80 border-t border-border-dark pt-16 pb-12 text-xs">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-border-dark">
-<div class="lg:col-span-4 space-y-4">
-<div class="flex items-center gap-2"><div class="h-10 bg-white/95 rounded-lg p-1.5 flex items-center"><img alt="InterCredit Solution" class="site-logo" height="159" loading="lazy" src="/assets/intercredit-logo.svg" width="226"/></div></div>
-<p class="text-white/60 leading-relaxed max-w-sm">Personalized credit and financial guidance for people who want a clearer path through credit, debt, protection, and U.S. credit-building decisions.</p>
-<div class="text-white/70 pt-2">
-<p>${ADDRESS}</p>
-<p class="text-white font-bold"><a class="inline-flex min-h-[44px] items-center hover:text-green-400 transition-colors" href="${PHONE_HREF}">${PHONE}</a> • <a class="inline-flex min-h-[44px] items-center hover:text-green-400 transition-colors" href="${TOLL_FREE_HREF}">${TOLL_FREE}</a></p>
-<p><a class="inline-flex min-h-[44px] items-center hover:text-white transition-colors" href="mailto:${EMAIL}">${EMAIL}</a></p>
-<p class="text-[11px] text-white/50">Hours: ${HOURS}</p>
-</div>
+<footer class="site-footer relative w-full overflow-hidden bg-ink-900 text-white/80 pb-12 text-xs">
+<div aria-hidden="true" class="h-1 brand-gradient-line"></div>
+<span aria-hidden="true" class="footer-glow footer-glow-blue"></span>
+<span aria-hidden="true" class="footer-glow footer-glow-green"></span>
+<div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-10 gap-y-12 pb-12">
+<div class="md:col-span-2 lg:col-span-5 space-y-6">
+<a class="footer-logo" href="/" aria-label="InterCredit Solution home"><img alt="InterCredit Solution" height="127" loading="lazy" src="/assets/intercredit-logo.svg" width="180"/></a>
+<p class="text-sm text-white/70 leading-relaxed max-w-sm">Personalized credit and financial guidance for people who want a clearer path through credit, debt, protection, and U.S. credit-building decisions.</p>
+<ul class="space-y-3 text-sm text-white/80">
+${footerContact('location_on', `<span>${ADDRESS}</span>`)}
+${footerContact('call', `<a class="inline-flex min-h-[44px] items-center font-bold text-white hover:text-green-400 transition-colors" href="${PHONE_HREF}">${PHONE}</a><span aria-hidden="true" class="text-white/30">•</span><a class="inline-flex min-h-[44px] items-center font-bold text-white hover:text-green-400 transition-colors" href="${TOLL_FREE_HREF}">${TOLL_FREE}</a>`)}
+${footerContact('mail', `<a class="inline-flex min-h-[44px] items-center break-all hover:text-white transition-colors" href="mailto:${EMAIL}">${EMAIL}</a>`)}
+${footerContact('schedule', `<span>${HOURS}</span>`)}
+</ul>
 </div>
 <div class="lg:col-span-3 space-y-3">
-<h2 class="font-bold text-xs uppercase tracking-widest text-green-400">Solutions</h2>
+${footerHeading('Solutions')}
 <ul>${chapters.map((chapter) => footerLink(esc(chapter.name), `/services/#${chapter.id}`)).join('')}</ul>
 </div>
 <div class="lg:col-span-2 space-y-3">
-<h2 class="font-bold text-xs uppercase tracking-widest text-green-400">Company</h2>
+${footerHeading('Company')}
 <ul>${footerLink('About &amp; Leadership', '/about-us/')}${footerLink('Client Reviews', '/reviews/')}${footerLink('Media Appearances', '/about-us/#media')}${footerLink('Contact Us', '/contact-us/')}</ul>
 </div>
-<div class="lg:col-span-3 space-y-3">
-<h2 class="font-bold text-xs uppercase tracking-widest text-green-400">Resources &amp; Legal</h2>
+<div class="lg:col-span-2 space-y-3">
+${footerHeading('Resources &amp; Legal')}
 <ul>${footerLink('FAQ', '/#faq')}${footerLink('Privacy Policy', '/privacy-policy/')}${footerLink('Terms &amp; Conditions', '/terms-and-conditions/')}</ul>
 </div>
 </div>
-<div class="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[11px] text-white/50">
+<div class="pt-8 border-t border-border-dark flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs text-white/60">
 <p>© 2026 InterCredit Solution. All rights reserved.</p>
 <p class="max-w-xl text-left md:text-right leading-relaxed">Outcomes depend on individual client profiles and other factors outside InterCredit's control. No credit score increases or removals are guaranteed.</p>
 </div>
@@ -923,6 +929,7 @@ const homePath = new URL('index.html', dist);
 let home = readFileSync(homePath, 'utf8');
 // Same header on the homepage, so every page is reachable from every page.
 home = home.replace(/<a class="sr-only[\s\S]*?(?=<main id="main-content">)/, () => `${header('/').trim()}\n`);
+home = home.replace(/<footer[\s\S]*?<\/footer>/, () => footer.slice(0, footer.indexOf('</footer>') + 9).trim());
 home = home.replace(/<!-- booking:start -->[\s\S]*?<!-- booking:end -->/, () => `<!-- booking:start -->\n${bookingSection()}\n<!-- booking:end -->`);
 home = home.replace(/<!-- reviews:start -->[\s\S]*?<!-- reviews:end -->/, () => `<!-- reviews:start -->\n${reviewsComponent()}\n<!-- reviews:end -->`);
 const used = new Set(['pause', 'play_arrow']);

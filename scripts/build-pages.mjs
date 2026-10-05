@@ -191,15 +191,14 @@ ${items.map(([question, answer]) => `<details class="group rounded-card bg-porce
 </section>`;
 
 const closingCta = (title = 'Start with a conversation about where you are and what comes next.') => `
-<section class="w-full bg-ink-950 text-white py-20 lg:py-28 relative overflow-hidden bg-ledger-dark">
-<div class="absolute top-0 left-0 right-0 h-1 brand-gradient-line"></div>
+<section class="w-full bg-ink-950 text-white relative overflow-hidden bg-ledger-dark">
+<div class="absolute top-0 left-0 right-0 z-20 h-1 brand-gradient-line"></div>
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-<div class="lg:col-span-7 space-y-6">
+<div class="lg:w-1/2 lg:pr-12 py-20 lg:py-28 space-y-6">
 <span class="text-xs font-bold uppercase tracking-widest text-green-400">YOUR NEXT STEP DOES NOT HAVE TO BE COMPLICATED</span>
-<h2 class="text-3xl sm:text-4xl xl:text-[2.75rem] font-bold text-white leading-tight text-balance">${title}</h2>
+<h2 class="text-3xl sm:text-4xl font-bold text-white leading-tight text-balance">${title}</h2>
 <p class="text-sm sm:text-base text-white/75 leading-relaxed max-w-xl">You do not need to diagnose your own credit situation or choose a service before you call. Tell us your goal, ask your questions, and understand the options that may fit your situation.</p>
-<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
+<div class="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-stretch sm:items-center lg:items-stretch xl:items-center gap-4 pt-4">
 ${primaryButton('Book a 20-Minute Consultation')}
 ${callButton(true)}
 </div>
@@ -209,9 +208,8 @@ ${callButton(true)}
 <li class="flex items-center gap-2"><span aria-hidden="true" class="material-symbols-outlined text-[16px] text-green-400">check_circle</span>No guaranteed-score promises</li>
 </ul>
 </div>
-<div data-reveal class="lg:col-span-5"><figure class="rounded-card-lg overflow-hidden border border-border-dark bg-ink-900 shadow-2xl aspect-[4/3]"><img alt="A person reviewing a printed credit report beside a laptop" class="w-full h-full object-cover" decoding="async" height="900" loading="lazy" sizes="(min-width: 1024px) 40vw, 100vw" src="/assets/cta-credit-report-1200.jpg" srcset="/assets/cta-credit-report-720.jpg 720w, /assets/cta-credit-report-1200.jpg 1200w" width="1200"/></figure></div>
 </div>
-</div>
+<figure class="relative aspect-[4/3] sm:aspect-video lg:aspect-auto lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2"><img alt="A person reviewing a printed credit report beside a laptop" class="absolute inset-0 w-full h-full object-cover" decoding="async" height="900" loading="lazy" sizes="(min-width: 1024px) 50vw, 100vw" src="/assets/cta-credit-report-1200.jpg" srcset="/assets/cta-credit-report-720.jpg 720w, /assets/cta-credit-report-1200.jpg 1200w" width="1200"/><div aria-hidden="true" class="hidden lg:block absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-ink-950 to-transparent"></div></figure>
 </section>`;
 
 const youtubeCard = (id, title, label) => `<div class="testimonial-player rounded-card-lg shadow-xl border border-border-light" data-youtube="${id}" data-title="${title}"><a aria-label="${label}" href="https://www.youtube.com/watch?v=${id}"><img alt="" decoding="async" height="720" loading="lazy" src="https://i.ytimg.com/vi/${id}/maxresdefault.jpg" width="1280"/><span class="testimonial-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></a></div>`;

@@ -90,6 +90,7 @@
     });
   }
 
+  const playIcon = '<span class="testimonial-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>';
   const playYouTube = (container, id, title) => {
     const frame = document.createElement('iframe');
     frame.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&playsinline=1&cc_load_policy=1';
@@ -110,7 +111,6 @@
   const storyChoices = [...document.querySelectorAll('.testimonial-choice')];
   if (storyPlayer && storyTitle && storyCount && storyLink) {
     let selectedStory = 0;
-    const playIcon = '<span class="testimonial-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>';
     const selectStory = (index) => {
       selectedStory = (index + storyIds.length) % storyIds.length;
       const id = storyIds[selectedStory];
@@ -130,6 +130,26 @@
       playYouTube(storyPlayer, storyIds[selectedStory], 'InterCredit client story ' + (selectedStory + 1));
     });
   }
+
+  // Video sets: a list of choices swaps what the player next to it will play.
+  document.querySelectorAll('[data-video-set]').forEach((set) => {
+    const player = set.querySelector('[data-youtube]');
+    const choices = [...set.querySelectorAll('[data-video-choice]')];
+    if (!player) return;
+    choices.forEach((choice) => choice.addEventListener('click', () => {
+      const { id, title, meta } = choice.dataset;
+      player.dataset.youtube = id;
+      player.dataset.title = title;
+      player.innerHTML = '<a aria-label="Play video: ' + title.replace(/"/g, '&quot;') + '" href="https://www.youtube.com/watch?v=' + id + '"><img alt="" height="720" src="https://i.ytimg.com/vi/' + id + '/maxresdefault.jpg" width="1280"/>' + playIcon + '</a>';
+      const heading = set.querySelector('[data-video-title]');
+      const details = set.querySelector('[data-video-meta]');
+      const link = set.querySelector('[data-video-link]');
+      if (heading) heading.textContent = title;
+      if (details) details.textContent = meta;
+      if (link) link.href = 'https://www.youtube.com/watch?v=' + id;
+      choices.forEach((other) => other.setAttribute('aria-pressed', String(other === choice)));
+    }));
+  });
 
   // Standalone videos: the player loads only after the visitor presses play.
   document.querySelectorAll('[data-youtube]').forEach((player) => {

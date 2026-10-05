@@ -122,6 +122,17 @@ const framed = (file, alt, options = {}) => `<figure ${options.reveal === false 
 
 const heroPhoto = (file, alt, options = {}) => `<figure class="rounded-card-lg overflow-hidden border border-white/20 bg-ink-900 shadow-2xl ${options.aspect || 'aspect-video'}">${photo(file, alt, { ...options, eager: true })}</figure>`;
 
+// Segments published on the official Despierta América YouTube channel (titles and years as published).
+const segments = [
+  { id: 'ojGcpgtuOIk', year: 2019, title: 'Consejos para salir de deudas y mejorar tu historial crediticio', topic: 'Getting out of debt and improving your credit history' },
+  { id: 'bWO79Tq7jFk', year: 2017, title: 'Cómo reconstruir fácilmente tu puntaje de crédito', topic: 'Rebuilding your credit score' },
+  { id: 'ZZSToPOmYUg', year: 2019, title: 'Cómo proteger tu crédito si fuiste afectado por el ciberataque a Equifax', topic: 'Protecting your credit after the Equifax data breach' },
+  { id: 'i0i4A3AwMLA', year: 2022, title: 'Tarjetas de crédito: tips para enseñar a los hijos un manejo responsable', topic: 'Teaching children to use credit cards responsibly' },
+];
+const segmentMeta = (segment) => `Despierta América (Univision) · ${segment.year} · In Spanish`;
+// The segment whose topic matches a service is shown on that service page.
+const serviceSegments = { 'debts-negotiation': 0, 'credit-repair': 1, 'fraud-alert-system': 2, 'add-existing-credit-cards-to-credit-history': 3 };
+
 // ---------- Shared pieces ----------
 
 const eyebrow = (text, dark = false) => `<span class="text-xs font-bold uppercase tracking-widest ${dark ? 'text-green-400' : 'text-teal-600'} flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>${text}</span>`;
@@ -379,6 +390,21 @@ const serviceCard = (service) => `<a data-reveal class="group flex flex-col gap-
 <span class="mt-auto inline-flex items-center gap-1.5 font-bold text-xs uppercase tracking-wider text-teal-600 group-hover:text-green-600 transition-colors">View service ${arrow}</span>
 </a>`;
 
+const segmentBand = (segment) => `
+<section class="w-full bg-ink-950 text-white py-16 lg:py-24">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+<div data-reveal class="lg:col-span-7">${youtubeCard(segment.id, segment.title, `Play video: ${segment.title}`).replace('border-border-light', 'border-border-dark')}</div>
+<div class="lg:col-span-5 space-y-4">
+${eyebrow(`ON DESPIERTA AMÉRICA (UNIVISION) · ${segment.year}`, true)}
+<h2 class="text-2xl sm:text-3xl font-bold text-white leading-tight" lang="es">${segment.title}</h2>
+<p class="text-sm text-white/70 leading-relaxed">A Despierta América segment with Jessica Sotolongo on this topic: ${segment.topic.charAt(0).toLowerCase()}${segment.topic.slice(1)}. The segment is in Spanish.</p>
+<a class="inline-flex items-center gap-1.5 font-bold text-xs uppercase tracking-wider text-green-400 hover:text-white transition-colors py-3.5 -my-3.5" href="/about-us/#media"><span>More media appearances</span>${arrow}</a>
+</div>
+</div>
+</div>
+</section>`;
+
 const journeyStrip = (active) => `<ol class="grid grid-cols-5 gap-2 sm:gap-4">
 ${stages.map((stage, index) => `<li class="flex flex-col items-center gap-2 text-center"${index === active ? ' aria-current="step"' : ''}>
 <span class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-extrabold text-sm ${index === active ? 'bg-ink-950 text-lime-400 border-4 border-lime-500 shadow-lg' : 'bg-white text-text-muted border-2 border-mist-200'}">0${index + 1}</span>
@@ -434,6 +460,7 @@ ${service.scenarios.map((scenario) => `<li class="flex items-start gap-3">${icon
 </div>
 </div>
 </section>
+${service.slug in serviceSegments ? segmentBand(segments[serviceSegments[service.slug]]) : ''}
 ${approachSection()}
 <section class="w-full bg-white border-y border-border-light py-20 lg:py-28">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
@@ -537,19 +564,23 @@ ${eyebrow('LEADERSHIP &amp; PHILOSOPHY')}
 </div>
 </section>
 <section class="w-full bg-ink-950 text-white py-20 lg:py-28 relative overflow-hidden" id="media">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-<div class="lg:col-span-6">
-<div class="rounded-card-lg overflow-hidden bg-ink-900 border border-border-dark shadow-2xl aspect-[4/3]"><img alt="Jessica Sotolongo on the Despierta América set during a back-to-school segment" class="w-full h-full object-cover" decoding="async" height="637" loading="lazy" src="/assets/gallery-8.jpg" width="850"/></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
+${sectionIntro('FEATURED ON UNIVISION / DESPIERTA AMÉRICA', 'Sharing credit guidance with national Spanish-language audiences.', 'Jessica Sotolongo has appeared on Despierta América in segments about debt, credit scores, credit cards and protecting your credit. Watch them here.', true)}
+<div data-video-set class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<div class="lg:col-span-8 space-y-4">
+${youtubeCard(segments[0].id, segments[0].title, `Play video: ${segments[0].title}`).replace('border-border-light', 'border-border-dark')}
+<div class="space-y-1">
+<p data-video-meta class="text-xs font-bold uppercase tracking-widest text-green-400">${segmentMeta(segments[0])}</p>
+<h3 data-video-title aria-live="polite" class="text-xl font-bold text-white" lang="es">${segments[0].title}</h3>
+<a data-video-link class="inline-block py-3.5 -my-1 text-sm text-white/80 underline underline-offset-4 hover:text-white transition-colors" href="https://www.youtube.com/watch?v=${segments[0].id}" rel="noopener" target="_blank">Watch on the Despierta América channel</a>
 </div>
-<div class="lg:col-span-6 space-y-4">
-${eyebrow('FEATURED ON UNIVISION / DESPIERTA AMÉRICA', true)}
-<h2 class="text-3xl sm:text-4xl font-bold text-white leading-tight">Sharing credit guidance with national Spanish-language audiences.</h2>
-<p class="text-sm text-white/70 leading-relaxed">Univision has featured Jessica in segments covering credit myths, credit reports, and rebuilding credit.</p>
 </div>
+<ul class="lg:col-span-4 space-y-3" aria-label="Choose a segment">
+${segments.map((segment, index) => `<li><button type="button" class="video-choice" data-video-choice data-id="${segment.id}" data-title="${segment.title}" data-meta="${segmentMeta(segment)}" aria-pressed="${index === 0}"><img alt="" decoding="async" height="360" loading="lazy" src="https://i.ytimg.com/vi/${segment.id}/hqdefault.jpg" width="480"/><span><span class="block text-sm font-bold text-white">${segment.topic}</span><span class="block text-xs text-white/60">${segment.year} · In Spanish</span></span></button></li>`).join('\n')}
+</ul>
 </div>
-<ul class="grid grid-cols-2 lg:grid-cols-4 gap-4 pt-10">
-${[['gallery-13', 'Jessica Sotolongo with a host on a television studio set'], ['gallery-10', 'Jessica Sotolongo with two television hosts'], ['gallery-16', 'Jessica Sotolongo hosting a Facebook Live broadcast'], ['office-magazine', 'A magazine cover featuring Jessica Sotolongo, displayed at the office', 1280, 720]].map(([file, alt, width = 850, height = 637]) => `<li data-reveal class="rounded-card overflow-hidden border border-border-dark bg-ink-900 aspect-[4/3]">${photo(file, alt, { width, height })}</li>`).join('\n')}
+<ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 ">
+${[['univision-feature-1200', 'Jessica Sotolongo on the Despierta América set with a host', 1200, 900], ['gallery-8', 'Jessica Sotolongo on the Despierta América set during a back-to-school segment'], ['gallery-13', 'Jessica Sotolongo with a host on a television studio set'], ['gallery-10', 'Jessica Sotolongo with two television hosts'], ['gallery-16', 'Jessica Sotolongo hosting a Facebook Live broadcast'], ['office-magazine', 'A magazine cover featuring Jessica Sotolongo, displayed at the office', 1280, 720]].map(([file, alt, width = 850, height = 637]) => `<li data-reveal class="rounded-card overflow-hidden border border-border-dark bg-ink-900 aspect-[4/3]">${photo(file, alt, { width, height })}</li>`).join('\n')}
 </ul>
 </div>
 </section>

@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>InterCredit Solution — Personalized Credit &amp; Financial Guidance</title>
+<meta content="Personalized credit and financial guidance from InterCredit Solution. Explore credit, debt, protection, and U.S. credit-building pathways." name="description"/>
+<link href="./assets/favicon.png" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'ink-950': '#0B1720',
+            'ink-900': '#102531',
+            'ink-800': '#173542',
+            'porcelain-50': '#FBF9F4',
+            'porcelain-100': '#F5F3EE',
+            'paper-100': '#F0EEE8',
+            'mist-100': '#EAF1F1',
+            'mist-200': '#DCE8E7',
+            'teal-600': '#1D766E',
+            'teal-500': '#2D8F85',
+            'teal-400': '#14B8A6',
+            'green-500': '#22C55E',
+            'lime-500': '#84CC16',
+            'text-primary': '#10212A',
+            'text-secondary': '#4B5B62',
+            'text-muted': '#5F6E75',
+            'border-light': 'rgba(16, 37, 49, 0.1)',
+            'border-dark': 'rgba(255, 255, 255, 0.14)',
+          },
+          fontFamily: {
+            sans: ['Manrope', 'sans-serif'],
+            serif: ['Newsreader', 'serif'],
+          },
+          borderRadius: {
+            'btn': '12px',
+            'card-sm': '16px',
+            'card': '22px',
+            'card-lg': '28px',
+            'hero': '32px',
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    :root {
+      --ic-grad-primary: linear-gradient(135deg, #0d9488 0%, #16a34a 60%, #84cc16 100%);
+      --ic-grad-subtle: linear-gradient(135deg, rgba(13,148,136,0.12) 0%, rgba(34,197,94,0.08) 100%);
+      --ic-grad-dark: linear-gradient(135deg, rgba(20,184,166,0.2) 0%, rgba(34,197,94,0.15) 100%);
+      --ic-grad-border: linear-gradient(90deg, #0d9488, #22c55e, #84cc16);
+      --ic-nav-line: linear-gradient(90deg, #14B8A6, #22C55E);
+    }
+    .font-serif-italic { font-family: 'Newsreader', serif; font-style: italic; }
+    .bg-ledger {
+      background-image: 
+        linear-gradient(rgba(16, 37, 49, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16, 37, 49, 0.025) 1px, transparent 1px);
+      background-size: 36px 36px;
+    }
+    .bg-ledger-dark {
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .nav-item-link {
+      position: relative;
+    }
+    .nav-item-link::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--ic-nav-line);
+      border-radius: 9999px;
+      transition: width 0.25s ease;
+    }
+    .nav-item-link:hover::after {
+      width: 100%;
+    }
+    .brand-gradient-text {
+      background: var(--ic-grad-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .brand-gradient-btn {
+      background: var(--ic-grad-primary);
+      transition: all 0.3s ease;
+    }
+    .brand-gradient-btn:hover {
+      box-shadow: 0 10px 25px -5px rgba(22, 163, 74, 0.35);
+      filter: brightness(1.05);
+    }
+    .site-logo {
+      display: block;
+      width: auto;
+      height: 100%;
+      object-fit: contain;
+    }
+    .video-story-playing .video-story-overlay {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .video-story-overlay {
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    @media (max-width: 639px) {
+      body { padding-bottom: 76px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-porcelain-50 font-sans text-text-primary antialiased selection:bg-teal-500 selection:text-white">
+<a class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-btn focus:bg-white focus:px-4 focus:py-3 focus:font-bold focus:text-ink-950 focus:shadow-xl" href="#main-content">Skip to main content</a>
+<!-- 01 — ANNOUNCEMENT / UTILITY STRIP -->
+<aside class="bg-ink-950 text-white/90 text-xs py-2 px-4 border-b border-border-dark relative z-50">
+<div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+<div class="flex items-center gap-2 mx-auto sm:mx-0">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+<span class="font-medium tracking-wide">20-Minute Consultation • Personalized Credit &amp; Financial Guidance • Miami-Based</span>
+</div>
+<div class="hidden md:flex items-center gap-6 text-white/70">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-teal-400">location_on</span>
+          13590 SW 134th Ave, Suite 203, Miami, FL
+        </span>
+<a class="text-white hover:text-green-400 transition-colors font-semibold" href="tel:7862205838">Direct: (786) 220-5838</a>
+</div>
+</div>
+</aside>
+<!-- 02 — NAVIGATION WITH AUTHENTIC LOGO -->
+<header class="sticky top-0 z-40 bg-porcelain-50/95 backdrop-blur-md border-b border-border-light transition-all duration-200">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+<!-- Authentic Brand Logo -->
+<a class="flex items-center focus:outline-none focus:ring-2 focus:ring-teal-600 rounded-lg py-1 pr-2" href="#">
+<div class="h-11 flex items-center">
+<img alt="InterCredit Solution" class="site-logo" height="159" src="./assets/intercredit-logo.svg" width="226"/>
+        </div>
+</a>
+<!-- Desktop Nav with Gradient Hover -->
+<nav class="hidden lg:flex items-center gap-8">
+<div class="relative group py-2">
+<button class="nav-item-link inline-flex items-center gap-1 font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors focus:outline-none">
+            Solutions
+            <span class="material-symbols-outlined text-[16px] text-text-muted group-hover:rotate-180 transition-transform">expand_more</span>
+</button>
+<!-- Mega Menu Dropdown -->
+<div class="absolute top-full -left-4 w-88 bg-white rounded-card shadow-2xl border border-border-light p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 flex flex-col gap-1 z-50">
+<a class="p-3 rounded-btn hover:bg-mist-100/70 transition-colors block border-l-2 border-transparent hover:border-teal-500" href="#goal-selector">
+<span class="font-bold text-[10px] uppercase tracking-wider text-teal-600 block mb-0.5">01 / Credit</span>
+<span class="font-semibold text-sm text-text-primary block">Improve My Credit</span>
+<span class="text-xs text-text-muted block">Restructure bureaus, inquiries, history</span>
+</a>
+<a class="p-3 rounded-btn hover:bg-mist-100/70 transition-colors block border-l-2 border-transparent hover:border-teal-500" href="#goal-selector">
+<span class="font-bold text-[10px] uppercase tracking-wider text-teal-600 block mb-0.5">02 / Debt</span>
+<span class="font-semibold text-sm text-text-primary block">Resolve My Debt</span>
+<span class="text-xs text-text-muted block">Structured negotiation for collection balances</span>
+</a>
+<a class="p-3 rounded-btn hover:bg-mist-100/70 transition-colors block border-l-2 border-transparent hover:border-teal-500" href="#goal-selector">
+<span class="font-bold text-[10px] uppercase tracking-wider text-teal-600 block mb-0.5">03 / Protection</span>
+<span class="font-semibold text-sm text-text-primary block">Protect &amp; Understand</span>
+<span class="text-xs text-text-muted block">Monitoring, underwriting review &amp; fraud alert</span>
+</a>
+<a class="p-3 rounded-btn hover:bg-mist-100/70 transition-colors block border-l-2 border-transparent hover:border-teal-500" href="#goal-selector">
+<span class="font-bold text-[10px] uppercase tracking-wider text-teal-600 block mb-0.5">04 / Investors</span>
+<span class="font-semibold text-sm text-text-primary block">Build Credit in the U.S.</span>
+<span class="text-xs text-text-muted block">Guidance for international investors &amp; newcomers</span>
+</a>
+</div>
+</div>
+<a class="nav-item-link font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="#personalized-strategy">How It Works</a>
+<a class="nav-item-link font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="#financial-journey">Journey</a>
+<a class="nav-item-link font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="#solutions-architecture">Services</a>
+<a class="nav-item-link font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="#founder-section">Leadership</a>
+<a class="nav-item-link font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="#client-proof">Reviews</a>
+<a class="nav-item-link font-semibold text-sm text-text-secondary hover:text-ink-950 transition-colors" href="#faq">FAQ</a>
+</nav>
+<!-- Action Row -->
+<div class="flex items-center gap-4">
+<a class="hidden sm:inline-flex items-center gap-1.5 font-semibold text-xs tracking-wide text-text-secondary hover:text-teal-600 transition-colors" href="tel:7862205838">
+<span class="material-symbols-outlined text-[16px] text-teal-600">call</span>
+          (786) 220-5838
+        </a>
+<a class="brand-gradient-btn hidden sm:inline-flex items-center justify-center px-5 py-3 rounded-btn text-white font-bold text-xs tracking-wider uppercase shadow-sm" href="#consultation-booking">
+          Book a 20-Minute Consultation
+        </a>
+<button aria-controls="mobile-navigation" aria-expanded="false" aria-label="Open navigation menu" class="lg:hidden w-11 h-11 rounded-btn bg-white border border-border-light text-ink-950 flex items-center justify-center shadow-sm" id="mobile-menu-toggle" type="button">
+<span class="material-symbols-outlined" aria-hidden="true">menu</span>
+</button>
+</div>
+</div>
+</header>
+<div class="fixed inset-0 z-[60] bg-ink-950/45 backdrop-blur-sm hidden lg:hidden" id="mobile-navigation">
+<nav aria-label="Mobile navigation" class="absolute inset-y-0 right-0 w-[min(88vw,360px)] bg-porcelain-50 shadow-2xl p-6 flex flex-col">
+<div class="flex items-center justify-between pb-6 border-b border-border-light">
+<img alt="InterCredit Solution" class="h-12 w-auto object-contain" height="159" src="./assets/intercredit-logo.svg" width="226"/>
+<button aria-label="Close navigation menu" class="w-11 h-11 rounded-btn bg-white border border-border-light text-ink-950 flex items-center justify-center" id="mobile-menu-close" type="button">
+<span class="material-symbols-outlined" aria-hidden="true">close</span>
+</button>
+</div>
+<div class="flex flex-col py-6 divide-y divide-border-light text-sm font-semibold">
+<a class="py-4" href="#goal-selector">Solutions</a>
+<a class="py-4" href="#personalized-strategy">How It Works</a>
+<a class="py-4" href="#financial-journey">Journey</a>
+<a class="py-4" href="#solutions-architecture">Services</a>
+<a class="py-4" href="#founder-section">Leadership</a>
+<a class="py-4" href="#client-proof">Reviews</a>
+<a class="py-4" href="#faq">FAQ</a>
+</div>
+<a class="brand-gradient-btn mt-auto inline-flex items-center justify-center px-5 py-4 rounded-btn text-white font-bold text-xs tracking-wider uppercase shadow-sm" href="#consultation-booking">
+Book a 20-Minute Consultation
+</a>
+</nav>
+</div>
+<main id="main-content">
+<!-- 03 — HERO SECTION REFINEMENT (ASYMMETRIC FLAGSHIP 12-COL) -->
+<section class="relative overflow-hidden pt-8 pb-16 lg:py-24 bg-porcelain-50">
+<!-- Subtle ambient brand gradient glow behind photo -->
+<div class="absolute right-0 top-1/4 w-96 h-96 rounded-full bg-gradient-to-br from-teal-500/10 to-green-500/10 blur-3xl pointer-events-none -z-0"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+<!-- Left Text Column (Col 1-7) -->
+<div class="lg:col-span-7 flex flex-col items-start space-y-6">
+<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-mist-100 border border-teal-600/15 text-teal-600">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+<span class="text-xs font-bold uppercase tracking-widest text-text-primary">Personalized Credit &amp; Financial Guidance</span>
+</div>
+<h1 class="text-4xl sm:text-5xl lg:text-[58px] leading-[1.08] font-bold text-ink-950 tracking-tight">
+            Move forward with a <br class="hidden sm:inline"/>
+<span class="font-serif-italic font-normal brand-gradient-text">clearer financial strategy</span>.
+          </h1>
+<p class="text-lg sm:text-xl text-text-secondary max-w-xl leading-relaxed">
+            InterCredit helps you understand what is affecting your credit, navigate debt challenges, protect your financial profile, and choose a path built around your goals.
+          </p>
+<!-- CTAs -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2 w-full sm:w-auto">
+<a class="brand-gradient-btn inline-flex items-center justify-center px-8 py-4 rounded-btn text-white font-bold text-sm tracking-wider uppercase shadow-md" href="#consultation-booking">
+              Book a 20-Minute Consultation
+            </a>
+<a class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-btn bg-white hover:bg-paper-100 text-text-primary font-bold text-sm border border-border-light transition-colors shadow-sm" href="#goal-selector">
+<span>Find the Right Path</span>
+<span class="material-symbols-outlined text-[18px] text-teal-600">arrow_downward</span>
+</a>
+</div>
+<!-- Microcopy -->
+<p class="text-xs text-text-muted max-w-md">
+            No one-size-fits-all plan. Start with your situation, your goals, and a clear conversation about your options.
+          </p>
+<!-- Hero Micro Proof Rail (Verified Labels Only) -->
+<div class="pt-6 w-full grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-border-light">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-teal-600 text-[20px]">verified</span>
+<span class="text-xs font-semibold text-text-primary uppercase tracking-wider">Experience in Credit</span>
+</div>
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-green-600 text-[20px]">grade</span>
+<span class="text-xs font-semibold text-text-primary uppercase tracking-wider">Google Reviews Verified</span>
+</div>
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-teal-600 text-[20px]">tv</span>
+<span class="text-xs font-semibold text-text-primary uppercase tracking-wider">Featured on Univision</span>
+</div>
+</div>
+</div>
+<!-- Right Visual Column (Col 8-12): Authentic Environmental Photo + Financial Trace -->
+<div class="lg:col-span-5 relative">
+<!-- Flowing Financial Trace SVG overlay -->
+<svg class="absolute -top-10 -left-10 w-full h-full pointer-events-none hidden sm:block z-20" fill="none" viewbox="0 0 500 600">
+<path d="M-20 450 C80 320, 160 520, 320 280 C400 160, 440 220, 520 80" opacity="0.6" stroke="url(#heroTraceGrad)" stroke-dasharray="6 6" stroke-width="2.5"></path>
+<circle cx="320" cy="280" fill="#22C55E" r="5"></circle>
+<circle cx="320" cy="280" opacity="0.5" r="10" stroke="#14B8A6" stroke-width="1.5"></circle>
+<defs>
+<lineargradient id="heroTraceGrad" x1="0%" x2="100%" y1="100%" y2="0%">
+<stop offset="0%" stop-color="#14B8A6"></stop>
+<stop offset="50%" stop-color="#22C55E"></stop>
+<stop offset="100%" stop-color="#84CC16"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="relative rounded-hero overflow-hidden shadow-2xl bg-white border border-border-light aspect-[4/5] max-h-[580px] w-full">
+<img alt="Jessica Sotolongo meeting with clients at the InterCredit office" class="w-full h-full object-cover object-[68%_center]" decoding="async" fetchpriority="high" height="833" src="./assets/hero-consultation.jpg" width="1250"/>
+<!-- Structured micro-annotation badge -->
+<div class="absolute bottom-6 left-6 right-6 p-4 rounded-card-sm bg-white/95 backdrop-blur-md shadow-lg border border-border-light z-30">
+<div class="flex items-center justify-between pb-2 mb-2 border-b border-border-light">
+<span class="text-[10px] font-bold uppercase tracking-widest text-text-muted">ADVISOR CONSULTATION • MIAMI HQ</span>
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-bold text-sm text-ink-950">In-Person &amp; Remote Consultations</p>
+<p class="text-xs text-text-secondary">Confidential analysis of credit profiles &amp; tradelines</p>
+</div>
+<div class="w-9 h-9 rounded-lg bg-mist-100 flex items-center justify-center text-teal-600 flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">account_balance</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 04 — TRUST RAIL (VERIFIED LABELS ONLY) -->
+<section class="w-full bg-white border-y border-border-light py-7">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 divide-y lg:divide-y-0 lg:divide-x divide-border-light">
+<div class="flex items-start gap-3.5 pt-4 lg:pt-0 lg:px-4 first:pl-0">
+<div class="w-10 h-10 rounded-btn bg-mist-100 flex items-center justify-center text-teal-600 flex-shrink-0 relative">
+<span class="material-symbols-outlined text-[20px]">corporate_fare</span>
+<span class="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-green-500"></span>
+</div>
+<div>
+<h2 class="font-bold text-sm text-ink-950">Decades of Credit Leadership</h2>
+<p class="text-xs text-text-secondary mt-0.5 leading-relaxed">Dedicated background helping clients navigate complex credit situations.</p>
+</div>
+</div>
+<div class="flex items-start gap-3.5 pt-4 lg:pt-0 lg:px-4">
+<div class="w-10 h-10 rounded-btn bg-mist-100 flex items-center justify-center text-green-600 flex-shrink-0 relative">
+<span class="material-symbols-outlined text-[20px] text-green-800">reviews</span>
+<span class="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-teal-500"></span>
+</div>
+<div>
+<h2 class="font-bold text-sm text-ink-950">Client Reviews &amp; Transparency</h2>
+<p class="text-xs text-text-secondary mt-0.5 leading-relaxed">Verified satisfaction, clear communication, and dedicated advisory support.</p>
+</div>
+</div>
+<div class="flex items-start gap-3.5 pt-4 lg:pt-0 lg:px-4">
+<div class="w-10 h-10 rounded-btn bg-mist-100 flex items-center justify-center text-teal-600 flex-shrink-0 relative">
+<span class="material-symbols-outlined text-[20px]">tv</span>
+<span class="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-lime-500"></span>
+</div>
+<div>
+<h2 class="font-bold text-sm text-ink-950">Featured on Univision Despierta América</h2>
+<p class="text-xs text-text-secondary mt-0.5 leading-relaxed">Financial and credit expertise presented live on national television.</p>
+</div>
+</div>
+<div class="flex items-start gap-3.5 pt-4 lg:pt-0 lg:px-4">
+<div class="w-10 h-10 rounded-btn bg-mist-100 flex items-center justify-center text-teal-600 flex-shrink-0 relative">
+<span class="material-symbols-outlined text-[20px]">schedule</span>
+<span class="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-green-500"></span>
+</div>
+<div>
+<h2 class="font-bold text-sm text-ink-950">20-Minute Structured Consultation</h2>
+<p class="text-xs text-text-secondary mt-0.5 leading-relaxed">A focused session to understand your goal and discuss viable next steps.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 05 — GOAL SELECTOR (SIGNATURE ARCHITECTURAL SECTION) -->
+<section class="w-full bg-porcelain-100 bg-ledger py-20 lg:py-28 relative" id="goal-selector">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Left 4 Columns -->
+<div class="lg:col-span-4 space-y-6 lg:sticky lg:top-28">
+<div class="space-y-3">
+<span class="text-xs font-bold uppercase tracking-widest text-teal-600 flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+              START WITH YOUR GOAL
+            </span>
+<h2 class="text-3xl sm:text-4xl font-bold text-ink-950 leading-tight">
+              What are you trying to solve?
+            </h2>
+<p class="text-text-secondary text-sm leading-relaxed">
+              You do not need to know the official name of the service you need. Choose the situation that sounds closest to yours and explore the most relevant options.
+            </p>
+</div>
+<div class="p-6 rounded-card bg-white shadow-sm border border-border-light space-y-3 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-500 to-green-500"></div>
+<h3 class="font-bold text-sm text-ink-950">Not sure where you fit?</h3>
+<p class="text-xs text-text-secondary leading-relaxed">
+              Our advisors can evaluate your situation in an introductory call and point you in the right direction.
+            </p>
+<a class="inline-flex items-center gap-1.5 font-bold text-xs uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors" href="#consultation-booking">
+<span>Book a Consultation</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Right 8 Columns (Architectural Asymmetric Layout) -->
+<div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+<!-- Card 01: ACTIVE CARD with Brand Gradient Edge & Wash -->
+<div class="p-8 rounded-card-lg bg-white border-2 border-teal-500 shadow-xl relative overflow-hidden flex flex-col justify-between space-y-6 transform md:-translate-y-2">
+<!-- Subtle gradient wash -->
+<div class="absolute inset-0 bg-gradient-to-br from-teal-500/5 via-green-500/5 to-transparent pointer-events-none"></div>
+<!-- Gradient top border -->
+<div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-teal-500 via-green-500 to-lime-500"></div>
+<div class="space-y-3 relative z-10">
+<div class="flex items-center justify-between">
+<span class="text-2xl font-black brand-gradient-text tracking-tighter">01</span>
+<span class="px-2.5 py-0.5 rounded-full bg-teal-500/10 text-teal-700 text-[10px] font-bold uppercase tracking-wider">Most Common</span>
+</div>
+<h3 class="text-xl font-bold text-ink-950">Improve My Credit</h3>
+<p class="text-sm text-text-secondary leading-relaxed">
+                Understand what may be affecting your credit profile and explore a personalized strategy for addressing eligible issues and building stronger habits.
+              </p>
+</div>
+<div class="space-y-4 relative z-10">
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-teal-50 border border-teal-600/15 text-[11px] font-semibold text-teal-700">Credit Repair &amp; Consulting</span>
+<span class="px-2.5 py-1 rounded-full bg-teal-50 border border-teal-600/15 text-[11px] font-semibold text-teal-700">Bureau Updates</span>
+<span class="px-2.5 py-1 rounded-full bg-teal-50 border border-teal-600/15 text-[11px] font-semibold text-teal-700">History Assistance</span>
+</div>
+<a class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-teal-700 hover:text-green-700 pt-2" href="#solutions-architecture">
+<span>Explore Credit Guidance</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 02: Calm warm porcelain with hairline border -->
+<div class="p-8 rounded-card-lg bg-white border border-border-light shadow-sm hover:border-teal-500/50 hover:shadow-md transition-all flex flex-col justify-between space-y-6">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-2xl font-black text-text-muted/60 tracking-tighter">02</span>
+<span class="material-symbols-outlined text-text-muted">handshake</span>
+</div>
+<h3 class="text-xl font-bold text-ink-950">Resolve My Debt</h3>
+<p class="text-sm text-text-secondary leading-relaxed">
+                Review debt and collection challenges, understand what may be negotiable, and discuss the options that fit your situation.
+              </p>
+</div>
+<div class="space-y-4">
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-porcelain-100 text-[11px] font-semibold text-text-secondary">Debt Negotiation</span>
+<span class="px-2.5 py-1 rounded-full bg-porcelain-100 text-[11px] font-semibold text-text-secondary">Collection Accounts</span>
+<span class="px-2.5 py-1 rounded-full bg-porcelain-100 text-[11px] font-semibold text-text-secondary">Credit Counseling</span>
+</div>
+<a class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-teal-600 hover:text-green-600 pt-2" href="#solutions-architecture">
+<span>Explore Debt Options</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 03: Architectural offset -->
+<div class="p-8 rounded-card-lg bg-white border border-border-light shadow-sm hover:border-teal-500/50 hover:shadow-md transition-all flex flex-col justify-between space-y-6 transform md:translate-y-4">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-2xl font-black text-text-muted/60 tracking-tighter">03</span>
+<span class="material-symbols-outlined text-text-muted">shield</span>
+</div>
+<h3 class="text-xl font-bold text-ink-950">Protect &amp; Understand My Credit</h3>
+<p class="text-sm text-text-secondary leading-relaxed">
+                Get more clarity around your credit report, monitoring, fraud concerns, and the information that can affect your financial profile.
+              </p>
+</div>
+<div class="space-y-4">
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-porcelain-100 text-[11px] font-semibold text-text-secondary">Credit Monitoring &amp; Report</span>
+<span class="px-2.5 py-1 rounded-full bg-porcelain-100 text-[11px] font-semibold text-text-secondary">Fraud Alert Protection</span>
+<span class="px-2.5 py-1 rounded-full bg-porcelain-100 text-[11px] font-semibold text-text-secondary">Credit Education</span>
+</div>
+<a class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-teal-600 hover:text-green-600 pt-2" href="#solutions-architecture">
+<span>Explore Protection Options</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 04 -->
+<div class="p-8 rounded-card-lg bg-white border border-border-light shadow-sm hover:border-teal-500/50 hover:shadow-md transition-all flex flex-col justify-between space-y-6 transform md:translate-y-2">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-2xl font-black text-text-muted/60 tracking-tighter">04</span>
+<span class="material-symbols-outlined text-text-muted">flight_land</span>
+</div>
+<h3 class="text-xl font-bold text-ink-950">Build Credit in the U.S.</h3>
+<p class="text-sm text-text-secondary leading-relaxed">
+                Navigate the U.S. credit system with guidance designed for international investors and people establishing a U.S. credit profile.
+              </p>
+</div>
+<div class="space-y-4">
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-porcelain-100 text-[11px] font-semibold text-text-secondary">Foreign Investors</span>
+<span class="px-2.5 py-1 rounded-full bg-porcelain-100 text-[11px] font-semibold text-text-secondary">Credit History Guidance</span>
+<span class="px-2.5 py-1 rounded-full bg-porcelain-100 text-[11px] font-semibold text-text-secondary">Consultation Roadmap</span>
+</div>
+<a class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-teal-600 hover:text-green-600 pt-2" href="#solutions-architecture">
+<span>Explore U.S. Credit Guidance</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 06 — PERSONALIZED STRATEGY: EDITORIAL PROCESS WITH VERTICAL TRAJECTORY -->
+<section class="w-full bg-porcelain-50 py-20 lg:py-28" id="personalized-strategy">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="max-w-3xl mb-16 space-y-3">
+<span class="text-xs font-bold uppercase tracking-widest text-teal-600">A STRATEGY BUILT AROUND YOUR SITUATION</span>
+<h2 class="text-3xl sm:text-4xl font-bold text-ink-950 leading-tight">
+          Good financial guidance starts with understanding the full picture.
+        </h2>
+<p class="text-text-secondary text-sm leading-relaxed">
+          Credit and debt challenges rarely come from one isolated issue. InterCredit starts by understanding your goals, reviewing the situation, and identifying the options that are most relevant to you.
+        </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Left: Image detail with Macro Financial Document photo -->
+<div class="lg:col-span-5 relative">
+<div class="rounded-card-lg overflow-hidden shadow-xl border border-border-light bg-white aspect-[4/3]">
+<img alt="Close-up of a credit report analysis with calculator and pen" class="w-full h-full object-cover" decoding="async" height="1602" loading="lazy" src="./assets/credit-analysis.jpg" width="2400"/>
+</div>
+<div class="hidden sm:block absolute -bottom-6 -right-6 p-4 rounded-card-sm bg-white shadow-lg border border-border-light max-w-xs">
+<span class="text-[10px] font-bold text-teal-600 uppercase tracking-widest block mb-1">DOCUMENTED ANALYSIS</span>
+<p class="text-xs text-text-secondary">Every tradeline, balance ratio, and inquiry audited prior to drafting actions.</p>
+</div>
+</div>
+<!-- Right: 3 Procedural Steps with Fine Vertical Trajectory Line -->
+<div class="lg:col-span-7 relative pl-0 lg:pl-8">
+<!-- Vertical trajectory line -->
+<div class="hidden sm:block absolute left-14 top-6 bottom-6 w-0.5 bg-gradient-to-b from-teal-500 via-green-500 to-lime-500"></div>
+<div class="flex flex-col space-y-8">
+<div class="flex items-start gap-5 relative z-10">
+<div class="w-12 h-12 rounded-full bg-white border-2 border-teal-500 shadow-md flex items-center justify-center text-teal-700 font-extrabold text-sm flex-shrink-0">
+                01
+              </div>
+<div class="space-y-1 pt-1">
+<h3 class="text-lg font-bold text-ink-950">Review</h3>
+<p class="text-sm text-text-secondary leading-relaxed">
+                  We start with your goal, the context behind it, and the information that may be influencing your credit or debt situation across relevant reporting bureaus.
+                </p>
+</div>
+</div>
+<div class="flex items-start gap-5 relative z-10">
+<div class="w-12 h-12 rounded-full bg-white border-2 border-green-500 shadow-md flex items-center justify-center text-green-700 font-extrabold text-sm flex-shrink-0">
+                02
+              </div>
+<div class="space-y-1 pt-1">
+<h3 class="text-lg font-bold text-ink-950">Strategy</h3>
+<p class="text-sm text-text-secondary leading-relaxed">
+                  We identify the services or actions that may apply and explain how they fit together into an actionable, realistic plan.
+                </p>
+</div>
+</div>
+<div class="flex items-start gap-5 relative z-10">
+<div class="w-12 h-12 rounded-full bg-white border-2 border-lime-500 shadow-md flex items-center justify-center text-lime-700 font-extrabold text-sm flex-shrink-0">
+                03
+              </div>
+<div class="space-y-1 pt-1">
+<h3 class="text-lg font-bold text-ink-950">Guidance</h3>
+<p class="text-sm text-text-secondary leading-relaxed">
+                  You move forward knowing what the next step is, what to expect, and where InterCredit can support you with consistent progress reporting.
+                </p>
+</div>
+</div>
+<div class="p-4 rounded-btn bg-white border-l-4 border-l-teal-500 border border-border-light shadow-sm">
+<p class="text-xs font-semibold text-text-primary">
+                No generic package. No promise of a specific score. A clearer strategy based on your situation.
+              </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 07 — FINANCIAL JOURNEY: CONTINUOUS FLUID FINANCIAL TRAJECTORY -->
+<section class="w-full bg-white border-y border-border-light py-20 lg:py-28 relative overflow-hidden" id="financial-journey">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+<div class="text-center max-w-2xl mx-auto space-y-3">
+<span class="text-xs font-bold uppercase tracking-widest text-teal-600 flex items-center justify-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+          A CLEARER FINANCIAL PATH
+        </span>
+<h2 class="text-3xl sm:text-4xl font-bold text-ink-950">
+          Your next step depends on where you are today.
+        </h2>
+<p class="text-text-secondary text-sm">
+          Not every client follows the same route. Think of these five stages as a continuous trajectory of capabilities InterCredit can bring together around your needs.
+        </p>
+</div>
+<!-- Continuous Fluid Trajectory Desktop View -->
+<div class="relative hidden lg:block py-8">
+<!-- Flowing Background SVG Trajectory Line -->
+<svg class="absolute top-1/2 left-0 w-full -translate-y-8 h-16 pointer-events-none z-0" fill="none" viewbox="0 0 1200 64">
+<path d="M 60 32 C 200 32, 220 32, 340 32 C 460 32, 500 32, 620 32 C 740 32, 780 32, 900 32 C 1020 32, 1060 32, 1140 32" stroke="url(#trajectoryGrad)" stroke-linecap="round" stroke-width="4"></path>
+<defs>
+<lineargradient id="trajectoryGrad" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" stop-color="#0d9488"></stop>
+<stop offset="50%" stop-color="#22c55e"></stop>
+<stop offset="100%" stop-color="#84cc16"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="grid grid-cols-5 gap-6 relative z-10">
+<!-- Node 1 -->
+<div class="flex flex-col items-center text-center space-y-4">
+<div class="w-16 h-16 rounded-full bg-white border-4 border-teal-600 shadow-lg flex items-center justify-center text-teal-700 font-extrabold text-base">
+              01
+            </div>
+<div class="space-y-1.5">
+<span class="text-[10px] font-bold text-teal-600 uppercase tracking-wider block">Stage 01</span>
+<h3 class="font-bold text-base text-ink-950">Understand</h3>
+<p class="text-xs text-text-secondary leading-relaxed">
+                Review your goals, credit context, debt situation, and relevant information before deciding what to address.
+              </p>
+<span class="inline-block mt-2 px-2 py-0.5 rounded-full bg-mist-100 text-[10px] font-semibold text-text-muted">Assessment</span>
+</div>
+</div>
+<!-- Node 2 -->
+<div class="flex flex-col items-center text-center space-y-4">
+<div class="w-16 h-16 rounded-full bg-white border-4 border-teal-500 shadow-lg flex items-center justify-center text-teal-600 font-extrabold text-base">
+              02
+            </div>
+<div class="space-y-1.5">
+<span class="text-[10px] font-bold text-teal-600 uppercase tracking-wider block">Stage 02</span>
+<h3 class="font-bold text-base text-ink-950">Correct</h3>
+<p class="text-xs text-text-secondary leading-relaxed">
+                Identify eligible inaccurate, outdated, or inconsistent credit information that may need review or updating.
+              </p>
+<span class="inline-block mt-2 px-2 py-0.5 rounded-full bg-mist-100 text-[10px] font-semibold text-text-muted">Bureau Accuracy</span>
+</div>
+</div>
+<!-- Node 3 -->
+<div class="flex flex-col items-center text-center space-y-4">
+<div class="w-16 h-16 rounded-full bg-white border-4 border-green-500 shadow-lg flex items-center justify-center text-green-700 font-extrabold text-base">
+              03
+            </div>
+<div class="space-y-1.5">
+<span class="text-[10px] font-bold text-green-600 uppercase tracking-wider block">Stage 03</span>
+<h3 class="font-bold text-base text-ink-950">Resolve</h3>
+<p class="text-xs text-text-secondary leading-relaxed">
+                Explore appropriate options for eligible debt and collection challenges, including negotiation when applicable.
+              </p>
+<span class="inline-block mt-2 px-2 py-0.5 rounded-full bg-mist-100 text-[10px] font-semibold text-text-muted">Debt Negotiation</span>
+</div>
+</div>
+<!-- Node 4 -->
+<div class="flex flex-col items-center text-center space-y-4">
+<div class="w-16 h-16 rounded-full bg-white border-4 border-green-600 shadow-lg flex items-center justify-center text-green-800 font-extrabold text-base">
+              04
+            </div>
+<div class="space-y-1.5">
+<span class="text-[10px] font-bold text-green-600 uppercase tracking-wider block">Stage 04</span>
+<h3 class="font-bold text-base text-ink-950">Protect</h3>
+<p class="text-xs text-text-secondary leading-relaxed">
+                Use monitoring, fraud-related support, education, and better habits to reduce uncertainty around your profile.
+              </p>
+<span class="inline-block mt-2 px-2 py-0.5 rounded-full bg-mist-100 text-[10px] font-semibold text-text-muted">Active Monitoring</span>
+</div>
+</div>
+<!-- Node 5 -->
+<div class="flex flex-col items-center text-center space-y-4">
+<div class="w-16 h-16 rounded-full bg-ink-950 border-4 border-lime-500 shadow-xl flex items-center justify-center text-lime-400 font-extrabold text-base">
+              05
+            </div>
+<div class="space-y-1.5">
+<span class="text-[10px] font-bold text-lime-600 uppercase tracking-wider block">Stage 05</span>
+<h3 class="font-bold text-base text-ink-950">Grow</h3>
+<p class="text-xs text-text-secondary leading-relaxed">
+                Build stronger credit history and financial habits that can support future financial goals and financing.
+              </p>
+<span class="inline-block mt-2 px-2 py-0.5 rounded-full bg-ink-950 text-white text-[10px] font-semibold">Long-Term Habit</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Mobile/Tablet Vertical Trajectory Breakdown -->
+<div class="lg:hidden space-y-6 relative pl-6 border-l-2 border-teal-500">
+<div class="relative space-y-1">
+<span class="absolute -left-[31px] top-0 w-6 h-6 rounded-full bg-teal-600 text-white text-xs flex items-center justify-center font-bold">1</span>
+<h3 class="font-bold text-sm text-ink-950">01. Understand</h3>
+<p class="text-xs text-text-secondary">Review goals, context, and credit reports before deciding what to address.</p>
+</div>
+<div class="relative space-y-1">
+<span class="absolute -left-[31px] top-0 w-6 h-6 rounded-full bg-teal-500 text-white text-xs flex items-center justify-center font-bold">2</span>
+<h3 class="font-bold text-sm text-ink-950">02. Correct</h3>
+<p class="text-xs text-text-secondary">Identify eligible inaccurate or outdated records needing review.</p>
+</div>
+<div class="relative space-y-1">
+<span class="absolute -left-[31px] top-0 w-6 h-6 rounded-full bg-green-500 text-white text-xs flex items-center justify-center font-bold">3</span>
+<h3 class="font-bold text-sm text-ink-950">03. Resolve</h3>
+<p class="text-xs text-text-secondary">Explore options for eligible debt and collection account negotiation.</p>
+</div>
+<div class="relative space-y-1">
+<span class="absolute -left-[31px] top-0 w-6 h-6 rounded-full bg-green-600 text-white text-xs flex items-center justify-center font-bold">4</span>
+<h3 class="font-bold text-sm text-ink-950">04. Protect</h3>
+<p class="text-xs text-text-secondary">Active monitoring, fraud alert tools, and financial literacy habits.</p>
+</div>
+<div class="relative space-y-1">
+<span class="absolute -left-[31px] top-0 w-6 h-6 rounded-full bg-lime-600 text-white text-xs flex items-center justify-center font-bold">5</span>
+<h3 class="font-bold text-sm text-ink-950">05. Grow</h3>
+<p class="text-xs text-text-secondary">Build stronger credit history to support future financing needs.</p>
+</div>
+</div>
+<p class="text-center text-xs text-text-muted max-w-xl mx-auto">
+        Your path may begin at any stage. Scope and outcomes are tailored to your specific situation.
+      </p>
+</div>
+</section>
+<!-- 08 — AUTHORITY PROOF: UNIVISION MEDIA RESET -->
+<section class="w-full bg-ink-950 text-white py-20 lg:py-28 relative overflow-hidden bg-ledger-dark">
+<!-- Soft atmospheric teal radial glow -->
+<div class="absolute left-1/3 top-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-teal-500/10 blur-[120px] pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
+<div class="max-w-2xl space-y-3">
+<span class="text-xs font-bold uppercase tracking-widest text-green-400">EXPERIENCE YOU CAN SEE</span>
+<h2 class="text-3xl sm:text-4xl font-bold text-white">
+          Credit guidance should be backed by more than promises.
+        </h2>
+<p class="text-sm text-white/70 leading-relaxed">
+          InterCredit combines hands-on client work with public financial education and a personalized approach to credit and debt challenges.
+        </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Broadcast Media Frame with Univision Despierta America Still -->
+<div class="lg:col-span-7">
+<div class="rounded-card-lg overflow-hidden bg-ink-900 border border-border-dark shadow-2xl relative">
+<div class="aspect-[4/3] sm:aspect-video w-full relative">
+<img alt="Jessica Sotolongo appearing on Univision Despierta América" class="w-full h-full object-cover" decoding="async" height="1500" loading="lazy" src="./assets/univision-feature.jpg" width="2000"/>
+<div class="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-ink-950/85 backdrop-blur-md text-white text-xs font-semibold">
+<span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+<span>FEATURED ON UNIVISION / DESPIERTA AMÉRICA</span>
+</div>
+</div>
+<div class="p-6 space-y-2">
+<h3 class="font-bold text-base text-white">
+                Jessica Sotolongo has shared credit guidance with national Spanish-language audiences.
+              </h3>
+<p class="text-xs text-white/70 leading-relaxed">
+                Univision has featured Jessica in segments covering credit myths, credit reports, rebuilding credit, and financial decisions for families and businesses.
+              </p>
+</div>
+</div>
+</div>
+<!-- Horizontal Supporting Evidence Strip (No unverified claims) -->
+<div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="p-5 rounded-card bg-white/5 border border-border-dark space-y-1.5 hover:border-teal-500/40 transition-colors">
+<span class="text-[10px] font-bold text-teal-400 uppercase tracking-widest">RECORD</span>
+<h3 class="font-bold text-sm text-white">Advisory Track Record</h3>
+<p class="text-xs text-white/60">Years helping clients navigate complex credit and debt challenges.</p>
+</div>
+<div class="p-5 rounded-card bg-white/5 border border-border-dark space-y-1.5 hover:border-green-500/40 transition-colors">
+<span class="text-[10px] font-bold text-green-400 uppercase tracking-widest">EDUCATION</span>
+<h3 class="font-bold text-sm text-white">Public Financial Education</h3>
+<p class="text-xs text-white/60">Dedicated to transparent, broadcast-quality financial consumer advocacy.</p>
+</div>
+<div class="p-5 rounded-card bg-white/5 border border-border-dark space-y-1.5 hover:border-teal-500/40 transition-colors">
+<span class="text-[10px] font-bold text-teal-400 uppercase tracking-widest">PRESENCE</span>
+<h3 class="font-bold text-sm text-white">Miami Headquarters</h3>
+<p class="text-xs text-white/60">South Florida office presence with nationwide remote client capacity.</p>
+</div>
+<div class="p-5 rounded-card bg-white/5 border border-border-dark space-y-1.5 hover:border-lime-400/40 transition-colors">
+<span class="text-[10px] font-bold text-lime-400 uppercase tracking-widest">STANDARDS</span>
+<h3 class="font-bold text-sm text-white">CRIA &amp; FCRA Alignment</h3>
+<p class="text-xs text-white/60">Strict compliance with consumer credit protection statutes and ethics.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 09 — SOLUTIONS ARCHITECTURE: TWO-COLUMN CHAPTER LAYOUT (REPLACING 4-CARD REPETITION) -->
+<section class="w-full bg-white py-20 lg:py-28 border-b border-border-light" id="solutions-architecture">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+<div class="max-w-3xl space-y-3">
+<span class="text-xs font-bold uppercase tracking-widest text-teal-600 flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+          SOLUTIONS DIRECTORY
+        </span>
+<h2 class="text-3xl sm:text-4xl font-bold text-ink-950">
+          A broader set of solutions, organized around what you actually need.
+        </h2>
+<p class="text-sm text-text-secondary">
+          Explore all 9 core services across our 4 primary chapters. Review eligible scenario scope and discuss the appropriate pathway during your consultation.
+        </p>
+</div>
+<!-- 2-Column Chapter Architecture -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+<!-- Left: Sticky Vertical Goal Tabs -->
+<div class="lg:col-span-4 lg:sticky lg:top-28 space-y-2">
+<a class="flex items-center justify-between p-4 rounded-card bg-mist-100 border-l-4 border-l-teal-500 shadow-sm text-ink-950 font-bold text-sm" href="#sol-chapter-1">
+<span>01 // Improve My Credit</span>
+<span class="material-symbols-outlined text-[18px] text-teal-600">arrow_forward</span>
+</a>
+<a class="flex items-center justify-between p-4 rounded-card bg-porcelain-50 hover:bg-mist-100/60 border border-border-light text-text-secondary font-semibold text-sm transition-colors" href="#sol-chapter-2">
+<span>02 // Resolve My Debt</span>
+<span class="material-symbols-outlined text-[18px] text-text-muted">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-4 rounded-card bg-porcelain-50 hover:bg-mist-100/60 border border-border-light text-text-secondary font-semibold text-sm transition-colors" href="#sol-chapter-3">
+<span>03 // Protect &amp; Understand</span>
+<span class="material-symbols-outlined text-[18px] text-text-muted">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-4 rounded-card bg-porcelain-50 hover:bg-mist-100/60 border border-border-light text-text-secondary font-semibold text-sm transition-colors" href="#sol-chapter-4">
+<span>04 // Build Credit in the U.S.</span>
+<span class="material-symbols-outlined text-[18px] text-text-muted">chevron_right</span>
+</a>
+<div class="pt-4 p-4 rounded-card bg-paper-100/60 text-xs text-text-secondary">
+            Need guidance identifying your chapter? Our advisors will map your profile during the 20-minute introductory call.
+          </div>
+</div>
+<!-- Right: Detailed Editorial Service Rows (9 Core Services) -->
+<div class="lg:col-span-8 space-y-12">
+<!-- Chapter 1 Rows -->
+<div class="space-y-4 pt-2" id="sol-chapter-1">
+<div class="flex items-center gap-2 pb-2 border-b border-border-light">
+<span class="text-xs font-bold uppercase tracking-wider text-teal-600">Chapter 01</span>
+<h3 class="font-bold text-lg text-ink-950">Improve My Credit Services</h3>
+</div>
+<div class="p-6 rounded-card bg-porcelain-50 border border-border-light space-y-3 hover:shadow-sm transition-shadow">
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-base text-ink-950">Credit Repair &amp; Consulting</h3>
+<span class="px-2.5 py-0.5 rounded-full bg-mist-100 text-teal-700 text-xs font-semibold">Service 01</span>
+</div>
+<p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
+                Comprehensive audit of credit bureau files across Experian, Equifax, and TransUnion. We develop a personalized strategy targeting inaccurate, incomplete, or unverifiable tradelines in accordance with federal consumer reporting standards.
+              </p>
+<div class="flex items-center justify-between pt-2 border-t border-border-light text-xs">
+<span class="text-text-muted">Eligible scenarios: Disputed charge-offs, late marks, duplicate files</span>
+<a class="font-bold text-teal-600 hover:text-green-600 flex items-center gap-1" href="#consultation-booking">Consult <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+</div>
+</div>
+<div class="p-6 rounded-card bg-porcelain-50 border border-border-light space-y-3 hover:shadow-sm transition-shadow">
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-base text-ink-950">Bureau Information Updates</h3>
+<span class="px-2.5 py-0.5 rounded-full bg-mist-100 text-teal-700 text-xs font-semibold">Service 02</span>
+</div>
+<p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
+                Direct assistance reconciling outdated personal records, mismatched names, obsolete addresses, and misattributed demographic items that cause file fragmentation and underwriting friction.
+              </p>
+<div class="flex items-center justify-between pt-2 border-t border-border-light text-xs">
+<span class="text-text-muted">Eligible scenarios: Name misspellings, multiple residential histories</span>
+<a class="font-bold text-teal-600 hover:text-green-600 flex items-center gap-1" href="#consultation-booking">Consult <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+</div>
+</div>
+<div class="p-6 rounded-card bg-porcelain-50 border border-border-light space-y-3 hover:shadow-sm transition-shadow">
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-base text-ink-950">Credit History Assistance</h3>
+<span class="px-2.5 py-0.5 rounded-full bg-mist-100 text-teal-700 text-xs font-semibold">Service 03</span>
+</div>
+<p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
+                Strategic recommendations on tradeline seasoning, authorized user structures, and utilization pacing to foster positive credit depth over sustainable reporting cycles.
+              </p>
+<div class="flex items-center justify-between pt-2 border-t border-border-light text-xs">
+<span class="text-text-muted">Eligible scenarios: Thin files, post-bankruptcy rebuild, new borrower files</span>
+<a class="font-bold text-teal-600 hover:text-green-600 flex items-center gap-1" href="#consultation-booking">Consult <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+</div>
+</div>
+</div>
+<!-- Chapter 2 Rows -->
+<div class="space-y-4 pt-4" id="sol-chapter-2">
+<div class="flex items-center gap-2 pb-2 border-b border-border-light">
+<span class="text-xs font-bold uppercase tracking-wider text-teal-600">Chapter 02</span>
+<h3 class="font-bold text-lg text-ink-950">Resolve My Debt Services</h3>
+</div>
+<div class="p-6 rounded-card bg-porcelain-50 border border-border-light space-y-3 hover:shadow-sm transition-shadow">
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-base text-ink-950">Debt Negotiation &amp; Settlement Pathways</h3>
+<span class="px-2.5 py-0.5 rounded-full bg-mist-100 text-teal-700 text-xs font-semibold">Service 04</span>
+</div>
+<p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
+                Objective review of unsecured debt balances with creditors. We assess hardship viability, statute of limitations windows, and formal settlement structures to reduce balance pressures.
+              </p>
+<div class="flex items-center justify-between pt-2 border-t border-border-light text-xs">
+<span class="text-text-muted">Eligible scenarios: Delinquent credit cards, medical accounts, personal balances</span>
+<a class="font-bold text-teal-600 hover:text-green-600 flex items-center gap-1" href="#consultation-booking">Consult <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+</div>
+</div>
+<div class="p-6 rounded-card bg-porcelain-50 border border-border-light space-y-3 hover:shadow-sm transition-shadow">
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-base text-ink-950">Collection Account Negotiation</h3>
+<span class="px-2.5 py-0.5 rounded-full bg-mist-100 text-teal-700 text-xs font-semibold">Service 05</span>
+</div>
+<p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
+                Systematic debt validation and settlement with third-party collection agencies, ensuring proper satisfaction reporting and documentation following finalized agreements.
+              </p>
+<div class="flex items-center justify-between pt-2 border-t border-border-light text-xs">
+<span class="text-text-muted">Eligible scenarios: Third-party collection agency demands, assigned debt</span>
+<a class="font-bold text-teal-600 hover:text-green-600 flex items-center gap-1" href="#consultation-booking">Consult <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+</div>
+</div>
+<div class="p-6 rounded-card bg-porcelain-50 border border-border-light space-y-3 hover:shadow-sm transition-shadow">
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-base text-ink-950">Corporate Credit Counseling</h3>
+<span class="px-2.5 py-0.5 rounded-full bg-mist-100 text-teal-700 text-xs font-semibold">Service 06</span>
+</div>
+<p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
+                Advisory guidance for small business owners separating personal guarantees from commercial tradelines and structuring clean vendor credit lines.
+              </p>
+<div class="flex items-center justify-between pt-2 border-t border-border-light text-xs">
+<span class="text-text-muted">Eligible scenarios: Commercial entities, LLC restructuring, vendor terms</span>
+<a class="font-bold text-teal-600 hover:text-green-600 flex items-center gap-1" href="#consultation-booking">Consult <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+</div>
+</div>
+</div>
+<!-- Chapter 3 & 4 Rows -->
+<div class="space-y-4 pt-4" id="sol-chapter-3">
+<div class="flex items-center gap-2 pb-2 border-b border-border-light">
+<span class="text-xs font-bold uppercase tracking-wider text-teal-600">Chapter 03 &amp; 04</span>
+<h3 class="font-bold text-lg text-ink-950">Protection &amp; Global Investor Services</h3>
+</div>
+<div class="p-6 rounded-card bg-porcelain-50 border border-border-light space-y-3 hover:shadow-sm transition-shadow">
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-base text-ink-950">Credit Monitoring &amp; Fraud Alert Protection</h3>
+<span class="px-2.5 py-0.5 rounded-full bg-mist-100 text-teal-700 text-xs font-semibold">Service 07 &amp; 08</span>
+</div>
+<p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
+                Continuous surveillance tools to track inquiry volume, sudden balance spikes, and suspected identity theft. Assistance filing formal FTC affidavits and security freezes when necessary.
+              </p>
+<div class="flex items-center justify-between pt-2 border-t border-border-light text-xs">
+<span class="text-text-muted">Eligible scenarios: Suspicious inquiries, compromised personal information</span>
+<a class="font-bold text-teal-600 hover:text-green-600 flex items-center gap-1" href="#consultation-booking">Consult <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+</div>
+</div>
+<div class="p-6 rounded-card bg-porcelain-50 border border-border-light space-y-3 hover:shadow-sm transition-shadow" id="sol-chapter-4">
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-base text-ink-950">Credit Guidance for Foreign Investors</h3>
+<span class="px-2.5 py-0.5 rounded-full bg-mist-100 text-teal-700 text-xs font-semibold">Service 09</span>
+</div>
+<p class="text-xs sm:text-sm text-text-secondary leading-relaxed">
+                Specialized architecture for international investors and foreign nationals relocating to the United States. We create a step-by-step roadmap to establish ITIN/SSN creditworthiness, secure commercial financing, and navigate domestic bank underwriting.
+              </p>
+<div class="flex items-center justify-between pt-2 border-t border-border-light text-xs">
+<span class="text-text-muted">Eligible scenarios: International real estate buyers, visa holders, cross-border businesses</span>
+<a class="font-bold text-teal-600 hover:text-green-600 flex items-center gap-1" href="#consultation-booking">Consult <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 10 — FOUNDER & HUMAN AUTHORITY -->
+<section class="w-full bg-paper-100 py-20 lg:py-28" id="founder-section">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- 5-col portrait frame with architectural caption -->
+<div class="lg:col-span-5">
+<div class="relative">
+<div class="rounded-hero overflow-hidden shadow-2xl bg-white border border-border-light aspect-[3/4]">
+<img alt="Jessica Sotolongo, Founder of InterCredit Solution" class="w-full h-full object-cover" decoding="async" height="1285" loading="lazy" src="./assets/jessica-sotolongo.jpg" width="1285"/>
+</div>
+<div class="mt-3 text-center sm:text-left">
+<p class="text-xs font-semibold text-text-primary">Jessica Sotolongo, Founder &amp; CEO</p>
+<p class="text-[11px] text-text-muted">Miami Advisory Office • Executive Session</p>
+</div>
+</div>
+</div>
+<!-- 7-col editorial feature -->
+<div class="lg:col-span-7 flex flex-col space-y-6">
+<div class="space-y-2">
+<span class="text-xs font-bold uppercase tracking-widest text-teal-600 flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+              LEADERSHIP &amp; PHILOSOPHY
+            </span>
+<h2 class="text-3xl sm:text-4xl font-bold text-ink-950">
+              Financial guidance is better when you know who is behind it.
+            </h2>
+</div>
+<div class="p-6 rounded-card bg-white border border-border-light shadow-sm">
+<p class="font-serif-italic text-lg sm:text-xl text-ink-950 leading-relaxed">
+              The first step is understanding what is actually holding you back — then building a strategy around your situation, not someone else’s.
+            </p>
+<p class="font-bold text-sm text-ink-950 mt-4">Jessica Sotolongo</p>
+<p class="text-xs text-text-muted">Founder &amp; CEO, InterCredit Solution</p>
+</div>
+<div class="text-sm text-text-secondary space-y-4 leading-relaxed">
+<p>
+              Jessica leads InterCredit with a focus on helping clients better understand credit, debt, and the decisions that affect their financial profile. Her approach combines personalized guidance with practical financial education.
+            </p>
+<p>
+              Having shared credit guidance with national audiences on Univision’s Despierta América, Jessica emphasizes that legitimate credit progress comes from understanding federal consumer rights, accurate reporting, and disciplined financial planning.
+            </p>
+</div>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="px-3 py-1.5 rounded-full bg-white border border-border-light text-xs font-semibold text-text-primary shadow-sm flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-teal-500"></span>
+              Founder &amp; CEO
+            </span>
+<span class="px-3 py-1.5 rounded-full bg-white border border-border-light text-xs font-semibold text-text-primary shadow-sm flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+              Credit &amp; Debt Guidance
+            </span>
+<span class="px-3 py-1.5 rounded-full bg-white border border-border-light text-xs font-semibold text-text-primary shadow-sm flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-teal-500"></span>
+              Featured on Univision
+            </span>
+<span class="px-3 py-1.5 rounded-full bg-white border border-border-light text-xs font-semibold text-text-primary shadow-sm flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+              Miami-Based Team
+            </span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 11 — CLIENT PROOF & DOCUMENTARY STORIES -->
+<section class="w-full bg-white py-20 lg:py-28 border-b border-border-light" id="client-proof">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+<div class="max-w-2xl space-y-3">
+<span class="text-xs font-bold uppercase tracking-widest text-teal-600 flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+          REAL EXPERIENCES
+        </span>
+<h2 class="text-3xl sm:text-4xl font-bold text-ink-950">
+          See what clients say about working with InterCredit.
+        </h2>
+<p class="text-sm text-text-secondary">
+          The most useful proof is not an empty guarantee. It is hearing how real clients describe the experience, communication, and support they received.
+        </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+<!-- Left: Featured Client Video Story Frame -->
+<div class="lg:col-span-7 rounded-hero overflow-hidden bg-ink-950 text-white flex flex-col justify-between shadow-2xl border border-border-dark">
+<div class="relative aspect-video w-full" id="video-story-frame">
+<video aria-describedby="client-story-description" aria-label="Featured InterCredit client story" class="w-full h-full object-cover" id="client-story-video" muted="" playsinline="" poster="./assets/client-story-poster.jpg" preload="metadata">
+<source src="./assets/client-story.webm" type="video/webm"/>
+<source src="./assets/client-story.mp4" type="video/mp4"/>
+<track default="" kind="captions" label="English" src="./assets/client-story-captions.vtt" srclang="en"/>
+</video>
+<p class="sr-only" id="client-story-description">Silent client story video; no spoken audio is present.</p>
+<div class="video-story-overlay absolute inset-0 bg-ink-950/25 backdrop-blur-[1px] flex items-center justify-center">
+<button aria-label="Play featured client story" class="w-16 h-16 rounded-full bg-white text-ink-950 flex items-center justify-center shadow-2xl cursor-pointer hover:scale-105 transition-transform focus:outline-none focus:ring-4 focus:ring-teal-400/60" id="client-story-play" type="button">
+<span aria-hidden="true" class="material-symbols-outlined text-[32px] ml-1 text-teal-600">play_arrow</span>
+</button>
+</div>
+<div class="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-ink-950/80 text-white text-xs font-semibold">
+              DOCUMENTARY STORY
+            </div>
+</div>
+<div class="p-8 space-y-3">
+<p class="font-serif-italic text-lg sm:text-xl text-white/95 leading-relaxed">
+              “I finally have peace of mind after years of struggle with overdue balances and unclear credit reports.”
+            </p>
+<p class="text-xs font-bold tracking-wider uppercase text-green-400">
+              Elena R. • Debt Resolution &amp; Credit Rebuilding Client
+            </p>
+</div>
+</div>
+<!-- Right: Genuine Client Testimonial Cards (No fake stars) -->
+<div class="lg:col-span-5 flex flex-col justify-between gap-6">
+<div class="p-8 rounded-card-lg bg-porcelain-50 border border-border-light shadow-sm flex-1 flex flex-col justify-between space-y-4">
+<div class="space-y-3">
+<div class="flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded bg-mist-100 text-teal-700 text-[10px] font-bold uppercase tracking-wider">Verified Client Feedback</span>
+</div>
+<p class="text-sm text-text-secondary italic leading-relaxed">
+                “What impressed me most was that they didn't try to push an aggressive one-size-fits-all plan. They sat with me, reviewed each collection account, and explained what could realistically be negotiated.”
+              </p>
+</div>
+<div class="pt-2 border-t border-border-light">
+<p class="font-bold text-sm text-ink-950">Carlos M.</p>
+<p class="text-xs text-text-muted">Debt Negotiation &amp; Credit Counseling</p>
+</div>
+</div>
+<div class="p-8 rounded-card-lg bg-porcelain-50 border border-border-light shadow-sm flex-1 flex flex-col justify-between space-y-4">
+<div class="space-y-3">
+<div class="flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded bg-mist-100 text-teal-700 text-[10px] font-bold uppercase tracking-wider">Verified Client Feedback</span>
+</div>
+<p class="text-sm text-text-secondary italic leading-relaxed">
+                “Moving from Latin America to Florida, establishing credit seemed like an impossible puzzle. InterCredit designed an orderly roadmap for our family's commercial and personal profile.”
+              </p>
+</div>
+<div class="pt-2 border-t border-border-light">
+<p class="font-bold text-sm text-ink-950">Diego &amp; Valentina S.</p>
+<p class="text-xs text-text-muted">Credit for Foreign Investors</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 12 — CONSULTATION EXPECTATIONS & FAQ -->
+<section class="w-full bg-paper-100 py-20 lg:py-28">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+<div class="max-w-2xl space-y-3">
+<span class="text-xs font-bold uppercase tracking-widest text-teal-600 flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+          WHAT TO EXPECT
+        </span>
+<h2 class="text-3xl sm:text-4xl font-bold text-ink-950">
+          A 20-minute conversation can help clarify your next move.
+        </h2>
+<p class="text-sm text-text-secondary">
+          You do not need to arrive knowing which service you need. Start with what you are trying to solve.
+        </p>
+</div>
+<!-- Quiet 3-Step Timeline with trajectory connectors -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+<div class="p-8 rounded-card bg-white border border-border-light shadow-sm space-y-3 relative">
+<div class="w-10 h-10 rounded-btn bg-mist-100 flex items-center justify-center font-bold text-teal-700 text-sm">
+            01
+          </div>
+<h3 class="font-bold text-base text-ink-950">Tell us your goal</h3>
+<p class="text-xs text-text-secondary leading-relaxed">
+            Share what is happening, what you are concerned about, and what you would like to improve or understand.
+          </p>
+</div>
+<div class="p-8 rounded-card bg-white border border-border-light shadow-sm space-y-3 relative">
+<div class="w-10 h-10 rounded-btn bg-mist-100 flex items-center justify-center font-bold text-teal-700 text-sm">
+            02
+          </div>
+<h3 class="font-bold text-base text-ink-950">Review the situation</h3>
+<p class="text-xs text-text-secondary leading-relaxed">
+            An InterCredit advisor reviews the relevant context and asks the questions needed to understand your case.
+          </p>
+</div>
+<div class="p-8 rounded-card bg-white border border-border-light shadow-sm space-y-3 relative">
+<div class="w-10 h-10 rounded-btn bg-mist-100 flex items-center justify-center font-bold text-teal-700 text-sm">
+            03
+          </div>
+<h3 class="font-bold text-base text-ink-950">Understand your options</h3>
+<p class="text-xs text-text-secondary leading-relaxed">
+            You leave with a clearer understanding of the possible next steps and where InterCredit may be able to help.
+          </p>
+</div>
+</div>
+<p class="text-xs text-text-muted">
+        *Exact recommendations, timing, fees, and service scope depend on your individual situation.
+      </p>
+</div>
+</section>
+<!-- 13 — EDITORIAL FAQ WITH GRADIENT ACTIVE ACCENTS -->
+<section class="w-full bg-white py-20 lg:py-28 border-t border-border-light" id="faq">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<div class="lg:col-span-4 space-y-4 lg:sticky lg:top-28">
+<span class="text-xs font-bold uppercase tracking-widest text-teal-600 flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+            CLARITY BEFORE COMMITMENT
+          </span>
+<h2 class="text-3xl sm:text-4xl font-bold text-ink-950">
+            Frequently Asked Questions
+          </h2>
+<p class="text-sm text-text-secondary leading-relaxed">
+            Have questions about working with InterCredit? We believe in absolute transparency before you decide on any next step.
+          </p>
+<a class="inline-flex items-center gap-1.5 font-bold text-xs uppercase tracking-wider text-teal-600 hover:text-green-600" href="#consultation-booking">
+<span>Speak with an Advisor</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<!-- Right Accordions with Gradient Indicators -->
+<div class="lg:col-span-8 space-y-4">
+<details class="group p-6 rounded-card bg-porcelain-50 border border-border-light open:bg-white open:border-l-4 open:border-l-teal-500 transition-all" open="">
+<summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-ink-950 list-none">
+<span>What happens during the initial consultation?</span>
+<span class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<p class="mt-3 text-xs text-text-secondary leading-relaxed">
+              We review your situation, discuss your goals, and explain the possible next steps that may apply. The purpose is to help you understand the process before deciding how to move forward.
+            </p>
+</details>
+<details class="group p-6 rounded-card bg-porcelain-50 border border-border-light open:bg-white open:border-l-4 open:border-l-teal-500 transition-all">
+<summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-ink-950 list-none">
+<span>How long does it take to see results?</span>
+<span class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<p class="mt-3 text-xs text-text-secondary leading-relaxed">
+              Timelines vary depending on the service, complexity of the situation, third parties involved, and other individual factors. InterCredit does not promise a specific credit-score increase or fixed timeline.
+            </p>
+</details>
+<details class="group p-6 rounded-card bg-porcelain-50 border border-border-light open:bg-white open:border-l-4 open:border-l-teal-500 transition-all">
+<summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-ink-950 list-none">
+<span>How much do your services cost?</span>
+<span class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<p class="mt-3 text-xs text-text-secondary leading-relaxed">
+              Fees vary depending on the service and complexity of the situation. All costs are explained thoroughly before you make any commitment to a service.
+            </p>
+</details>
+<details class="group p-6 rounded-card bg-porcelain-50 border border-border-light open:bg-white open:border-l-4 open:border-l-teal-500 transition-all">
+<summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-ink-950 list-none">
+<span>Do you offer payment plans?</span>
+<span class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<p class="mt-3 text-xs text-text-secondary leading-relaxed">
+              Payment plan options may be available depending on the service program. You can confirm current terms and eligibility directly with an advisor during your initial consultation.
+            </p>
+</details>
+<details class="group p-6 rounded-card bg-porcelain-50 border border-border-light open:bg-white open:border-l-4 open:border-l-teal-500 transition-all">
+<summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-ink-950 list-none">
+<span>Do I need to know which service I need before booking?</span>
+<span class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<p class="mt-3 text-xs text-text-secondary leading-relaxed">
+              No. Start with your goal and situation. The 20-minute consultation is specifically designed to help clarify which options are relevant.
+            </p>
+</details>
+<details class="group p-6 rounded-card bg-porcelain-50 border border-border-light open:bg-white open:border-l-4 open:border-l-teal-500 transition-all">
+<summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-ink-950 list-none">
+<span>Can InterCredit guarantee that my credit score will increase?</span>
+<span class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<p class="mt-3 text-xs text-text-secondary leading-relaxed">
+              No specific score increase, approval, deletion, settlement, or timeline should ever be guaranteed. Results depend on the facts of the individual case and other factors outside InterCredit's control.
+            </p>
+</details>
+<details class="group p-6 rounded-card bg-porcelain-50 border border-border-light open:bg-white open:border-l-4 open:border-l-teal-500 transition-all">
+<summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-ink-950 list-none">
+<span>Can InterCredit help foreign investors establish U.S. credit?</span>
+<span class="material-symbols-outlined text-text-muted group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<p class="mt-3 text-xs text-text-secondary leading-relaxed">
+              Yes. InterCredit offers specialized guidance specifically for international investors seeking assistance with establishing and structuring a U.S. credit profile.
+            </p>
+</details>
+</div>
+</div>
+</div>
+</section>
+<!-- 14 — FINAL CONSULTATION CTA WITH ENERGY LINE -->
+<section class="w-full bg-ink-950 text-white py-20 lg:py-28 relative overflow-hidden bg-ledger-dark" id="consultation-booking">
+<!-- Brand Gradient Energy Trace Line -->
+<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 via-green-500 to-lime-500"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<div class="max-w-3xl space-y-6">
+<span class="text-xs font-bold uppercase tracking-widest text-green-400">YOUR NEXT STEP DOES NOT HAVE TO BE COMPLICATED</span>
+<h2 class="text-3xl sm:text-5xl font-bold text-white leading-tight">
+          Start with a conversation about where you are and what comes next.
+        </h2>
+<p class="text-sm sm:text-base text-white/70 leading-relaxed max-w-2xl">
+          You do not need to diagnose your own credit situation or choose a service before you call. Tell us your goal, ask your questions, and understand the options that may fit your situation.
+        </p>
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
+<a class="brand-gradient-btn inline-flex items-center justify-center px-8 py-4 rounded-btn text-white font-bold text-sm tracking-wider uppercase shadow-xl" href="#">
+            Book a 20-Minute Consultation
+          </a>
+<a class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-btn bg-white/10 hover:bg-white/20 text-white font-bold text-sm border border-border-dark transition-colors" href="tel:7862205838">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span>Call (786) 220-5838</span>
+</a>
+</div>
+<p class="text-xs text-white/50 pt-2">
+          Personalized guidance. Clear expectations. No guaranteed-score promises.
+        </p>
+</div>
+</div>
+</section>
+</main>
+<!-- 15 — INSTITUTIONAL FOOTER WITH AUTHENTIC LOGO -->
+<footer class="w-full bg-ink-900 text-white/80 border-t border-border-dark pt-16 pb-12 text-xs">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-border-dark">
+<!-- Col 1: Authentic Brand Emblem & Contact -->
+<div class="lg:col-span-4 space-y-4">
+<div class="flex items-center gap-2">
+<div class="h-10 bg-white/95 rounded-lg p-1.5 flex items-center">
+<img alt="InterCredit Solution" class="site-logo" height="159" loading="lazy" src="./assets/intercredit-logo.svg" width="226"/>
+            </div>
+</div>
+<p class="text-white/60 leading-relaxed max-w-sm">
+            Personalized credit and financial guidance for people who want a clearer path through credit, debt, protection, and U.S. credit-building decisions.
+          </p>
+<div class="space-y-1.5 text-white/70 pt-2">
+<p>13590 SW 134th Ave, Suite 203, Miami, FL 33186</p>
+<p class="text-white font-bold">(786) 220-5838 • 1-888-224-2076</p>
+<p>intercreditsolutions@gmail.com</p>
+<p class="text-[11px] text-white/50">Hours: Monday–Friday, 9:00 AM–5:00 PM EST</p>
+</div>
+</div>
+<!-- Col 2: Solutions -->
+<div class="lg:col-span-3 space-y-3">
+<h3 class="font-bold text-xs uppercase tracking-widest text-green-400">Solutions</h3>
+<ul class="space-y-2">
+<li><a class="hover:text-white transition-colors" href="#goal-selector">Improve My Credit</a></li>
+<li><a class="hover:text-white transition-colors" href="#goal-selector">Resolve My Debt</a></li>
+<li><a class="hover:text-white transition-colors" href="#goal-selector">Protect &amp; Understand My Credit</a></li>
+<li><a class="hover:text-white transition-colors" href="#goal-selector">Build Credit in the U.S.</a></li>
+</ul>
+</div>
+<!-- Col 3: Company -->
+<div class="lg:col-span-2 space-y-3">
+<h3 class="font-bold text-xs uppercase tracking-widest text-green-400">Company</h3>
+<ul class="space-y-2">
+<li><a class="hover:text-white transition-colors" href="#founder-section">About &amp; Leadership</a></li>
+<li><a class="hover:text-white transition-colors" href="#client-proof">Client Reviews</a></li>
+<li><a class="hover:text-white transition-colors" href="#founder-section">Media Appearances</a></li>
+<li><a class="hover:text-white transition-colors" href="tel:7862205838">Contact Us</a></li>
+</ul>
+</div>
+<!-- Col 4: Resources & Legal -->
+<div class="lg:col-span-3 space-y-3">
+<h3 class="font-bold text-xs uppercase tracking-widest text-green-400">Resources &amp; Legal</h3>
+<ul class="space-y-2">
+<li><a class="hover:text-white transition-colors" href="#faq">FAQ Knowledge Base</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Terms &amp; Conditions</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Consumer Rights Disclosures</a></li>
+</ul>
+</div>
+</div>
+<!-- Bottom Disclaimers Rail -->
+<div class="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[11px] text-white/50">
+<p>© 2026 InterCredit Solution. All rights reserved. Registered Florida Credit Advisory &amp; Financial Guidance.</p>
+<p class="max-w-xl text-left md:text-right leading-relaxed">
+          Regulatory Notice: InterCredit Solution provides financial advisory, credit consulting, and debt guidance. Outcomes depend on individual client profiles and underwriting factors. No credit score increases or removals are guaranteed.
+        </p>
+</div>
+</div>
+</footer>
+<!-- MOBILE STICKY CTA (visible on mobile viewports <= 640px) -->
+<div class="fixed bottom-0 inset-x-0 z-50 p-3 bg-white/95 backdrop-blur-md border-t border-border-light sm:hidden flex items-center justify-between gap-3 shadow-lg">
+<a class="w-12 h-12 rounded-btn bg-mist-100 flex items-center justify-center text-teal-700 flex-shrink-0" href="tel:7862205838">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</a>
+<a class="brand-gradient-btn flex-1 py-3 px-4 rounded-btn text-white font-bold text-xs uppercase tracking-wider text-center shadow-sm" href="#consultation-booking">
+      Book Consultation
+    </a>
+</div>
+<script>
+  const mobileNavigation = document.getElementById('mobile-navigation');
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const mobileMenuClose = document.getElementById('mobile-menu-close');
+  const setMobileNavigation = (open) => {
+    mobileNavigation.classList.toggle('hidden', !open);
+    mobileMenuToggle.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('overflow-hidden', open);
+    if (open) mobileMenuClose.focus();
+    else mobileMenuToggle.focus();
+  };
+  mobileMenuToggle.addEventListener('click', () => setMobileNavigation(true));
+  mobileMenuClose.addEventListener('click', () => setMobileNavigation(false));
+  mobileNavigation.addEventListener('click', (event) => {
+    if (event.target === mobileNavigation || event.target.closest('a')) setMobileNavigation(false);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !mobileNavigation.classList.contains('hidden')) setMobileNavigation(false);
+  });
+
+  const videoFrame = document.getElementById('video-story-frame');
+  const video = document.getElementById('client-story-video');
+  const videoPlay = document.getElementById('client-story-play');
+  videoPlay.addEventListener('click', async () => {
+    video.controls = true;
+    try {
+      await video.play();
+      videoFrame.classList.add('video-story-playing');
+    } catch {
+      video.controls = true;
+    }
+  });
+  video.addEventListener('ended', () => {
+    video.controls = false;
+    videoFrame.classList.remove('video-story-playing');
+  });
+</script>
+</body></html>

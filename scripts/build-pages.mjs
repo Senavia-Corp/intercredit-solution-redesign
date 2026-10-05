@@ -524,11 +524,13 @@ const about = page({
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 <div data-reveal class="p-8 rounded-card-lg bg-white border border-border-light shadow-sm space-y-3 relative overflow-hidden">
 <div class="absolute top-0 left-0 w-full h-1 brand-gradient-line"></div>
+<span class="service-icon" aria-hidden="true"><span aria-hidden="true" class="svc-icon" style="--icon:url('/assets/icons/benefit-handshake.svg')"></span></span>
 <h2 class="text-2xl font-bold text-ink-950">Our Mission</h2>
 <p class="text-sm text-text-secondary leading-relaxed">At InterCredit Solution, our mission is to empower individuals and families to take control of their financial future. Through personalized credit solutions and expert guidance, we help our clients build healthy financial habits and work through challenges. We are committed to delivering trusted support with integrity, dedication, and a focus on long-term success for every client we serve.</p>
 </div>
 <div data-reveal class="p-8 rounded-card-lg bg-white border border-border-light shadow-sm space-y-3 relative overflow-hidden">
 <div class="absolute top-0 left-0 w-full h-1 brand-gradient-line"></div>
+<span class="service-icon" aria-hidden="true"><span aria-hidden="true" class="svc-icon" style="--icon:url('/assets/icons/benefit-idea.svg')"></span></span>
 <h2 class="text-2xl font-bold text-ink-950">Our Vision</h2>
 <p class="text-sm text-text-secondary leading-relaxed">Our vision is to be a leading force in transforming the way people manage their credit and finances. We aim to create a world where everyone has access to the knowledge, tools, and support needed to build a strong financial foundation, free from the burden of debt and uncertainty.</p>
 </div>

@@ -1,6 +1,6 @@
 /** Mirrors the former inline `tailwind.config` from dist/index.html. */
 module.exports = {
-  content: ['./dist/index.html', './dist/assets/*.js'],
+  content: ['./dist/**/*.html', './dist/assets/*.js'],
   theme: {
     extend: {
       colors: {

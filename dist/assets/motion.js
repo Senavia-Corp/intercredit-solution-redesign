@@ -42,6 +42,8 @@
   register(document.querySelector('.testimonial-layout'), 'fade');
   group('main > section:not([id]) .md\\:grid-cols-3 > div');
   group('#faq details');
+  // Internal pages opt in per element.
+  group('[data-reveal]');
   document.querySelectorAll('#consultation-booking h2').forEach(heading => {
     [...heading.parentElement.children].forEach((element,index) => register(element,'up',index*80));
   });

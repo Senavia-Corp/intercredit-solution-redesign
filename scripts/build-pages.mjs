@@ -1,0 +1,686 @@
+// Generates the internal pages into dist/. Layouts follow the Stitch project
+// "InterCredit Solution Homepage Redesign"; content comes only from verified sources
+// (current site copy, exported CMS, literal legal text, real photos). Run: npm run build:pages
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { dirname } from 'node:path';
+
+const PHONE = '(786) 220-5838';
+const PHONE_HREF = 'tel:+17862205838';
+const TOLL_FREE = '1-888-224-2076';
+const TOLL_FREE_HREF = 'tel:+18882242076';
+const EMAIL = 'intercreditsolutions@gmail.com';
+const ADDRESS = '13590 SW 134th Ave, Suite 203, Miami, FL 33186';
+const MAP_HREF = 'https://www.google.com/maps/search/?api=1&query=13590+SW+134th+Ave+Suite+203+Miami+FL+33186';
+const HOURS = 'Monday–Friday, 9:00 AM–5:00 PM EST';
+
+const esc = (text) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const icon = (name, classes = '') => `<span aria-hidden="true" class="material-symbols-outlined ${classes}">${name}</span>`;
+const arrow = icon('arrow_forward', 'icon-nudge text-[16px]');
+
+// ---------- Content ----------
+
+const chapters = [
+  { n: '01', id: 'improve-my-credit', name: 'Improve My Credit', blurb: 'Understand what may be affecting your credit profile and explore a personalized strategy for addressing eligible issues and building stronger habits.' },
+  { n: '02', id: 'resolve-my-debt', name: 'Resolve My Debt', blurb: 'Review debt and collection challenges, understand what may be negotiable, and discuss the options that fit your situation.' },
+  { n: '03', id: 'protect-and-understand', name: 'Protect & Understand My Credit', blurb: 'Get more clarity around your credit report, monitoring, fraud concerns, and the information that can affect your financial profile.' },
+  { n: '04', id: 'build-credit-in-the-us', name: 'Build Credit in the U.S.', blurb: 'Navigate the U.S. credit system with guidance designed for international investors and people establishing a U.S. credit profile.' },
+];
+
+const stages = ['Understand', 'Correct', 'Resolve', 'Protect', 'Grow'];
+
+// Descriptions are the current site's own service descriptions with outcome promises removed.
+const services = [
+  { slug: 'credit-repair', name: 'Credit Repair & Consulting', chapter: 0, stage: 1, icon: 'fact_check',
+    intro: 'Personalized advice for your situation, starting with a careful look at what is affecting your credit profile.',
+    body: 'Our advisors work closely with you to review your credit situation and develop a customized plan around it. You get dedicated support at each step, with a clear explanation of what applies to your case and what does not.',
+    scenarios: ['Disputed charge-offs', 'Late marks', 'Duplicate files'] },
+  { slug: 'update-personal-information-in-credit-bureaus', name: 'Update Personal Information in Credit Bureaus', chapter: 0, stage: 1, icon: 'manage_accounts',
+    intro: 'Outdated personal information on your credit report can cause unnecessary headaches.',
+    body: 'We help you update details such as your name, address, or contact information with the major credit bureaus. Keeping this information current helps you avoid report errors and miscommunication with lenders, and keeps your credit report reflective of your current status.',
+    scenarios: ['Name misspellings', 'Multiple residential histories', 'Outdated contact details'] },
+  { slug: 'add-existing-credit-cards-to-credit-history', name: 'Add Existing Credit Cards to Credit History', chapter: 0, stage: 4, icon: 'history',
+    intro: 'Do you have credit cards that are not contributing to your credit history?',
+    body: 'We help make sure your existing credit cards are properly reflected in your credit profile, so that responsible use becomes part of the history lenders see.',
+    scenarios: ['Thin files', 'New borrower files', 'Cards missing from a report'] },
+  { slug: 'debts-negotiation', name: 'Debt Negotiation', chapter: 1, stage: 2, icon: 'handshake',
+    intro: 'Leave the tough conversations to us.',
+    body: 'Our team negotiates with creditors on your behalf, working toward better interest rates on credit cards and loans, more manageable monthly payments, and relief from past-due fees where it is possible.',
+    scenarios: ['Delinquent credit cards', 'Medical accounts', 'Personal balances'] },
+  { slug: 'negotiation-of-collection-accounts-in-court', name: 'Negotiation of Collection Accounts in Court', chapter: 1, stage: 2, icon: 'assignment_turned_in',
+    intro: 'Stuck in a debt dispute? Let us handle the negotiation.',
+    body: 'We take on collection accounts and negotiate on your behalf, so you can focus on moving forward while we handle the difficult conversations.',
+    scenarios: ['Third-party collection agency demands', 'Assigned debt'] },
+  { slug: 'corporate-credit-counseling', name: 'Corporate Credit Counseling', chapter: 1, stage: 2, icon: 'business_center',
+    intro: 'Managing corporate credit effectively is crucial for maintaining financial stability and business growth.',
+    body: 'Our Corporate Credit Counseling service is designed to help your company improve its credit profile, negotiate with creditors, and develop effective strategies for handling debt. Whether you are facing financial challenges or looking to strengthen your business credit, our team provides tailored solutions to support your goals.',
+    scenarios: ['Commercial entities', 'LLC restructuring', 'Vendor terms'] },
+  { slug: 'credit-monitoring-report', name: 'Credit Monitoring & Report', chapter: 2, stage: 3, icon: 'reviews',
+    intro: 'Let us keep a close eye on your credit.',
+    body: 'Our team monitors your credit report and the activity that could affect it, and keeps you informed so that you can act early when something changes.',
+    scenarios: ['Unexpected report changes', 'Preparing for a credit application'] },
+  { slug: 'fraud-alert-system', name: 'Fraud Alert Protection', chapter: 2, stage: 3, icon: 'shield',
+    intro: 'Stay ahead of suspicious activity.',
+    body: 'Our alert system watches for suspicious activity or potential threats involving your credit information and notifies you when something unusual appears, so you can safeguard your financial information.',
+    scenarios: ['Suspicious inquiries', 'Compromised personal information'] },
+  { slug: 'establishing-credit-for-foreign-investors', name: 'Establishing Credit for Foreign Investors', chapter: 3, stage: 4, icon: 'public',
+    intro: 'At InterCredit, we help international investors navigate the U.S. credit system with tailored solutions.',
+    body: 'We understand the unique challenges that international investors face when seeking to establish credit in the United States. Our tailored solutions and personalized support help you build a financial foundation while we help you handle the complexities of the U.S. credit system.',
+    scenarios: ['International real estate buyers', 'Visa holders', 'Cross-border businesses'] },
+];
+
+const approach = [
+  ['Review', 'We start with your goal, the context behind it, and the information that may be influencing your credit or debt situation.'],
+  ['Strategy', 'We identify the services or actions that may apply and explain how they fit together into an actionable, realistic plan.'],
+  ['Guidance', 'You move forward knowing what the next step is, what to expect, and where InterCredit can support you.'],
+];
+
+const faqs = [
+  ['What happens during the initial consultation?', 'We review your situation, discuss your goals, and explain the possible next steps that may apply. The purpose is to help you understand the process before deciding how to move forward.'],
+  ['How long does it take to see results?', 'Timelines vary depending on the service, complexity of the situation, third parties involved, and other individual factors. InterCredit does not promise a specific credit-score increase or fixed timeline.'],
+  ['How much do your services cost?', 'Fees vary depending on the service and complexity of the situation. All costs are explained thoroughly before you make any commitment to a service.'],
+  ['Do you offer payment plans?', 'Payment plan options may be available depending on the service program. You can confirm current terms and eligibility directly with an advisor during your initial consultation.'],
+  ['Do I need to know which service I need before booking?', 'No. Start with your goal and situation. The 20-minute consultation is specifically designed to help clarify which options are relevant.'],
+];
+
+const team = [
+  ['Jessica Sotolongo', 'CEO', 'jessica-sotolongo'],
+  ['Ashley Sotolongo', 'President', 'ashley-sotolongo'],
+  ['Angie Sotolongo', 'Vice President', 'angie-sotolongo'],
+  ['Gabriel Murga', 'Negotiation Department', 'gabriel-murga'],
+  ['Roxana Murga', 'Dispute Department', 'roxana-murga-sorrondegui'],
+  ['Laura Delgado', 'Personal Credit Specialist', 'laura-delgado'],
+];
+
+// Names and headlines exactly as published in the current site's video reviews.
+const stories = [
+  ['Nataly', 'Excellent customer service', '0xNgJalGbg8'],
+  ['Jerry L', 'Your trusted financial solutions', 'U_I_pAV_Hlk'],
+  ['Sebastian N.', 'Fast and effective solutions', 'ZwkhIzVObus'],
+];
+
+// ---------- Shared pieces ----------
+
+const eyebrow = (text, dark = false) => `<span class="text-xs font-bold uppercase tracking-widest ${dark ? 'text-green-400' : 'text-teal-600'} flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>${text}</span>`;
+
+const primaryButton = (label, href = '/contact-us/') => `<a class="brand-gradient-btn inline-flex items-center justify-center px-8 py-4 rounded-btn text-white font-bold text-sm tracking-wider uppercase shadow-md" href="${href}">${label}</a>`;
+
+const callButton = (dark) => `<a class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-btn ${dark ? 'bg-white/10 hover:bg-white/20 text-white border border-border-dark' : 'bg-white hover:bg-mist-100 text-text-primary border border-border-light shadow-sm'} font-bold text-sm transition-colors" href="${PHONE_HREF}">${icon('call', 'text-[18px]')}<span>Call ${PHONE}</span></a>`;
+
+const textLink = (label, href) => `<a class="inline-flex items-center gap-1.5 font-bold text-xs uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors py-3.5 -my-3.5" href="${href}"><span>${label}</span>${arrow}</a>`;
+
+const breadcrumb = (trail) => `<nav aria-label="Breadcrumb" class="text-xs text-white/60"><ol class="flex flex-wrap items-center gap-x-2">${trail.map(([label, href], index) => `<li class="flex items-center gap-2">${index ? '<span aria-hidden="true">/</span>' : ''}${href ? `<a class="inline-block py-3.5 -my-3.5 hover:text-white transition-colors" href="${href}">${label}</a>` : `<span aria-current="page" class="text-white/90">${label}</span>`}</li>`).join('')}</ol></nav>`;
+
+// Dark page hero. `aside` is the optional right-hand column.
+const hero = ({ trail, label, title, lead, actions = '', aside = '' }) => `
+<section class="relative isolate overflow-hidden bg-ink-950 bg-ledger-dark py-14 text-white sm:py-20">
+<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+<div class="${aside ? 'lg:col-span-7' : 'lg:col-span-9'} flex flex-col items-start space-y-6">
+${breadcrumb(trail)}
+${eyebrow(label, true)}
+<h1 class="text-4xl sm:text-5xl leading-[1.08] font-bold text-white tracking-tight">${title}</h1>
+<p class="max-w-xl text-lg leading-relaxed text-white/85">${lead}</p>
+${actions ? `<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2 w-full sm:w-auto">${actions}</div>` : ''}
+</div>
+${aside ? `<div class="lg:col-span-5">${aside}</div>` : ''}
+</div>
+</div>
+</section>`;
+
+const sectionIntro = (label, title, lead = '', dark = false) => `<div class="max-w-2xl space-y-3">
+${eyebrow(label, dark)}
+<h2 class="text-3xl sm:text-4xl font-bold ${dark ? 'text-white' : 'text-ink-950'} leading-tight">${title}</h2>
+${lead ? `<p class="text-sm ${dark ? 'text-white/70' : 'text-text-secondary'} leading-relaxed">${lead}</p>` : ''}
+</div>`;
+
+const approachSection = (background = 'bg-paper-100') => `
+<section class="w-full ${background} py-20 lg:py-28">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+${sectionIntro('HOW WE WORK', 'A strategy built around your situation.', 'Credit and debt challenges rarely come from one isolated issue. InterCredit starts by understanding your goals, reviewing the situation, and identifying the options that are most relevant to you.')}
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+${approach.map(([name, text], index) => `<div data-reveal class="p-8 rounded-card bg-white border border-border-light shadow-sm space-y-3">
+<div class="w-10 h-10 rounded-btn bg-mist-100 flex items-center justify-center font-bold text-teal-700 text-sm">0${index + 1}</div>
+<h3 class="font-bold text-base text-ink-950">${name}</h3>
+<p class="text-sm text-text-secondary leading-relaxed">${text}</p>
+</div>`).join('\n')}
+</div>
+<p class="text-xs text-text-muted">No generic package. No promise of a specific score. A clearer strategy based on your situation.</p>
+</div>
+</section>`;
+
+const faqSection = (items = faqs) => `
+<section class="w-full bg-white py-20 lg:py-28 border-t border-border-light" id="faq">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<div class="lg:col-span-4 space-y-4 lg:sticky lg:top-28">
+${eyebrow('CLARITY BEFORE COMMITMENT')}
+<h2 class="text-3xl sm:text-4xl font-bold text-ink-950 leading-tight">Frequently Asked Questions</h2>
+<p class="text-sm text-text-secondary leading-relaxed">Have questions about working with InterCredit? We believe in transparency before you decide on any next step.</p>
+${textLink('Speak with an Advisor', '/contact-us/')}
+</div>
+<div class="lg:col-span-8 space-y-4">
+${items.map(([question, answer]) => `<details class="group rounded-card bg-porcelain-50 border border-border-light open:bg-white open:shadow-[inset_4px_0_0_#2D8F85] transition-all">
+<summary class="flex items-center justify-between gap-4 p-6 rounded-card cursor-pointer font-bold text-sm text-ink-950 list-none"><span>${question}</span>${icon('expand_more', 'text-text-muted group-open:rotate-180 transition-transform')}</summary>
+<p class="-mt-3 px-6 pb-6 max-w-prose text-sm text-text-secondary leading-relaxed">${esc(answer)}</p>
+</details>`).join('\n')}
+</div>
+</div>
+</div>
+</section>`;
+
+const closingCta = (title = 'Start with a conversation about where you are and what comes next.') => `
+<section class="w-full bg-ink-950 text-white py-20 lg:py-28 relative overflow-hidden bg-ledger-dark">
+<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 via-green-500 to-lime-500"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<div class="max-w-3xl space-y-6">
+<span class="text-xs font-bold uppercase tracking-widest text-green-400">YOUR NEXT STEP DOES NOT HAVE TO BE COMPLICATED</span>
+<h2 class="text-3xl sm:text-5xl font-bold text-white leading-tight">${title}</h2>
+<p class="text-sm sm:text-base text-white/70 leading-relaxed max-w-2xl">You do not need to diagnose your own credit situation or choose a service before you call. Tell us your goal, ask your questions, and understand the options that may fit your situation.</p>
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
+${primaryButton('Book a 20-Minute Consultation')}
+${callButton(true)}
+</div>
+<p class="text-xs text-white/50 pt-2">Personalized guidance. Clear expectations. No guaranteed-score promises.</p>
+</div>
+</div>
+</section>`;
+
+const youtubeCard = (id, title, label) => `<div class="testimonial-player rounded-card-lg shadow-xl border border-border-light" data-youtube="${id}" data-title="${title}"><a aria-label="${label}" href="https://www.youtube.com/watch?v=${id}"><img alt="" decoding="async" height="720" loading="lazy" src="https://i.ytimg.com/vi/${id}/maxresdefault.jpg" width="1280"/><span class="testimonial-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></a></div>`;
+
+const officeCard = `<div class="p-8 rounded-card-lg bg-white border border-border-light shadow-sm space-y-5">
+<h3 class="font-bold text-lg text-ink-950">Miami office</h3>
+<ul class="space-y-1 text-sm text-text-secondary">
+<li class="flex items-start gap-3">${icon('location_on', 'text-[20px] text-teal-600 mt-3')}<a class="inline-flex min-h-[44px] items-center hover:text-teal-600 transition-colors" href="${MAP_HREF}" rel="noopener" target="_blank">${ADDRESS}</a></li>
+<li class="flex items-start gap-3">${icon('call', 'text-[20px] text-teal-600 mt-3')}<span><a class="inline-flex min-h-[44px] items-center font-bold text-ink-950 hover:text-teal-600 transition-colors" href="${PHONE_HREF}">${PHONE}</a> <span aria-hidden="true">•</span> <a class="inline-flex min-h-[44px] items-center font-bold text-ink-950 hover:text-teal-600 transition-colors" href="${TOLL_FREE_HREF}">${TOLL_FREE}</a></span></li>
+<li class="flex items-start gap-3">${icon('mail', 'text-[20px] text-teal-600 mt-3')}<a class="inline-flex min-h-[44px] items-center break-all hover:text-teal-600 transition-colors" href="mailto:${EMAIL}">${EMAIL}</a></li>
+<li class="flex items-start gap-3">${icon('schedule', 'text-[20px] text-teal-600 mt-3')}<span class="inline-flex min-h-[44px] items-center">${HOURS}</span></li>
+</ul>
+</div>`;
+
+const navLinks = [
+  ['Services', '/services/'],
+  ['How It Works', '/#personalized-strategy'],
+  ['About', '/about-us/'],
+  ['Reviews', '/reviews/'],
+  ['FAQ', '/#faq'],
+  ['Contact', '/contact-us/'],
+];
+
+const header = (current) => `
+<a class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-btn focus:bg-white focus:px-4 focus:py-3 focus:font-bold focus:text-ink-950 focus:shadow-xl" href="#main-content">Skip to main content</a>
+<aside class="bg-ink-950 text-white/90 text-xs py-2 px-4 border-b border-border-dark relative z-50">
+<div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+<div class="flex items-center gap-2 mx-auto sm:mx-0"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span><span class="font-medium tracking-wide">20-Minute Consultation • Personalized Credit &amp; Financial Guidance • Miami-Based</span></div>
+<div class="hidden md:flex items-center gap-6 text-white/70">
+<span class="flex items-center gap-1.5">${icon('location_on', 'text-[15px] text-teal-400')}13590 SW 134th Ave, Suite 203, Miami, FL</span>
+<a class="inline-block py-3.5 -my-3.5 text-white hover:text-green-400 transition-colors font-semibold" href="${PHONE_HREF}">Direct: ${PHONE}</a>
+</div>
+</div>
+</aside>
+<header class="sticky top-0 z-40 bg-porcelain-50/95 backdrop-blur-md border-b border-border-light transition-all duration-200">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+<a class="flex shrink-0 items-center focus:outline-none focus:ring-2 focus:ring-teal-600 rounded-lg py-1 pr-2" href="/"><div class="h-11 flex items-center"><img alt="InterCredit Solution — home" class="site-logo" height="159" src="/assets/intercredit-logo.svg" width="226"/></div></a>
+<nav aria-label="Primary" class="hidden lg:flex items-center gap-5 xl:gap-8">
+${navLinks.map(([label, href]) => `<a class="nav-item-link min-h-11 inline-flex items-center whitespace-nowrap font-semibold text-sm ${href === current ? 'text-ink-950' : 'text-text-secondary'} hover:text-ink-950 transition-colors" href="${href}"${href === current ? ' aria-current="page"' : ''}>${label}</a>`).join('\n')}
+</nav>
+<div class="flex items-center gap-4">
+<a class="hidden sm:inline-flex lg:hidden xl:inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap font-semibold text-xs tracking-wide text-text-secondary hover:text-teal-600 transition-colors" href="${PHONE_HREF}">${icon('call', 'text-[16px] text-teal-600')}${PHONE}</a>
+<a class="brand-gradient-btn hidden sm:inline-flex min-h-11 items-center justify-center whitespace-nowrap px-5 py-3 rounded-btn text-white font-bold text-xs tracking-wider uppercase shadow-sm" href="/contact-us/">Book a 20-Minute Consultation</a>
+<button aria-controls="mobile-navigation" aria-expanded="false" aria-label="Open navigation menu" class="lg:hidden w-11 h-11 rounded-btn bg-white border border-border-light text-ink-950 flex items-center justify-center shadow-sm" id="mobile-menu-toggle" type="button">${icon('menu')}</button>
+</div>
+</div>
+</header>
+<div class="fixed inset-0 z-[60] bg-ink-950/45 backdrop-blur-sm hidden lg:hidden" id="mobile-navigation" role="dialog" aria-modal="true" aria-label="Site menu">
+<nav aria-label="Mobile navigation" class="absolute inset-y-0 right-0 w-[min(88vw,360px)] bg-porcelain-50 shadow-2xl p-6 flex flex-col">
+<div class="flex items-center justify-between pb-6 border-b border-border-light">
+<img alt="InterCredit Solution" class="h-12 w-auto object-contain" height="159" src="/assets/intercredit-logo.svg" width="226"/>
+<button aria-label="Close navigation menu" class="w-11 h-11 rounded-btn bg-white border border-border-light text-ink-950 flex items-center justify-center" id="mobile-menu-close" type="button">${icon('close')}</button>
+</div>
+<div class="flex flex-col py-6 divide-y divide-border-light text-sm font-semibold">
+<a class="py-4" href="/">Home</a>
+${navLinks.map(([label, href]) => `<a class="py-4" href="${href}"${href === current ? ' aria-current="page"' : ''}>${label}</a>`).join('\n')}
+</div>
+<a class="brand-gradient-btn mt-auto inline-flex items-center justify-center px-5 py-4 rounded-btn text-white font-bold text-xs tracking-wider uppercase shadow-sm" href="/contact-us/">Book a 20-Minute Consultation</a>
+</nav>
+</div>`;
+
+const footerLink = (label, href) => `<li><a class="inline-flex min-h-[44px] items-center hover:text-white transition-colors" href="${href}">${label}</a></li>`;
+
+const footer = `
+<footer class="w-full bg-ink-900 text-white/80 border-t border-border-dark pt-16 pb-12 text-xs">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-border-dark">
+<div class="lg:col-span-4 space-y-4">
+<div class="flex items-center gap-2"><div class="h-10 bg-white/95 rounded-lg p-1.5 flex items-center"><img alt="InterCredit Solution" class="site-logo" height="159" loading="lazy" src="/assets/intercredit-logo.svg" width="226"/></div></div>
+<p class="text-white/60 leading-relaxed max-w-sm">Personalized credit and financial guidance for people who want a clearer path through credit, debt, protection, and U.S. credit-building decisions.</p>
+<div class="text-white/70 pt-2">
+<p>${ADDRESS}</p>
+<p class="text-white font-bold"><a class="inline-flex min-h-[44px] items-center hover:text-green-400 transition-colors" href="${PHONE_HREF}">${PHONE}</a> • <a class="inline-flex min-h-[44px] items-center hover:text-green-400 transition-colors" href="${TOLL_FREE_HREF}">${TOLL_FREE}</a></p>
+<p><a class="inline-flex min-h-[44px] items-center hover:text-white transition-colors" href="mailto:${EMAIL}">${EMAIL}</a></p>
+<p class="text-[11px] text-white/50">Hours: ${HOURS}</p>
+</div>
+</div>
+<div class="lg:col-span-3 space-y-3">
+<h2 class="font-bold text-xs uppercase tracking-widest text-green-400">Solutions</h2>
+<ul>${chapters.map((chapter) => footerLink(esc(chapter.name), `/services/#${chapter.id}`)).join('')}</ul>
+</div>
+<div class="lg:col-span-2 space-y-3">
+<h2 class="font-bold text-xs uppercase tracking-widest text-green-400">Company</h2>
+<ul>${footerLink('About &amp; Leadership', '/about-us/')}${footerLink('Client Reviews', '/reviews/')}${footerLink('Media Appearances', '/about-us/#media')}${footerLink('Contact Us', '/contact-us/')}</ul>
+</div>
+<div class="lg:col-span-3 space-y-3">
+<h2 class="font-bold text-xs uppercase tracking-widest text-green-400">Resources &amp; Legal</h2>
+<ul>${footerLink('FAQ', '/#faq')}${footerLink('Privacy Policy', '/privacy-policy/')}${footerLink('Terms &amp; Conditions', '/terms-and-conditions/')}</ul>
+</div>
+</div>
+<div class="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[11px] text-white/50">
+<p>© 2026 InterCredit Solution. All rights reserved.</p>
+<p class="max-w-xl text-left md:text-right leading-relaxed">Outcomes depend on individual client profiles and other factors outside InterCredit's control. No credit score increases or removals are guaranteed.</p>
+</div>
+</div>
+</footer>
+<div class="fixed bottom-0 inset-x-0 z-50 p-3 bg-white/95 backdrop-blur-md border-t border-border-light sm:hidden flex items-center justify-between gap-3 shadow-lg">
+<a class="w-12 h-12 rounded-btn bg-mist-100 flex items-center justify-center text-teal-700 flex-shrink-0" href="${PHONE_HREF}" aria-label="Call ${PHONE}">${icon('call', 'text-[20px]')}</a>
+<a class="brand-gradient-btn flex-1 inline-flex min-h-[48px] items-center justify-center px-4 rounded-btn text-white font-bold text-xs uppercase tracking-wider text-center shadow-sm" href="/contact-us/">Book Consultation</a>
+</div>`;
+
+const FONT_ICONS = '@@ICON_FONT@@';
+
+const page = ({ title, description, current = '', robots = '', body }) => `<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>${title}</title>
+<meta content="${description}" name="description"/>${robots ? `\n<meta content="${robots}" name="robots"/>` : ''}
+<link href="/assets/favicon.png" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&amp;display=swap" rel="stylesheet"/>
+<link href="${FONT_ICONS}" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/site.css"/>
+<link rel="stylesheet" href="/assets/motion.css"/>
+<script src="/assets/motion.js" defer></script>
+<script src="/assets/site.js" defer></script>
+</head>
+<body class="bg-porcelain-50 font-sans text-text-primary antialiased selection:bg-teal-500 selection:text-white">
+${header(current)}
+<main id="main-content">
+${body}
+</main>
+${footer}
+</body></html>
+`;
+
+// ---------- Pages ----------
+
+const serviceCard = (service) => `<a data-reveal class="group flex flex-col gap-4 p-6 rounded-card bg-white border border-border-light shadow-sm hover:border-teal-500/50 hover:shadow-md transition-all" href="/services/${service.slug}/">
+<span class="service-icon material-symbols-outlined" aria-hidden="true">${service.icon}</span>
+<span class="space-y-2">
+<span class="block font-bold text-base text-ink-950">${esc(service.name)}</span>
+<span class="block text-sm text-text-secondary leading-relaxed">${esc(service.intro)}</span>
+</span>
+<span class="mt-auto inline-flex items-center gap-1.5 font-bold text-xs uppercase tracking-wider text-teal-600 group-hover:text-green-600 transition-colors">View service ${arrow}</span>
+</a>`;
+
+const journeyStrip = (active) => `<ol class="grid grid-cols-5 gap-2 sm:gap-4">
+${stages.map((stage, index) => `<li class="flex flex-col items-center gap-2 text-center"${index === active ? ' aria-current="step"' : ''}>
+<span class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-extrabold text-sm ${index === active ? 'bg-ink-950 text-lime-400 border-4 border-lime-500 shadow-lg' : 'bg-white text-text-muted border-2 border-mist-200'}">0${index + 1}</span>
+<span class="text-[11px] sm:text-xs font-bold ${index === active ? 'text-ink-950' : 'text-text-muted'}">${stage}</span>
+</li>`).join('\n')}
+</ol>`;
+
+const servicePage = (service) => {
+  const chapter = chapters[service.chapter];
+  const related = services.filter((other) => other !== service && other.chapter === service.chapter)
+    .concat(services.filter((other) => other.chapter !== service.chapter)).slice(0, 3);
+  return page({
+    title: `${esc(service.name)} — InterCredit Solution`,
+    description: esc(`${service.intro} Personalized guidance from InterCredit Solution in Miami. Start with a 20-minute consultation.`),
+    current: '/services/',
+    body: `${hero({
+      trail: [['Home', '/'], ['Services', '/services/'], [esc(service.name)]],
+      label: `CHAPTER ${chapter.n} • ${esc(chapter.name).toUpperCase()}`,
+      title: esc(service.name),
+      lead: esc(service.intro),
+      actions: `${primaryButton('Book a 20-Minute Consultation')}${callButton(true)}`,
+      aside: `<div class="rounded-card-lg border border-white/20 bg-white/95 p-6 text-text-primary shadow-2xl space-y-4">
+<div class="flex items-center gap-4"><span class="service-icon material-symbols-outlined" aria-hidden="true">${service.icon}</span><p class="font-bold text-sm text-ink-950">At a glance</p></div>
+<dl class="divide-y divide-border-light text-sm">
+<div class="flex justify-between gap-4 py-3"><dt class="text-text-muted">Solution area</dt><dd class="font-semibold text-right">${esc(chapter.name)}</dd></div>
+<div class="flex justify-between gap-4 py-3"><dt class="text-text-muted">Journey stage</dt><dd class="font-semibold text-right">0${service.stage + 1} · ${stages[service.stage]}</dd></div>
+<div class="flex justify-between gap-4 py-3"><dt class="text-text-muted">First step</dt><dd class="font-semibold text-right">20-minute consultation</dd></div>
+<div class="flex justify-between gap-4 py-3"><dt class="text-text-muted">Format</dt><dd class="font-semibold text-right">In person &amp; remote</dd></div>
+</dl>
+</div>`,
+    })}
+<section class="w-full bg-porcelain-50 py-20 lg:py-28">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<div class="lg:col-span-7 space-y-6">
+${sectionIntro('WHAT THIS SERVICE COVERS', 'What we help you with.')}
+<p class="max-w-prose text-base text-text-secondary leading-relaxed">${esc(service.body)}</p>
+<div class="p-4 rounded-btn bg-white border-l-4 border-l-teal-500 border border-border-light shadow-sm max-w-prose">
+<p class="text-xs font-semibold text-text-primary">Scope, timing and fees depend on your individual situation. No specific score increase, approval, deletion, settlement, or timeline is guaranteed.</p>
+</div>
+</div>
+<div class="lg:col-span-5">
+<div data-reveal class="p-8 rounded-card-lg bg-white border border-border-light shadow-sm space-y-4">
+<h3 class="font-bold text-base text-ink-950">Situations where this may apply</h3>
+<ul class="space-y-3 text-sm text-text-secondary">
+${service.scenarios.map((scenario) => `<li class="flex items-start gap-3">${icon('check_circle', 'text-[20px] text-teal-600')}<span>${esc(scenario)}</span></li>`).join('\n')}
+</ul>
+<p class="text-xs text-text-muted">Not sure this is your case? The consultation is designed to clarify which options are relevant.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+${approachSection()}
+<section class="w-full bg-white border-y border-border-light py-20 lg:py-28">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+${sectionIntro('A CLEARER FINANCIAL PATH', `Where this fits: stage 0${service.stage + 1}, ${stages[service.stage]}.`, 'Not every client follows the same route. Your path may begin at any stage, and scope is tailored to your specific situation.')}
+<div data-reveal class="p-6 sm:p-8 rounded-card-lg bg-porcelain-50 border border-border-light">${journeyStrip(service.stage)}</div>
+</div>
+</section>
+${faqSection(faqs.slice(0, 4))}
+<section class="w-full bg-paper-100 py-20 lg:py-28">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6">${sectionIntro('RELATED SERVICES', 'Other ways InterCredit can help.')}${textLink('All services', '/services/')}</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+${related.map(serviceCard).join('\n')}
+</div>
+</div>
+</section>
+${closingCta()}`,
+  });
+};
+
+const servicesIndex = page({
+  title: 'Services — InterCredit Solution',
+  description: 'Nine credit and debt services organized around four goals: improve your credit, resolve debt, protect your profile, and build credit in the U.S.',
+  current: '/services/',
+  body: `${hero({
+    trail: [['Home', '/'], ['Services']],
+    label: 'SOLUTIONS DIRECTORY',
+    title: 'Solutions organized around <span class="font-serif-italic font-normal brand-gradient-text">what you actually need</span>.',
+    lead: 'You do not need to know the official name of the service you need. Choose the situation that sounds closest to yours and explore the most relevant options.',
+    actions: `${primaryButton('Book a 20-Minute Consultation')}${callButton(true)}`,
+  })}
+${chapters.map((chapter, index) => `<section class="w-full ${index % 2 ? 'bg-white border-y border-border-light' : 'bg-porcelain-50'} py-16 lg:py-24" id="${chapter.id}">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+${sectionIntro(`CHAPTER ${chapter.n}`, esc(chapter.name), chapter.blurb)}
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+${services.filter((service) => service.chapter === index).map(serviceCard).join('\n')}
+</div>
+</div>
+</section>`).join('\n')}
+${closingCta('Not sure where you fit? Start with a conversation.')}`,
+});
+
+const about = page({
+  title: 'About Us — InterCredit Solution',
+  description: 'Meet InterCredit Solution: a Miami-based team led by Jessica Sotolongo that provides personalized credit and debt guidance.',
+  current: '/about-us/',
+  body: `${hero({
+    trail: [['Home', '/'], ['About Us']],
+    label: 'ABOUT INTERCREDIT',
+    title: 'Your goal is <span class="font-serif-italic font-normal brand-gradient-text">our mission</span>.',
+    lead: 'InterCredit Solution is a Miami-based team that helps people understand their credit, work through debt challenges, and plan a path built around their goals. We look at the main aspects of your finances, offer a tailored plan, and guide you through each step.',
+    actions: `${primaryButton('Book a 20-Minute Consultation')}<a class="inline-flex items-center justify-center gap-2 rounded-btn border border-white/30 bg-white/95 px-6 py-4 text-sm font-bold text-text-primary shadow-sm transition-colors hover:bg-white" href="/services/"><span>Explore Our Services</span>${icon('arrow_forward', 'icon-nudge text-[18px] text-teal-700')}</a>`,
+    aside: `<figure class="rounded-card-lg overflow-hidden border border-white/20 bg-ink-900 shadow-2xl"><img alt="The InterCredit Solution team at the Miami office" class="w-full h-auto" fetchpriority="high" height="833" src="/assets/team-office.jpg" width="1250"/></figure>`,
+  })}
+<section class="w-full bg-porcelain-50 py-20 lg:py-28">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div data-reveal class="p-8 rounded-card-lg bg-white border border-border-light shadow-sm space-y-3 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-500 to-green-500"></div>
+<h2 class="text-2xl font-bold text-ink-950">Our Mission</h2>
+<p class="text-sm text-text-secondary leading-relaxed">At InterCredit Solution, our mission is to empower individuals and families to take control of their financial future. Through personalized credit solutions and expert guidance, we help our clients build healthy financial habits and work through challenges. We are committed to delivering trusted support with integrity, dedication, and a focus on long-term success for every client we serve.</p>
+</div>
+<div data-reveal class="p-8 rounded-card-lg bg-white border border-border-light shadow-sm space-y-3 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-500 to-lime-500"></div>
+<h2 class="text-2xl font-bold text-ink-950">Our Vision</h2>
+<p class="text-sm text-text-secondary leading-relaxed">Our vision is to be a leading force in transforming the way people manage their credit and finances. We aim to create a world where everyone has access to the knowledge, tools, and support needed to build a strong financial foundation, free from the burden of debt and uncertainty.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="w-full bg-paper-100 py-20 lg:py-28" id="founder">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-5">
+<div class="rounded-hero overflow-hidden shadow-2xl bg-white border border-border-light aspect-[3/4]"><img alt="Jessica Sotolongo, Founder of InterCredit Solution" class="w-full h-full object-cover" decoding="async" height="1285" loading="lazy" src="/assets/jessica-sotolongo.jpg" width="1285"/></div>
+</div>
+<div class="lg:col-span-7 flex flex-col space-y-6">
+<div class="space-y-3">
+${eyebrow('LEADERSHIP &amp; PHILOSOPHY')}
+<h2 class="text-3xl sm:text-4xl font-bold text-ink-950 leading-tight">Financial guidance is better when you know who is behind it.</h2>
+</div>
+<div class="p-6 rounded-card bg-white border border-border-light shadow-sm">
+<p class="font-serif-italic text-lg sm:text-xl text-ink-950 leading-relaxed">The first step is understanding what is actually holding you back — then building a strategy around your situation, not someone else’s.</p>
+<p class="font-bold text-sm text-ink-950 mt-4">Jessica Sotolongo</p>
+<p class="text-xs text-text-muted">Founder &amp; CEO, InterCredit Solution</p>
+</div>
+<div class="max-w-prose text-sm text-text-secondary space-y-4 leading-relaxed">
+<p>Jessica leads InterCredit with a focus on helping individuals, couples and families build a healthier relationship with credit. Her approach combines personalized guidance with practical financial education.</p>
+<p>Through financial advice and comprehensive solutions, her work covers credit, protection against fraud, debt negotiation, and the basic knowledge people need to avoid risks and move forward.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="w-full bg-ink-950 text-white py-20 lg:py-28 relative overflow-hidden bg-ledger-dark" id="media">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-7">
+<div class="rounded-card-lg overflow-hidden bg-ink-900 border border-border-dark shadow-2xl"><img alt="Jessica Sotolongo appearing on Univision Despierta América" class="w-full h-auto" decoding="async" height="1500" loading="lazy" sizes="(min-width: 1024px) 55vw, 100vw" src="/assets/univision-feature.jpg" srcset="/assets/univision-feature-1200.jpg 1200w, /assets/univision-feature.jpg 2000w" width="2000"/></div>
+</div>
+<div class="lg:col-span-5 space-y-4">
+${eyebrow('FEATURED ON UNIVISION / DESPIERTA AMÉRICA', true)}
+<h2 class="text-3xl sm:text-4xl font-bold text-white leading-tight">Sharing credit guidance with national Spanish-language audiences.</h2>
+<p class="text-sm text-white/70 leading-relaxed">Univision has featured Jessica in segments covering credit myths, credit reports, and rebuilding credit.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="w-full bg-white py-20 lg:py-28 border-b border-border-light" id="team">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+${sectionIntro('MEET OUR TEAM', 'The people you will work with.', 'A Miami-based team that looks at the main aspects of your finances, offers a tailored plan, and guides you through each step.')}
+<ul class="grid grid-cols-2 md:grid-cols-3 gap-6">
+${team.map(([name, role, file]) => `<li data-reveal class="rounded-card overflow-hidden bg-porcelain-50 border border-border-light">
+<img alt="${name}, ${role}" class="w-full h-auto" decoding="async" height="450" loading="lazy" src="/assets/team-${file}.jpg" width="450"/>
+<div class="p-5"><h3 class="font-bold text-base text-ink-950">${name}</h3><p class="text-xs text-text-secondary">${role}</p></div>
+</li>`).join('\n')}
+</ul>
+</div>
+</section>
+${approachSection()}
+<section class="w-full bg-porcelain-50 py-20 lg:py-28" id="office">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-6 space-y-6">
+${sectionIntro('VISIT OR CALL', 'Based in Miami, with in-person and remote consultations.')}
+${textLink('Contact details', '/contact-us/')}
+</div>
+<div class="lg:col-span-6">${officeCard}</div>
+</div>
+</div>
+</section>
+${closingCta()}`,
+});
+
+const contact = page({
+  title: 'Contact Us — InterCredit Solution',
+  description: 'Call or visit InterCredit Solution in Miami to start with a 20-minute consultation about your credit or debt situation.',
+  current: '/contact-us/',
+  body: `${hero({
+    trail: [['Home', '/'], ['Contact']],
+    label: 'CONTACT &amp; CONSULTATION',
+    title: 'Let’s talk about <span class="font-serif-italic font-normal brand-gradient-text">your goal</span>.',
+    lead: 'Start with your situation. In a 20-minute consultation, an advisor reviews the context, answers your questions, and explains the options that may fit.',
+    actions: `${primaryButton(`Call ${PHONE}`, PHONE_HREF)}<a class="inline-flex items-center justify-center gap-2 rounded-btn border border-white/30 bg-white/95 px-6 py-4 text-sm font-bold text-text-primary shadow-sm transition-colors hover:bg-white" href="mailto:${EMAIL}">${icon('mail', 'text-[18px] text-teal-700')}<span>Email Us</span></a>`,
+    aside: `<figure class="rounded-card-lg overflow-hidden border border-white/20 bg-ink-900 shadow-2xl"><img alt="Jessica Sotolongo shaking hands with a client during a consultation at the InterCredit office" class="w-full h-auto" fetchpriority="high" height="540" src="/assets/goal-consultation.jpg" width="960"/></figure>`,
+  })}
+<section class="w-full bg-porcelain-50 py-20 lg:py-28">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<div class="lg:col-span-6 space-y-6">
+${sectionIntro('REACH US DIRECTLY', 'Speak with our team.', 'Our consultations are booked by phone. Call us during office hours and we will find a time that works for you, in person at our Miami office or remotely.')}
+<p class="text-xs text-text-muted max-w-prose">You do not need to arrive knowing which service you need. Start with what you are trying to solve.</p>
+</div>
+<div class="lg:col-span-6">${officeCard}</div>
+</div>
+</div>
+</section>
+<section class="w-full bg-paper-100 py-20 lg:py-28">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+${sectionIntro('WHAT TO EXPECT', 'A 20-minute conversation can help clarify your next move.')}
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+${[['Tell us your goal', 'Share what is happening, what you are concerned about, and what you would like to improve or understand.'], ['Review the situation', 'An InterCredit advisor reviews the relevant context and asks the questions needed to understand your case.'], ['Understand your options', 'You leave with a clearer understanding of the possible next steps and where InterCredit may be able to help.']].map(([name, text], index) => `<div data-reveal class="p-8 rounded-card bg-white border border-border-light shadow-sm space-y-3">
+<div class="w-10 h-10 rounded-btn bg-mist-100 flex items-center justify-center font-bold text-teal-700 text-sm">0${index + 1}</div>
+<h3 class="font-bold text-base text-ink-950">${name}</h3>
+<p class="text-sm text-text-secondary leading-relaxed">${text}</p>
+</div>`).join('\n')}
+</div>
+<p class="text-xs text-text-muted">*Exact recommendations, timing, fees, and service scope depend on your individual situation.</p>
+</div>
+</section>
+${faqSection()}
+${closingCta('Prefer to speak directly right now?')}`,
+});
+
+const reviews = page({
+  title: 'Client Reviews — InterCredit Solution',
+  description: 'Watch InterCredit Solution clients describe their experience in their own words.',
+  current: '/reviews/',
+  body: `${hero({
+    trail: [['Home', '/'], ['Reviews']],
+    label: 'REAL EXPERIENCES',
+    title: 'See what clients say about <span class="font-serif-italic font-normal brand-gradient-text">working with InterCredit</span>.',
+    lead: 'The most useful proof is not an empty guarantee. It is hearing how real clients describe the experience, communication, and support they received.',
+  })}
+<section class="w-full bg-porcelain-50 py-20 lg:py-28">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+${sectionIntro('CLIENT VIDEO STORIES', 'In their own words.')}
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+${stories.map(([name, headline, id]) => `<article data-reveal class="space-y-4">
+${youtubeCard(id, `InterCredit client story: ${name}`, `Play client story from ${name}`)}
+<div><h3 class="font-bold text-lg text-ink-950">${name}</h3><p class="text-sm text-text-secondary">${headline}</p></div>
+<a class="inline-block py-3.5 -my-3.5 text-sm text-teal-600 underline underline-offset-4 hover:text-green-600 transition-colors" href="https://www.youtube.com/watch?v=${id}" rel="noopener" target="_blank">Watch on YouTube</a>
+</article>`).join('\n')}
+</div>
+<p class="text-xs text-text-muted max-w-prose">Each client’s situation is different. These stories describe individual experiences and are not a promise of a specific result.</p>
+</div>
+</section>
+<section class="w-full bg-ink-950 text-white py-20 lg:py-28 relative overflow-hidden bg-ledger-dark">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-5 space-y-4">
+${eyebrow('EXPERIENCE YOU CAN SEE', true)}
+<h2 class="text-3xl sm:text-4xl font-bold text-white leading-tight">Credit guidance should be backed by more than promises.</h2>
+<p class="text-sm text-white/70 leading-relaxed">InterCredit combines hands-on client work with public financial education. Univision has featured Jessica Sotolongo in segments covering credit myths, credit reports, and rebuilding credit.</p>
+<a class="inline-flex items-center gap-1.5 font-bold text-xs uppercase tracking-wider text-green-400 hover:text-white transition-colors py-3.5 -my-3.5" href="/about-us/#media"><span>About our media appearances</span>${arrow}</a>
+</div>
+<div class="lg:col-span-7"><div class="rounded-card-lg overflow-hidden bg-ink-900 border border-border-dark shadow-2xl"><img alt="Jessica Sotolongo appearing on Univision Despierta América" class="w-full h-auto" decoding="async" height="1500" loading="lazy" sizes="(min-width: 1024px) 55vw, 100vw" src="/assets/univision-feature.jpg" srcset="/assets/univision-feature-1200.jpg 1200w, /assets/univision-feature.jpg 2000w" width="2000"/></div></div>
+</div>
+</div>
+</section>
+${approachSection('bg-white')}
+${closingCta()}`,
+});
+
+// Literal legal text: short lines without a full stop are section headings.
+const legalBody = (markdown) => {
+  const lines = markdown.split('\n').map((line) => line.trim()).filter(Boolean).slice(1);
+  return lines.map((line) => {
+    if (line.length < 40 && !/[.:,]$/.test(line) && !/\d{3}/.test(line) && !/^(InterCredit Solution|Suite|Miami)/.test(line)) return `<h2 class="pt-6 text-xl font-bold text-ink-950">${esc(line)}</h2>`;
+    const labelled = line.match(/^([A-Z][A-Za-z -]{2,60}):\s+(.+)$/);
+    if (labelled) return `<p><strong class="text-ink-950">${esc(labelled[1])}:</strong> ${esc(labelled[2])}</p>`;
+    return `<p>${esc(line)}</p>`;
+  }).join('\n');
+};
+
+const legalPage = ({ title, current, label, lead, content, robots = '' }) => page({
+  title: `${title} — InterCredit Solution`,
+  description: `${title} of InterCredit Solution.`,
+  current,
+  robots,
+  body: `${hero({ trail: [['Home', '/'], [title]], label, title, lead })}
+<section class="w-full bg-porcelain-50 py-16 lg:py-24">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="max-w-prose space-y-4 text-sm text-text-secondary leading-relaxed">
+${content}
+</div>
+</div>
+</section>`,
+});
+
+const privacy = legalPage({
+  title: 'Privacy Policy',
+  current: '/privacy-policy/',
+  label: 'LEGAL',
+  lead: 'How InterCredit Solution collects, uses, and protects your information.',
+  content: legalBody(readFileSync(new URL('./content/privacy-policy.md', import.meta.url), 'utf8')),
+});
+
+const terms = legalPage({
+  title: 'Terms &amp; Conditions',
+  current: '/terms-and-conditions/',
+  label: 'LEGAL',
+  lead: 'Our Terms &amp; Conditions are being finalized.',
+  robots: 'noindex',
+  content: `<p>The full text of our Terms &amp; Conditions is not yet published on this page. If you have a question about the terms that apply to a service, please contact us and we will explain them before you make any commitment.</p>
+<p><a class="inline-flex min-h-[44px] items-center font-bold text-teal-600 hover:text-green-600 transition-colors" href="${PHONE_HREF}">${PHONE}</a> <span aria-hidden="true">•</span> <a class="inline-flex min-h-[44px] items-center font-bold text-teal-600 hover:text-green-600 transition-colors" href="mailto:${EMAIL}">${EMAIL}</a></p>`,
+});
+
+const notFound = page({
+  title: 'Page not found — InterCredit Solution',
+  description: 'The page you are looking for could not be found.',
+  robots: 'noindex',
+  body: `${hero({
+    trail: [['Home', '/'], ['Page not found']],
+    label: 'ERROR 404',
+    title: 'This page could not be found.',
+    lead: 'The link may be outdated or the page may have moved. These are good places to continue.',
+    actions: `${primaryButton('Back to Home', '/')}<a class="inline-flex items-center justify-center gap-2 rounded-btn border border-white/30 bg-white/95 px-6 py-4 text-sm font-bold text-text-primary shadow-sm transition-colors hover:bg-white" href="/services/"><span>View Services</span>${icon('arrow_forward', 'icon-nudge text-[18px] text-teal-700')}</a>`,
+  })}
+<section class="w-full bg-porcelain-50 py-16 lg:py-24">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+${[['About Us', 'Meet the team behind InterCredit.', '/about-us/'], ['Client Reviews', 'Hear clients describe their experience.', '/reviews/'], ['Contact', 'Call or visit our Miami office.', '/contact-us/']].map(([name, text, href]) => `<a data-reveal class="group p-8 rounded-card bg-white border border-border-light shadow-sm hover:border-teal-500/50 hover:shadow-md transition-all space-y-2" href="${href}"><span class="block font-bold text-base text-ink-950">${name}</span><span class="block text-sm text-text-secondary">${text}</span><span class="inline-flex items-center gap-1.5 pt-2 font-bold text-xs uppercase tracking-wider text-teal-600 group-hover:text-green-600 transition-colors">Open ${arrow}</span></a>`).join('\n')}
+</div>
+</div>
+</section>`,
+});
+
+// ---------- Write ----------
+
+const pages = {
+  'about-us/index.html': about,
+  'contact-us/index.html': contact,
+  'reviews/index.html': reviews,
+  'services/index.html': servicesIndex,
+  'privacy-policy/index.html': privacy,
+  'terms-and-conditions/index.html': terms,
+  '404.html': notFound,
+  ...Object.fromEntries(services.map((service) => [`services/${service.slug}/index.html`, servicePage(service)])),
+};
+
+// One icon font request for the whole site, limited to the icons actually used.
+const dist = new URL('../dist/', import.meta.url);
+const homePath = new URL('index.html', dist);
+let home = readFileSync(homePath, 'utf8');
+const used = new Set(['pause', 'play_arrow']);
+for (const html of [home, ...Object.values(pages)]) {
+  for (const match of html.matchAll(/class="[^"]*material-symbols-outlined[^"]*"[^>]*>\s*([a-z_0-9]+)\s*</g)) used.add(match[1]);
+}
+const iconFont = `https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;icon_names=${[...used].sort().join(',')}&amp;display=block`;
+home = home.replace(/https:\/\/fonts\.googleapis\.com\/css2\?family=Material\+Symbols\+Outlined[^"]*/, iconFont);
+writeFileSync(homePath, home);
+
+for (const [path, html] of Object.entries(pages)) {
+  const target = new URL(path, dist);
+  mkdirSync(dirname(target.pathname), { recursive: true });
+  writeFileSync(target, html.replace(FONT_ICONS, iconFont));
+}
+console.log(`Built ${Object.keys(pages).length} pages, ${used.size} icons.`);

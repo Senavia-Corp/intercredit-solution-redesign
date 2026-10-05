@@ -582,8 +582,8 @@ ${youtubeCard(segments[0].id, segments[0].title, `Play video: ${segments[0].titl
 ${segments.map((segment, index) => `<li><button type="button" class="video-choice" data-video-choice data-id="${segment.id}" data-title="${segment.title}" data-meta="${segmentMeta(segment)}" aria-pressed="${index === 0}"><img alt="" decoding="async" height="360" loading="lazy" src="https://i.ytimg.com/vi/${segment.id}/hqdefault.jpg" width="480"/><span><span class="block text-sm font-bold text-white">${segment.topic}</span><span class="block text-xs text-white/60">${segment.year} · In Spanish</span></span></button></li>`).join('\n')}
 </ul>
 </div>
-<ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 ">
-${[['univision-feature-1200', 'Jessica Sotolongo on the Despierta América set with a host', 1200, 900], ['gallery-8', 'Jessica Sotolongo on the Despierta América set during a back-to-school segment'], ['gallery-13', 'Jessica Sotolongo with a host on a television studio set'], ['gallery-10', 'Jessica Sotolongo with two television hosts'], ['gallery-16', 'Jessica Sotolongo hosting a Facebook Live broadcast'], ['office-magazine', 'A magazine cover featuring Jessica Sotolongo, displayed at the office', 1280, 720]].map(([file, alt, width = 850, height = 637]) => `<li data-reveal class="rounded-card overflow-hidden border border-border-dark bg-ink-900 aspect-[4/3]">${photo(file, alt, { width, height })}</li>`).join('\n')}
+<ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 ">
+${[['gallery-8', 'Jessica Sotolongo on the Despierta América set during a back-to-school segment'], ['gallery-13', 'Jessica Sotolongo with a host on a television studio set'], ['gallery-10', 'Jessica Sotolongo with two television hosts'], ['gallery-16', 'Jessica Sotolongo hosting a Facebook Live broadcast'], ['office-magazine', 'A magazine cover featuring Jessica Sotolongo, displayed at the office', 1280, 720]].map(([file, alt, width = 850, height = 637]) => `<li data-reveal class="rounded-card overflow-hidden border border-border-dark bg-ink-900 aspect-[4/3]">${photo(file, alt, { width, height })}</li>`).join('\n')}
 </ul>
 </div>
 </section>

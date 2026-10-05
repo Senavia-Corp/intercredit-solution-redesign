@@ -521,6 +521,10 @@ ${footerHeading('Resources &amp; Legal')}
 // UserWay accessibility widget (client account). Loaded on every page, including the homepage.
 const USERWAY = '<script src="https://cdn.userway.org/widget.js" data-account="PIK3aqaQIW"></script>';
 
+// Cache-buster for site.css / site.js: browsers keep unversioned assets, so a returning visitor would run
+// new markup with old behaviour. ponytail: build timestamp; switch to content hashes if builds must be reproducible.
+const ASSET_VERSION = Date.now().toString(36);
+
 const FONT_ICONS = '@@ICON_FONT@@';
 
 const page = ({ title, description, current = '', robots = '', body }) => `<!DOCTYPE html>
@@ -534,10 +538,10 @@ const page = ({ title, description, current = '', robots = '', body }) => `<!DOC
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&amp;display=swap" rel="stylesheet"/>
 <link href="${FONT_ICONS}" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/site.css"/>
+<link rel="stylesheet" href="/assets/site.css?v=${ASSET_VERSION}"/>
 <link rel="stylesheet" href="/assets/motion.css"/>
 <script src="/assets/motion.js" defer></script>
-<script src="/assets/site.js" defer></script>
+<script src="/assets/site.js?v=${ASSET_VERSION}" defer></script>
 </head>
 <body class="bg-porcelain-50 font-sans text-text-primary antialiased selection:bg-teal-500 selection:text-white">
 ${header(current)}
@@ -985,6 +989,7 @@ home = home.replace(/<footer[\s\S]*?<\/footer>/, () => footer.slice(0, footer.in
 home = home.replace(/<!-- google-badge:start -->[\s\S]*?<!-- google-badge:end -->/, () => `<!-- google-badge:start -->\n<div>${googleBadge({ href: '#google-reviews' })}</div>\n<!-- google-badge:end -->`);
 home = home.replace(/<!-- booking-chips:start -->[\s\S]*?<!-- booking-chips:end -->/, () => `<!-- booking-chips:start -->\n${bookingStepChips()}\n<!-- booking-chips:end -->`);
 if (!home.includes('cdn.userway.org')) home = home.replace('</body>', `${USERWAY}\n</body>`);
+home = home.replace(/(\.\/assets\/site\.(?:css|js))(?:\?v=[a-z0-9]+)?"/g, `$1?v=${ASSET_VERSION}"`);
 home = home.replace(/<!-- booking:start -->[\s\S]*?<!-- booking:end -->/, () => `<!-- booking:start -->\n${bookingSection()}\n<!-- booking:end -->`);
 home = home.replace(/<!-- reviews:start -->[\s\S]*?<!-- reviews:end -->/, () => `<!-- reviews:start -->\n${reviewsComponent({ summary: false })}\n<!-- reviews:end -->`);
 home = home.replace(/<!-- reviews-summary:start -->[\s\S]*?<!-- reviews-summary:end -->/, () => `<!-- reviews-summary:start -->\n${reviewsSummaryCard()}\n<!-- reviews-summary:end -->`);

@@ -112,6 +112,28 @@
       visibility: hidden;
       pointer-events: none;
     }
+    .testimonial-layout {display:grid;grid-template-columns:minmax(0,1.8fr) minmax(0,1fr);gap:32px;align-items:start;}
+    .testimonial-player {aspect-ratio:16/9;background:#0b1925;border-radius:24px;overflow:hidden;}
+    .testimonial-player a {position:relative;display:block;width:100%;height:100%;}
+    .testimonial-player img {width:100%;height:100%;object-fit:contain;}
+    .testimonial-player iframe {width:100%;height:100%;border:0;}
+    .testimonial-play-icon {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:68px;height:68px;border-radius:50%;background:white;color:#1D766E;box-shadow:0 8px 32px #0005;}
+    .testimonial-controls {display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 0;}
+    .testimonial-controls h3 {font-size:20px;font-weight:700;}
+    .testimonial-controls a {font-size:14px;color:#1D766E;text-decoration:underline;text-underline-offset:4px;}
+    .testimonial-arrows {display:flex;align-items:center;gap:12px;white-space:nowrap;}
+    .testimonial-arrows button {width:44px;height:44px;border:1px solid #dce3e3;border-radius:50%;font-size:26px;color:#1D766E;background:white;}
+    .testimonial-list {display:grid;gap:16px;}
+    .testimonial-choice {display:flex;align-items:center;gap:16px;text-align:left;padding:16px;border:1px solid #dce3e3;border-radius:20px;background:#faf9f6;}
+    .testimonial-choice[aria-pressed="true"] {border:2px solid #1D766E;background:#edf7f5;padding:15px;}
+    .testimonial-choice img {width:38%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;}
+    .testimonial-choice span span,.testimonial-choice strong {display:block;}
+    .testimonial-choice strong {font-size:16px;margin:6px 0;}
+    .testimonial-choice span span {font-size:14px;color:#526570;}
+    .testimonial-choice .testimonial-number {font-size:12px;color:#1D766E;letter-spacing:.06em;}
+    #client-proof button:focus-visible,#client-proof a:focus-visible {outline:3px solid #1D766E;outline-offset:4px;}
+    @media(max-width:1023px) {.testimonial-layout{grid-template-columns:1fr;gap:16px}.testimonial-list{grid-template-columns:repeat(3,minmax(0,1fr))}.testimonial-choice{flex-direction:column;align-items:stretch;gap:10px}.testimonial-choice img{width:100%}.testimonial-number{display:none!important}}
+    @media(max-width:520px) {.testimonial-choice{padding:8px;border-radius:12px}.testimonial-choice[aria-pressed="true"]{padding:7px}.testimonial-choice strong{font-size:14px}.testimonial-choice span span{display:none}.testimonial-list{gap:8px}.testimonial-controls{padding:20px 0}.testimonial-player{border-radius:18px}}
     .video-story-overlay {
       transition: opacity 0.25s ease, visibility 0.25s ease;
     }
@@ -1042,65 +1064,12 @@ Book a 20-Minute Consultation
           The most useful proof is not an empty guarantee. It is hearing how real clients describe the experience, communication, and support they received.
         </p>
 </div>
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-<!-- Left: Featured Client Video Story Frame -->
-<div class="lg:col-span-7 rounded-hero overflow-hidden bg-ink-950 text-white flex flex-col justify-between shadow-2xl border border-border-dark">
-<div class="relative aspect-video w-full" id="video-story-frame">
-<video aria-describedby="client-story-description" aria-label="Featured InterCredit client story" class="w-full h-full object-cover" id="client-story-video" muted="" playsinline="" poster="./assets/client-story-poster.jpg" preload="metadata">
-<source src="./assets/client-story.webm" type="video/webm"/>
-<source src="./assets/client-story.mp4" type="video/mp4"/>
-<track default="" kind="captions" label="English" src="./assets/client-story-captions.vtt" srclang="en"/>
-</video>
-<p class="sr-only" id="client-story-description">Silent client story video; no spoken audio is present.</p>
-<div class="video-story-overlay absolute inset-0 bg-ink-950/25 backdrop-blur-[1px] flex items-center justify-center">
-<button aria-label="Play featured client story" class="w-16 h-16 rounded-full bg-white text-ink-950 flex items-center justify-center shadow-2xl cursor-pointer hover:scale-105 transition-transform focus:outline-none focus:ring-4 focus:ring-teal-400/60" id="client-story-play" type="button">
-<span aria-hidden="true" class="material-symbols-outlined text-[32px] ml-1 text-teal-600">play_arrow</span>
-</button>
+<div class="testimonial-layout" role="region" aria-label="Client video testimonials">
+<div>
+<div id="testimonial-player" class="testimonial-player"><a href="https://www.youtube.com/watch?v=0xNgJalGbg8" id="testimonial-play" aria-label="Play client story 1"><img src="https://i.ytimg.com/vi/0xNgJalGbg8/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"/><span class="testimonial-play-icon" aria-hidden="true">▶</span></a></div>
+<div class="testimonial-controls"><div><h3 id="testimonial-title">Client story 01</h3><a id="testimonial-youtube" href="https://www.youtube.com/watch?v=0xNgJalGbg8" target="_blank" rel="noopener">Watch on YouTube</a></div><div class="testimonial-arrows"><button type="button" id="testimonial-prev" aria-label="Previous testimonial">‹</button><span id="testimonial-count" aria-live="polite">01 / 03</span><button type="button" id="testimonial-next" aria-label="Next testimonial">›</button></div></div>
 </div>
-<div class="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-ink-950/80 text-white text-xs font-semibold">
-              DOCUMENTARY STORY
-            </div>
-</div>
-<div class="p-8 space-y-3">
-<p class="font-serif-italic text-lg sm:text-xl text-white/95 leading-relaxed">
-              “I finally have peace of mind after years of struggle with overdue balances and unclear credit reports.”
-            </p>
-<p class="text-xs font-bold tracking-wider uppercase text-green-400">
-              Elena R. • Debt Resolution &amp; Credit Rebuilding Client
-            </p>
-</div>
-</div>
-<!-- Right: Genuine Client Testimonial Cards (No fake stars) -->
-<div class="lg:col-span-5 flex flex-col justify-between gap-6">
-<div class="p-8 rounded-card-lg bg-porcelain-50 border border-border-light shadow-sm flex-1 flex flex-col justify-between space-y-4">
-<div class="space-y-3">
-<div class="flex items-center gap-1.5">
-<span class="px-2 py-0.5 rounded bg-mist-100 text-teal-700 text-[10px] font-bold uppercase tracking-wider">Verified Client Feedback</span>
-</div>
-<p class="text-sm text-text-secondary italic leading-relaxed">
-                “What impressed me most was that they didn't try to push an aggressive one-size-fits-all plan. They sat with me, reviewed each collection account, and explained what could realistically be negotiated.”
-              </p>
-</div>
-<div class="pt-2 border-t border-border-light">
-<p class="font-bold text-sm text-ink-950">Carlos M.</p>
-<p class="text-xs text-text-muted">Debt Negotiation &amp; Credit Counseling</p>
-</div>
-</div>
-<div class="p-8 rounded-card-lg bg-porcelain-50 border border-border-light shadow-sm flex-1 flex flex-col justify-between space-y-4">
-<div class="space-y-3">
-<div class="flex items-center gap-1.5">
-<span class="px-2 py-0.5 rounded bg-mist-100 text-teal-700 text-[10px] font-bold uppercase tracking-wider">Verified Client Feedback</span>
-</div>
-<p class="text-sm text-text-secondary italic leading-relaxed">
-                “Moving from Latin America to Florida, establishing credit seemed like an impossible puzzle. InterCredit designed an orderly roadmap for our family's commercial and personal profile.”
-              </p>
-</div>
-<div class="pt-2 border-t border-border-light">
-<p class="font-bold text-sm text-ink-950">Diego &amp; Valentina S.</p>
-<p class="text-xs text-text-muted">Credit for Foreign Investors</p>
-</div>
-</div>
-</div>
+<div class="testimonial-list" aria-label="Choose a client story"><button type="button" class="testimonial-choice" data-story="0" aria-pressed="true"><img src="https://i.ytimg.com/vi/0xNgJalGbg8/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"/><span><span class="testimonial-number">01 / CLIENT EXPERIENCE</span><strong>Client story 01</strong><span>Watch this story</span></span></button><button type="button" class="testimonial-choice" data-story="1" aria-pressed="false"><img src="https://i.ytimg.com/vi/U_I_pAV_Hlk/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"/><span><span class="testimonial-number">02 / CLIENT EXPERIENCE</span><strong>Client story 02</strong><span>Watch this story</span></span></button><button type="button" class="testimonial-choice" data-story="2" aria-pressed="false"><img src="https://i.ytimg.com/vi/ZwkhIzVObus/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"/><span><span class="testimonial-number">03 / CLIENT EXPERIENCE</span><strong>Client story 03</strong><span>Watch this story</span></span></button></div>
 </div>
 </div>
 </section>
@@ -1424,21 +1393,33 @@ Book a 20-Minute Consultation
     }
   });
 
-  const videoFrame = document.getElementById('video-story-frame');
-  const video = document.getElementById('client-story-video');
-  const videoPlay = document.getElementById('client-story-play');
-  videoPlay.addEventListener('click', async () => {
-    video.controls = true;
-    try {
-      await video.play();
-      videoFrame.classList.add('video-story-playing');
-    } catch {
-      video.controls = true;
-    }
-  });
-  video.addEventListener('ended', () => {
-    video.controls = false;
-    videoFrame.classList.remove('video-story-playing');
+  const storyIds = ['0xNgJalGbg8', 'U_I_pAV_Hlk', 'ZwkhIzVObus'];
+  let selectedStory = 0;
+  const storyPlayer = document.getElementById('testimonial-player');
+  const storyChoices = [...document.querySelectorAll('.testimonial-choice')];
+  const selectStory = (index) => {
+    selectedStory = (index + storyIds.length) % storyIds.length;
+    const id = storyIds[selectedStory];
+    const number = String(selectedStory + 1).padStart(2, '0');
+    storyPlayer.innerHTML = '<a id="testimonial-play" aria-label="Play client story ' + number + '" href="https://www.youtube.com/watch?v=' + id + '"><img src="https://i.ytimg.com/vi/' + id + '/hqdefault.jpg" alt="" width="480" height="360"/><span class="testimonial-play-icon" aria-hidden="true">▶</span></a>';
+    document.getElementById('testimonial-title').textContent = 'Client story ' + number;
+    document.getElementById('testimonial-count').textContent = number + ' / 03';
+    document.getElementById('testimonial-youtube').href = 'https://www.youtube.com/watch?v=' + id;
+    storyChoices.forEach((button, i) => button.setAttribute('aria-pressed', String(i === selectedStory)));
+  };
+  storyChoices.forEach((button, i) => button.addEventListener('click', () => selectStory(i)));
+  document.getElementById('testimonial-prev').addEventListener('click', () => selectStory(selectedStory - 1));
+  document.getElementById('testimonial-next').addEventListener('click', () => selectStory(selectedStory + 1));
+  storyPlayer.addEventListener('click', (event) => {
+    if (!event.target.closest('#testimonial-play')) return;
+    event.preventDefault();
+    const frame = document.createElement('iframe');
+    frame.src = 'https://www.youtube-nocookie.com/embed/' + storyIds[selectedStory] + '?autoplay=1&playsinline=1&cc_load_policy=1';
+    frame.title = 'InterCredit client story ' + (selectedStory + 1);
+    frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    frame.allowFullscreen = true;
+    storyPlayer.replaceChildren(frame);
+    frame.focus();
   });
 </script>
 </body></html>

@@ -165,7 +165,8 @@ ${breadcrumb(trail)}
 ${eyebrow(label, true)}
 <h1 class="text-4xl sm:text-5xl leading-[1.08] font-bold text-white tracking-tight">${title}</h1>
 <p class="max-w-xl text-lg leading-relaxed text-white/85">${lead}</p>
-${actions ? `<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2 w-full sm:w-auto">${actions}</div>` : ''}
+${actions ? `<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2 w-full sm:w-auto">${actions}</div>
+<div>${googleBadge()}</div>` : ''}
 </div>
 ${aside ? `<div class="lg:col-span-5">${aside}</div>` : ''}
 </div>
@@ -234,7 +235,7 @@ const bookingSteps = [
 const bookingCard = (id = '') => `<div data-reveal${id ? ` id="${id}"` : ''} class="rounded-card-lg bg-white border border-border-light shadow-xl overflow-hidden">
 <div class="h-1 brand-gradient-line"></div>
 <div class="p-4 sm:p-6 space-y-4">
-<h3 class="font-bold text-lg text-ink-950">Choose a time that works for you</h3>
+<div class="flex flex-wrap items-center justify-between gap-3"><h3 class="font-bold text-lg text-ink-950">Choose a time that works for you</h3>${googleBadge({ compact: true })}</div>
 <div class="min-h-[550px]">
 <!-- ScheduleOnce embed START -->
 <div id="SOIDIV_InterCreditSolution" data-so-page="InterCreditSolution" data-height="550" data-style="border: 1px solid #d8d8d8; min-width: 290px; max-width: 900px;" data-psz="00"></div>
@@ -276,6 +277,12 @@ const stars = (rating) => `<span class="inline-flex gap-0.5" role="img" aria-lab
 const monthYear = (isoDate) => new Date(`${isoDate}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
 const asOf = monthYear(reviewsData.fetchedAt);
 
+// Google rating badge: the one trust signal repeated at each decision point. Numbers come from the reviews data.
+const googleBadge = ({ href = '/reviews/', compact = false } = {}) => {
+  const external = href.startsWith('http');
+  return `<a class="google-badge${compact ? ' google-badge-compact' : ''}" href="${esc(href)}"${external ? ' rel="noopener" target="_blank"' : ''} aria-label="Rated ${reviewsData.averageRating.toFixed(1)} out of 5 on Google, ${reviewsData.totalReviews} reviews${external ? ' (opens Google)' : ''}"><img alt="" height="${compact ? 33 : 41}" loading="lazy" src="/assets/google-reviews.svg" width="${compact ? 80 : 100}"/><span class="google-badge-text"><strong>${reviewsData.averageRating.toFixed(1)}</strong><span>${reviewsData.totalReviews} reviews</span></span></a>`;
+};
+
 const reviewCard = (review, extra = '') => `<li class="flex flex-col gap-4 p-6 rounded-card bg-white border border-border-light shadow-sm ${extra}">
 <div class="flex items-center gap-3">
 <span aria-hidden="true" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full brand-gradient-line text-sm font-extrabold uppercase text-ink-950">${esc(review.author.charAt(0))}</span>
@@ -290,7 +297,7 @@ ${stars(review.rating)}
 const reviewsComponent = ({ layout = 'carousel', data = reviewsData } = {}) => `<div class="space-y-8" id="google-reviews"${layout === 'carousel' ? ' data-carousel' : ''}>
 <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
 <div class="space-y-3">
-<span class="text-xs font-bold uppercase tracking-widest text-teal-600 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>GOOGLE REVIEWS</span>
+<img alt="Google Reviews" height="49" loading="lazy" src="/assets/google-reviews.svg" width="120"/>
 <h3 class="text-2xl sm:text-3xl font-bold text-ink-950 leading-tight">What clients have written on Google.</h3>
 <p class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-text-secondary"><span class="text-2xl font-extrabold text-ink-950">${data.averageRating.toFixed(1)}</span>${stars(data.averageRating)}<span>${data.totalReviews} reviews on Google · as of ${asOf}</span></p>
 </div>
@@ -436,6 +443,7 @@ ${footerContact('call', `<a class="inline-flex min-h-[44px] items-center font-bo
 ${footerContact('mail', `<a class="inline-flex min-h-[44px] items-center break-all hover:text-white transition-colors" href="mailto:${EMAIL}">${EMAIL}</a>`)}
 ${footerContact('schedule', `<span>${HOURS}</span>`)}
 </ul>
+${googleBadge({ href: reviewsData.profileUrl })}
 </div>
 <div class="lg:col-span-3 space-y-3">
 ${footerHeading('Solutions')}
@@ -930,6 +938,7 @@ let home = readFileSync(homePath, 'utf8');
 // Same header on the homepage, so every page is reachable from every page.
 home = home.replace(/<a class="sr-only[\s\S]*?(?=<main id="main-content">)/, () => `${header('/').trim()}\n`);
 home = home.replace(/<footer[\s\S]*?<\/footer>/, () => footer.slice(0, footer.indexOf('</footer>') + 9).trim());
+home = home.replace(/<!-- google-badge:start -->[\s\S]*?<!-- google-badge:end -->/, () => `<!-- google-badge:start -->\n<div>${googleBadge({ href: '#google-reviews' })}</div>\n<!-- google-badge:end -->`);
 home = home.replace(/<!-- booking:start -->[\s\S]*?<!-- booking:end -->/, () => `<!-- booking:start -->\n${bookingSection()}\n<!-- booking:end -->`);
 home = home.replace(/<!-- reviews:start -->[\s\S]*?<!-- reviews:end -->/, () => `<!-- reviews:start -->\n${reviewsComponent()}\n<!-- reviews:end -->`);
 const used = new Set(['pause', 'play_arrow']);

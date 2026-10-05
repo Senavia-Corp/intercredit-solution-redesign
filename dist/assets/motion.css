@@ -1,0 +1,60 @@
+:root {
+  --motion-fast: 160ms;
+  --motion-ui: 220ms;
+  --motion-reveal: 620ms;
+  --motion-ease: cubic-bezier(.22,1,.36,1);
+  --motion-distance: 24px;
+}
+/* Only JS-prepared, offscreen content can be hidden. Layout remains intact. */
+.motion-pending {
+  opacity: 0;
+  translate: 0 var(--motion-distance);
+}
+.motion-pending[data-motion="fade"] { translate: none; }
+.motion-pending[data-motion="left"] { translate: -20px 0; }
+.motion-pending[data-motion="right"] { translate: 20px 0; }
+.motion-revealing {
+  transition: opacity var(--motion-reveal) var(--motion-ease),
+    translate var(--motion-reveal) var(--motion-ease);
+  transition-delay: var(--motion-delay, 0ms);
+}
+.motion-revealing .service-icon,
+.motion-revealing .authority-icon {
+  animation: icon-arrive 480ms var(--motion-ease) both;
+}
+@keyframes icon-arrive {
+  from { opacity: .5; transform: scale(.94); }
+  to { opacity: 1; transform: scale(1); }
+}
+header.sticky {
+  transition: background-color var(--motion-ui) ease, border-color var(--motion-ui) ease;
+}
+header.sticky.is-scrolled { background-color: rgba(250,249,246,.98); border-bottom-color: #cfdcda; }
+.nav-item-link::after { width: 100%; transform: scaleX(0); transform-origin: left; transition: transform var(--motion-ui) ease; }
+.nav-item-link:hover::after,.nav-item-link:focus-visible::after { transform: scaleX(1); }
+.brand-gradient-btn {
+  transition: translate var(--motion-ui) var(--motion-ease), transform var(--motion-fast) var(--motion-ease);
+}
+.brand-gradient-btn:hover { filter: none; }
+.motion-card { transition: translate var(--motion-ui) var(--motion-ease), border-color var(--motion-ui) ease; }
+/* Reveals win over hover transitions until the entrance has completed. */
+.motion-card.motion-revealing { transition: opacity var(--motion-reveal) var(--motion-ease), translate var(--motion-reveal) var(--motion-ease); transition-delay: var(--motion-delay, 0ms); }
+a .material-symbols-outlined { transition: translate var(--motion-ui) var(--motion-ease); }
+@media (hover:hover) and (pointer:fine) {
+  .motion-card:not(.motion-pending):not(.motion-revealing):hover { translate: 0 -3px; }
+  .brand-gradient-btn:hover { translate: 0 -2px; }
+  a:hover > .material-symbols-outlined { translate: 3px 0; }
+}
+.brand-gradient-btn:active,.testimonial-arrows button:active,.testimonial-choice:active { transform: scale(.98); }
+#faq details { transition: background-color var(--motion-ui) ease, border-color var(--motion-ui) ease; }
+#faq summary .material-symbols-outlined { transition: transform var(--motion-ui) var(--motion-ease); }
+@media(max-width:767px) {
+  :root { --motion-distance: 14px; --motion-reveal: 500ms; }
+  .motion-pending[data-motion="left"],.motion-pending[data-motion="right"] { translate: 0 var(--motion-distance); }
+}
+@media(prefers-reduced-motion:reduce) {
+  .motion-pending,.motion-revealing { opacity: 1 !important; translate: none !important; transition: none !important; }
+  .motion-card:hover,.brand-gradient-btn:hover { translate: none !important; }
+  .brand-gradient-btn:active,.testimonial-arrows button:active,.testimonial-choice:active { transform: none !important; }
+  html { scroll-behavior: auto !important; }
+}

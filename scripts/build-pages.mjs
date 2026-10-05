@@ -505,11 +505,39 @@ ${eyebrow(`ON DESPIERTA AMÉRICA (UNIVISION) · ${segment.year}`, true)}
 </div>
 </section>`;
 
-const journeyStrip = (active) => `<ol class="grid grid-cols-5 gap-2 sm:gap-4">
-${stages.map((stage, index) => `<li class="flex flex-col items-center gap-2 text-center"${index === active ? ' aria-current="step"' : ''}>
-<span class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-extrabold text-sm ${index === active ? 'bg-ink-950 text-lime-400 border-4 border-lime-500 shadow-lg' : 'bg-white text-text-muted border-2 border-mist-200'}">0${index + 1}</span>
-<span class="text-[11px] sm:text-xs font-bold ${index === active ? 'text-ink-950' : 'text-text-muted'}">${stage}</span>
-</li>`).join('\n')}
+const stageText = [
+  'Review your goals, credit context, debt situation, and relevant information before deciding what to address.',
+  'Identify eligible inaccurate, outdated, or inconsistent credit information that may need review or updating.',
+  'Explore appropriate options for eligible debt and collection challenges, including negotiation when applicable.',
+  'Use monitoring, fraud-related support, education, and better habits to reduce uncertainty around your profile.',
+  'Build stronger credit history and financial habits that can support future financial goals and financing.',
+];
+// Illustrative image for each service's place in the journey (image bank; nobody shown is presented as a client or team member).
+const stagePhotoAlt = {
+  'credit-repair': 'A hand filling in a printed credit score form beside a calculator',
+  'update-personal-information-in-credit-bureaus': 'Printed credit card application documents and a card on a wooden desk',
+  'add-existing-credit-cards-to-credit-history': 'A printed credit card agreement on a desk',
+  'debts-negotiation': 'A handshake over signed documents',
+  'negotiation-of-collection-accounts-in-court': 'Two people reviewing a printed report at a marble table',
+  'corporate-credit-counseling': 'Three people in a business meeting at an office table',
+  'credit-monitoring-report': 'A person at a keyboard with a credit check screen on the monitor',
+  'fraud-alert-system': 'Hands holding a phone and a payment card',
+  'establishing-credit-for-foreign-investors': 'An advisor talking with a couple at a table with a bay skyline behind them',
+};
+const brandMix = (t) => `#${[[0x20, 0x9e], [0xb4, 0xb3], [0xe5, 0x42]].map(([from, to]) => Math.round(from + (to - from) * t).toString(16).padStart(2, '0')).join('')}`;
+
+// Vertical journey: every stage is listed; the one this service belongs to opens with its description.
+const journeyTimeline = (active) => `<ol class="relative space-y-3">
+<span aria-hidden="true" class="absolute left-[23px] top-6 bottom-6 w-0.5 brand-gradient-line-vertical"></span>
+${stages.map((stage, index) => (index === active
+    ? `<li aria-current="step" class="relative flex items-start gap-4 p-4 -ml-0 rounded-card bg-white border border-border-light shadow-md">
+<span class="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-4 bg-ink-950 text-white font-extrabold text-sm shadow-lg -ml-[3px]" style="border-color:${brandMix(index / 4)}">0${index + 1}</span>
+<div class="space-y-1 pt-0.5"><p class="text-[10px] font-bold uppercase tracking-wider text-teal-600">This service · Stage 0${index + 1}</p><h3 class="font-bold text-lg text-ink-950">${stage}</h3><p class="text-sm text-text-secondary leading-relaxed">${stageText[index]}</p></div>
+</li>`
+    : `<li class="relative flex items-center gap-4 pl-[5px] py-1">
+<span class="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 bg-white text-text-muted font-bold text-xs" style="border-color:${brandMix(index / 4)}">0${index + 1}</span>
+<span class="pl-[3px] text-sm font-semibold text-text-secondary">${stage}</span>
+</li>`)).join('\n')}
 </ol>`;
 
 const servicePage = (service) => {
@@ -563,9 +591,21 @@ ${service.scenarios.map((scenario) => `<li class="flex items-start gap-3">${icon
 ${service.slug in serviceSegments ? segmentBand(segments[serviceSegments[service.slug]]) : ''}
 ${approachSection()}
 <section class="w-full bg-white border-y border-border-light py-20 lg:py-28">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+<figure data-reveal class="photo-offset lg:col-span-6">
+<span aria-hidden="true" class="photo-offset-frame"></span>
+<div class="relative rounded-card-lg overflow-hidden border border-border-light bg-white shadow-xl aspect-[4/3]">
+<img alt="${stagePhotoAlt[service.slug]}" class="w-full h-full object-cover" decoding="async" height="900" loading="lazy" sizes="(min-width: 1024px) 45vw, 100vw" src="/assets/stage-${service.slug}.jpg" srcset="/assets/stage-${service.slug}-600.jpg 600w, /assets/stage-${service.slug}.jpg 1200w" width="1200"/>
+<figcaption class="absolute left-4 bottom-4 inline-flex items-center gap-3 rounded-full bg-ink-950/90 pl-2 pr-4 py-2 text-white shadow-lg backdrop-blur-md">${svcIcon(service.slug, 'svc-icon-light text-[18px] ml-2')}<span class="text-xs font-bold uppercase tracking-wider">Stage 0${service.stage + 1} · ${stages[service.stage]}</span></figcaption>
+</div>
+</figure>
+<div class="lg:col-span-6 space-y-8">
 ${sectionIntro('A CLEARER FINANCIAL PATH', `Where this fits: stage 0${service.stage + 1}, ${stages[service.stage]}.`, 'Not every client follows the same route. Your path may begin at any stage, and scope is tailored to your specific situation.')}
-<div data-reveal class="p-6 sm:p-8 rounded-card-lg bg-porcelain-50 border border-border-light">${journeyStrip(service.stage)}</div>
+${journeyTimeline(service.stage)}
+${textLink('See the full journey', '/#financial-journey')}
+</div>
+</div>
 </div>
 </section>
 ${faqSection(faqs.slice(0, 4))}

@@ -157,9 +157,9 @@ const serviceSegments = { 'debts-negotiation': 0, 'credit-repair': 1, 'fraud-ale
 
 const eyebrow = (text, dark = false) => `<span class="text-xs font-bold uppercase tracking-widest ${dark ? 'text-green-400' : 'text-teal-600'} flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>${text}</span>`;
 
-const primaryButton = (label, href = '/contact-us/#book-consultation') => `<a class="brand-gradient-btn inline-flex items-center justify-center px-8 py-4 rounded-btn text-ink-950 font-bold text-sm tracking-wider uppercase shadow-md" href="${href}">${label}</a>`;
+const primaryButton = (label, href = '/contact-us/#book-consultation') => `<a class="brand-gradient-btn inline-flex items-center justify-center sm:whitespace-nowrap px-8 py-4 rounded-btn text-ink-950 font-bold text-sm tracking-wider uppercase shadow-md" href="${href}">${label}</a>`;
 
-const callButton = (dark) => `<a class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-btn ${dark ? 'bg-white/10 hover:bg-white/20 text-white border border-border-dark' : 'bg-white hover:bg-mist-100 text-text-primary border border-border-light shadow-sm'} font-bold text-sm transition-colors" href="${PHONE_HREF}">${icon('call', 'text-[18px]')}<span>Call ${PHONE}</span></a>`;
+const callButton = (dark) => `<a class="inline-flex items-center justify-center gap-2 whitespace-nowrap px-6 py-4 rounded-btn ${dark ? 'bg-white/10 hover:bg-white/20 text-white border border-border-dark' : 'bg-white hover:bg-mist-100 text-text-primary border border-border-light shadow-sm'} font-bold text-sm transition-colors" href="${PHONE_HREF}">${icon('call', 'text-[18px]')}<span>Call ${PHONE}</span></a>`;
 
 const textLink = (label, href) => `<a class="inline-flex items-center gap-1.5 font-bold text-xs uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors py-3.5 -my-3.5" href="${href}"><span>${label}</span>${arrow}</a>`;
 
@@ -178,7 +178,7 @@ ${breadcrumb(trail)}
 ${eyebrow(label, true)}
 <h1 class="text-4xl sm:text-5xl leading-[1.08] font-bold text-white tracking-tight">${title}</h1>
 <p class="max-w-xl text-lg leading-relaxed text-white/85">${lead}</p>
-${actions ? `<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2 w-full sm:w-auto">${actions}</div>
+${actions ? `<div class="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-4 pt-2 w-full sm:w-auto">${actions}</div>
 <div>${googleBadge()}</div>` : ''}
 </div>
 ${aside ? `<div class="lg:col-span-5">${aside}</div>` : ''}
@@ -307,7 +307,7 @@ const reviewCard = (review, extra = '') => `<li class="flex flex-col gap-4 p-6 r
 <div class="min-w-0"><p class="truncate font-bold text-sm text-ink-950">${esc(review.author)}</p><p class="text-xs text-text-muted">${monthYear(review.date)}</p></div>
 </div>
 ${stars(review.rating)}
-<p class="text-sm text-text-secondary leading-relaxed line-clamp-6">${esc(review.text)}</p>
+<p class="text-sm text-text-secondary leading-relaxed line-clamp-6">${esc(review.text.replace(/\s*<br\s*\/?>\s*/gi, ' '))}</p>
 <a class="mt-auto inline-flex min-h-[44px] items-center gap-1.5 self-start text-xs font-bold uppercase tracking-wider text-teal-600 hover:text-green-600 transition-colors" href="${esc(review.url)}" rel="noopener" target="_blank"><span>Read on Google</span>${arrow}</a>
 </li>`;
 

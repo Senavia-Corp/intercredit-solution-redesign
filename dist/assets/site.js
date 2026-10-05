@@ -131,6 +131,16 @@
     });
   }
 
+  // Ambient videos play only while visible, and never when reduced motion is requested.
+  const ambientVideos = document.querySelectorAll('[data-ambient-video]');
+  if (ambientVideos.length && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const watcher = new IntersectionObserver((entries) => entries.forEach((entry) => {
+      if (entry.isIntersecting) entry.target.play().catch(() => {});
+      else entry.target.pause();
+    }), { threshold: 0.35 });
+    ambientVideos.forEach((video) => watcher.observe(video));
+  }
+
   // Video sets: a list of choices swaps what the player next to it will play.
   document.querySelectorAll('[data-video-set]').forEach((set) => {
     const player = set.querySelector('[data-youtube]');

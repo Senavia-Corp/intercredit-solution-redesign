@@ -123,6 +123,10 @@ const photo = (file, alt, { width = 1280, height = 720, classes = '', eager = fa
 
 const framed = (file, alt, options = {}) => `<figure ${options.reveal === false ? '' : 'data-reveal '}class="rounded-card-lg overflow-hidden border border-border-light bg-white shadow-xl ${options.aspect || 'aspect-video'}">${photo(file, alt, options)}</figure>`;
 
+// The office walkthrough video, framed like a photo. It plays muted while on screen (see site.js),
+// never for visitors who prefer reduced motion, and keeps native controls so it can be paused.
+const officeVideo = (label) => `<figure data-reveal class="rounded-card-lg overflow-hidden border border-border-light bg-ink-950 shadow-xl aspect-video"><video aria-label="${label}" class="w-full h-full object-cover" controls data-ambient-video loop muted playsinline poster="/assets/hero-background-poster.jpg" preload="none"><source src="/assets/hero-background.mp4" type="video/mp4"/><source src="/assets/hero-background.webm" type="video/webm"/></video></figure>`;
+
 const heroPhoto = (file, alt, options = {}) => `<figure class="rounded-card-lg overflow-hidden border border-white/20 bg-ink-900 shadow-2xl ${options.aspect || 'aspect-video'}">${photo(file, alt, { ...options, eager: true })}</figure>`;
 
 // Segments published on the official Despierta América YouTube channel (titles and years as published).
@@ -614,7 +618,7 @@ ${approachSection('bg-white', ['photo-1608', 'Jessica Sotolongo explaining print
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 <div class="lg:col-span-6 space-y-6">
 ${sectionIntro('VISIT OR CALL', 'Based in Miami, with in-person and remote consultations.')}
-${framed('photo-1663', 'The reception area of the InterCredit office in Miami')}
+${officeVideo('Video walkthrough of the InterCredit office in Miami')}
 ${textLink('Contact details', '/contact-us/')}
 </div>
 <div class="lg:col-span-6">${officeCard}</div>
@@ -642,7 +646,7 @@ const contact = page({
 <div class="lg:col-span-6 space-y-6">
 ${sectionIntro('REACH US DIRECTLY', 'Speak with our team.', 'Our consultations are booked by phone. Call us during office hours and we will find a time that works for you, in person at our Miami office or remotely.')}
 <p class="text-xs text-text-muted max-w-prose">You do not need to arrive knowing which service you need. Start with what you are trying to solve.</p>
-${framed('photo-1650', 'InterCredit team members at the front desk of the Miami office')}
+${officeVideo('Video walkthrough of the InterCredit office in Miami')}
 </div>
 <div class="lg:col-span-6">${officeCard}</div>
 </div>

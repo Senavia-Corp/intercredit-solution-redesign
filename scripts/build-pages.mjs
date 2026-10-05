@@ -867,16 +867,8 @@ ${approachSection('bg-white', ['photo-1626', 'Jessica Sotolongo shaking hands ac
 ${closingCta()}`,
 });
 
-// Literal legal text: short lines without a full stop are section headings.
-const legalBody = (markdown) => {
-  const lines = markdown.split('\n').map((line) => line.trim()).filter(Boolean).slice(1);
-  return lines.map((line) => {
-    if (line.length < 40 && !/[.:,]$/.test(line) && !/\d{3}/.test(line) && !/^(InterCredit Solution|Suite|Miami)/.test(line)) return `<h2 class="pt-6 text-xl font-bold text-ink-950">${esc(line)}</h2>`;
-    const labelled = line.match(/^([A-Z][A-Za-z -]{2,60}):\s+(.+)$/);
-    if (labelled) return `<p><strong class="text-ink-950">${esc(labelled[1])}:</strong> ${esc(labelled[2])}</p>`;
-    return `<p>${esc(line)}</p>`;
-  }).join('\n');
-};
+// Literal legal text, copied from the live site into scripts/content/*.html (headings, paragraphs and lists only).
+const legalContent = (name) => readFileSync(new URL(`./content/${name}.html`, import.meta.url), 'utf8');
 
 const legalPage = ({ title, current, label, lead, content, robots = '' }) => page({
   title: `${title} — InterCredit Solution`,
@@ -886,7 +878,7 @@ const legalPage = ({ title, current, label, lead, content, robots = '' }) => pag
   body: `${hero({ trail: [['Home', '/'], [title]], label, title, lead })}
 <section class="w-full bg-porcelain-50 py-16 lg:py-24">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="max-w-prose space-y-4 text-sm text-text-secondary leading-relaxed">
+<div class="legal-prose max-w-prose text-sm text-text-secondary leading-relaxed">
 ${content}
 </div>
 </div>
@@ -898,17 +890,15 @@ const privacy = legalPage({
   current: '/privacy-policy/',
   label: 'LEGAL',
   lead: 'How InterCredit Solution collects, uses, and protects your information.',
-  content: legalBody(readFileSync(new URL('./content/privacy-policy.md', import.meta.url), 'utf8')),
+  content: legalContent('privacy-policy'),
 });
 
 const terms = legalPage({
   title: 'Terms &amp; Conditions',
   current: '/terms-and-conditions/',
   label: 'LEGAL',
-  lead: 'Our Terms &amp; Conditions are being finalized.',
-  robots: 'noindex',
-  content: `<p>The full text of our Terms &amp; Conditions is not yet published on this page. If you have a question about the terms that apply to a service, please contact us and we will explain them before you make any commitment.</p>
-<p><a class="inline-flex min-h-[44px] items-center font-bold text-teal-600 hover:text-green-600 transition-colors" href="${PHONE_HREF}">${PHONE}</a> <span aria-hidden="true">•</span> <a class="inline-flex min-h-[44px] items-center font-bold text-teal-600 hover:text-green-600 transition-colors" href="mailto:${EMAIL}">${EMAIL}</a></p>`,
+  lead: 'The terms that apply to your use of the InterCredit Solution website and services.',
+  content: legalContent('terms-and-conditions'),
 });
 
 const notFound = page({

@@ -173,6 +173,18 @@
     .booking-chips {display:flex;flex-wrap:wrap;gap:10px;}
     .booking-chips li {display:inline-flex;align-items:center;gap:10px;min-height:40px;padding:6px 14px 6px 10px;border-radius:9999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);font-size:12px;font-weight:700;color:rgba(255,255,255,.92);}
     .booking-chips .svc-icon {font-size:20px;}
+    /* Long-form legal text: plain tags styled here so the content files stay free of classes. */
+    .legal-prose > * + * {margin-top:1rem;}
+    .legal-prose h2 {margin-top:2.5rem;font-size:1.25rem;line-height:1.3;font-weight:700;color:#0B1720;}
+    .legal-prose h3 {margin-top:1.75rem;font-size:1rem;font-weight:700;color:#0B1720;}
+    .legal-prose strong {color:#0B1720;font-weight:700;}
+    .legal-prose ul,.legal-prose ol {padding-left:1.25rem;}
+    .legal-prose ul {list-style:disc;}
+    .legal-prose ol {list-style:decimal;}
+    .legal-prose li + li {margin-top:.5rem;}
+    .legal-prose li::marker {color:var(--ic-brand-blue);}
+    .legal-prose a {font-weight:700;text-decoration:underline;text-underline-offset:4px;}
+    .legal-prose {overflow-wrap:anywhere;}
     /* Google rating badge. Always on a white plate: the Google colours are not ours to recolour. */
     .google-badge {display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:6px 16px 6px 14px;border-radius:14px;background:#fff;border:1px solid #e3e8e7;box-shadow:0 10px 24px -14px rgba(11,23,32,.45);color:#0B1720;transition:translate 220ms ease, box-shadow 220ms ease;}
     .google-badge-text {display:flex;flex-direction:column;padding-left:12px;border-left:1px solid #e3e8e7;line-height:1.15;}
